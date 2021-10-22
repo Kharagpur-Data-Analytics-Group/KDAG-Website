@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "./static/css/main.35713266.chunk.css",
+    "main.js": "./static/js/main.3c8a5687.chunk.js",
+    "main.js.map": "./static/js/main.3c8a5687.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.3f8523cc.js",
+    "runtime-main.js.map": "./static/js/runtime-main.3f8523cc.js.map",
+    "static/js/2.66fee263.chunk.js": "./static/js/2.66fee263.chunk.js",
+    "static/js/2.66fee263.chunk.js.map": "./static/js/2.66fee263.chunk.js.map",
+    "static/js/3.478c6b4a.chunk.js": "./static/js/3.478c6b4a.chunk.js",
+    "static/js/3.478c6b4a.chunk.js.map": "./static/js/3.478c6b4a.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.35713266.chunk.css.map": "./static/css/main.35713266.chunk.css.map",
+    "static/js/2.66fee263.chunk.js.LICENSE.txt": "./static/js/2.66fee263.chunk.js.LICENSE.txt",
+    "static/media/Blogs.f0e3814b.png": "./static/media/Blogs.f0e3814b.png",
+    "static/media/Events.e71e130b.png": "./static/media/Events.e71e130b.png",
+    "static/media/KDAG_logo.3fdfafba.png": "./static/media/KDAG_logo.3fdfafba.png",
+    "static/media/KDAG_logo_full.15747dc6.png": "./static/media/KDAG_logo_full.15747dc6.png",
+    "static/media/KDSH2020.a6f50700.jpg": "./static/media/KDSH2020.a6f50700.jpg",
+    "static/media/Resources.2ddc121e.png": "./static/media/Resources.2ddc121e.png",
+    "static/media/SummerAIChallenge.7348b73d.jpg": "./static/media/SummerAIChallenge.7348b73d.jpg",
+    "static/media/Week8_hackathon.fdabefc2.jpeg": "./static/media/Week8_hackathon.fdabefc2.jpeg",
+    "static/media/Header.css": "./static/media/analytics7.a2213c2e.jpg",
+    "static/media/dataanlysis_nyc.192dbc27.png": "./static/media/dataanlysis_nyc.192dbc27.png",
+    "static/media/logo-blue.7f9593fb.svg": "./static/media/logo-blue.7f9593fb.svg",
+    "static/media/logo-trans-1.eb4de4b7.svg": "./static/media/logo-trans-1.eb4de4b7.svg",
+    "static/media/main-screen.95986c0a.png": "./static/media/main-screen.95986c0a.png",
+    "static/media/week 1 Linear regression.67ca495e.jpg": "./static/media/week 1 Linear regression.67ca495e.jpg",
+    "static/media/week 2 Logistic regression.d543baa4.JPG": "./static/media/week 2 Logistic regression.d543baa4.JPG",
+    "static/media/week 3-1 KNN.56e24903.JPG": "./static/media/week 3-1 KNN.56e24903.JPG",
+    "static/media/week 4-1 Data preprocessing.c9c8e82f.JPG": "./static/media/week 4-1 Data preprocessing.c9c8e82f.JPG",
+    "static/media/week 4-2 Data preprocessing.dea38075.JPG": "./static/media/week 4-2 Data preprocessing.dea38075.JPG",
+    "static/media/week 5 Support vector machines.22d09299.JPG": "./static/media/week 5 Support vector machines.22d09299.JPG",
+    "static/media/week 6-2 Decision trees.a143c334.JPG": "./static/media/week 6-2 Decision trees.a143c334.JPG",
+    "static/media/week 7 Naive bias.32e38644.JPG": "./static/media/week 7 Naive bias.32e38644.JPG"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3f8523cc.js",
+    "static/js/2.66fee263.chunk.js",
+    "static/css/main.35713266.chunk.css",
+    "static/js/main.3c8a5687.chunk.js"
+  ]
+}
