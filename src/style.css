@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500");
+
+:root {
+  --black: #000000;
+  --gray: #4a4a4a;
+  --lightgray: #f4f4f4;
+  --blue: #407bff;
+  --white: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--lightgray);
+}
+
+.App {
+  display: flex;
+}
+
+.sidebar-container {
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+  width: 417px;
+  min-height: 706px;
+  margin-left: 29px;
+  margin-top: 39px;
+}
+
+.sidebar .banner {
+  height: 133px;
+  width: 373px;
+}
+
+.desktop-days {
+  position: relative;
+  width: 373px;
+  height: 542px;
+  left: 22px;
+  margin-bottom: 5px;
+}
+
+.day-container {
+  position: relative;
+  width: 373px;
+  height: 52px;
+  margin: 4px 0px;
+  cursor: pointer;
+  background: var(--white);
+  border-radius: 8px;
+}
+
+.day-container:hover {
+  background: var(--lightgray);
+  color: var(--black);
+}
+
+.day-container:black {
+  background: var(--lightgray);
+  color: var(--black);
+}
+
+.day-icon {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 24px;
+  top: 14px;
+}
+
+.day {
+  position: absolute;
+  left: 62px;
+  top: 13px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: var(--gray);
+}
+
+.tick-icon {
+  position: absolute;
+  align-self: right;
+  width: 24px;
+  height: 24px;
+  right: 24px;
+  top: 14px;
+}
+
+/* @media only screen and (min-width: 428px){
+
+} */
+
+.right-container {
+  width: 1206px;
+  min-height: 706px;
+  margin-left: 5px;
+  margin-top: 39px;
+  align-items: center;
+  background: var(--white);
+  border-radius: 8px;
+}
+
+.nav-container {
+  display: flex;
+  width: 1146px;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  background-color: var(--lightgray);
+  border-radius: 8px;
+}
+
+.nav {
+  justify-content: center;
+  align-items: center;
+  background-color: var(--lightgray);
+  border-radius: 8px;
+  display: flex;
+  height: 52px;
+  width: 281.5px;
+  margin: 4px 2px;
+}
+
+.nav:active {
+  background-color: var(--white);
+}
+
+.nav-icon {
+  height: 24px;
+  margin-top: 1px;
+  width: 24px;
+  margin-right: 10px;
+}
+
+.nav-title {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--gray);
+}
+
+.content-container {
+  width: 1146px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  background-color: var(--white);
+}

@@ -1,0 +1,226 @@
+.main-container {
+  width: 1146px;
+  height: auto;
+  left: 435px;
+  margin-right: auto;
+  position: absolute;
+  background-color: white;
+}
+
+.Topicrect {
+  width: 23px;
+  height: 48px;
+  left: 150px;
+  background: #407bff;
+  transform: rotate(-180deg);
+  border-radius: 4px;
+}
+.topic {
+  position: absolute;
+  width: 191px;
+  height: 36px;
+  left: 46px;
+  top: 5px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 36px;
+
+  /* identical to box height */
+
+  color: #000000;
+}
+.session-head {
+  width: 89px;
+  height: 30px;
+  left: 51px;
+  top: -10px;
+  bottom: 50px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: black;
+  position: relative;
+}
+.session-subhead {
+  width: 233px;
+  height: 30px;
+  left: 150px;
+  top: -40px;
+  position: relative;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+
+  display: flex;
+  align-items: center;
+
+  color: #c4c4c4;
+}
+
+.record {
+  width: 173px;
+  height: 48px;
+  left: 718px;
+  top: -75px;
+  position: relative;
+  background: #407bff;
+  border-radius: 8px;
+  text-align: center;
+}
+.record-text {
+  width: 93px;
+  height: 27px;
+  left: 1200px;
+  top: 70px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: white;
+  line-height: 27px;
+}
+.record-img {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  top: 10px;
+  right: 10px;
+}
+
+.tab {
+  float: left;
+
+  background-color: #ffffff;
+  width: 767px;
+  height: 54px;
+  left: 61px;
+  top: -60px;
+  position: relative;
+}
+.tab button {
+  display: block;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  color: black;
+  border: 1px solid rgb(255, 253, 253);
+
+  outline: blue;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 767px;
+  height: 54px;
+  left: 551px;
+
+  background: #ffffff;
+  border-radius: 8px;
+}
+.tablinks {
+  border-radius: 1px solid blue;
+}
+
+.session-head-2 {
+  width: 89px;
+  height: 30px;
+  left: 62px;
+  top: 120px;
+  bottom: 50px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: black;
+  position: relative;
+}
+.session-subhead-2 {
+  width: 233px;
+  height: 30px;
+  left: -603px;
+  top: 123px;
+  position: relative;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+
+  display: flex;
+  align-items: center;
+
+  color: #c4c4c4;
+}
+
+.record-2 {
+  width: 173px;
+  height: 48px;
+  left: 718px;
+  top: 85px;
+  position: relative;
+  background: #407bff;
+  border-radius: 8px;
+  text-align: center;
+}
+.record-text-2 {
+  width: 93px;
+  height: 27px;
+  left: 1200px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: white;
+  line-height: 27px;
+}
+.record-img-2 {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  top: 10px;
+  right: 10px;
+}
+
+.tab-2 {
+  float: left;
+
+  background-color: #f1f1f1;
+  width: 767px;
+  height: 54px;
+  left: 61px;
+  top: 100px;
+  position: relative;
+}
+.tab-2 button {
+  display: block;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  color: black;
+  border: 1px solid rgb(255, 253, 253);
+
+  outline: blue;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 767px;
+  height: 54px;
+  left: 551px;
+
+  background: #ffffff;
+  border-radius: 8px;
+}
+.tablinks {
+  border-radius: 1px solid blue;
+}

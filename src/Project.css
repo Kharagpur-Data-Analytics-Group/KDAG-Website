@@ -1,0 +1,120 @@
+.main-container {
+  width: 1146px;
+  height: auto;
+  margin-left: 20px;
+  margin-right: auto;
+  margin-top: 20px;
+  background-color: #ffffff;
+}
+
+.Topicrect {
+  width: 23px;
+  height: 48px;
+  left: 600px;
+  border-radius: 4px;
+  background: #407bff;
+  transform: rotate(-180deg);
+}
+.topic {
+  width: 161px;
+  height: 36px;
+  left: 466px;
+  position: absolute;
+  top: 140px;
+  bottom: 5px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+}
+.session-head {
+  width: 89px;
+  height: 30px;
+  left: 471px;
+  top: 200px;
+  bottom: 50px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: black;
+  position: absolute;
+}
+
+.project-container {
+  width: 767px;
+  height: 403px;
+}
+.project-name {
+  position: absolute;
+  width: 577px;
+  height: 27px;
+  left: 228px;
+  top: 190px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+
+  /* identical to box height */
+
+  color: #4a4a4a;
+}
+
+.project-desc {
+  background: #f4f4f4;
+  box-shadow: 6px 6px 10px -7px rgba(0, 0, 0, 0.22);
+  border-radius: 8px;
+}
+.tab {
+  float: left;
+
+  background-color: #f1f1f1;
+  width: 767px;
+  height: 54px;
+  left: 481px;
+  top: 250px;
+  position: absolute;
+}
+.tab button {
+  display: block;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  color: black;
+  border: 1px solid rgb(255, 253, 253);
+
+  outline: blue;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 767px;
+  height: 54px;
+  left: 551px;
+
+  background: #ffffff;
+  border-radius: 8px;
+}
+.tablinks {
+  border-radius: 1px solid blue;
+}
+.title {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+
+  /* identical to box height */
+
+  color: #000000;
+}
+.nav-icon {
+  left: 500px;
+}
