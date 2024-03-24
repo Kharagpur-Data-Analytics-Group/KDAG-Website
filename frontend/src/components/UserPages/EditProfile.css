@@ -1,0 +1,181 @@
+.edit_profile_container {
+	padding-top: 100px;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.edit_profile_heading {
+	height: 95%;
+	width: 10%;
+	background: linear-gradient(to right, #001e2b, #00ed64);
+	border-top-left-radius: 15px;
+	border-bottom-left-radius: 15px;
+	color: aliceblue;
+	padding: 10px;
+	padding-left: 50px;
+	font-size: 40px;
+	font-weight: 900;
+}
+
+.edit_profile_heading p {
+	line-height: 34px;
+}
+
+.edit_profile_container form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 30%;
+	padding: 25px;
+	height: 95%;
+	background: linear-gradient(to right, #00ed631d, #001e2b45);
+	backdrop-filter: blur(10px);
+	border-bottom-right-radius: 15px;
+	border-top-right-radius: 200px;
+}
+
+.edit_profile_container form label {
+	color: #00ed64;
+	font-size: 15px;
+	margin: 0;
+	font-weight: 900;
+}
+
+.edit_profile_container form input {
+	color: aliceblue;
+	font-size: 15px;
+	border: none;
+	margin: 0;
+	width: 75%;
+	margin-top: -15px;
+	margin-bottom: 15px;
+}
+
+.edit_profile_container form input:focus {
+	box-shadow: 0 0 0 white;
+	border-bottom: 1px solid #00ed64;
+}
+
+.edit_profile_container form button {
+	background: transparent;
+	border: none;
+	position: absolute;
+	top: 0;
+	right: 100%;
+}
+.edit_profile_container form button img {
+	height: 25px;
+}
+
+.edit_profile_container .edit_profile_password label {
+	font-weight: 900;
+}
+
+.edit_profile_container .edit_profile_password input {
+	margin-bottom: 10px;
+	border: none;
+}
+
+.edit_profile_container .edit_profile_password button {
+	position: relative;
+	top: 0;
+	right: 40px;
+}
+
+.edit_profile_container input[type="submit"] {
+	padding: 10px 20px;
+	border-radius: 60px;
+	font-weight: 600;
+	font-style: italic;
+	border: none;
+	background-image: linear-gradient(
+		to right,
+		#269660,
+		#30dd8a,
+		#ffdaaa,
+		#ff8800
+	);
+	background-size: 300% 100%;
+	transition: all 0.3s;
+	margin-top: 5px;
+}
+
+.edit_profile_container input[type="submit"]:hover {
+	background-position: 100% 0;
+	text-shadow: 0 0 10px white;
+}
+
+@media (max-width: 420px) {
+	.edit_profile_container {
+		padding-top: 70px;
+	}
+
+	.edit_profile_heading {
+		width: 20%;
+		padding: 25px;
+		font-size: 30px;
+		font-weight: 900;
+	}
+
+	.edit_profile_heading p {
+		opacity: 1;
+		line-height: 28px;
+		position: absolute;
+		top: 20%;
+	}
+
+	.edit_profile_heading .edit_profile_heading_hidden {
+		opacity: 0;
+	}
+
+	.edit_profile_container form {
+		align-items: flex-start;
+		justify-content: center;
+		padding: 10px;
+		width: 60%;
+		border-top-right-radius: 15px;
+	}
+
+	.edit_profile_container form label {
+		margin-left: 0px;
+		margin-top: 10px;
+		font-weight: 900;
+	}
+
+	.edit_profile_container form input {
+		color: aliceblue;
+		font-size: 14px;
+		border: none;
+		margin: 0;
+		width: 100%;
+		margin-top: -10px;
+	}
+
+	.edit_profile_container form button {
+		background: transparent;
+		border: none;
+	}
+	.edit_profile_container form button img {
+		height: 25px;
+		margin-left: 15px;
+	}
+
+	.edit_profile_container .edit_profile_password label {
+		margin-left: 0px;
+	}
+
+	.edit_profile_container .edit_profile_password input {
+		margin-bottom: 25px;
+		border: none;
+		margin-left: 0px;
+		width: 80%;
+	}
+
+	.edit_profile_container .edit_profile_password button {
+		position: relative;
+		top: 0;
+		right: 40px;
+	}
+}

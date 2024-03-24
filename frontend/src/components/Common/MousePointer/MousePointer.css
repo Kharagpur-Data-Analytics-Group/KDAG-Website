@@ -16,7 +16,7 @@ body a {
 	mix-blend-mode: difference;
 	z-index: 1000000;
 }
-.cursor2 {
+/* .cursor2 {
 	position: fixed;
 	width: 20px;
 	height: 20px;
@@ -51,7 +51,7 @@ body a {
 	pointer-events: none;
 	mix-blend-mode: difference;
 	z-index: 9999970;
-}
+} */
 @media (max-width: 740px) {
 	.cursor {
 		visibility: hidden;

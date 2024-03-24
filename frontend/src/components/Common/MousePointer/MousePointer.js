@@ -25,7 +25,7 @@ const MousePointer = () => {
 					top: position.y,
 				}}
 			></div>
-			<div 
+			{/* <div 
 				className="cursor2"
 				style={{
 					left: position.x,
@@ -45,7 +45,7 @@ const MousePointer = () => {
 					left: position.x,
 					top: position.y,
 				}}
-			></div>
+			></div> */}
 		</div>
 	);
 };

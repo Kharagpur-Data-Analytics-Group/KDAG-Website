@@ -1,0 +1,155 @@
+.discussion-comment-container {
+	display: flex;
+	flex-direction: column;
+	margin-top: 12px;
+	width: 100%;
+	flex-grow: 1;
+	padding: 0 0% 0 25%;
+}
+.discussion-comment {
+	width: 100%;
+	min-height: 125px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px;
+	border-radius: 10px;
+	transition: all 0.5s;
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(3px);
+	flex-grow: 1;
+}
+
+/* .discussion-comment-image-container {
+	height: 100%;
+	padding-left: 8px;
+	padding-right: 8px;
+	border-radius: 6px;
+	transition: all 0.5s;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	margin-right: 5px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+.discussion-comment-image-container img {
+	height: 100px;
+	border-radius: 50%;
+} */
+.discussion-comment-description {
+	min-height: 110px;
+	padding: 12px;
+	background: rgba(255, 255, 255, 0.06);
+	backdrop-filter: blur(8px);
+	border-radius: 6px;
+	font-style: italic;
+	transition: all 0.5s;
+	width: 100%;
+	padding-bottom: 2px;
+}
+.discussion-comment-description-details {
+	font-size: 15px;
+	color: rgb(137, 137, 137);
+	text-align: justify;
+}
+.discussion-comment-bottom {
+	display: flex;
+	position: relative;
+	bottom: -5px;
+	align-items: center;
+	justify-content: space-between;
+}
+/* .discussion-comment-actions {
+	color: rgb(197, 197, 197);
+	line-height: 30px;
+	font-style: italic;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-left: 5px;
+	margin-right: 25px;
+} */
+/* .discussion-comment-actions img {
+	height: 20px;
+	position: relative;
+	top: -2px;
+	margin-right: 10px;
+	filter: invert(78%) sepia(22%) saturate(6951%) hue-rotate(339deg)
+		brightness(100%) contrast(103%);
+} */
+.discussion-comment-posted-by {
+	color: cyan;
+	display: flex;
+	align-items: flex-end;
+}
+.discussion-comment-last-comment {
+	height: 110px;
+	width: 200px;
+	background: rgba(255, 255, 255, 0.06);
+	backdrop-filter: blur(8px);
+	border-radius: 6px;
+	color: rgb(197, 197, 197);
+	font-style: italic;
+	white-space: nowrap;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-weight: 500;
+	transition: all 0.5s;
+}
+.discussion-comment-last-comment-user span {
+	font-weight: 600;
+	color: white;
+	transition: all 0.5s;
+}
+.discussion-comment-last-comment-date {
+	margin-top: 10px;
+	color: rgb(114, 114, 114);
+	font-size: 13px;
+}
+.discussion-comment-last-comment-date span {
+	font-weight: 600;
+	color: rgb(255, 150, 38);
+}
+.discussion-comment-bottom .discussion-comment-actions-commented {
+	margin-right: 25px;
+}
+.discussion-comment-bottom .discussion-comment-actions-commented button {
+	background: transparent;
+	border: none;
+	color: rgb(197, 197, 197);
+	display: flex;
+	border-radius: 50px;
+	padding: 5px;
+}
+.discussion-comment-bottom .discussion-comment-actions-commented button:hover {
+	box-shadow: 0px 0px 3px rgb(255, 150, 38);
+}
+.discussion-comment-bottom .discussion-comment-actions-commented img {
+	height: 20px;
+	filter: invert(78%) sepia(22%) saturate(6951%) hue-rotate(339deg)
+		brightness(100%) contrast(103%);
+	height: 20px;
+	position: relative;
+	top: 3px;
+	margin-right: 5px;
+}
+.discussion-comment-bottom .header-discussion-card-actions-delete button {
+	background: transparent;
+	color: rgb(255, 150, 38);
+	border: none;
+	font-size: 14px;
+	font-weight: 700;
+	font-style: italic;
+	transition: 0.3s all;
+	padding: 4px;
+	border-radius: 35px;
+}
+.discussion-comment-bottom .header-discussion-card-actions-delete button:hover {
+	background: rgb(255, 150, 38);
+	color: black;
+}

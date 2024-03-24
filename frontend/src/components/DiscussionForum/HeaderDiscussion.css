@@ -1,0 +1,195 @@
+.header-discussion-card-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+	margin-bottom: 20px;
+	padding-top: 115px;
+	margin-top: 0;
+	height: auto;
+	width: 82%;
+}
+.header-discussion-card {
+	position: relative;
+	left: 12%;
+	width: 75%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	padding: 5px;
+	border-radius: 20px;
+	transition: all 0.5s;
+}
+/* .header-discussion-card-image-container {
+	height: 250px;
+	padding: 15px;
+	background: rgba(255, 255, 255, 0.06);
+	backdrop-filter: blur(8px);
+	border-radius: 6px;
+	transition: all 0.5s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+	border-bottom-left-radius: 500px;
+	border-top-left-radius: 500px;
+	margin-right: 5px;
+}
+.header-discussion-card-image-container img {
+	height: 200px;
+	border-radius: 50%;
+} */
+.header-discussion-card-description {
+	height: auto;
+	padding: 12px 20px;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(8px);
+	border-radius: 15px;
+	font-style: italic;
+	transition: all 0.5s;
+}
+.header-discussion-card-description-poster {
+	height: auto;
+	overflow: hidden;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	background-position: top;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 15px;
+	border-bottom: white solid 1px;
+}
+.header-discussion-card-description-poster img {
+	height: 100%;
+}
+
+.header-discussion-card-description-heading {
+	color: white;
+	font-weight: 700;
+	font-size: 28px;
+	transition: all 0.5s;
+}
+.header-discussion-card-posted-by {
+	position: relative;
+	top: 0px;
+	color: cyan;
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom : 4px;
+}
+.header-discussion-card-last-comment-date {
+	position: relative;
+	top: -10px;
+	font-size: 12px;
+	color: rgb(126, 126, 126);
+}
+.header-discussion-card-last-comment-date span {
+	font-weight: 600;
+	font-size: 13px;
+	color: rgb(255, 150, 38);
+}
+.header-discussion-card-description-details {
+	margin-top: 15px;
+	color: rgb(197, 197, 197);
+	text-align: justify;
+	min-height: 110px;
+	padding: 12px;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.06);
+	border-radius: 6px;
+	font-style: italic;
+	transition: all 0.5s;
+}
+.header-discussion-card-actions {
+	margin-top: 15px;
+	display: flex;
+	border-radius: 6px;
+	color: rgb(197, 197, 197);
+	font-style: italic;
+	transition: all 0.5s;
+	justify-content: space-between;
+}
+.header-discussion-card-actions img {
+	height: 20px;
+	position: relative;
+	top: -2px;
+	margin-right: 5px;
+	filter: invert(78%) sepia(22%) saturate(6951%) hue-rotate(339deg)
+		brightness(100%) contrast(103%);
+}
+/* .header-discussion-card-actions .header-discussion-card-actions-viewed {
+	margin-right: 25px;
+} */
+.header-discussion-card-actions .header-discussion-card-actions-commented {
+	margin-right: 25px;
+}
+.header-discussion-card-actions
+	.header-discussion-card-actions-commented
+	button {
+	background: transparent;
+	border: none;
+	color: rgb(197, 197, 197);
+	border-radius: 50px;
+	padding: 5px;
+}
+.header-discussion-card-actions
+	.header-discussion-card-actions-commented
+	button:hover {
+	box-shadow: 0px 0px 3px rgb(255, 150, 38);
+}
+.header-discussion-card-actions .header-discussion-card-actions-commented img {
+	margin-right: 2px;
+}
+.header-discussion-card-actions .header-discussion-card-actions-delete button {
+	background: transparent;
+	color: rgb(255, 150, 38);
+	border: none;
+	font-size: 14px;
+	font-weight: 700;
+	font-style: italic;
+	transition: 0.3s all;
+	padding: 4px;
+	border-radius: 35px;
+}
+.header-discussion-card-actions
+	.header-discussion-card-actions-delete
+	button:hover {
+	background: rgb(255, 150, 38);
+	color: black;
+}
+.header-discussion-card-last-comment {
+	height: 110px;
+	width: 200px;
+	background: rgba(255, 255, 255, 0.06);
+	backdrop-filter: blur(8px);
+	border-radius: 6px;
+	color: rgb(197, 197, 197);
+	font-style: italic;
+	white-space: nowrap;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-weight: 500;
+	transition: all 0.5s;
+}
+.header-discussion-card-last-comment-user span {
+	font-weight: 600;
+	color: white;
+	transition: all 0.5s;
+}
+.header-discussion-card:hover .header-discussion-card-last-comment {
+	color: rgb(140, 140, 140);
+}
+.header-discussion-card:hover .header-discussion-card-actions {
+	color: rgb(140, 140, 140);
+}
+.header-discussion-card:hover
+	.header-discussion-card-last-comment
+	.header-discussion-card-last-comment-user
+	span {
+	color: black;
+}

@@ -64,6 +64,16 @@ const Navbar = ({ color, noborder }) => {
 								Alumni
 							</NavLink>
 						</div>
+						<div className="kdag-nav-item">
+							<NavLink activeStyle={active_style} to="/forum">
+								Forum
+							</NavLink>
+						</div>
+						<div className="kdag-nav-item">
+							<NavLink activeStyle={active_style} to="/auth">
+								Register
+							</NavLink>
+						</div>
 						{/* <div className="kdag-nav-item">
               <Link to="#">Go Down</Link>
             </div> */}
@@ -71,6 +81,7 @@ const Navbar = ({ color, noborder }) => {
 					<nav className="kdag-nav-mobile drop">
 						<ul className="kdag-nav-mobile-ul cf">
 							<li>
+							{/* drop hamburger menu icon */}
 								<svg
 									class="dropdown hamburgermenu"
 									width="76"
@@ -102,7 +113,25 @@ const Navbar = ({ color, noborder }) => {
 										fill="white"
 										fill-opacity="0.3"
 									/>
+									<rect
+										y="19.2295"
+										width="76"
+										height="11.7049"
+										rx="5.85246"
+										fill="white"
+										fill-opacity="0.3"
+									/>
+									<rect
+										y="19.2295"
+										width="76"
+										height="11.7049"
+										rx="5.85246"
+										fill="white"
+										fill-opacity="0.3"
+									/>
 								</svg>
+							{/* drop hamburger menu icon end */}
+
 
 								{/* <img class="dropdown hamburgermenu" src={ham} alt="menu" /> */}
 
@@ -121,6 +150,12 @@ const Navbar = ({ color, noborder }) => {
 									</li>
 									<li>
 										<NavLink to="/alumni">Alumni</NavLink>
+									</li>
+									<li>
+										<NavLink to="/forum">Forum</NavLink>
+									</li>
+									<li>
+										<NavLink to="/auth">Register</NavLink>
 									</li>
 								</ul>
 							</li>
