@@ -1,0 +1,19 @@
+.header_cont{
+    padding-top: 7rem;
+   max-width:1200px;
+    width: 96%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.header_cont h1{
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+}
+
+.header_cont p{
+    text-align:center;
+    font-size:1.2rem;
+}

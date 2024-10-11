@@ -1,0 +1,13 @@
+.que-cont {
+  border:solid 1px #464646;
+  margin-bottom: 0px;
+  display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.que-cont p{
+  margin-bottom: 0px;
+  padding: 8px;
+  border-radius: 6px;
+}

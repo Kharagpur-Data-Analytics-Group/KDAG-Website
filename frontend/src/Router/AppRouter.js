@@ -25,6 +25,7 @@ import Logout from '../components/Common/Logout/Logout.js';
 import CreateComment from '../components/DiscussionForum/CreateComment.js';
 import GalleryPage from '../components/GalleryPage/GalleyPage.js';
 import ImageGrid from '../components/GalleryPage/ImageGrid/ImageGrid.js';
+import PuzzlePage from '../components/PuzzleRepo/PuzzlePage';
 
 const AppRouter = () => {
   const [showLogout, setShowLogout] = useState(true);
@@ -57,6 +58,9 @@ const AppRouter = () => {
             </Route>
             <Route path="/team">
               <TeamPage />
+            </Route>
+            <Route path="/puzzle_repo">
+              <PuzzlePage />  
             </Route>
             <Route path="/auth">
               <AuthPage showLogout={showLogout} setShowLogout={setShowLogout} />

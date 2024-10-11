@@ -1,0 +1,8 @@
+.btn_cont_cover{
+  border: solid 1.5px red;
+  border-radius: 50px;
+}
+
+.border_not{
+  border:none;
+}
