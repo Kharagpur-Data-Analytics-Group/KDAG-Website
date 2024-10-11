@@ -1,9 +1,17 @@
 .question-cont{
-    background-color: rgb(29, 28, 28);
-
+    background-color: rgba(29, 28, 28, 0.757);
+      
     padding: 1.2rem;
     border-radius:10px;
     margin-bottom: 1.3rem;
     margin-top: 1.3rem;
     border:solid 1px #27272A;
+}
+.discussion-card-button-container {
+  span,p,div,button
+  {
+    width:100%;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+  }
 }

@@ -13,7 +13,8 @@
  
 .btn_cont{
     display:flex;
-    gap:4rem;
+    gap:2rem;
+    justify-content:center;
 }
 
 

@@ -50,11 +50,23 @@ hr {
   .container {
     width: 400px;
   }
+   
 }
 
 @media (max-width: 400px) {
   .container {
     width: 350px;
+  }
+  
+}
+
+@media (max-width:600px ) {
+  .question_cont_div {
+    border-left: solid 3px red;
+    padding-left: 5px;
+    color:white;
+    font-size:1.8rem !important;
+    font-weight: 600;
   }
 }
 

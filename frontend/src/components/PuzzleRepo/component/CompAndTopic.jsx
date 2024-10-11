@@ -168,9 +168,9 @@ function CompAndTopic() {
 								 }}
 								
 								 >
-									<div  style={{ cursor: "none" }}>
+									<div  style={{ cursor: "none",with:"100%" }}>
 										 
-										<span style={{padding:"2rem"}} className="new-discussion-text">Topic-wise</span>
+										<span style={{padding:"2rem"}} >Topic-wise</span>
 										 
 									</div>
 								</button>
@@ -188,7 +188,7 @@ function CompAndTopic() {
 									<div  style={{ cursor: "none" }}>
 										 
 										<span  style={{padding:"2rem"}}
-										 className="new-discussion-text">Company-wise</span>
+										 >Company-wise</span>
 										 
 									</div>
 								</button>
