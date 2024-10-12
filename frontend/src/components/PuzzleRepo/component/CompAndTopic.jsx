@@ -4,6 +4,7 @@ import styles from '../styles/CompAndTopic.module.css'
 import './comp.css'
 import { useState } from 'react'
 import './compAndTopic.css'
+
 function CompAndTopic() {
 	const TopicData = [
 		{
@@ -148,14 +149,53 @@ function CompAndTopic() {
 	  
 	const [activeCategory, setActiveCategory] = useState(true)
 	const [Data,setData] = useState(TopicData)
-	 
-	 
-	
+	const [searchTerm, setSearchTerm] = useState('');
+	const [filteredData, setFilteredData] = useState([]);
+  
+	useEffect(() => {
+	  const currentData = activeCategory ? TopicData : CompData; // Select data based on category
+  
+	  const filteredData = currentData.filter((item) => {
+		if (!item || !item.topic || !item.questions) {
+		  return false;
+		}
+		const topicMatch = item.topic.toLowerCase().includes(searchTerm.toLowerCase());
+		const questionMatch = item.questions.some((question) => {
+		  if (!question || !question.title) {
+			return false;
+		  }
+		  return question.title.toLowerCase().includes(searchTerm.toLowerCase());
+		});
+		return topicMatch || questionMatch;
+	  });
+  
+	  setFilteredData(filteredData);
+	}, [searchTerm, activeCategory, TopicData, CompData]);
+  
+	const handleSearch = (e) => {
+	  e.preventDefault();
+	  setSearchTerm(e.target.value);
+	};
 
 	
 
 
   return (
+	<>
+	 <div className="search-bar">
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            placeholder="Search topics or questions..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button class="search-button" type="submit">Search</button>
+        </form>
+      </div>
+		
+      
+	
     <div className={styles.compandtopic_cont}>
          <div className={styles.btn_cont}>
          <div className={`${activeCategory==true?  "btn_cont_cover" : "border_not"}`}   >
@@ -164,6 +204,7 @@ function CompAndTopic() {
 								<button style={{ cursor: "none" }}
 								 onClick={()=>{setActiveCategory(true)
 									setData(TopicData)
+								
 									console.log(activeCategory)
 								 }}
 								
@@ -196,14 +237,21 @@ function CompAndTopic() {
 		   </div>
           
          </div>
-		 <div className='question-cont' style={{display:"flex",flexDirection:"column",gap:"10px"}}>
+		 {/* <div className='question-cont' style={{display:"flex",flexDirection:"column",gap:"10px"}}>
 		 {Data?.map((Data, index) => (
          <DropDown  key={index} index={index} Data={Data}/>
       ))}
-		 </div>
-
+		 </div> */}
+		
+		 <div className="question-cont" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          {filteredData?.map((Data, index) => (
+            <DropDown key={index} index={index} Data={Data} />
+          ))}
+        </div>
 		 
     </div>
+	
+	</>
   )
 }
 

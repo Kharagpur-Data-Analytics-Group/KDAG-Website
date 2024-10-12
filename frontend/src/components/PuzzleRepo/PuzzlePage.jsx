@@ -3,6 +3,7 @@ import Particless from '../Common/Particles/Particless'
 import Heading from './Heading'
 import CompAndTopic from './component/CompAndTopic'
 
+
 const PuzzlePage = () => {
   return (
     <> 
