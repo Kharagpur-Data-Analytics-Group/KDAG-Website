@@ -26,6 +26,7 @@ import CreateComment from '../components/DiscussionForum/CreateComment.js';
 import GalleryPage from '../components/GalleryPage/GalleyPage.js';
 import ImageGrid from '../components/GalleryPage/ImageGrid/ImageGrid.js';
 import PuzzlePage from '../components/PuzzleRepo/PuzzlePage';
+import QuestionDisplayPage from '../components/PuzzleRepo/QuestionDisplayPage.jsx';
 
 const AppRouter = () => {
   const [showLogout, setShowLogout] = useState(true);
@@ -61,6 +62,9 @@ const AppRouter = () => {
             </Route>
             <Route path="/puzzle_repo">
               <PuzzlePage />  
+            </Route>
+            <Route path="/:question_id">
+              <QuestionDisplayPage />  
             </Route>
             <Route path="/auth">
               <AuthPage showLogout={showLogout} setShowLogout={setShowLogout} />
