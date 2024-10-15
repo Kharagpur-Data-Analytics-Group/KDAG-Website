@@ -83,7 +83,7 @@ const Navbar = ({ color, noborder, showLogout }) => {
           </div>
           <div className="kdag-nav-items">
             <div className="kdag-nav-item">
-              <NavLink activeStyle={active_style} to="/events">
+            <NavLink activeStyle={active_style} to="/events">
                 Events
               </NavLink>
             </div>
@@ -95,6 +95,11 @@ const Navbar = ({ color, noborder, showLogout }) => {
             <div className="kdag-nav-item">
               <NavLink activeStyle={active_style} to="/resources">
                 Resources
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/puzzle_repo">
+                PuzzlePulse
               </NavLink>
             </div>
             <div className="kdag-nav-item">
@@ -196,6 +201,9 @@ const Navbar = ({ color, noborder, showLogout }) => {
                   </li>
                   <li>
                     <NavLink to="/blogs">Blog</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/puzzle_repo">PuzzlePulse</NavLink>
                   </li>
                   <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                     <NavLink to="/team">Team</NavLink>
