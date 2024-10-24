@@ -6,7 +6,7 @@ const members_2017 = [
 		linkedin: "https://www.linkedin.com/in/sourrvvvyyy/",
 		work_experience:
 			"Senior Data Scientist, Progress logo | Data Scientist, Progress",
-		workplace: "Progress",
+		workplace: "Zeni",
 	},
 	{
 		name: "Ashris Choudhury",
@@ -14,7 +14,7 @@ const members_2017 = [
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/ashris/",
 		work_experience: "Software Engineer, HeadsUp | Software Engineer, BharatPe",
-		workplace: "BharatPe",
+		workplace: "Quilt",
 	},
 	{
 		name: "Yashwant Kumar",
@@ -23,7 +23,7 @@ const members_2017 = [
 		linkedin: "https://www.linkedin.com/in/yashwant-kumar-55484163/",
 		work_experience:
 			"Associate, Morgan Stanley | Senior Analyst, Deutsche Bank and Citi",
-		workplace: "Morgan Stanley",
+		workplace: "SGCIB",
 	},
 	{
 		name: "Kamlesh Kumar Yadav",
@@ -31,7 +31,7 @@ const members_2017 = [
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/kamaleshyadav/",
 		work_experience: "Analyst, HSBC",
-		workplace: "HSBC",
+		workplace: "JPMorgan Chase & Co.",
 	},
 	{
 		name: "Naman Mitruka",
@@ -39,7 +39,7 @@ const members_2017 = [
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/namanmitruka/",
 		work_experience: "Associate, Goldman Sachs",
-		workplace: "Goldman Sachs",
+		workplace: "Vested Finance",
 	},
 	{
 		name: "Chinmay Gandhi",
@@ -47,7 +47,7 @@ const members_2017 = [
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/gandhichinmay/",
 		work_experience: "Senior Associate, JP Morgan | Assistant Manager, ITC",
-		workplace: "JP Morgan",
+		workplace: "Patrianna",
 	},
 	{
 		name: "Rathang Joshi",
@@ -55,7 +55,7 @@ const members_2017 = [
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/rathang-joshi-02a72891/",
 		work_experience: "Software Developer, Walmart",
-		workplace: "Walmart",
+		workplace: "APT Portfolio Private Limited",
 	},
 	{
 		name: "Ishmeet Singh",
@@ -64,7 +64,7 @@ const members_2017 = [
 		linkedin: "https://www.linkedin.com/in/ishmeetsingh800/",
 		work_experience:
 			"System Design Engineer, Texas Instrument | Product Manager, Info Edge India Ltd",
-		workplace: "Texas Instrument",
+		workplace: "Media.net",
 	},
 	{
 		name: "Rishabh Bhandari",
@@ -73,7 +73,7 @@ const members_2017 = [
 		linkedin: "https://www.linkedin.com/in/rishabh-bhandari/",
 		work_experience:
 			"Resident AI Expert, CI Metrics | Data Scientist, WorldQuant | Associate Data Scientist, Gartner",
-		workplace: "Gartner",
+		workplace: "Graviton AI",
 	},
 	{
 		name: "Tanujay Saha",
@@ -81,7 +81,7 @@ const members_2017 = [
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/tanujay-saha-b9547799/",
 		work_experience: "NA, PhD",
-		workplace: "",
+		workplace: "Intel Corporation",
 	},
 	{
 		name: "Yamini Goyal",
@@ -89,7 +89,7 @@ const members_2017 = [
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/yamini-goyal-38156848/",
 		work_experience: "Senior Member, Mentor Graphics",
-		workplace: "",
+		workplace: "Amazon",
 	},
 	{
 		name: "Hemant Sardana",
@@ -98,7 +98,7 @@ const members_2017 = [
 		linkedin: "https://www.linkedin.com/in/hemant-singh-sardana-783ab583/",
 		work_experience:
 			"Data Analyst, Indus Valley Partners | Lead Data Scientist, Indusland Bank",
-		workplace: "Indus Valley Partners",
+		workplace: "R Systems",
 	},
 	{
 		name: "Subham Kedia",
@@ -106,7 +106,7 @@ const members_2017 = [
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/subhamkedia27/",
 		work_experience: "Senior Analyst, McKinsey and Company",
-		workplace: "McKinsey and Company",
+		workplace: "Zacua Ventures",
 	},
 	{
 		name: "Abhinav Garg",
@@ -114,7 +114,7 @@ const members_2017 = [
 		facebook: "",
 		linkedin: "https://linkedin.com/in/agarg41/",
 		work_experience: "Risk Analyst, Credictuisse",
-		workplace: "Credictuisse",
+		workplace: "Tesla",
 	},
 ];
 

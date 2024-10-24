@@ -29,7 +29,7 @@ const EventsCard = ({ event }) => {
                       )}
                       {/* {event.link==="Coming Soon" ? 
                     <div className="events-card-button"><div className="events-card-button2">Coming Soon</div></div> :  */}
-                      {event.resources ? (
+                      {/* {event.resources ? (
                         
                       <div className="events-card-button-outerMost">
                           <Link to={event.resources}>
@@ -37,16 +37,34 @@ const EventsCard = ({ event }) => {
                                   <div className="events-card-button2">
                                       View Resources
                                   </div>
-                                  {/* <div className="events-card-button1">
+                                  <div className="events-card-button1">
                   <i class="fa fa-link"></i>
-                </div> */}
+                </div>
                               </div>
                           </Link> 
                       </div>
                       ) : (
                           <div />
-                      )}
+                      )} */}
                       
+                      <div className="events-card-button-outerMost">
+                            {event.resources && <a
+                                href={event.resources || "#"}
+                                target="_blank"
+                                rel="noreferrer noopener">
+                                <div className="events-card-button">
+                                    <div className="events-card-button2">
+                                        {event.infotext
+                                            ? event.infotext
+                                            : "View Resources"}
+                                    </div>
+                                    <div className="events-card-button1">
+                                        <i class="fa fa-link"></i>
+                                    </div>
+                                </div>
+                            </a>}
+                      </div>
+
                       <div className="events-card-button-outerMost">
                             {event.link && <a
                                 href={event.link || "#"}

@@ -3,28 +3,83 @@ import SummerAI from "../../../assets/pics/events/SummerAIChallenge.jpg";
 import KDSH2021 from "../../../assets/pics/HACKPoster.png";
 import WW21 from "../../../assets/pics/WW21.png";
 import KDSH2022 from "../../../assets/pics/events/KDSH2022_Latest.png";
+import python_workshop_2023 from "../../../assets/pics/events/python_workshop_2022.png";
+import convolve_2024 from "../../../assets/pics/events/covolve_2024.webp";
+import LLM_2024 from "../../../assets/pics/events/LLM_2024.webp";
+import KDSH_2024 from "../../../assets/pics/events/KDSH_2024.webp";
+import campus_pulse2024 from "../../../assets/pics/events/Campus_pulse2024.png";
+import ML_Workshop2024 from "../../../assets/pics/events/ML_Workshop2024.png";
 
 const events = [
     {
         id: 0,
+        title: "Spring of Realtime LLMs Bootcamp 2024",
+        location: "Online",
+        date:"2nd March 2024 - 25th March 2024",
+        link: "https://unstop.com/o/K4h6B1e?lb=Yxt5XWS",
+        image: LLM_2024,
+    },
+    {
+        id: 1,
+        title: "Convolve 2024",
+        location: "MS Teams",
+        date:"5th January 2024 - 11th February 2024",
+        link: "https://unstop.com/o/TsxQmJG?lb=1EjPtbV",
+        image: convolve_2024,
+    },
+    {
+        id: 2,
+        title: "Kharagpur Datascience Hackathon 2024",
+        location: "Unstop",
+        date:"25th December 2023 - 21st January 2024",
+        link: "https://unstop.com/o/3zC06FR?lb=DlVrQAs",
+        image: KDSH_2024,
+    },
+    {
+        id: 3,
+        title: "Machine Learning Workshop 2023",
+        location: "Nalanda Classroom Complex, NC111",
+        date:"4th November 2023 - 5th November 2023",
+        image: ML_Workshop2024,
+        
+    },
+    {
+        id: 4,
+        title: "Campus Pulse 2023",
+        location: "IIT Kharagpur",
+        date:"13th November, 2023 - 15th January, 2024",
+        image: campus_pulse2024,
+        resources: "https://docs.google.com/document/d/1bFgQODQLFZLzT8UNobxP3KhZWFmCjnyLMLu2o_m-sVE/edit?tab=t.0",
+    },
+    {
+        id: 5,
+        title: "Python Workshop 2023",
+        location: "Nalanda Classroom Complex, NR221",
+        date:"1st April 2023 - 2nd April 2023",
+        image: python_workshop_2023,
+        resources: "https://drive.google.com/drive/folders/1iQgB8yL8Pg42AsJ-yyJCFftQKy-KL1en?usp=share_link",
+    },
+    {
+        id: 6,
         title: "Kharagpur Data Science Hackathon 2022",
         location: "Dare2Compete",
         date: "16th December 2022 - 25th January 2023",
         // link: "/KDSH2022",
-        link: "/",
+        link: "https://unstop.com/hackathons/kharagpur-data-science-hackathon-2022-indian-institute-of-technology-iit-kharagpur-542463",
         image: KDSH2022,
     },
 
     {
-        id: 1,
+        id: 7,
         title: "Winter Workshop 2021",
         location: "MS Teams",
         date: "Starting 16th Dec 2021",
         image: WW21,
-        resources: "/winter-workshop",
+        // resources: "/winter-workshop",
+        resources: "https://www.kdagiitkgp.org/winter-workshop"
     },
     {
-        id: 2,
+        id: 8,
         title: "Kharagpur Data Science Hackathon 2021",
         location: "Dare2Compete",
         date: "20th Nov 2021 - 7th Dec 2021",
@@ -33,7 +88,7 @@ const events = [
         certificates: "/certificate-generation",
     },
     {
-        id: 3,
+        id: 9,
         title: "Summer AI Challenge 2021",
         location: "Dare2Compete",
         date: "1st May 2021 - 8th May 2021",
@@ -41,7 +96,7 @@ const events = [
         image: SummerAI,
     },
     {
-        id: 4,
+        id: 10,
         title: "Kharagpur Data Science Hackathon, 1st Edition",
         location: "Dare2Compete",
         date: "15th March 2021 - 6th April 2021",
