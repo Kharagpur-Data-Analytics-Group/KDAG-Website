@@ -373,7 +373,9 @@ const RegisterPage = () => {
 				<Fade top>
 					<div className="register-header">
 						<div className="spacer layer1"></div>
-						<div className="register-kdsh">KDSH 2025</div>
+						<div className="register-kdsh">
+							<img src={require("../../assets/pics/KDSH LOGO.png")} alt="KDSH 2025 Logo" />
+						</div>
 						<div className="register-kdsh-desc">
 							<p>
 								The 5th Edition of the{" "}

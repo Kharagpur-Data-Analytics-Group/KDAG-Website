@@ -224,9 +224,6 @@ const Navbar = ({ noborder }) => {
                     <NavLink to="/register-kdsh">Register</NavLink>
                   </li>
                   <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                    <NavLink to="/register-kdsh">KDSH 2025</NavLink>
-                  </li>
-                  <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                     <NavLink to="/alumni">Alumni</NavLink>
                   </li>
                   <li>
