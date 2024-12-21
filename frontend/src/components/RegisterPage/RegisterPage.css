@@ -12,14 +12,48 @@
 
 .register-container .register-header .register-kdsh {
 	position: absolute;
-	top: 155px;
-	left: 38%;
+	top: 85px;
+	left: 30%;
 	font-size: 50px;
 	font-weight: 900;
 	color: rgb(255, 255, 255);
 	padding: 5px 25px;
-	border: solid 5px white;
 	text-wrap: nowrap;
+	display: flex;
+
+}
+
+@media screen and (max-width: 1200px) {
+  .register-container .register-header .register-kdsh {
+    left: 25%;
+  }
+  .register-container .register-header .register-kdsh img {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .register-container .register-header .register-kdsh {
+    left: 20%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .register-container .register-header .register-kdsh {
+    left: 10%;
+  }
+  .register-container .register-header .register-kdsh img {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .register-container .register-header .register-kdsh {
+    left: 5%;
+  }
+  .register-container .register-header .register-kdsh img {
+    width: 70%;
+  }
 }
 
 .register-container .register-header .register-kdsh-desc {

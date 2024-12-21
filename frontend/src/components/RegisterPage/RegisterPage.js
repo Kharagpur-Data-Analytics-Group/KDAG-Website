@@ -155,9 +155,9 @@ const RegisterPage = () => {
 			];
 			const finalData = formData.slice(0, numMembers);
 
-			if (numMembers > 5 || numMembers < 2) {
+			if (numMembers > 4 || numMembers < 1) {
 				toast.error(
-					"Please note a minimum of 2 and a maximum of 5 members are allowed per team."
+					"Please note a minimum of 1 and a maximum of 4 members are allowed per team."
 				);
 				return false;
 			}
@@ -318,19 +318,19 @@ const RegisterPage = () => {
 
 	const handleNumMembers = (e) => {
 		const value = e.target.value;
-		if (value > 5) {
-			toast.error("There can be a maximum of 5 participants in a team!", {
+		if (value > 4) {
+			toast.error("There can be a maximum of 4 participants in a team!", {
 				position: "top-center",
 				draggable: true,
 				theme: "dark",
 			});
-		} else if (value < 2) {
-			toast.error("There have to be a minimum of 2 members in a team!", {
+		} else if (value < 1) {
+			toast.error("There have to be a minimum of 1 member in a team!", {
 				position: "top-center",
 				draggable: true,
 				theme: "dark",
 			});
-		} else if (value <= 5) {
+		} else if (value <= 4) {
 			setNumMembers(Number(value));
 		}
 	};
@@ -373,7 +373,9 @@ const RegisterPage = () => {
 				<Fade top>
 					<div className="register-header">
 						<div className="spacer layer1"></div>
-						<div className="register-kdsh">KDSH 2025</div>
+						<div className="register-kdsh">
+							<img src={require("../../assets/pics/KDSH LOGO.png")} alt="KDSH 2025 Logo" />
+						</div>
 						<div className="register-kdsh-desc">
 							<p>
 								The 5th Edition of the{" "}
@@ -889,7 +891,7 @@ const RegisterPage = () => {
 									</>
 								)}
 								{/* 555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555 */}
-								{numMembers === 5 && (
+								{/* {numMembers === 5 && (
 									<>
 										<div className="register-form-details">
 											Details of Member 5
@@ -1000,7 +1002,7 @@ const RegisterPage = () => {
 											</div>
 										</>
 									</>
-								)}
+								)} */}
 								<button className="register-form-submit" type="submit">
 									<p>Register</p>
 								</button>
