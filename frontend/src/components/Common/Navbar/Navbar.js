@@ -121,6 +121,16 @@ const Navbar = ({ noborder }) => {
                 Team
               </NavLink>
             </div>
+            <div className="kdag-nav-item">
+              <NavLink
+                onClick={closeMobileMenu}
+                activeStyle={active_style}
+                to="/register-kdsh"
+              >
+                Register
+              </NavLink>
+            </div>
+            
             {/* <div className="kdag-nav-item">
               <NavLink
                 onClick={closeMobileMenu}
@@ -209,6 +219,12 @@ const Navbar = ({ noborder }) => {
                   </li>
                   <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                     <NavLink to="/team">Team</NavLink>
+                  </li>
+                  <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                    <NavLink to="/register-kdsh">Register</NavLink>
+                  </li>
+                  <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                    <NavLink to="/register-kdsh">KDSH 2025</NavLink>
                   </li>
                   <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                     <NavLink to="/alumni">Alumni</NavLink>
