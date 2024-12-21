@@ -155,7 +155,7 @@ const RegisterPage = () => {
 			];
 			const finalData = formData.slice(0, numMembers);
 
-			if (numMembers > 5 || numMembers < 2) {
+			if (numMembers > 4 || numMembers < 1) {
 				toast.error(
 					"Please note a minimum of 2 and a maximum of 5 members are allowed per team."
 				);

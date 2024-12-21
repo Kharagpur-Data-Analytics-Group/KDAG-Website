@@ -306,8 +306,8 @@ const LandingPage = () => {
 					{/* banner info starts */}
 					<div className="banner-info-flex">
 						<div className="banner-info">
-							<FontAwesomeIcon icon={faCalendarDays} className="icon" shake />
-							<p id="banner-info">Coming Soon</p>
+							{/* <FontAwesomeIcon icon={faCalendarDays} className="icon" shake />
+							<p id="banner-info">Coming Soon</p> */}
 							<FontAwesomeIcon icon={faLocationDot} className="icon" flip />
 							<p id="banner-info">Online</p>
 						</div>
@@ -315,7 +315,7 @@ const LandingPage = () => {
 					{/* banner info ends */}
 
 					{/* banner button starts */}
-					{/* <div className="banner-button-flex">
+					 <div className="banner-button-flex">
                             <a href="/register-kdsh">  <div className="banner-button">
                         	<button class="btn-12" style={{ cursor: "pointer" }}> <span>Register Now</span>
                         </button>
@@ -325,7 +325,7 @@ const LandingPage = () => {
       							<span>Register Now</span>
     					</button>
   							</a>
-					</div> */}
+					</div> 
 				</div>
 				{/* banner button ends */}
 
