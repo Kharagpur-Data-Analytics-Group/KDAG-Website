@@ -4,6 +4,13 @@ import Particless from "../Common/Particles/Particless";
 import "react-toastify/dist/ReactToastify.css";
 import "./RegisterPage.css";
 import "./Success.css";
+import whatsapp from "./../../assets/kdsh2025_whatsapp.png";
+import discord from "./../../assets/kdsh2025_discord.png";
+import instagram from "./../../assets/kdsh2025_instagram.png";
+import facebook from "./../../assets/kdsh2025_facebook.png";
+import medium from "./../../assets/kdsh2025_medium.png";
+import linkedin from "./../../assets/kdsh2025_linkedin.png";
+import kdsh_2025 from "./../../assets/kdsh2025_logo.png";
 
 const Success = () => {
 	const particless = React.useMemo(() => <Particless />, []);
@@ -14,28 +21,40 @@ const Success = () => {
 				<Fade top>
 					<div className="register-header">
 						<div className="spacer layer1"></div>
-						<div className="register-kdsh">KDSH 2025</div>
-						<div className="register-kdsh-desc">
+						<div className="success-register-kdsh">
+							<img src={kdsh_2025} alt="KDSH2025" style={{ height: "90px" }} />
+						</div>
+						<div className="success-register-kdsh-desc">
 							<p>
 								Congratulations on successfully registering for{" "}
 								<strong>Kharagpur Data Science Hackathon 2025</strong>. For
-								timelines and other details related to the Hackathon visit{" "}
-								<strong>
-									<a
-										style={{ color: "cyan ", fontStyle: "italic" }}
-										className="kdsh-link"
-										href="https://unstop.com/"
-										target="_blank"
-										rel="noreferrer noopener"
-									>
-										KDSH2025 - Unstop
-									</a>
-								</strong>
+								timelines and other details related to the Hackathon Visit
+								Unstop.{" "}
+							</p>
+							<p>
+								Join the Whatsapp Group and Discord Channel for regular updates!
+							</p>
+							<p>
+								<a
+									href="https://chat.whatsapp.com/KtYlMh9h1Sw7QxLVRWvpSj"
+									target="_blank"
+									rel="noreferrer noopener"
+								>
+									<img src={whatsapp} alt="whatsapp" />
+								</a>
+
+								<a
+									href="https://discord.com/invite/S8rpuCTk"
+									target="_blank"
+									rel="noreferrer noopener"
+								>
+									<img src={discord} alt="discord" />
+								</a>
 							</p>
 
-							<p>Follow us on the following Platforms to stay updated</p>
+							{/* <p>Follow us on the following Platforms to stay updated</p>
 
-							<ul>
+							<ul className="kdsh2025_success">
 								<li>
 									<a
 										className="kdsh-link"
@@ -43,7 +62,7 @@ const Success = () => {
 										target="_blank"
 										rel="noreferrer noopener"
 									>
-										👉 Instagram
+										<img src={instagram} alt="instagram" />
 									</a>
 								</li>
 								<li>
@@ -53,7 +72,7 @@ const Success = () => {
 										target="_blank"
 										rel="noreferrer noopener"
 									>
-										👉 Facebook
+										<img src={facebook} alt="facebook" />
 									</a>
 								</li>
 								<li>
@@ -63,7 +82,7 @@ const Success = () => {
 										target="_blank"
 										rel="noreferrer noopener"
 									>
-										👉 LinkedIn
+										<img src={linkedin} alt="linkedin" />
 									</a>
 								</li>
 								<li>
@@ -73,10 +92,10 @@ const Success = () => {
 										target="_blank"
 										rel="noreferrer noopener"
 									>
-										👉 Medium
+										<img src={medium} alt="medium" />
 									</a>
 								</li>
-							</ul>
+							</ul> */}
 						</div>
 					</div>
 				</Fade>

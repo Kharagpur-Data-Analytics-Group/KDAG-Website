@@ -7,7 +7,13 @@
 }
 
 .register-container .register-header .layer1 {
-	background-image: url("./../../assets/KDSH2025_waves.svg");
+	background-image: url("./../../assets/KDSH2025_cover1.png");
+	background-size: cover; 
+	background-position: center; 
+	background-repeat: no-repeat; 
+	background-attachment: fixed; 
+	height: 100vh; 
+	width: 100%; 
 }
 
 .register-container .register-header .register-kdsh {
@@ -106,6 +112,9 @@
 	top: 45px;
 	margin: 0px 200px;
 	box-sizing: border-box;
+	border-radius: 30px;
+	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(15px);
 }
 .kdsh2025_star_header {
 	-webkit-backdrop-filter: blur(10px);
@@ -117,7 +126,7 @@
 	padding: 10px 25px;
 	border-radius: 50px;
 	margin-bottom: 15px;
-	background: rgba(255, 255, 255, 0.04);
+	background: rgba(255, 255, 255, 0.05);
 }
 .kdsh2025_star_header span {
 	color: rgb(255, 255, 255);
@@ -146,7 +155,7 @@
 	margin-bottom: 0;
 }
 .kdsh2025_star_content {
-	background: rgba(255, 255, 255, 0.04);
+	background: rgba(255, 255, 255, 0.05);
 	border: solid rgba(255, 255, 255, 0.3) 2px;
 	border-radius: 15px;
 	overflow: hidden;
@@ -318,7 +327,7 @@ input[type="number"] {
 
 @media (max-width: 1110px) {
 	.kdsh2025_star_outer {
-		top: 175px;
+		top: 100px;
 		margin: 0px 100px;
 	}
 	.register-form {
@@ -348,7 +357,7 @@ input[type="number"] {
 
 @media (max-width: 940px) {
 	.kdsh2025_star_outer {
-		top: 300px;
+		top: 100px;
 		margin: 0px 100px;
 	}
 	.kdsh2025_star_content {
@@ -360,7 +369,7 @@ input[type="number"] {
 		font-size: 16px;
 	}
 	.register-form {
-		margin-top: 350px;
+		margin-top: 200px;
 	}
 }
 
@@ -379,17 +388,17 @@ input[type="number"] {
 		margin: 0 90px;
 	}
 	.register-form {
-		margin-top: 400px;
+		margin-top: 200px;
 	}
 }
 
 @media (max-width: 790px) {
 	.kdsh2025_star_outer {
-		top: 400px;
+		top: 100px;
 		margin: 0px 100px;
 	}
 	.register-form {
-		margin-top: 450px;
+		margin-top: 200px;
 	}
 }
 
@@ -408,7 +417,7 @@ input[type="number"] {
 		margin: 0 90px;
 	}
 	.register-form {
-		margin-top: 500px;
+		margin-top: 200px;
 	}
 	/* />>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 	.kdsh2025_star_content .step_one,
@@ -440,7 +449,7 @@ input[type="number"] {
 		font-size: 18px;
 	}
 	.kdsh2025_star_outer {
-		top: 400px;
+		top: 100px;
 		margin: 0px 50px;
 	}
 }
@@ -453,11 +462,11 @@ input[type="number"] {
 
 @media (max-width: 645px) {
 	.kdsh2025_star_outer {
-		top: 500px;
+		top: 100px;
 		margin: 0px 50px;
 	}
 	.register-form {
-		margin-top: 550px;
+		margin-top: 200px;
 	}
 }
 
@@ -561,14 +570,13 @@ input[type="number"] {
 	}
 }
 
-
 @media (max-width: 435px) {
 	.kdsh2025_star_outer {
-		top: 550px;
+		top: 100px;
 		margin: 0px 35px;
 	}
 	.register-form {
-		margin-top: 575px;
+		margin-top: 200px;
 	}
 }
 @media (max-width: 400px) {
@@ -599,7 +607,7 @@ input[type="number"] {
 		font-size: 16px;
 	}
 	.register-form {
-		margin-top: 575px;
+		margin-top: 200px;
 	}
 }
 

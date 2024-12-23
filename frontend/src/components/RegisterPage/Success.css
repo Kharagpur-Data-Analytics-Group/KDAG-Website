@@ -8,22 +8,21 @@
 }
 
 .success-container .register-header .layer1 {
-	background-image: url("./../../assets/KDSH2025_waves.svg");
+	background-image: url("./../../assets/success_background.png");
 }
 
-.success-container .register-header .register-kdsh {
+.success-container .register-header .success-register-kdsh {
 	position: absolute;
 	top: 155px;
 	left: 38%;
 	font-size: 50px;
 	font-weight: 900;
-	color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
 	padding: 5px 25px;
-	border: solid 5px white;
 	text-wrap: nowrap;
 }
 
-.success-container .register-header .register-kdsh-desc {
+.success-container .register-header .success-register-kdsh-desc {
 	border: solid rgba(255, 255, 255, 0.178) 2px;
 	padding: 25px;
 	font-weight: 600;
@@ -37,9 +36,10 @@
 	background: rgba(255, 255, 255, 0.045);
 	border-radius: 15px;
 	margin: 0 200px;
+	background-color: rgba(0, 0, 0, 0.434);
 }
 
-.success-container .register-header .register-kdsh-desc ul {
+.success-container .register-header .success-register-kdsh-desc ul {
 	list-style: none;
 	text-decoration: none;
 	color: aqua;
@@ -47,19 +47,44 @@
 	width: max-content;
 }
 
-.success-container .register-header .register-kdsh-desc ul li:hover {
+.success-container .register-header .success-register-kdsh-desc ul li:hover {
 	text-shadow: cyan 0 0 8px;
 }
+.success-register-kdsh-desc p img{
+	height: 40px;
+	margin-right: 15px;
+	cursor: pointer;
+}
 
+.kdsh2025_link {
+	color: blue;
+	border: solid 2px red;
+}
+
+.kdsh2025_success li{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	margin-right: 15px;
+}
+
+.kdsh2025_success li a{
+	margin: 0;
+}	
+.kdsh2025_success li a img{
+	height: 40px;
+	cursor: pointer;
+}	
 
 @media (max-width: 1285px) {
-	.success-container .register-header .register-kdsh {
+	.success-container .register-header .success-register-kdsh {
 		top: 125px;
 		left: 36%;
 		padding: 5px 25px;
 	}
 
-	.success-container .register-header .register-kdsh-desc {
+	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
 		top: 265px;
@@ -68,14 +93,14 @@
 }
 
 @media (max-width: 1060px) {
-	.success-container .register-header .register-kdsh {
+	.success-container .register-header .success-register-kdsh {
 		top: 120px;
 		left: 34%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
 
-	.success-container .register-header .register-kdsh-desc {
+	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
 		top: 240px;
@@ -84,14 +109,14 @@
 }
 
 @media (max-width: 880px) {
-	.success-container .register-header .register-kdsh {
+	.success-container .register-header .success-register-kdsh {
 		top: 110px;
 		left: 34%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
 
-	.success-container .register-header .register-kdsh-desc {
+	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
 		top: 240px;
@@ -100,14 +125,14 @@
 }
 
 @media (max-width: 750px) {
-	.success-container .register-header .register-kdsh {
+	.success-container .register-header .success-register-kdsh {
 		top: 110px;
 		left: 32%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
 
-	.success-container .register-header .register-kdsh-desc {
+	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
 		top: 240px;
@@ -116,14 +141,14 @@
 }
 
 @media (max-width: 700px) {
-	.success-container .register-header .register-kdsh {
+	.success-container .register-header .success-register-kdsh {
 		top: 110px;
 		left: 28%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
 
-	.success-container .register-header .register-kdsh-desc {
+	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
 		top: 240px;
@@ -133,14 +158,14 @@
 }
 
 @media (max-width: 575px) {
-	.success-container .register-header .register-kdsh {
+	.success-container .register-header .success-register-kdsh {
 		top: 100px;
 		left: 24%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
 
-	.success-container .register-header .register-kdsh-desc {
+	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
 		top: 220px;
@@ -150,7 +175,7 @@
 }
 
 @media (max-width: 500px) {
-	.success-container .register-header .register-kdsh {
+	.success-container .register-header .success-register-kdsh {
 		top: 100px;
 		left: 20%;
 		font-size: 45px;
@@ -159,14 +184,14 @@
 }
 
 @media (max-width: 460px) {
-	.success-container .register-header .register-kdsh {
+	.success-container .register-header .success-register-kdsh {
 		top: 100px;
 		left: 22%;
 		font-size: 35px;
 		padding: 5px 25px;
 	}
 
-	.success-container .register-header .register-kdsh-desc {
+	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
 		top: 220px;
@@ -176,14 +201,14 @@
 }
 
 @media (max-width: 395px) {
-	.success-container .register-header .register-kdsh {
+	.success-container .register-header .success-register-kdsh {
 		top: 100px;
 		left: 18%;
 		font-size: 35px;
 		padding: 5px 25px;
 	}
 
-	.success-container .register-header .register-kdsh-desc {
+	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
 		top: 220px;

@@ -108,7 +108,6 @@ def check_required_repositories(starred_repos):
         repo["name"] for repo in starred_repos["starred_repositories"]
     ]
     missing_repos = [repo for repo in required_repos if repo not in starred_repo_names]
-
     return missing_repos
 
 
@@ -149,7 +148,7 @@ def check_starred_repositories(missing_repos_by_users):
         elif missing_repos == "error":
             all_starred = False
             missing_repos_messages.append(
-                f""" Please check the GitHub Id <{github_id}> ."""
+                f""" You have entered the wrong GitHub Id --- {github_id} ."""
             )
         elif missing_repos == "error1":
             all_starred = False
@@ -204,21 +203,21 @@ def check_multiple_stars():
                 400,
             )
         if len(set(num_members_)) != 1:
-            print("num members <11> -- ")
+            print("num members -- ")
             return (
                 jsonify(
                     {
-                        "error": "There was some error in the server. Please try again. If you face this issue again Contact us at kdag.kgp@gmail.com. 11"
+                        "error": "There was some error in the server. Please try again later. If you face this issue again Contact us at kdag.kgp@gmail.com. 11"
                     }
                 ),
                 400,
             )
         if not num_members == data[0]["numMembers"]:
-            print("num members <11> -- ")
+            print("num members -- ")
             return (
                 jsonify(
                     {
-                        "error": "There was some error in the server. Please try again. If you face this issue again Contact us at kdag.kgp@gmail.com. 11"
+                        "error": "There was some error in the server. Please try again later. If you face this issue again Contact us at kdag.kgp@gmail.com. 11"
                     }
                 ),
                 400,
@@ -332,7 +331,7 @@ def check_multiple_stars():
                 )
 
             return (
-                jsonify({"error": "Please note --- " + starred_users + " <<55>> "}),
+                jsonify({"error": starred_users + " <<55>> "}),
                 400,
             )
         ##########################################################################################################################

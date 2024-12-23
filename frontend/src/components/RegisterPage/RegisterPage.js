@@ -25,7 +25,7 @@ const RegisterPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
 	const [successPage, setSuccessPage] = useState(false);
 	const history = useHistory();
-	const [showHowTo, setShowHowTo] = useState(false);
+	const [showHowTo, setShowHowTo] = useState(true);
 
 	const handleShowHowTo = () => {
 		setShowHowTo(!showHowTo);
@@ -169,7 +169,11 @@ const RegisterPage = () => {
 
 			if (numMembers > 4 || numMembers < 1) {
 				toast.error(
-					"Please note a minimum of 1 and a maximum of 4 members are allowed per team."
+					"Please note a minimum of 1 and a maximum of 4 members are allowed per team.",
+					{
+						position: "top-center",
+						draggable: true,
+					}
 				);
 				return false;
 			}
@@ -198,14 +202,18 @@ const RegisterPage = () => {
 						});
 					} else if (data.error) {
 						toast.error(data.error, {
-							theme: "dark",
-							autoClose: 10000,
+							position: "top-center",
+							draggable: true,
+							autoClose: 15000,
 						});
 					}
 				})
 				.catch((error) => {
 					console.error("Error during registration:", error);
-					toast.error("😔 Registration failed, please try again later.");
+					toast.error("😔 Registration failed, please try again later.", {
+						position: "top-center",
+						draggable: true,
+					});
 				});
 			toast.promise(
 				registerPromise,
@@ -216,7 +224,7 @@ const RegisterPage = () => {
 				},
 				{
 					position: "top-center",
-					autoClose: 6000,
+					autoClose: 8000,
 				}
 			);
 		} else {
@@ -464,13 +472,23 @@ const RegisterPage = () => {
 										marginBottom: "30px",
 									}}
 								>
-									Starring a repository is a simple two-step process.
+									Starring a repository is a simple process.
 								</p>
-								<div className="step_one" style={{ marginBottom: "50px" }}>
+
+								<div className="step_two" style={{ paddingBottom: "15px" }}>
 									<p className="kdsh2025_list_label">1</p>{" "}
 									<span>
-										Log in to GitHub and go to the repository's main page. Click
-										the Star button in the top-right corner as shown:
+										Visit GitHub and log in using your account credentials. If
+										you don’t have an account, click Sign Up to create one.
+									</span>
+								</div>
+
+								<div className="step_one" style={{ marginBottom: "50px" }}>
+									<p className="kdsh2025_list_label">2</p>{" "}
+									<span>
+										Open Repository 1 and click the Star button at the top-right
+										corner of the page. Check the image below to locate the Star
+										button:
 									</span>
 									<p
 										style={{
@@ -478,33 +496,70 @@ const RegisterPage = () => {
 											paddingLeft: "40px",
 											fontWeight: "600",
 											paddingBottom: "8px",
+											color: "blue",
+											cursor: "pointer",
 										}}
 									>
 										Repository 1 :{" "}
-										<a href="https://github.com/pathwaycom/llm-app">
+										<a
+											href="https://github.com/pathwaycom/llm-app"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
 											https://github.com/pathwaycom/llm-app
 										</a>
 									</p>
 									<img src={repo1} alt="repo1" />
+								</div>
+
+								<div className="step_one" style={{ marginBottom: "50px" }}>
+									<p className="kdsh2025_list_label">3</p>{" "}
+									<span>
+										Similarly, navigate to Repository 2 and click the Star
+										button. Check the image below to locate the Star button:
+									</span>
 									<p
 										style={{
 											margin: "0px",
 											paddingLeft: "40px",
 											fontWeight: "600",
 											paddingBottom: "8px",
+											color: "blue",
+											cursor: "pointer",
 										}}
 									>
 										Repository 2 :{" "}
-										<a href="https://github.com/pathwaycom/pathway">
+										<a
+											href="https://github.com/pathwaycom/pathway"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
 											https://github.com/pathwaycom/pathway
 										</a>
 									</p>
 									<img src={repo2} alt="repo1" />
 								</div>
 								<div className="step_two">
-									<p className="kdsh2025_list_label">2</p>{" "}
-									<span>After successfully starring, the icon updates to:</span>
+									<p className="kdsh2025_list_label">4</p>{" "}
+									<span>
+										Once you star a repository, the icon will update to look
+										like this:
+									</span>
 									<img src={starred} alt="starred" />
+								</div>
+								<div className="step_two" style={{ paddingTop: "15px" }}>
+									<span
+										style={{
+											color: "red",
+											textShadow: "0 0 5px red",
+											fontWeight: "600",
+											fontSize: "18px",
+										}}
+									>
+										IMPORTANT NOTE: Make sure to use the same GitHub username in
+										the registration form as the one you used to star
+										the repositories.
+									</span>
 								</div>
 							</div>
 						)}
