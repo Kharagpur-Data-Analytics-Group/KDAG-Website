@@ -156,7 +156,7 @@ def check_starred_repositories(missing_repos_by_users):
                 "The server seems to be experiencing unexpected load. Please try again after some time. If the issue persists contact us at kdag.kgp@gmail.com"
             ]
         else:
-            repo_messages = [f'GitHub user <{github_id}> has not starred the "']
+            repo_messages = [f'GitHub user {github_id} has not starred the "']
             repo_messages.append('", "'.join(missing_repos))
             repo_messages.append('" repository(s).')
             all_starred = False
@@ -167,7 +167,6 @@ def check_starred_repositories(missing_repos_by_users):
     else:
         message = (
             " ".join(missing_repos_messages)
-            + " Kindly click on the links provided in the description to star the repositories to successfully register your team!"
         )
         return message
 
@@ -203,21 +202,21 @@ def check_multiple_stars():
                 400,
             )
         if len(set(num_members_)) != 1:
-            print("num members -- ")
+            print("num members -- 11")
             return (
                 jsonify(
                     {
-                        "error": "There was some error in the server. Please try again later. If you face this issue again Contact us at kdag.kgp@gmail.com. 11"
+                        "error": "There was some error in the server. Please try again later. If you face this issue again Contact us at kdag.kgp@gmail.com."
                     }
                 ),
                 400,
             )
         if not num_members == data[0]["numMembers"]:
-            print("num members -- ")
+            print("num members -- 12")
             return (
                 jsonify(
                     {
-                        "error": "There was some error in the server. Please try again later. If you face this issue again Contact us at kdag.kgp@gmail.com. 11"
+                        "error": "There was some error in the server. Please try again later. If you face this issue again Contact us at kdag.kgp@gmail.com."
                     }
                 ),
                 400,
@@ -237,7 +236,7 @@ def check_multiple_stars():
             return (
                 jsonify(
                     {
-                        "error": "There was some error in the server. Please try again. If you face this issue again Contact us at kdag.kgp@gmail.com. 22"
+                        "error": "There was some error in the server. Please try again. If you face this issue again Contact us at kdag.kgp@gmail.com."
                     }
                 ),
                 400,
@@ -331,7 +330,7 @@ def check_multiple_stars():
                 )
 
             return (
-                jsonify({"error": starred_users + " <<55>> "}),
+                jsonify({"error": starred_users}),
                 400,
             )
         ##########################################################################################################################
@@ -438,4 +437,4 @@ def check_multiple_stars():
 
     except Exception as e:
         print(f"error: 60  + {e}")
-        return jsonify({"error": "1:>> " + str(e)}), 500
+        return jsonify({"error": str(e)}), 500

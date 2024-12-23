@@ -505,6 +505,7 @@ const RegisterPage = () => {
 											href="https://github.com/pathwaycom/llm-app"
 											target="_blank"
 											rel="noopener noreferrer"
+											style={{ borderBottom: "solid blue 2px" }}
 										>
 											https://github.com/pathwaycom/llm-app
 										</a>
@@ -533,6 +534,7 @@ const RegisterPage = () => {
 											href="https://github.com/pathwaycom/pathway"
 											target="_blank"
 											rel="noopener noreferrer"
+											style={{ borderBottom: "solid blue 2px" }}
 										>
 											https://github.com/pathwaycom/pathway
 										</a>
