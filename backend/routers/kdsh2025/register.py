@@ -2,6 +2,7 @@ from github import Github
 from dotenv import load_dotenv
 import os, csv, json, requests, asyncio, aiohttp
 from flask import Blueprint, jsonify, request
+from datetime import datetime
 
 kdsh2025 = Blueprint("kdsh2025", __name__)
 
@@ -148,7 +149,7 @@ def check_starred_repositories(missing_repos_by_users):
         elif missing_repos == "error":
             all_starred = False
             missing_repos_messages.append(
-                f""" You have entered the wrong GitHub Id --- {github_id} ."""
+                f""" You have entered incorrect GitHub Id --- {github_id} .Please check and enter the correct GitHub ID"""
             )
         elif missing_repos == "error1":
             all_starred = False
@@ -165,9 +166,7 @@ def check_starred_repositories(missing_repos_by_users):
         print("All users have starred the required repositories.")
         return "success"
     else:
-        message = (
-            " ".join(missing_repos_messages)
-        )
+        message = " ".join(missing_repos_messages)
         return message
 
 
@@ -318,6 +317,8 @@ def check_multiple_stars():
                             "GitHubID": member["GitHubID"],
                             "teamName": team_name,
                             "numMembers": num_members,
+                            "logs": starred_users,
+                            "time": datetime.now(),
                         }
                     )
             try:
