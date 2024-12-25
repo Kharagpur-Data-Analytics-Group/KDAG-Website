@@ -20,6 +20,8 @@ import show_icon from "./../../assets/show_icon.png";
 import repo1 from "./../../assets/llm_repo.png";
 import repo2 from "./../../assets/pathway_repo.png";
 import starred from "./../../assets/starred_repo.png";
+import profile_icon from "./../../assets/profile_icon.png";
+import profile_menu from "./../../assets/profile_menu.png";
 
 const RegisterPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
@@ -478,8 +480,25 @@ const RegisterPage = () => {
 								<div className="step_two" style={{ paddingBottom: "15px" }}>
 									<p className="kdsh2025_list_label">1</p>{" "}
 									<span>
-										Visit GitHub and log in using your account credentials. If
-										you don’t have an account, click Sign Up to create one.
+										Visit{" "}
+										<a
+											href="https://github.com"
+											target="_blank"
+											rel="noopener noreferrer"
+											style={{ borderBottom: "solid blue 2px", color: "blue" }}
+										>
+											<p
+												style={{
+													cursor: "pointer",
+													color: "blue",
+													display: "inline-flex",
+												}}
+											>
+												GitHub
+											</p>
+										</a>{" "}
+										and log in using your account credentials. If you don’t have
+										an account, click Sign Up to create one.
 									</span>
 								</div>
 
@@ -510,7 +529,14 @@ const RegisterPage = () => {
 											https://github.com/pathwaycom/llm-app
 										</a>
 									</p>
-									<img src={repo1} alt="repo1" />
+									<a
+										href="https://github.com/pathwaycom/llm-app"
+										target="_blank"
+										rel="noopener noreferrer"
+										style={{ cursor: "pointer" }}
+									>
+										<img src={repo1} alt="repo1" />
+									</a>
 								</div>
 
 								<div className="step_one" style={{ marginBottom: "50px" }}>
@@ -539,7 +565,14 @@ const RegisterPage = () => {
 											https://github.com/pathwaycom/pathway
 										</a>
 									</p>
-									<img src={repo2} alt="repo1" />
+									<a
+										href="https://github.com/pathwaycom/pathway"
+										target="_blank"
+										rel="noopener noreferrer"
+										style={{ cursor: "pointer" }}
+									>
+										<img src={repo2} alt="repo1" />
+									</a>
 								</div>
 								<div className="step_two">
 									<p className="kdsh2025_list_label">4</p>{" "}
@@ -549,7 +582,10 @@ const RegisterPage = () => {
 									</span>
 									<img src={starred} alt="starred" />
 								</div>
-								<div className="step_two" style={{ paddingTop: "15px" }}>
+								<div
+									className="step_two"
+									style={{ paddingTop: "15px", paddingBottom: "15px" }}
+								>
 									<span
 										style={{
 											color: "red",
@@ -562,6 +598,37 @@ const RegisterPage = () => {
 										the registration form as the one you used to star
 										the repositories.
 									</span>
+								</div>
+								<div className="step_one" style={{ marginBottom: "50px" }}>
+									<p className="kdsh2025_list_label">5</p>{" "}
+									<span>
+										You can access your Github username by clicking on the
+										profile icon as shown in the image below:
+									</span>
+									<a
+										href="https://github.com/pathwaycom/pathway"
+										target="_blank"
+										rel="noopener noreferrer"
+										style={{ cursor: "pointer" }}
+									>
+										<img src={profile_icon} alt="repo1" />
+									</a>
+								</div>
+								<div className="step_one" style={{ marginBottom: "50px" }}>
+									<p className="kdsh2025_list_label">6</p>{" "}
+									<span>
+										After Clicking on the profile icon, you will find your
+										username displayed at the top of the menu that appears, next
+										to the profile image, as shown in the image below:
+									</span>
+									<a
+										href="https://github.com/pathwaycom/llm-app"
+										target="_blank"
+										rel="noopener noreferrer"
+										style={{ cursor: "pointer" }}
+									>
+										<img src={profile_menu} alt="repo1" />
+									</a>
 								</div>
 							</div>
 						)}
