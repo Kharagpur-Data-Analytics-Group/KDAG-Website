@@ -334,11 +334,11 @@ const LandingPage = () => {
 					</div> */}
 					{/* banner info ends */}
 					{/* banner button starts */}
-					<button className="register-now-button">
+					{/* <button className="register-now-button">
 						<a href="/register-kdsh">
 							<p>Register</p>
 						</a>
-					</button>
+					</button> */}
 					{/* banner button ends */}
 				</div>
 

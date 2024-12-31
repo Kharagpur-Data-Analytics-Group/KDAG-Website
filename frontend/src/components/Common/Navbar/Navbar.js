@@ -102,16 +102,16 @@ const Navbar = ({ noborder }) => {
 								Gallery
 							</NavLink>
 						</div>
-						<div className="kdag-nav-item">
+						{/* <div className="kdag-nav-item">
 							<NavLink activeStyle={active_style} to="/register-kdsh">
 								KDSH2025
 							</NavLink>
-						</div>
-						{/* <div className="kdag-nav-item">
+						</div> */}
+						<div className="kdag-nav-item">
 							<NavLink activeStyle={active_style} to="/resources">
 								Resources
 							</NavLink>
-						</div> */}
+						</div>
 						<div className="kdag-nav-item">
 							<NavLink activeStyle={active_style} to="/blogs">
 								Blog
@@ -209,9 +209,9 @@ const Navbar = ({ noborder }) => {
 									<li>
 										<NavLink to="/resources">Resources</NavLink>
 									</li>
-									<li>
+									{/* <li>
 										<NavLink to="/register-kdsh">REGISTER for KDSH2025</NavLink>
-									</li>
+									</li> */}
 									<li>
 										<NavLink to="/blogs">Blog</NavLink>
 									</li>

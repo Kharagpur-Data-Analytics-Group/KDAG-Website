@@ -285,6 +285,18 @@ def check_multiple_stars():
             team_name = data[0]["teamName"]
             num_members = data[0]["numMembers"]
 
+            # team_name_ = data[0].get("teamName", "").strip()
+
+            # if not team_name_:
+            #     return (
+            #         jsonify(
+            #             {
+            #                 "error": "Team name cannot be empty or contain only whitespace."
+            #             }
+            #         ),
+            #         400,
+            #     )
+
             # Step 1: Check if any GitHub IDs already exist in participants collection
             existing_participants = []
             for user in gitHub_users:
