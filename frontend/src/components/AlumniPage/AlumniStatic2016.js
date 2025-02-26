@@ -25,7 +25,7 @@ const members_2016 = [
 		linkedin: "https://www.linkedin.com/in/apurva-swarnakar/",
 		degree: "Electronics and Electrical Communication Engineering",
 		year: 2016,
-		workplace: "Intuit",
+		workplace: "Sprinklr",
 		designation: "Senior Associate",
 		additional_info: "Masters",
 	},

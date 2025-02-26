@@ -19,6 +19,8 @@ import video1 from "./Video/final.mp4";
 import certificate from "../../assets/KDSH2022Certificates/Akash Kundu.png";
 import Header from "./Header/Header";
 import associate_sponsor from "./../../assets/kdsh2025_associate_sponsor.jpg";
+import kdsh2025_logo from '../../assets/kdsh2025_logo.png';  // Adjust path as needed
+
 
 const LandingPage = () => {
 	const eligibleCandidates = [

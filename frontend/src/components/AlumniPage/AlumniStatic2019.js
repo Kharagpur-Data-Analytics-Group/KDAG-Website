@@ -15,7 +15,7 @@ const members_2019 = [
 		linkedin: "https://www.linkedin.com/in/raghavsonavane/",
 		degree: "Electronics and Electrical Communication Engineering",
 		graduation_year: 2019,
-		workplace: "Sprinklr",
+		workplace: "Uber",
 		designation: "",
 	},
 	{

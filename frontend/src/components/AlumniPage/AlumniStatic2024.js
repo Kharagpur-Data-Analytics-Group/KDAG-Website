@@ -56,7 +56,7 @@ const members_2024 = [
     linkedin: 'https://www.linkedin.com/in/omee-katrodiya',
     degree: '',
     graduation_year: 2024,
-    workplace: '',
+    workplace: 'Applied Bell Curve',
     designation: '',
     additional_info: '',
   },
