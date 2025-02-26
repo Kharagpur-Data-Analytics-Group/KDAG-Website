@@ -36,12 +36,6 @@ const AppRouter = () => {
 	return (
 		<React.StrictMode>
 			<Router>
-				<Route path="/register-kdsh">
-					<RegisterPage />
-				</Route>
-				<Route path="/register-success">
-					<Success />
-				</Route>
 				<AuthProvider>
 					<MousePointer />
 					<Navbar />
@@ -114,6 +108,12 @@ const AppRouter = () => {
 							<Route path="/community-guidelines">
 								<CommunityGuidelines />
 							</Route>
+							{/* <Route path="/register-kdsh">
+								<RegisterPage />
+							</Route>
+							<Route path="/register-success">
+								<Success />
+							</Route> */}
 						</Switch>
 					</ScrollToTop>
 					<Footer />

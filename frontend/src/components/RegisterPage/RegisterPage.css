@@ -7,53 +7,24 @@
 }
 
 .register-container .register-header .layer1 {
-	background-image: url("./../../assets/KDSH2025_waves.svg");
+	background-image: url("./../../assets/KDSH2025_cover1.png");
+	background-size: cover; 
+	background-position: center; 
+	background-repeat: no-repeat; 
+	background-attachment: fixed; 
+	height: 100vh; 
+	width: 100%; 
 }
 
 .register-container .register-header .register-kdsh {
 	position: absolute;
-	top: 85px;
-	left: 30%;
+	top: 155px;
+	left: 38%;
 	font-size: 50px;
 	font-weight: 900;
 	color: rgb(255, 255, 255);
 	padding: 5px 25px;
 	text-wrap: nowrap;
-	display: flex;
-
-}
-
-@media screen and (max-width: 1200px) {
-  .register-container .register-header .register-kdsh {
-    left: 25%;
-  }
-  .register-container .register-header .register-kdsh img {
-    width: 85%;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .register-container .register-header .register-kdsh {
-    left: 20%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .register-container .register-header .register-kdsh {
-    left: 10%;
-  }
-  .register-container .register-header .register-kdsh img {
-    width: 80%;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .register-container .register-header .register-kdsh {
-    left: 5%;
-  }
-  .register-container .register-header .register-kdsh img {
-    width: 70%;
-  }
 }
 
 .register-container .register-header .register-kdsh-desc {
@@ -78,10 +49,122 @@
 	color: aqua;
 	transition: all 0.3s;
 	width: max-content;
+	display: flex;
+}
+
+.register-container .register-header .register-kdsh-desc ul li {
+	border: solid rgba(255, 255, 255, 0.311) 2px;
+	padding: 5px;
+	margin-right: 20px;
+	overflow: hidden;
+	position: relative;
+	transition: all 0.2s;
+	cursor: pointer;
 }
 
 .register-container .register-header .register-kdsh-desc ul li:hover {
 	text-shadow: cyan 0 0 8px;
+	border: solid white 2px;
+}
+
+.register-container .register-header .register-kdsh-desc ul li::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		45deg,
+		transparent,
+		transparent,
+		rgba(255, 255, 255, 0.056),
+		rgba(255, 255, 255, 0.156),
+		rgba(255, 255, 255, 0.25),
+		rgba(255, 255, 255, 0.156),
+		rgba(255, 255, 255, 0.056),
+		transparent,
+		transparent
+	);
+	animation: heading-slide-through 2s ease-in infinite;
+	transform-origin: bottom left;
+	z-index: -1;
+	cursor: pointer;
+}
+
+@keyframes heading-slide-through {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(400%);
+	}
+}
+
+.kdsh2025_star_outer {
+	position: relative;
+	top: 45px;
+	margin: 0px 200px;
+	box-sizing: border-box;
+	border-radius: 30px;
+	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(15px);
+}
+.kdsh2025_star_header {
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+	border: solid rgba(255, 255, 255, 0.3) 2px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 25px;
+	border-radius: 50px;
+	margin-bottom: 15px;
+	background: rgba(255, 255, 255, 0.05);
+}
+.kdsh2025_star_header span {
+	color: rgb(255, 255, 255);
+	font-size: 25px;
+	font-weight: 800;
+	margin-right: 50px;
+}
+.kdsh2025_star_header button {
+	background: transparent;
+	border: none;
+}
+.kdsh2025_star_header button img {
+	height: 25px;
+	transform: rotate(90deg);
+}
+.kdsh2025_list_label {
+	font-weight: 600;
+	margin-right: 15px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0px 8px;
+	border-radius: 50px;
+	background-color: white;
+	color: black;
+	margin-bottom: 0;
+}
+.kdsh2025_star_content {
+	background: rgba(255, 255, 255, 0.05);
+	border: solid rgba(255, 255, 255, 0.3) 2px;
+	border-radius: 15px;
+	overflow: hidden;
+	color: white;
+	padding: 50px;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+
+.kdsh2025_star_content .step_one img,
+.kdsh2025_star_content .step_two img {
+	width: 100%;
+	margin-bottom: 10px;
+	border: solid white 1px;
+	margin-top: 10px;
 }
 
 .register-form {
@@ -95,7 +178,7 @@
 	position: relative;
 	left: 10%;
 	margin-bottom: 300px;
-	margin-top: 100px;
+	margin-top: 150px;
 }
 
 .register-form-icons {
@@ -138,14 +221,13 @@
 	display: inline-block;
 }
 
-.register-form-gender label img{
+.register-form-gender label img {
 	height: 25px;
 	padding-top: 2px;
 }
 
 .register-form-gender select {
 	border-radius: 0px;
-
 }
 .register-form-gender select option {
 	color: #333;
@@ -203,10 +285,17 @@ input[type="number"] {
 	text-shadow: 0 0 10px white;
 }
 
+@media (max-width: 1300px) {
+	.kdsh2025_star_outer {
+		top: 100px;
+		margin: 0px 100px;
+	}
+}
+
 @media (max-width: 1285px) {
 	.register-container .register-header .register-kdsh {
-		top: 125px;
-		left: 36%;
+		top: 115px;
+		left: 34%;
 		padding: 5px 25px;
 	}
 
@@ -216,12 +305,34 @@ input[type="number"] {
 		top: 265px;
 		margin: 0 100px;
 	}
+
+	.kdsh2025_star_outer {
+		top: 85px;
+		margin: 0px 100px;
+	}
+}
+
+@media (max-width: 1155px) {
+	.kdsh2025_star_outer {
+		top: 110px;
+		margin: 0px 100px;
+	}
+}
+
+@media (max-width: 1110px) {
+	.kdsh2025_star_outer {
+		top: 100px;
+		margin: 0px 100px;
+	}
+	.register-form {
+		margin-top: 250px;
+	}
 }
 
 @media (max-width: 1060px) {
 	.register-container .register-header .register-kdsh {
-		top: 120px;
-		left: 34%;
+		top: 100px;
+		left: 32%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
@@ -234,14 +345,32 @@ input[type="number"] {
 	}
 
 	.register-form {
+		margin-top: 250px;
+	}
+}
+
+@media (max-width: 940px) {
+	.kdsh2025_star_outer {
+		top: 100px;
+		margin: 0px 100px;
+	}
+	.kdsh2025_star_content {
+		padding: 20px;
+	}
+
+	.kdsh2025_star_content .step_one,
+	.kdsh2025_star_content .step_two {
+		font-size: 16px;
+	}
+	.register-form {
 		margin-top: 200px;
 	}
 }
 
 @media (max-width: 880px) {
 	.register-container .register-header .register-kdsh {
-		top: 110px;
-		left: 34%;
+		top: 90px;
+		left: 26%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
@@ -253,14 +382,24 @@ input[type="number"] {
 		margin: 0 90px;
 	}
 	.register-form {
-		margin-top: 300px;
+		margin-top: 200px;
+	}
+}
+
+@media (max-width: 790px) {
+	.kdsh2025_star_outer {
+		top: 100px;
+		margin: 0px 100px;
+	}
+	.register-form {
+		margin-top: 200px;
 	}
 }
 
 @media (max-width: 750px) {
 	.register-container .register-header .register-kdsh {
-		top: 110px;
-		left: 32%;
+		top: 95px;
+		left: 24%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
@@ -268,18 +407,30 @@ input[type="number"] {
 	.register-container .register-header .register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
-		top: 240px;
+		top: 250px;
 		margin: 0 90px;
 	}
 	.register-form {
-		margin-top: 360px;
+		margin-top: 200px;
+	}
+	/* />>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+	.kdsh2025_star_content .step_one,
+	.kdsh2025_star_content .step_two {
+		overflow-x: scroll;
+		scrollbar-width: 5px;
+	}
+	.kdsh2025_star_content .step_one img,
+	.kdsh2025_star_content .step_two img {
+		min-width: 900px;
+		margin-bottom: 10px;
+		border: solid white 1px;
 	}
 }
 
 @media (max-width: 700px) {
 	.register-container .register-header .register-kdsh {
-		top: 110px;
-		left: 28%;
+		top: 95px;
+		left: 22%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
@@ -287,25 +438,36 @@ input[type="number"] {
 	.register-container .register-header .register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
-		top: 240px;
+		top: 250px;
 		margin: 0 50px;
 		font-size: 18px;
 	}
-	.register-form {
-		margin-top: 450px;
+	.kdsh2025_star_outer {
+		top: 100px;
+		margin: 0px 50px;
 	}
 }
 
-@media (max-width: 600px) {
-	.register-form-gender select {
-		/* width: 260px; */
+@media (max-width: 685px) {
+	.kdsh2025_star_header span {
+		font-size: 20px;
+	}
+}
+
+@media (max-width: 645px) {
+	.kdsh2025_star_outer {
+		top: 100px;
+		margin: 0px 50px;
+	}
+	.register-form {
+		margin-top: 200px;
 	}
 }
 
 @media (max-width: 575px) {
 	.register-container .register-header .register-kdsh {
-		top: 100px;
-		left: 24%;
+		top: 85px;
+		left: 14%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
@@ -317,18 +479,16 @@ input[type="number"] {
 		margin: 0 40px;
 		font-size: 16px;
 	}
-	.register-form {
-		margin-top: 450px;
+	.kdsh2025_star_outer {
+		margin: 0px 35px;
 	}
 }
 
 @media (max-width: 515px) {
+	.register-form-gender select {
+		width: 265px;
+	}
 
-	
-		.register-form-gender select {
-			width: 265px;
-		}
-	
 	.register-form input {
 		width: 265px;
 	}
@@ -336,20 +496,29 @@ input[type="number"] {
 
 @media (max-width: 500px) {
 	.register-container .register-header .register-kdsh {
-		top: 100px;
-		left: 20%;
+		top: 85px;
+		left: 12%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
-	.register-form {
-		margin-top: 500px;
+
+	.register-container .register-header .register-kdsh-desc {
+		padding: 20px;
+		font-weight: 600;
+		top: 200px;
+		margin: 0 40px;
+		font-size: 16px;
+	}
+
+	.register-container .register-header .register-kdsh img {
+		height: 100px;
 	}
 }
 
 @media (max-width: 460px) {
 	.register-container .register-header .register-kdsh {
-		top: 100px;
-		left: 22%;
+		top: 80px;
+		left: 10%;
 		font-size: 35px;
 		padding: 5px 25px;
 	}
@@ -357,12 +526,9 @@ input[type="number"] {
 	.register-container .register-header .register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
-		top: 220px;
+		top: 200px;
 		margin: 0 30px;
 		font-size: 16px;
-	}
-	.register-form {
-		margin-top: 500px;
 	}
 
 	.register-form input {
@@ -396,9 +562,17 @@ input[type="number"] {
 	.register-form input {
 		width: 210px;
 	}
-	
 }
 
+@media (max-width: 435px) {
+	.kdsh2025_star_outer {
+		top: 100px;
+		margin: 0px 35px;
+	}
+	.register-form {
+		margin-top: 200px;
+	}
+}
 @media (max-width: 400px) {
 	.register-form input {
 		width: 200px;
@@ -406,12 +580,15 @@ input[type="number"] {
 	.register-form-gender select {
 		width: 202px;
 	}
+	.kdsh2025_star_outer {
+		margin: 0px 25px;
+	}
 }
 
 @media (max-width: 395px) {
 	.register-container .register-header .register-kdsh {
-		top: 100px;
-		left: 18%;
+		top: 80px;
+		left: 4%;
 		font-size: 35px;
 		padding: 5px 25px;
 	}
@@ -419,12 +596,12 @@ input[type="number"] {
 	.register-container .register-header .register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
-		top: 220px;
+		top: 200px;
 		margin: 0 20px;
 		font-size: 16px;
 	}
 	.register-form {
-		margin-top: 530px;
+		margin-top: 200px;
 	}
 }
 

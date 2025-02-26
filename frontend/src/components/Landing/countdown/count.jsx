@@ -58,7 +58,7 @@ const Countdown = ({ eventDate }) => {
 
   return (
     <div className='Banner-Eventislive'>
-      <h1>Stay Tuned for More!</h1>
+      <h1></h1>
     </div>
   );
 };

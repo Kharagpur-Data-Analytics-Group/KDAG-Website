@@ -15,11 +15,23 @@ import degree_icon from "./../../assets/kdsh2025_degree.png";
 import YOS_icon from "./../../assets/kdsh2025_YOS.png";
 import github_icon from "./../../assets/kdsh2025_github.png";
 import gender_icon from "./../../assets/kdsh2025_gender.png";
+import kdsh_2025 from "./../../assets/kdsh2025_logo.png";
+import show_icon from "./../../assets/show_icon.png";
+import repo1 from "./../../assets/llm_repo.png";
+import repo2 from "./../../assets/pathway_repo.png";
+import starred from "./../../assets/starred_repo.png";
+import profile_icon from "./../../assets/profile_icon.png";
+import profile_menu from "./../../assets/profile_menu.png";
 
 const RegisterPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
 	const [successPage, setSuccessPage] = useState(false);
 	const history = useHistory();
+	const [showHowTo, setShowHowTo] = useState(true);
+
+	const handleShowHowTo = () => {
+		setShowHowTo(!showHowTo);
+	};
 
 	useEffect(() => {
 		if (successPage) {
@@ -59,13 +71,14 @@ const RegisterPage = () => {
 				YOS: YOS4,
 				GitHubID: GitHubID4,
 			},
-			{
-				firstname: firstname5,
-				mobile: mobile5,
-				college: college5,
-				YOS: YOS5,
-				GitHubID: GitHubID5,
-			},
+			// ,
+			// {
+			// 	firstname: firstname5,
+			// 	mobile: mobile5,
+			// 	college: college5,
+			// 	YOS: YOS5,
+			// 	GitHubID: GitHubID5,
+			// },
 		];
 
 		const allSubmitSuccessful = checkData
@@ -138,33 +151,34 @@ const RegisterPage = () => {
 					teamName: team,
 					numMembers: Number(numMembers),
 				},
-				{
-					isTeamLeader: false,
-					firstname: firstname5,
-					lastname: lastname5,
-					gender: gender5,
-					mail: mail5,
-					mobile: mobile5,
-					college: college5,
-					degree: degree5,
-					YOS: Number(YOS5),
-					GitHubID: GitHubID5,
-					teamName: team,
-					numMembers: Number(numMembers),
-				},
+				// ,
+				// {
+				// 	isTeamLeader: false,
+				// 	firstname: firstname5,
+				// 	lastname: lastname5,
+				// 	gender: gender5,
+				// 	mail: mail5,
+				// 	mobile: mobile5,
+				// 	college: college5,
+				// 	degree: degree5,
+				// 	YOS: Number(YOS5),
+				// 	GitHubID: GitHubID5,
+				// 	teamName: team,
+				// 	numMembers: Number(numMembers),
+				// },
 			];
 			const finalData = formData.slice(0, numMembers);
 
 			if (numMembers > 4 || numMembers < 1) {
 				toast.error(
-					"Please note a minimum of 1 and a maximum of 4 members are allowed per team."
+					"Please note a minimum of 2 and a maximum of 5 members are allowed per team."
 				);
 				return false;
 			}
 
 			const registerPromise = fetch(
 				`${process.env.REACT_APP_FETCH_URL}/kdsh2025/check_register`,
-				// `http://localhost:5000/kdsh2025/check_register`,
+				// "http://localhost:5000/kdsh2025/check_register",
 				{
 					method: "POST",
 					headers: {
@@ -186,25 +200,29 @@ const RegisterPage = () => {
 						});
 					} else if (data.error) {
 						toast.error(data.error, {
-							theme: "dark",
-							autoClose: 10000,
+							position: "top-center",
+							draggable: true,
+							autoClose: 15000,
 						});
 					}
 				})
 				.catch((error) => {
 					console.error("Error during registration:", error);
-					toast.error("Registration failed, please try again later.");
+					toast.error("😔 Registration failed, please try again later.", {
+						position: "top-center",
+						draggable: true,
+					});
 				});
 			toast.promise(
 				registerPromise,
 				{
 					pending:
-						"Registering your team...This may take a few minutes, Please stay with us!!!",
-					error: "Registration failed. Please try again.",
+						"⏳ Registering your team...This may take several minutes, Please stay with us!!!",
+					error: "😔 Registration failed. Please try again LATER!!",
 				},
 				{
 					position: "top-center",
-					autoClose: 6000,
+					autoClose: 8000,
 				}
 			);
 		} else {
@@ -313,7 +331,7 @@ const RegisterPage = () => {
 		setGitHubID5,
 	} = useFormStates();
 
-	const [numMembers, setNumMembers] = useState(2);
+	const [numMembers, setNumMembers] = useState(1);
 	const [team, setTeam] = useState("");
 
 	const handleNumMembers = (e) => {
@@ -324,8 +342,8 @@ const RegisterPage = () => {
 				draggable: true,
 				theme: "dark",
 			});
-		} else if (value < 1) {
-			toast.error("There have to be a minimum of 1 member in a team!", {
+		} else if (value < 2) {
+			toast.error("There have to be a minimum of 2 members in a team!", {
 				position: "top-center",
 				draggable: true,
 				theme: "dark",
@@ -367,15 +385,17 @@ const RegisterPage = () => {
 		setTeam(value);
 	};
 
+	const handleKdshClick = (e) => {
+		history.push("/");
+	};
+
 	return (
 		<>
 			<div className="register-container">
 				<Fade top>
 					<div className="register-header">
 						<div className="spacer layer1"></div>
-						<div className="register-kdsh">
-							<img src={require("../../assets/pics/KDSH LOGO.png")} alt="KDSH 2025 Logo" />
-						</div>
+						<div className="register-kdsh">KDSH 2025</div>
 						<div className="register-kdsh-desc">
 							<p>
 								The 5th Edition of the{" "}
@@ -387,12 +407,21 @@ const RegisterPage = () => {
 							</p>
 
 							<p>
-								To participate, please fill in your details in the form below.
+								To participate, please fill in your details in the form provided
+								below.
 							</p>
 
-							<p>
-								Before registering, kindly ensure all your team members have
-								starred the following GitHub repositories:
+							<p
+								style={{
+									color: "#00ff11",
+									borderTop: "solid 2px white",
+									paddingTop: "45px",
+								}}
+							>
+								<strong>
+									Before registering, kindly ensure all your team members have
+									starred the following GitHub repositories:
+								</strong>
 							</p>
 
 							<ul>
@@ -402,6 +431,7 @@ const RegisterPage = () => {
 										href="https://github.com/pathwaycom/pathway"
 										target="_blank"
 										rel="noreferrer noopener"
+										style={{ cursor: "pointer" }}
 									>
 										👉 Pathway
 									</a>
@@ -412,6 +442,7 @@ const RegisterPage = () => {
 										href="https://github.com/pathwaycom/llm-app"
 										target="_blank"
 										rel="noreferrer noopener"
+										style={{ cursor: "pointer" }}
 									>
 										👉 LLM App
 									</a>
@@ -420,6 +451,184 @@ const RegisterPage = () => {
 						</div>
 					</div>
 				</Fade>
+				<Fade right>
+					<div className="kdsh2025_star_outer">
+						<div className="kdsh2025_star_header">
+							<span>💻 How to Star a repository ? 🤔</span>
+							<button onClick={handleShowHowTo}>
+								<img src={show_icon} alt="show" />
+							</button>
+						</div>
+						{showHowTo && (
+							<div className="kdsh2025_star_content">
+								<p
+									style={{
+										fontSize: "20px",
+										fontWeight: "600",
+										marginBottom: "30px",
+									}}
+								>
+									Starring a repository is a simple process.
+								</p>
+
+								<div className="step_two" style={{ paddingBottom: "15px" }}>
+									<p className="kdsh2025_list_label">1</p>{" "}
+									<span>
+										Visit{" "}
+										<a
+											href="https://github.com"
+											target="_blank"
+											rel="noopener noreferrer"
+											style={{ borderBottom: "solid blue 2px", color: "blue" }}
+										>
+											<p
+												style={{
+													cursor: "pointer",
+													color: "blue",
+													display: "inline-flex",
+												}}
+											>
+												GitHub
+											</p>
+										</a>{" "}
+										and log in using your account credentials. If you don’t have
+										an account, click Sign Up to create one.
+									</span>
+								</div>
+
+								<div className="step_one" style={{ marginBottom: "50px" }}>
+									<p className="kdsh2025_list_label">2</p>{" "}
+									<span>
+										Open Repository 1 and click the Star button at the top-right
+										corner of the page. Check the image below to locate the Star
+										button:
+									</span>
+									<p
+										style={{
+											margin: "0px",
+											paddingLeft: "40px",
+											fontWeight: "600",
+											paddingBottom: "8px",
+											color: "blue",
+											cursor: "pointer",
+										}}
+									>
+										Repository 1 :{" "}
+										<a
+											href="https://github.com/pathwaycom/llm-app"
+											target="_blank"
+											rel="noopener noreferrer"
+											style={{ borderBottom: "solid blue 2px" }}
+										>
+											https://github.com/pathwaycom/llm-app
+										</a>
+									</p>
+									<a
+										href="https://github.com/pathwaycom/llm-app"
+										target="_blank"
+										rel="noopener noreferrer"
+										style={{ cursor: "pointer" }}
+									>
+										<img src={repo1} alt="repo1" />
+									</a>
+								</div>
+
+								<div className="step_one" style={{ marginBottom: "50px" }}>
+									<p className="kdsh2025_list_label">3</p>{" "}
+									<span>
+										Similarly, navigate to Repository 2 and click the Star
+										button. Check the image below to locate the Star button:
+									</span>
+									<p
+										style={{
+											margin: "0px",
+											paddingLeft: "40px",
+											fontWeight: "600",
+											paddingBottom: "8px",
+											color: "blue",
+											cursor: "pointer",
+										}}
+									>
+										Repository 2 :{" "}
+										<a
+											href="https://github.com/pathwaycom/pathway"
+											target="_blank"
+											rel="noopener noreferrer"
+											style={{ borderBottom: "solid blue 2px" }}
+										>
+											https://github.com/pathwaycom/pathway
+										</a>
+									</p>
+									<a
+										href="https://github.com/pathwaycom/pathway"
+										target="_blank"
+										rel="noopener noreferrer"
+										style={{ cursor: "pointer" }}
+									>
+										<img src={repo2} alt="repo1" />
+									</a>
+								</div>
+								<div className="step_two">
+									<p className="kdsh2025_list_label">4</p>{" "}
+									<span>
+										Once you star a repository, the icon will update to look
+										like this:
+									</span>
+									<img src={starred} alt="starred" />
+								</div>
+								<div
+									className="step_two"
+									style={{ paddingTop: "15px", paddingBottom: "15px" }}
+								>
+									<span
+										style={{
+											color: "red",
+											textShadow: "0 0 5px red",
+											fontWeight: "600",
+											fontSize: "18px",
+										}}
+									>
+										IMPORTANT NOTE: Make sure to use the same GitHub username in
+										the registration form as the one you used to star
+										the repositories.
+									</span>
+								</div>
+								<div className="step_one" style={{ marginBottom: "50px" }}>
+									<p className="kdsh2025_list_label">5</p>{" "}
+									<span>
+										You can access your Github username by clicking on the
+										profile icon as shown in the image below:
+									</span>
+									<a
+										href="https://github.com/pathwaycom/pathway"
+										target="_blank"
+										rel="noopener noreferrer"
+										style={{ cursor: "pointer" }}
+									>
+										<img src={profile_icon} alt="repo1" />
+									</a>
+								</div>
+								<div className="step_one" style={{ marginBottom: "50px" }}>
+									<p className="kdsh2025_list_label">6</p>{" "}
+									<span>
+										After Clicking on the profile icon, you will find your
+										username displayed at the top of the menu that appears, next
+										to the profile image, as shown in the image below:
+									</span>
+									<a
+										href="https://github.com/pathwaycom/llm-app"
+										target="_blank"
+										rel="noopener noreferrer"
+										style={{ cursor: "pointer" }}
+									>
+										<img src={profile_menu} alt="repo1" />
+									</a>
+								</div>
+							</div>
+						)}
+					</div>
+				</Fade>
+
 				<Fade left>
 					<div className="register-form">
 						<form onSubmit={handleRegister}>
@@ -558,9 +767,9 @@ const RegisterPage = () => {
 										/>
 									</div>
 								</>
-								<div className="register-form-details">Details of Member 2</div>
+								{/* <div className="register-form-details">Details of Member 2</div> */}
 								{/* 22222222222222222222222222222222222222222222222222222222222222222222222222222222222222 */}
-								<>
+								{/* <>
 									<div className="register-form-icons">
 										<img src={user_icon} alt="user" />
 										<input
@@ -663,8 +872,121 @@ const RegisterPage = () => {
 											onChange={(e) => setGitHubID2(e.target.value)}
 										/>
 									</div>
-								</>
+								</> */}
 								{/* 333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333 */}
+								{numMembers >= 2 && (
+									<>
+										<div className="register-form-details">
+											Details of Member 2
+										</div>
+
+										<>
+											<div className="register-form-icons">
+												<img src={user_icon} alt="user" />
+												<input
+													type="text"
+													name="firstname"
+													placeholder="First Name"
+													required
+													value={firstname2}
+													onChange={(e) => setFirstname2(e.target.value)}
+												/>
+											</div>
+											<div className="register-form-icons">
+												<img src={user_icon} alt="user" />
+												<input
+													type="text"
+													name="lastname"
+													placeholder="Last Name"
+													value={lastname2}
+													onChange={(e) => setLastname2(e.target.value)}
+												/>
+											</div>
+											<div className="register-form-gender">
+												<label htmlFor="gender">
+													<img src={gender_icon} alt="gender" />
+												</label>
+												<select
+													id="gender"
+													name="gender"
+													value={gender2}
+													onChange={(e) => setGender2(e.target.value)}
+												>
+													<option value="male">Male</option>
+													<option value="female">Female</option>
+													<option value="other">Other</option>
+												</select>
+											</div>
+											<div className="register-form-icons">
+												<img src={mail_icon} alt="user" />
+												<input
+													type="email"
+													name="email"
+													placeholder="Email Id"
+													required
+													value={mail2}
+													onChange={(e) => setMail2(e.target.value)}
+												/>
+											</div>
+											<div className="register-form-icons">
+												<img src={contact_icon} alt="user" />
+												<input
+													type="number"
+													name="phone"
+													placeholder="Contact Number"
+													required
+													value={mobile2}
+													onChange={(e) => setMobile2(e.target.value)}
+												/>
+											</div>
+											<div className="register-form-icons">
+												<img src={college_icon} alt="user" />
+												<input
+													type="text"
+													name="college"
+													placeholder="College Name"
+													required
+													value={college2}
+													onChange={(e) => setCollege2(e.target.value)}
+												/>
+											</div>
+											<div className="register-form-icons">
+												<img src={degree_icon} alt="user" />
+												<input
+													type="text"
+													name="degree"
+													placeholder="Degree"
+													required
+													value={degree2}
+													onChange={(e) => setDegree2(e.target.value)}
+												/>
+											</div>
+											<div className="register-form-icons">
+												<img src={YOS_icon} alt="user" />
+												<input
+													type="number"
+													name="year"
+													placeholder="Year of Study - 1/2/3..."
+													required
+													value={YOS2}
+													onChange={(e) => setYOS2(e.target.value)}
+												/>
+											</div>
+											<div className="register-form-icons">
+												<img src={github_icon} alt="user" />
+												<input
+													type="text"
+													name="githubid"
+													placeholder="Github Username"
+													required
+													value={GitHubID2}
+													onChange={(e) => setGitHubID2(e.target.value)}
+												/>
+											</div>
+										</>
+									</>
+								)}
+								{/* 444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444 */}
 								{numMembers >= 3 && (
 									<>
 										<div className="register-form-details">
@@ -777,8 +1099,8 @@ const RegisterPage = () => {
 										</>
 									</>
 								)}
-								{/* 444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444 */}
-								{numMembers >= 4 && (
+								{/* 555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555 */}
+								{numMembers === 5 && (
 									<>
 										<div className="register-form-details">
 											Details of Member 4
@@ -889,120 +1211,7 @@ const RegisterPage = () => {
 											</div>
 										</>
 									</>
-								)}
-								{/* 555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555 */}
-								{/* {numMembers === 5 && (
-									<>
-										<div className="register-form-details">
-											Details of Member 5
-										</div>
-
-										<>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="firstname"
-													placeholder="First Name"
-													required
-													value={firstname5}
-													onChange={(e) => setFirstname5(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="lastname"
-													placeholder="Last Name"
-													value={lastname5}
-													onChange={(e) => setLastname5(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-gender">
-												<label htmlFor="gender">
-													<img src={gender_icon} alt="gender" />
-												</label>
-												<select
-													id="gender"
-													name="gender"
-													value={gender5}
-													onChange={(e) => setGender5(e.target.value)}
-												>
-													<option value="male">Male</option>
-													<option value="female">Female</option>
-													<option value="other">Other</option>
-												</select>
-											</div>
-											<div className="register-form-icons">
-												<img src={mail_icon} alt="user" />
-												<input
-													type="email"
-													name="email"
-													placeholder="Email Id"
-													required
-													value={mail5}
-													onChange={(e) => setMail5(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={contact_icon} alt="user" />
-												<input
-													type="number"
-													name="phone"
-													placeholder="Contact Number"
-													required
-													value={mobile5}
-													onChange={(e) => setMobile5(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={college_icon} alt="user" />
-												<input
-													type="text"
-													name="college"
-													placeholder="College Name"
-													required
-													value={college5}
-													onChange={(e) => setCollege5(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={degree_icon} alt="user" />
-												<input
-													type="text"
-													name="degree"
-													placeholder="Degree"
-													required
-													value={degree5}
-													onChange={(e) => setDegree5(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={YOS_icon} alt="user" />
-												<input
-													type="number"
-													name="year"
-													placeholder="Year of Study - 1/2/3..."
-													required
-													value={YOS5}
-													onChange={(e) => setYOS5(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={github_icon} alt="user" />
-												<input
-													type="text"
-													name="githubid"
-													placeholder="Github Username"
-													required
-													value={GitHubID5}
-													onChange={(e) => setGitHubID5(e.target.value)}
-												/>
-											</div>
-										</>
-									</>
-								)} */}
+								)} 
 								<button className="register-form-submit" type="submit">
 									<p>Register</p>
 								</button>
