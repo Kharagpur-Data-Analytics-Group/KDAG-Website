@@ -5,10 +5,9 @@ import './Carousel/css/embla.css';
 
 const OPTIONS = { loop: true, containScroll: false };
 const SLIDES = [
-  { title: "KDSH 25", image: "images/gallery/kdsh-25/1.jpeg" },
-  { title: "KDSH 24", image: "images/gallery/kdsh-24/10.jpg" },
-  { title: "KDSH 25", image: "images/gallery/kdsh-25/1.jpeg" },
-  { title: "KDSH 24", image: "images/gallery/kdsh-24/10.jpg" }
+  { title: "Kharagpur Data Science Hackathon 2025", image: "images/gallery/kharagpur-data-science-hackathon-2025/1.jpeg" },
+  { title: "Generative AI Workshop 2025", image: "images/gallery/generative-ai-workshop-2025/1.jpeg" },
+  { title: "Kharagpur Data Science Hackathon 2024", image: "images/gallery/kharagpur-data-science-hackathon-2024/10.jpg" }
 ];
 
 const GalleryPage = () => {
