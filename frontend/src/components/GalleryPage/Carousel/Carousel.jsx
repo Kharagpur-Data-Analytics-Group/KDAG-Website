@@ -76,16 +76,12 @@ const Carousel = (props) => {
     <div className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
+          {slides.map((slide, index) => (
             <div className="embla__slide" key={index}>
-              <a href="/events-gallery">
-                <img
-                  className="embla__slide__img"
-                  src={`images/gallery/KDSH/10.jpg`}
-                  alt="Your alt text"
-                />
-                <div class="overlay">
-                  <h3>KDSH 24</h3>
+              <a href={`/events-gallery/${slide.title.replace(/\s+/g, '-').toLowerCase()}`}>
+                <img className="embla__slide__img" src={slide.image} alt={slide.title} />
+                <div className="overlay">
+                  <h3>{slide.title}</h3>
                 </div>
               </a>
             </div>
