@@ -11,32 +11,42 @@ import campus_pulse2024 from "../../../assets/pics/events/Campus_pulse2024.png";
 import ML_Workshop2024 from "../../../assets/pics/events/ML_Workshop2024.png";
 import NEST from "../../../assets/pics/events/NEST.jpg";
 import Convolve_2025 from "../../../assets/pics/events/Convolve_2025.jpg";
+import KDSH_2025 from "../../../assets/pics/events/KDSH_2025.jpg"
+import IntraKDAG from "../../../assets/pics/events/IntraKDAG.jpg"
 
 const events = [
     
     {
         id: 0,
         title: "Convolve 2025",
-        location: "Online",
+        location: "Unstop",
         date:"10th January 2025 - 6th February 2025",
         link: "https://unstop.com/o/4st5JEq?utm_medium=Share&utm_source=shortUrl",
         image: Convolve_2025,
     },
     {
+        id: 0,
+        title: "Kharagpur Data Science Hackathon 2025",
+        location: "Unstop",
+        date:"2nd January 2025 - 19th January 2025",
+        link: "https://unstop.com/o/GEtxVdJ?lb=sqXVRSum&utm_medium=Share&utm_source=WhatsApp",
+        image: KDSH_2025,
+    },
+    {
         id: 1,
         title: "NEST- Nurturing Excellence, Strengthening Talent",
         location: "Online",
-        date:"9th December 2025 - 20th February 2025",
-        link: "https://unstop.com/o/4st5JEq?utm_medium=Share&utm_source=shortUrl",
+        date:"9th December 2024 - 20th February 2025",
+        link: "https://unstop.com/o/YaFmlSs?lb=sqXVRSum&utm_medium=Share&utm_source=WhatsApp",
         image: NEST,
     },
     {
         id: 2,
-        title: "Spring of Realtime LLMs Bootcamp 2024",
-        location: "Online",
-        date:"2nd March 2024 - 25th March 2024",
-        link: "https://unstop.com/o/K4h6B1e?lb=Yxt5XWS",
-        image: LLM_2024,
+        title: "KDAG Intrasoc Hackathon 2024",
+        location: "Nalanda Complex NR 111",
+        date:"11th October,2024",
+        link: "",
+        image: IntraKDAG,
     },
     {
         id: 3,
