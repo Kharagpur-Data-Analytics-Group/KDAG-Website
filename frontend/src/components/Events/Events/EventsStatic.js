@@ -15,11 +15,11 @@ import KDSH_2025 from "../../../assets/pics/events/KDSH_2025.jpg"
 import IntraKDAG from "../../../assets/pics/events/IntraKDAG.jpg"
 
 const events = [
-    
+
     {
         id: 0,
         title: "Convolve 2025",
-        location: "Unstop",
+        location: "Online",
         date:"10th January 2025 - 6th February 2025",
         link: "https://unstop.com/o/4st5JEq?utm_medium=Share&utm_source=shortUrl",
         image: Convolve_2025,
@@ -36,23 +36,23 @@ const events = [
         id: 1,
         title: "NEST- Nurturing Excellence, Strengthening Talent",
         location: "Online",
-        date:"9th December 2024 - 20th February 2025",
-        link: "https://unstop.com/o/YaFmlSs?lb=sqXVRSum&utm_medium=Share&utm_source=WhatsApp",
+        date:"9th December 2025 - 20th February 2025",
+        link: "https://unstop.com/o/4st5JEq?utm_medium=Share&utm_source=shortUrl",
         image: NEST,
     },
     {
         id: 2,
-        title: "KDAG Intrasoc Hackathon 2024",
-        location: "Nalanda Complex NR 111",
-        date:"11th October,2024",
-        link: "",
-        image: IntraKDAG,
+        title: "Spring of Realtime LLMs Bootcamp 2024",
+        location: "Online",
+        date:"2nd March 2024 - 25th March 2024",
+        link: "https://unstop.com/o/K4h6B1e?lb=Yxt5XWS",
+        image: LLM_2024,
     },
     {
         id: 3,
         title: "Convolve 2024",
         location: "MS Teams",
-        date:"5th January 2024 - 11th February 2024",
+        date: "5th January 2024 - 11th February 2024",
         link: "https://unstop.com/o/TsxQmJG?lb=1EjPtbV",
         image: convolve_2024,
     },
@@ -60,7 +60,7 @@ const events = [
         id: 4,
         title: "Kharagpur Datascience Hackathon 2024",
         location: "Unstop",
-        date:"25th December 2023 - 21st January 2024",
+        date: "25th December 2023 - 21st January 2024",
         link: "https://unstop.com/o/3zC06FR?lb=DlVrQAs",
         image: KDSH_2024,
     },
@@ -68,15 +68,15 @@ const events = [
         id: 5,
         title: "Machine Learning Workshop 2023",
         location: "Nalanda Classroom Complex, NC111",
-        date:"4th November 2023 - 5th November 2023",
+        date: "4th November 2023 - 5th November 2023",
         image: ML_Workshop2024,
-        
+
     },
     {
         id: 6,
         title: "Campus Pulse 2023",
         location: "IIT Kharagpur",
-        date:"13th November, 2023 - 15th January, 2024",
+        date: "13th November, 2023 - 15th January, 2024",
         image: campus_pulse2024,
         resources: "https://docs.google.com/document/d/1bFgQODQLFZLzT8UNobxP3KhZWFmCjnyLMLu2o_m-sVE/edit?tab=t.0",
     },
@@ -84,7 +84,7 @@ const events = [
         id: 7,
         title: "Python Workshop 2023",
         location: "Nalanda Classroom Complex, NR221",
-        date:"1st April 2023 - 2nd April 2023",
+        date: "1st April 2023 - 2nd April 2023",
         image: python_workshop_2023,
         resources: "https://drive.google.com/drive/folders/1iQgB8yL8Pg42AsJ-yyJCFftQKy-KL1en?usp=share_link",
     },
