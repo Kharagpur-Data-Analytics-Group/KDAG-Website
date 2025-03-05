@@ -8,8 +8,8 @@ import {
 	faCalendarDays,
 	faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-// import Poster from "../../assets/pics/events/KDAG ML Digest.jpg";
-import KDSH5thEdition from "../../assets/pics/events/KDSH 5TH edition.jpg";
+import Poster from "../../assets/pics/events/KDAG ML Digest.jpg";
+// import KDSH5thEdition from "../../assets/pics/events/KDSH 5TH edition.jpg";
 
 //Components
 import Content from "./Content/Content.js";
@@ -23,31 +23,31 @@ import kdsh2025_logo from '../../assets/kdsh2025_logo.png';  // Adjust path as n
 
 
 const LandingPage = () => {
-	const eligibleCandidates = [
-		["Aman Sharma", "amankumarsharma4084@gmail.com"],
-		["Kushaz Sehgal", "kushaz.sehgal@gmail.com"],
-		["Jeevesh Mahajan", "jeevesh28mahajan@gmail.com"],
-		["Ater Murtem", "murtematu@gmail.com"],
-		["Balaji Udayagiri", "balajiatvizag@gmail.com"],
-		["Nancy Meshram", "nancymeshram02@gmail.com"],
-		["Apoorv Bansal", "bansalapoorv2015@gmail.com"],
-		["Krishna Yadav", "kyadav932000@gmail.com"],
-		["Pooja Sharma", "poojasharma201902@gmail.com"],
-		["Sanjeevani Ratna Tiwari", "iam.sanjeevanitiwari@gmail.com"],
-		["Rounak Saha", "rounaksaha12@gmail.com"],
-		["Sharannya Ghosh", "sharannyaghosh31@gmail.com"],
-		["Souvik Rana", "ranasouvik07@gmail.com"],
-		["Swarup Padhi", "swarupksms@gmail.com"],
-		["Shivam Raj", "shivsrj2580@gmail.com"],
-		["Rushil Venkateswar", "rushilv14@gmail.com"],
-		["Subhajyoti Halder", "subhajyotihalder72@gmail.com"],
-		["Anubhab Tripathi", "tripathianubhab@gmail.com"],
-		["Akash Kundu", "akashkundu2xx4@gmail.com"],
-		["Aayush Jitendra Kumar", "jitendra.kumar.epf@gmail.com"],
-		["Shaswat Sheshank", "sheshank.shaswat1111@gmail.com"],
-		["Avinash Kumar", "avinashjnvr@gmail.com"],
-		["Sandeep Mishra", "sandeepmishraismyname@gmail.com"],
-	];
+	// const eligibleCandidates = [
+	// 	["Aman Sharma", "amankumarsharma4084@gmail.com"],
+	// 	["Kushaz Sehgal", "kushaz.sehgal@gmail.com"],
+	// 	["Jeevesh Mahajan", "jeevesh28mahajan@gmail.com"],
+	// 	["Ater Murtem", "murtematu@gmail.com"],
+	// 	["Balaji Udayagiri", "balajiatvizag@gmail.com"],
+	// 	["Nancy Meshram", "nancymeshram02@gmail.com"],
+	// 	["Apoorv Bansal", "bansalapoorv2015@gmail.com"],
+	// 	["Krishna Yadav", "kyadav932000@gmail.com"],
+	// 	["Pooja Sharma", "poojasharma201902@gmail.com"],
+	// 	["Sanjeevani Ratna Tiwari", "iam.sanjeevanitiwari@gmail.com"],
+	// 	["Rounak Saha", "rounaksaha12@gmail.com"],
+	// 	["Sharannya Ghosh", "sharannyaghosh31@gmail.com"],
+	// 	["Souvik Rana", "ranasouvik07@gmail.com"],
+	// 	["Swarup Padhi", "swarupksms@gmail.com"],
+	// 	["Shivam Raj", "shivsrj2580@gmail.com"],
+	// 	["Rushil Venkateswar", "rushilv14@gmail.com"],
+	// 	["Subhajyoti Halder", "subhajyotihalder72@gmail.com"],
+	// 	["Anubhab Tripathi", "tripathianubhab@gmail.com"],
+	// 	["Akash Kundu", "akashkundu2xx4@gmail.com"],
+	// 	["Aayush Jitendra Kumar", "jitendra.kumar.epf@gmail.com"],
+	// 	["Shaswat Sheshank", "sheshank.shaswat1111@gmail.com"],
+	// 	["Avinash Kumar", "avinashjnvr@gmail.com"],
+	// 	["Sandeep Mishra", "sandeepmishraismyname@gmail.com"],
+	// ];
 
 	// useEffect(() => {
 	// 	const form = document.getElementById("form");
@@ -172,25 +172,25 @@ const LandingPage = () => {
 	//   });
 	// }, []);
 
-	const handleTitleClick = () => {
-		window.open("https://pathway.com/", "_blank", "noopener,noreferrer");
-	};
-	const handleYouthInc = () => {
-		window.open("https://youthincmag.com/", "_blank", "noopener,noreferrer");
-	};
-	const handleDazeInfo = () => {
-		window.open("https://dazeinfo.com/", "_blank", "noopener,noreferrer");
-	};
-	const handleTheAca = () => {
-		window.open(
-			"https://theacademicinsights.com/",
-			"_blank",
-			"noopener,noreferrer"
-		);
-	};
-	const handleStock = () => {
-		window.open("https://stockedge.com/", "_blank", "noopener,noreferrer");
-	};
+	// const handleTitleClick = () => {
+	// 	window.open("https://pathway.com/", "_blank", "noopener,noreferrer");
+	// };
+	// const handleYouthInc = () => {
+	// 	window.open("https://youthincmag.com/", "_blank", "noopener,noreferrer");
+	// };
+	// const handleDazeInfo = () => {
+	// 	window.open("https://dazeinfo.com/", "_blank", "noopener,noreferrer");
+	// };
+	// const handleTheAca = () => {
+	// 	window.open(
+	// 		"https://theacademicinsights.com/",
+	// 		"_blank",
+	// 		"noopener,noreferrer"
+	// 	);
+	// };
+	// const handleStock = () => {
+	// 	window.open("https://stockedge.com/", "_blank", "noopener,noreferrer");
+	// };
 
 	return (
 		<>
@@ -277,53 +277,30 @@ const LandingPage = () => {
 				{/* banner main starts */}
 				<div className="banner-main">
 					<div className="banner-image-div"></div>
-					{/* <div className="banner-heading-flex-container">
+					<div className="banner-heading-flex-container">
 						<div className="banner-heading-flex">
 							<div className="banner-heading">
 								<h3 style={{ fontSize: "35px", fontWeight: "600" }}>
-									Kharagpur Data Science Hackathon 2025
+									Kharagpur Data Analytics Group
 								</h3>
 							</div>
 						</div>
-					</div> */}
-
-					<div className="temp-banner-heading-flex-container">
-						<img src={kdsh2025_logo} alt="" />
 					</div>
+
+					{/* <div className="temp-banner-heading-flex-container">
+						<img src={Poster} alt="" />
+					</div> */}
 
 					<div className="banner-content-flex">
 						<img
 							className="banner-poster"
-							src={KDSH5thEdition}
+							src={Poster}
 							alt="Poster"
-							// height={250}
 						/>
 						<div className="banner-content">
-							{/* <p>
-								This competition combines innovation, technology, and data
-								science to challenge the brightest minds at IIT Kharagpur.
-								Participants will showcase their innovative ideas and harness
-								the power of Data Analytics to solve real world problems faced
-								by people in the IIT Kharagpur campus. Whether focusing on
-								enhancing Hall Management or academic-related matters, your data
-								driven solutions can elevate everyone's life on campus. This event
-                is generously sponsored by our esteemed alumnus, <a href="https://sibasmarak.github.io/" id="alumni-link" target="_blank">
-                Siba Smarak Panigrahi</a> , currently pursuing an M.Sc. at McGill University 
-                and Mila, Canada.
-							</p> */}
 							<p>
-								"Without data, you're just another person with an opinion." - W.
-								Edwards Deming <br />
-								The 5th Edition of the{" "}
-								<strong>Kharagpur Data Science Hackathon</strong> (KDSH) is here
-								to push boundaries and redefine excellence in data science.
-								Prepare to immerse yourself in cutting-edge machine learning,
-								tackle real-world data challenges, and showcase your innovative
-								solutions. Gain exclusive opportunities to connect with industry
-								leaders, sharpen your expertise, and emerge as a trailblazer in
-								the world of data science. This is more than a competition; it's
-								a platform to push your limits, ignite your passion for data,
-								and create meaningful change.
+								We are excited to announce our collaboration with <strong>Chi SquareX</strong>, one of India's top deep-tech startups specializing in data science, machine learning, and AI. Together, we're launching <strong>'ML Digest'</strong>, a blog series dedicated to bringing you the latest advancements, trends, and insights in machine learning and deep technology.<br />
+								Starting on August 9th, this series will feature in-depth articles, expert analyses, and cutting-edge research designed to keep you informed and inspired by the industry's best. Stay tuned for regular updates and get ready to explore the future of technology with 'ML Digest.' Follow us and be part of the innovation wave!
 							</p>
 						</div>
 					</div>
@@ -334,7 +311,7 @@ const LandingPage = () => {
 						<div className="banner-info">
 							{/* <FontAwesomeIcon icon={faCalendarDays} className="icon" shake />
 							<p id="banner-info">Coming Soon</p> */}
-							{/* /* <FontAwesomeIcon icon={faLocationDot} className="icon" flip />
+					{/* /* <FontAwesomeIcon icon={faLocationDot} className="icon" flip />
 							<p id="banner-info">Online</p>
 						</div>
 					</div> */  }
@@ -449,8 +426,8 @@ const LandingPage = () => {
 						<input type="text" id="query-box-name" />
 						<input type="text" id="query-box-email" />
 						<input type="text" id="query-box-query" />
-					</div> 
-					 <div className="query-submit-button-flex">
+					</div> */}
+				{/* <div className="query-submit-button-flex">
 						<div className="query-submit-button">
 							<button
 								class="btn-12"
@@ -466,17 +443,17 @@ const LandingPage = () => {
 				{/* -------------------------------------------------------------banner queries ends */}
 
 				{/* <link rel="stylesheet" href="dd" >Register Now</link> */}
-			</section>
+			</section >
 
 			{/* content section  */}
-			<section className="section-contents">
+			< section className="section-contents" >
 				{/* <Fade bottom>
         <div className="Hackathon-button">
           <div className="Hackathon-button-button"><a href="http://tinyurl.com/kdshreg" target="_blank" rel="noreferrer noopener">Register for Kharagpur Data Science Hackathon</a></div>
         </div>
         </Fade> */}
 
-				<div className="about-kdag-wrapper">
+				< div className="about-kdag-wrapper" >
 					<div className="about-kdag">
 						{/* <Fade left> */}
 						{/* <div className="about-kdag-image">
@@ -497,9 +474,9 @@ const LandingPage = () => {
 							</div>
 						</Fade>
 					</div>
-				</div>
+				</div >
 				<Content />
-			</section>
+			</section >
 
 			{/* Contact Section */}
 			{/*<section className="section-contacts">
