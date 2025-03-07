@@ -93,7 +93,7 @@ const AppRouter = () => {
 							<Route path="/discussion_page/:post_id/:numReplies">
 								<DiscussionPage />
 							</Route>
-							<Route path="/events-gallery">
+							<Route path="/events-gallery/:eventTitle">
 								<ImageGrid />
 							</Route>
 							<Route path="/winter-workshop">
@@ -119,7 +119,7 @@ const AppRouter = () => {
 					<Footer />
 				</AuthProvider>
 			</Router>
-		</React.StrictMode>
+		</React.StrictMode >
 	);
 };
 

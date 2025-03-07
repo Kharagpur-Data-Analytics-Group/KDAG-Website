@@ -141,7 +141,7 @@ const members_2018 = [
 		linkedin: "https://www.linkedin.com/in/atul-patel-1146b6b5/",
 		degree: "Electrical Engineer",
 		graduation_year: 2018,
-		workplace: "PayU",
+		workplace: "Stealth AI Startup",
 		designation: "Assistant Manager, American Express",
 	},
 	{
@@ -220,7 +220,7 @@ const members_2018 = [
 		linkedin: "https://www.linkedin.com/in/rajatgarg-iitkgp/",
 		degree: "Computer Science Engineering",
 		graduation_year: 2018,
-		workplace: "VP Product, Yes Madam",
+		workplace: " Yes Madam",
 		designation: "AU Small Finance Bank",
 	},
 ];

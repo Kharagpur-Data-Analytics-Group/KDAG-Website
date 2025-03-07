@@ -8,8 +8,8 @@ import {
 	faCalendarDays,
 	faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
-// import Poster from "../../assets/pics/events/KDAG ML Digest.jpg";
-import KDSH5thEdition from "../../assets/pics/events/KDSH 5TH edition.jpg";
+import Poster from "../../assets/pics/events/KDAG ML Digest.jpg";
+// import KDSH5thEdition from "../../assets/pics/events/KDSH 5TH edition.jpg";
 
 //Components
 import Content from "./Content/Content.js";
@@ -18,40 +18,36 @@ import Particless from "../Common/Particles/Particless";
 import video1 from "./Video/final.mp4";
 import certificate from "../../assets/KDSH2022Certificates/Akash Kundu.png";
 import Header from "./Header/Header";
-import title_sponsor from "./../../assets/kdsh2025_pathway.png";
-import media_sponsor_1 from "./../../assets/kdsh2025_media_sponsor_11.png";
-import media_sponsor_2 from "./../../assets/kdsh2025_media_sponsor_22.png";
-import media_sponsor_3 from "./../../assets/kdsh2025_media_sponsor_33.png";
-import media_sponsor_4 from "./../../assets/kdsh2025_media_sponsor_44 - Copy.png";
-import kdsh2025_logo from "./../../assets/kdsh2025_logo.png";
-import kdsh_2025_banner from "./../../assets/kdsh2025_hackathon_poster.jpg";
+import associate_sponsor from "./../../assets/kdsh2025_associate_sponsor.jpg";
+import kdsh2025_logo from '../../assets/kdsh2025_logo.png';  // Adjust path as needed
+
 
 const LandingPage = () => {
-	const eligibleCandidates = [
-		["Aman Sharma", "amankumarsharma4084@gmail.com"],
-		["Kushaz Sehgal", "kushaz.sehgal@gmail.com"],
-		["Jeevesh Mahajan", "jeevesh28mahajan@gmail.com"],
-		["Ater Murtem", "murtematu@gmail.com"],
-		["Balaji Udayagiri", "balajiatvizag@gmail.com"],
-		["Nancy Meshram", "nancymeshram02@gmail.com"],
-		["Apoorv Bansal", "bansalapoorv2015@gmail.com"],
-		["Krishna Yadav", "kyadav932000@gmail.com"],
-		["Pooja Sharma", "poojasharma201902@gmail.com"],
-		["Sanjeevani Ratna Tiwari", "iam.sanjeevanitiwari@gmail.com"],
-		["Rounak Saha", "rounaksaha12@gmail.com"],
-		["Sharannya Ghosh", "sharannyaghosh31@gmail.com"],
-		["Souvik Rana", "ranasouvik07@gmail.com"],
-		["Swarup Padhi", "swarupksms@gmail.com"],
-		["Shivam Raj", "shivsrj2580@gmail.com"],
-		["Rushil Venkateswar", "rushilv14@gmail.com"],
-		["Subhajyoti Halder", "subhajyotihalder72@gmail.com"],
-		["Anubhab Tripathi", "tripathianubhab@gmail.com"],
-		["Akash Kundu", "akashkundu2xx4@gmail.com"],
-		["Aayush Jitendra Kumar", "jitendra.kumar.epf@gmail.com"],
-		["Shaswat Sheshank", "sheshank.shaswat1111@gmail.com"],
-		["Avinash Kumar", "avinashjnvr@gmail.com"],
-		["Sandeep Mishra", "sandeepmishraismyname@gmail.com"],
-	];
+	// const eligibleCandidates = [
+	// 	["Aman Sharma", "amankumarsharma4084@gmail.com"],
+	// 	["Kushaz Sehgal", "kushaz.sehgal@gmail.com"],
+	// 	["Jeevesh Mahajan", "jeevesh28mahajan@gmail.com"],
+	// 	["Ater Murtem", "murtematu@gmail.com"],
+	// 	["Balaji Udayagiri", "balajiatvizag@gmail.com"],
+	// 	["Nancy Meshram", "nancymeshram02@gmail.com"],
+	// 	["Apoorv Bansal", "bansalapoorv2015@gmail.com"],
+	// 	["Krishna Yadav", "kyadav932000@gmail.com"],
+	// 	["Pooja Sharma", "poojasharma201902@gmail.com"],
+	// 	["Sanjeevani Ratna Tiwari", "iam.sanjeevanitiwari@gmail.com"],
+	// 	["Rounak Saha", "rounaksaha12@gmail.com"],
+	// 	["Sharannya Ghosh", "sharannyaghosh31@gmail.com"],
+	// 	["Souvik Rana", "ranasouvik07@gmail.com"],
+	// 	["Swarup Padhi", "swarupksms@gmail.com"],
+	// 	["Shivam Raj", "shivsrj2580@gmail.com"],
+	// 	["Rushil Venkateswar", "rushilv14@gmail.com"],
+	// 	["Subhajyoti Halder", "subhajyotihalder72@gmail.com"],
+	// 	["Anubhab Tripathi", "tripathianubhab@gmail.com"],
+	// 	["Akash Kundu", "akashkundu2xx4@gmail.com"],
+	// 	["Aayush Jitendra Kumar", "jitendra.kumar.epf@gmail.com"],
+	// 	["Shaswat Sheshank", "sheshank.shaswat1111@gmail.com"],
+	// 	["Avinash Kumar", "avinashjnvr@gmail.com"],
+	// 	["Sandeep Mishra", "sandeepmishraismyname@gmail.com"],
+	// ];
 
 	// useEffect(() => {
 	// 	const form = document.getElementById("form");
@@ -176,25 +172,25 @@ const LandingPage = () => {
 	//   });
 	// }, []);
 
-	const handleTitleClick = () => {
-		window.open("https://pathway.com/", "_blank", "noopener,noreferrer");
-	};
-	const handleYouthInc = () => {
-		window.open("https://youthincmag.com/", "_blank", "noopener,noreferrer");
-	};
-	const handleDazeInfo = () => {
-		window.open("https://dazeinfo.com/", "_blank", "noopener,noreferrer");
-	};
-	const handleTheAca = () => {
-		window.open(
-			"https://theacademicinsights.com/",
-			"_blank",
-			"noopener,noreferrer"
-		);
-	};
-	const handleStock = () => {
-		window.open("https://stockedge.com/", "_blank", "noopener,noreferrer");
-	};
+	// const handleTitleClick = () => {
+	// 	window.open("https://pathway.com/", "_blank", "noopener,noreferrer");
+	// };
+	// const handleYouthInc = () => {
+	// 	window.open("https://youthincmag.com/", "_blank", "noopener,noreferrer");
+	// };
+	// const handleDazeInfo = () => {
+	// 	window.open("https://dazeinfo.com/", "_blank", "noopener,noreferrer");
+	// };
+	// const handleTheAca = () => {
+	// 	window.open(
+	// 		"https://theacademicinsights.com/",
+	// 		"_blank",
+	// 		"noopener,noreferrer"
+	// 	);
+	// };
+	// const handleStock = () => {
+	// 	window.open("https://stockedge.com/", "_blank", "noopener,noreferrer");
+	// };
 
 	return (
 		<>
@@ -281,43 +277,30 @@ const LandingPage = () => {
 				{/* banner main starts */}
 				<div className="banner-main">
 					<div className="banner-image-div"></div>
-					{/* <div className="banner-heading-flex-container">
+					<div className="banner-heading-flex-container">
 						<div className="banner-heading-flex">
 							<div className="banner-heading">
 								<h3 style={{ fontSize: "35px", fontWeight: "600" }}>
-									Kharagpur Data Science Hackathon 2025
+									Kharagpur Data Analytics Group
 								</h3>
 							</div>
 						</div>
-					</div> */}
-
-					<div className="temp-banner-heading-flex-container">
-						<img src={kdsh2025_logo} alt="" />
 					</div>
+
+					{/* <div className="temp-banner-heading-flex-container">
+						<img src={Poster} alt="" />
+					</div> */}
 
 					<div className="banner-content-flex">
 						<img
 							className="banner-poster"
-							src={kdsh_2025_banner}
+							src={Poster}
 							alt="Poster"
-							// height={250}
 						/>
 						<div className="banner-content">
 							<p>
-								We are thrilled to announce <strong>Pathway</strong> as the{" "}
-								<strong>Title Sponsor</strong> for the Kharagpur Data Science
-								Hackathon 2025, organized by Kharagpur Data Analytics Group in
-								association with Kshitij, the annual Techno-Management Fest of
-								IIT Kharagpur. This collaboration significantly elevates our
-								event, promising an engaging and impactful experience for all
-								participants. <br />
-								<strong>Pathway</strong> is a cutting-edge platform that
-								empowers artificial intelligence with live data. It enables
-								seamless data ingestion from over 300 sources with automatic
-								synchronization, live vector search, and anomaly alerts. By
-								providing accurate AI insights from vast amounts of connected
-								documents and data tables, Pathway stands at the forefront of
-								AI-driven data solutions.
+								We are excited to announce our collaboration with <strong>Chi SquareX</strong>, one of India's top deep-tech startups specializing in data science, machine learning, and AI. Together, we're launching <strong>'ML Digest'</strong>, a blog series dedicated to bringing you the latest advancements, trends, and insights in machine learning and deep technology.<br />
+								Starting on August 9th, this series will feature in-depth articles, expert analyses, and cutting-edge research designed to keep you informed and inspired by the industry's best. Stay tuned for regular updates and get ready to explore the future of technology with 'ML Digest.' Follow us and be part of the innovation wave!
 							</p>
 						</div>
 					</div>
@@ -326,125 +309,79 @@ const LandingPage = () => {
 					{/* banner info starts */}
 					{/* <div className="banner-info-flex">
 						<div className="banner-info">
-							<FontAwesomeIcon icon={faCalendarDays} className="icon" shake />
-							<p id="banner-info">Coming Soon</p>
-							<FontAwesomeIcon icon={faLocationDot} className="icon" flip />
+							{/* <FontAwesomeIcon icon={faCalendarDays} className="icon" shake />
+							<p id="banner-info">Coming Soon</p> */}
+					{/* /* <FontAwesomeIcon icon={faLocationDot} className="icon" flip />
 							<p id="banner-info">Online</p>
 						</div>
-					</div> */}
+					</div> */  }
 					{/* banner info ends */}
 					{/* banner button starts */}
-					{/* <button className="register-now-button">
-						<a href="/register-kdsh">
-							<p>Register</p>
-						</a>
-					</button> */}
-					{/* banner button ends */}
+					{/* <div className="banner-button-flex">
+                            <a href="/register-kdsh">  <div className="banner-button">
+                        	<button class="btn-12" style={{ cursor: "pointer" }}> <span>Register Now</span>
+                        </button>
+    				</div>
+  							</a>
+  							<a href="/register-kdsh">  <button id="banner-button-media" class="btn-12">
+      							<span>Register Now</span>
+    					</button>
+  							</a>
+					</div> */}
+				</div>
+				{/* banner button ends */}
+
+				{/* <div className="kdsh2025_header">
+					Introducing Sponsors for KDSH 2025
 				</div>
 
-				<div className="kdsh2025_slider_outer">
-					<div className="kdsh2025_header">
-						Introducing Sponsors for KDSH 2025
-					</div>
+				<div className="kdsh2025_sponsors">
+					<img src={associate_sponsor} alt="associate_sponsor" />
+				</div> */}
 
-					<div className="kdsh2025-title-sponsor">
-						<div className="kdsh2025_title_sponsor_intro">Title Sponsor</div>
-						<img src={title_sponsor} alt="title_sponsor" />
-					</div>
+				{/* <div className="kdsh2025-sponsor-slider">
+					<ul>
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+					</ul>
 
-					<div className="kdsh2025-sponsor-slider">
-						<ul>
-							<li>
-								<img
-									src={title_sponsor}
-									alt="title_sponsor"
-									onClick={handleTitleClick}
-								/>
-							</li>
-							<li>
-								<img
-									src={media_sponsor_1}
-									alt="title_sponsor"
-									onClick={handleYouthInc}
-								/>
-							</li>
-							<li>
-								<img
-									src={media_sponsor_2}
-									alt="title_sponsor"
-									onClick={handleTheAca}
-								/>
-							</li>
-							<li>
-								<img
-									src={media_sponsor_3}
-									alt="title_sponsor"
-									onClick={handleDazeInfo}
-								/>
-							</li>
-							<li>
-								<img
-									src={media_sponsor_4}
-									alt="title_sponsor"
-									onClick={handleStock}
-								/>
-							</li>
-							<li>
-								<img
-									src={media_sponsor_2}
-									alt="title_sponsor"
-									onClick={handleTheAca}
-								/>
-							</li>
-						</ul>
-
-						<ul aria-hidden="true">
-							<li>
-								<img
-									src={title_sponsor}
-									alt="title_sponsor"
-									onClick={handleTitleClick}
-								/>
-							</li>
-							<li>
-								<img
-									src={media_sponsor_1}
-									alt="title_sponsor"
-									onClick={handleYouthInc}
-								/>
-							</li>
-							<li>
-								<img
-									src={media_sponsor_2}
-									alt="title_sponsor"
-									onClick={handleTheAca}
-								/>
-							</li>
-							<li>
-								<img
-									id="daze"
-									src={media_sponsor_3}
-									alt="title_sponsor"
-									onClick={handleDazeInfo}
-								/>
-							</li>
-							<li>
-								<img
-									src={media_sponsor_4}
-									alt="title_sponsor"
-									onClick={handleStock}
-								/>
-							</li>
-							<li>
-								<img
-									src={media_sponsor_2}
-									alt="title_sponsor"
-									onClick={handleTheAca}
-								/>
-							</li>
-						</ul>
-					</div>
-				</div>
+					<ul aria-hidden="true">
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+						<li>
+							<img src={associate_sponsor} alt="associate_sponsor" />
+						</li>
+					</ul>
+				</div> */}
 
 				<div className="banner-countdown">
 					<div className="banner-count-flex">
@@ -489,8 +426,8 @@ const LandingPage = () => {
 						<input type="text" id="query-box-name" />
 						<input type="text" id="query-box-email" />
 						<input type="text" id="query-box-query" />
-					</div> 
-					 <div className="query-submit-button-flex">
+					</div> */}
+				{/* <div className="query-submit-button-flex">
 						<div className="query-submit-button">
 							<button
 								class="btn-12"
@@ -506,17 +443,17 @@ const LandingPage = () => {
 				{/* -------------------------------------------------------------banner queries ends */}
 
 				{/* <link rel="stylesheet" href="dd" >Register Now</link> */}
-			</section>
+			</section >
 
 			{/* content section  */}
-			<section className="section-contents">
+			< section className="section-contents" >
 				{/* <Fade bottom>
         <div className="Hackathon-button">
           <div className="Hackathon-button-button"><a href="http://tinyurl.com/kdshreg" target="_blank" rel="noreferrer noopener">Register for Kharagpur Data Science Hackathon</a></div>
         </div>
         </Fade> */}
 
-				<div className="about-kdag-wrapper">
+				< div className="about-kdag-wrapper" >
 					<div className="about-kdag">
 						{/* <Fade left> */}
 						{/* <div className="about-kdag-image">
@@ -537,9 +474,9 @@ const LandingPage = () => {
 							</div>
 						</Fade>
 					</div>
-				</div>
+				</div >
 				<Content />
-			</section>
+			</section >
 
 			{/* Contact Section */}
 			{/*<section className="section-contacts">

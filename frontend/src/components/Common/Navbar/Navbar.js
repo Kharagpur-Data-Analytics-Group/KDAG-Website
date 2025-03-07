@@ -78,55 +78,50 @@ const Navbar = ({ noborder }) => {
 		console.log(dropdown);
 	};
 
-	return (
-		<div className="kdag-nav-container">
-			<div className="kdag-nav">
-				<div
-					className={`kdag-nav-contain ${
-						noborder ? "" : "kdag-nav-contain-border"
-					}`}
-				>
-					<div className="kdag-nav-logo">
-						<Link to="/">
-							<img src={logo} alt="LOGO" />
-						</Link>
-					</div>
-					<div className="kdag-nav-items">
-						<div className="kdag-nav-item">
-							<NavLink activeStyle={active_style} to="/events">
-								Events
-							</NavLink>
-						</div>
-						<div className="kdag-nav-item">
-							<NavLink activeStyle={active_style} to="/gallery">
-								Gallery
-							</NavLink>
-						</div>
-						{/* <div className="kdag-nav-item">
-							<NavLink activeStyle={active_style} to="/register-kdsh">
-								KDSH2025
-							</NavLink>
-						</div> */}
-						<div className="kdag-nav-item">
-							<NavLink activeStyle={active_style} to="/resources">
-								Resources
-							</NavLink>
-						</div>
-						<div className="kdag-nav-item">
-							<NavLink activeStyle={active_style} to="/blogs">
-								Blog
-							</NavLink>
-						</div>
-						<div className="kdag-nav-item">
-							<NavLink
-								onClick={closeMobileMenu}
-								activeStyle={active_style}
-								to="/team"
-							>
-								Team
-							</NavLink>
-						</div>
-						{/* <div className="kdag-nav-item">
+  return (
+    <div className="kdag-nav-container">
+      <div className="kdag-nav">
+        <div
+          className={`kdag-nav-contain ${
+            noborder ? '' : 'kdag-nav-contain-border'
+          }`}
+        >
+          <div className="kdag-nav-logo">
+            <Link to="/">
+              <img src={logo} alt="LOGO" />
+            </Link>
+          </div>
+          <div className="kdag-nav-items">
+            <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/events">
+                Events
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/gallery">
+                Gallery
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/resources">
+                Resources
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/blogs">
+                Blog
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
+              <NavLink
+                onClick={closeMobileMenu}
+                activeStyle={active_style}
+                to="/team"
+              >
+                Team
+              </NavLink>
+            </div>
+            {/* <div className="kdag-nav-item">
               <NavLink
                 onClick={closeMobileMenu}
                 activeStyle={active_style}
@@ -199,58 +194,55 @@ const Navbar = ({ noborder }) => {
 
 								{/* <img class="dropdown hamburgermenu" src={ham} alt="menu" /> */}
 
-								<ul>
-									<li>
-										<NavLink to="/events">Events</NavLink>
-									</li>
-									<li>
-										<NavLink to="/gallery">Gallery</NavLink>
-									</li>
-									<li>
-										<NavLink to="/resources">Resources</NavLink>
-									</li>
-									{/* <li>
-										<NavLink to="/register-kdsh">REGISTER for KDSH2025</NavLink>
-									</li> */}
-									<li>
-										<NavLink to="/blogs">Blog</NavLink>
-									</li>
-									<li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-										<NavLink to="/team">Team</NavLink>
-									</li>
-									<li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-										<NavLink to="/alumni">Alumni</NavLink>
-									</li>
-									<li>
-										<NavLink to="/forum">
-											{" "}
-											<img src={forum_img} alt="" />
-										</NavLink>
-									</li>
-									{!isLoggedIn && (
-										<li>
-											<NavLink to="/auth">
-												{" "}
-												<img src={register_img} alt="" />
-											</NavLink>
-										</li>
-									)}
-									{!isLoggedIn && (
-										<li>
-											<NavLink to={`/user_profile_self/${userId}`}>
-												{" "}
-												<img src={profile_icon} alt="" />
-											</NavLink>
-										</li>
-									)}
-								</ul>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
-	);
+                <ul>
+                  <li>
+                    <NavLink to="/events">Events</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/gallery">Gallery</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/resources">Resources</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/blogs">Blog</NavLink>
+                  </li>
+                  <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                    <NavLink to="/team">Team</NavLink>
+                  </li>
+                  <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                    <NavLink to="/alumni">Alumni</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/forum">
+                      {' '}
+                      <img src={forum_img} alt="" />
+                    </NavLink>
+                  </li>
+                  {!isLoggedIn && (
+                    <li>
+                      <NavLink to="/auth">
+                        {' '}
+                        <img src={register_img} alt="" />
+                      </NavLink>
+                    </li>
+                  )}
+                  {!isLoggedIn && (
+                    <li>
+                      <NavLink to={`/user_profile_self/${userId}`}>
+                        {' '}
+                        <img src={profile_icon} alt="" />
+                      </NavLink>
+                    </li>
+                  )}
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;

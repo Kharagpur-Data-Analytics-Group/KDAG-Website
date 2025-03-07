@@ -18,19 +18,13 @@
 
 .register-container .register-header .register-kdsh {
 	position: absolute;
-	top: 125px;
-	left: 36%;
+	top: 155px;
+	left: 38%;
 	font-size: 50px;
 	font-weight: 900;
 	color: rgb(255, 255, 255);
 	padding: 5px 25px;
 	text-wrap: nowrap;
-	z-index: 85;
-}
-
-.register-container .register-header .register-kdsh img {
-	height: 120px;
-	text-shadow: 0 0 100px black;
 }
 
 .register-container .register-header .register-kdsh-desc {

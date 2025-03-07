@@ -81,7 +81,7 @@ const members_2017 = [
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/tanujay-saha-b9547799/",
 		work_experience: "NA, PhD",
-		workplace: "Intel Corporation",
+		workplace: "Astera Institute",
 	},
 	{
 		name: "Yamini Goyal",
@@ -98,7 +98,7 @@ const members_2017 = [
 		linkedin: "https://www.linkedin.com/in/hemant-singh-sardana-783ab583/",
 		work_experience:
 			"Data Analyst, Indus Valley Partners | Lead Data Scientist, Indusland Bank",
-		workplace: "R Systems",
+		workplace: "EXL",
 	},
 	{
 		name: "Subham Kedia",
