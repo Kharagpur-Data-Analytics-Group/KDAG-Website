@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import KDSH2022 from "../components/Events/Individual_Events/KDSH2022_bundle/KDSH2022";
 import Navbar from "../components/Common/Navbar/Navbar";
-import MousePointer from "../components/Common/MousePointer/MousePointer";
+// import MousePointer from "../components/Common/MousePointer/MousePointer";
 import LandingPage from "../components/Landing/LandingPage";
 import BlogPage from "../components/Blog/BlogPage";
 import ResourcesPage from "../components/Resources/ResourcesPage";
@@ -37,7 +37,7 @@ const AppRouter = () => {
 		<React.StrictMode>
 			<Router>
 				<AuthProvider>
-					<MousePointer />
+					{/* <MousePointer /> */}
 					<Navbar />
 					<Logout />
 					<ScrollToTop>

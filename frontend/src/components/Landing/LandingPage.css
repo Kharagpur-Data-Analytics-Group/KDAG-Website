@@ -21,16 +21,18 @@ body {
 .about-kdag-wrapper {
 	border-bottom: 3px solid #8a3636;
 	width: 90%;
-	margin: 2rem auto;
+	margin-right: 2rem auto;
+	margin-left: 2rem auto;
 	padding-bottom: 2rem;
 	position: relative;
+	height: 100vh;
 }
 
 .heading-about-kdag {
-	color: #000000;
+	color: white;
 	margin: 1rem auto;
 	font-size: 3rem;
-	-webkit-text-stroke: 2px rgb(255, 255, 255);
+	/* -webkit-text-stroke: 2px rgb(255, 255, 255); */
 	font-weight: 600;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -42,7 +44,7 @@ body {
 }
 
 .about-kdag {
-	font-size: 1.5rem;
+	/* font-size: 1.5rem;
 	width: 90%;
 	max-width: 70rem;
 	font-family: "Poppins", sans-serif;
@@ -50,36 +52,66 @@ body {
 	margin: auto;
 	padding: 2rem;
 	display: flex;
+	align-items: center; */
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	display: flex;
+	gap: 2rem;
+	margin-bottom: 2rem;
+}
+.left-about-us{
+	width: 60%;
+	height: 100%;
+	padding-left: 4rem;
+}
+.right-about-us{
+	width: 40%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 }
-
+.img-about-us{
+	width: 100%;
+	height: 95%;
+}
+@keyframes slideIn {
+	to {
+		transform: translateX(0%);
+	}
+}
 .about-kdag-text {
 	padding: 15px;
 	border-radius: 15px;
-	backdrop-filter: blur(8px);
-	background: rgba(255, 255, 255, 0.045);
+	/* backdrop-filter: blur(8px); */
+	/* background: rgba(255, 255, 255, 0.045); */
 	text-align: center;
 	transition: all 0.4s;
+	color: #a2a2a2;
+    font-size: large;
+    text-align: left;
 }
 
-.about-kdag-text i {
+/* .about-kdag-text i {
 	text-align: center;
 	color: #787878;
 	transition: all 0.4s;
-}
+} */
 
-.about-kdag-text:hover {
+/* .about-kdag-text:hover {
 	background: white;
-}
+} */
 
-.about-kdag-text:hover i {
+/* .about-kdag-text:hover i {
 	color: black;
-}
+} */
 
-.about-kdag-text:hover .heading-about-kdag {
+/* .about-kdag-text:hover .heading-about-kdag {
 	color: rgb(255, 255, 255);
 	-webkit-text-stroke: 2px rgb(0, 0, 0);
-}
+} */
 
 .about-kdag-image {
 	width: 100%;

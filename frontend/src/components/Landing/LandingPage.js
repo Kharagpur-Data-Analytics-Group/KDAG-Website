@@ -4,6 +4,7 @@ import "./LandingPage.css";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./SponsorSlider.css";
+import kdag_about_us from "../../assets/KDAG_About_Us.png";
 import {
 	faCalendarDays,
 	faLocationDot,
@@ -383,11 +384,11 @@ const LandingPage = () => {
 					</ul>
 				</div> */}
 
-				<div className="banner-countdown">
+				{/* <div className="banner-countdown">
 					<div className="banner-count-flex">
 						<EventCount />
 					</div>
-				</div>
+				</div> */}
 
 				{/* banner queries starts */}
 				{/* <div className="banner-queries">
@@ -461,7 +462,7 @@ const LandingPage = () => {
         </div> */}
 						{/* </Fade> */}
 
-						<Fade right>
+						{/* <Fade right>
 							<div className="about-kdag-text">
 								<h1 className="heading-about-kdag">About Us</h1>
 								<hr className="rule-about-kdag" />
@@ -472,7 +473,17 @@ const LandingPage = () => {
 									to build a successful career in this emerging domain."
 								</i>
 							</div>
-						</Fade>
+						</Fade> */}
+						<div className="left-about-us">
+							<Fade left ><img src={kdag_about_us} alt="img" className="img-about-us"/></Fade>
+						</div>
+						<div className="right-about-us">
+							<Fade top delay={200} ><h1 className="heading-about-kdag">About Us</h1></Fade>
+							<Fade bottom delay={400}><p className="about-kdag-text">
+								Kharagpur Data Analytics Group (KDAG) is a student-driven initiative dedicated to uniting enthusiasts of Data Analytics, Machine Learning, and Artificial Intelligence at IIT Kharagpur. Our goal is to create a thriving community where students can explore, learn, and grow in this rapidly evolving field.
+								We aim to bridge the gap between academic knowledge and industry demands by offering hands-on projects, mentorship, workshops, and speaker sessions with experts from academia and industry.At KDAG, we believe that the future belongs to those who can harness the power of data — and we are committed to empowering the next generation of data-driven thinkers and innovators.
+							</p></Fade >
+						</div>
 					</div>
 				</div >
 				<Content />
