@@ -22,6 +22,7 @@ import certificate from "../../assets/KDSH2022Certificates/Akash Kundu.png";
 import Header from "./Header/Header";
 import associate_sponsor from "./../../assets/kdsh2025_associate_sponsor.jpg";
 import kdsh2025_logo from '../../assets/kdsh2025_logo.png';  // Adjust path as needed
+import KdshSection from "../KdshSection/KdshSection.js";
 
 
 const LandingPage = () => {
@@ -278,8 +279,8 @@ const LandingPage = () => {
 
 				{/* banner main starts */}
 				<div className="banner-main">
-					<div className="banner-image-div"></div>
-					<div className="banner-heading-flex-container">
+					<div>
+<div className="banner-heading-flex-container">
 						<div className="banner-heading-flex">
 							<div className="banner-heading">
 								
@@ -296,13 +297,9 @@ const LandingPage = () => {
 								</h3>
 							</div>
 						</div>
-					</div>
-
-					{/* <div className="temp-banner-heading-flex-container">
-						<img src={Poster} alt="" />
-					</div> */}
-
-					<div className="banner-content-flex">
+						{/* {/* <div>
+								<div>
+	<div className="banner-content-flex">
 						<img
 							className="banner-poster"
 							src={Poster}
@@ -315,6 +312,17 @@ const LandingPage = () => {
 							</p>
 						</div>
 					</div>
+					</div> 
+					</div> */}
+					</div>
+					</div>
+					
+
+					{/* <div className="temp-banner-heading-flex-container">
+						<img src={Poster} alt="" />
+					</div> */}
+				
+				
 					{/* banner main ends */}
 
 					{/* banner info starts */}
@@ -340,6 +348,7 @@ const LandingPage = () => {
   							</a>
 					</div> */}
 				</div>
+	
 				{/* banner button ends */}
 
 				{/* <div className="kdsh2025_header">
@@ -454,7 +463,10 @@ const LandingPage = () => {
 				{/* -------------------------------------------------------------banner queries ends */}
 
 				{/* <link rel="stylesheet" href="dd" >Register Now</link> */}
+				
 			</section >
+			
+			
 
 			{/* content section  */}
 			< section className="section-contents" >
@@ -495,7 +507,12 @@ const LandingPage = () => {
 							</p></Fade >
 						</div>
 					</div>
+					
 				</div >
+				<div>
+						<KdshSection />
+					</div>
+
 				<Content />
 			</section >
 
