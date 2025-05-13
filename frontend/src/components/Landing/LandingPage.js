@@ -10,6 +10,7 @@ import {
 	faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import Poster from "../../assets/pics/events/KDAG ML Digest.jpg";
+import { Typewriter } from 'react-simple-typewriter'
 // import KDSH5thEdition from "../../assets/pics/events/KDSH 5TH edition.jpg";
 
 //Components
@@ -281,8 +282,17 @@ const LandingPage = () => {
 					<div className="banner-heading-flex-container">
 						<div className="banner-heading-flex">
 							<div className="banner-heading">
-								<h3 style={{ fontSize: "35px", fontWeight: "600" }}>
-									Kharagpur Data Analytics Group
+								
+								<h3 >
+									<Typewriter
+										words={['Kharagpur Data Analytics Group']}
+										loop={Infinity}              
+										cursor
+										cursorStyle='|'
+										typeSpeed={70}          
+										deleteSpeed={50}
+										delaySpeed={5000}       
+									/>
 								</h3>
 							</div>
 						</div>

@@ -298,8 +298,8 @@ a {
 	padding: 10px 5px;
 	margin: 0 130px;
 	overflow: hidden;
-	border-radius: 50px;
-	transition: all 0.4s;
+	/* border-radius: 50px; */
+	/* transition: all 0.4s; */
 	margin-top: 2rem;
 }
 
@@ -321,20 +321,20 @@ a {
 
 .banner-heading-flex {
 	display: flex;
-	flex-direction: row-reverse;
+	/* flex-direction: row-reverse; */
 	justify-content: center;
 	align-items: center;
-	height: 80px;
+	/* height: 80px;
 	background: rgba(255, 255, 255, 0.06);
-	backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px); */
 	overflow: hidden;
-	border-radius: 50px;
-	transition: all 0.4s;
+	/* border-radius: 50px;
+	transition: all 0.4s; */
 }
 
-.banner-heading-flex-container:hover {
+/* .banner-heading-flex-container:hover {
 	border: white 2px solid;
-}
+} */
 
 .banner-heading-flex-container::before {
 	content: "";
@@ -393,10 +393,11 @@ a {
 	height: 100%;
 	width: 100%;
 	color: #000000;
-	-webkit-text-stroke: 2px rgb(255, 255, 255);
-	font-family: Arial, Helvetica, sans-serif;
+	/* -webkit-text-stroke: 2px rgb(255, 255, 255); */
+	/* font-family: Arial, Helvetica, sans-serif; */
 	transition: all 0.4s;
 }
+
 
 .banner-heading-flex:hover .banner-heading {
 	color: #ffffff;
@@ -1288,4 +1289,24 @@ a {
 		left: 3%;
 		width: 100%;
 	}
+}
+
+.banner-heading{
+	font-family: "Oswald", sans-serif;
+	font-weight: 700;
+	background-color: transparent;
+	border: none;
+	color: white;
+	height: 50vh;
+	position: relative;
+	width: 90vw;
+	margin-bottom: 143px;
+	flex-direction: column;
+	justify-content:space-around;
+
+
+}
+
+.banner-heading h3{
+	font-size: 80px;
 }
