@@ -273,7 +273,7 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  background-image: url("./Video/bg-main.jpg");
+ 
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -386,7 +386,9 @@ a {
     transform: translateX(400%);
   }
 }
-
+.banner-heading span{
+font-size: 4.7rem;
+}
 .banner-heading {
   display: flex;
   align-items: center;
@@ -398,7 +400,10 @@ a {
   /* font-family: Arial, Helvetica, sans-serif; */
   /* transition: all 0.4s; */
 }
-
+.banner-heading h3{
+  font-weight: 600;
+  
+}
 /* .banner-heading-flex:hover .banner-heading {
 	color: #ffffff;
 	-webkit-text-stroke: 2px rgb(0, 0, 0);
