@@ -121,27 +121,26 @@
 }
 
 @media (max-width: 800px) {
+
+  .content-pair-graphics{
+    display: none;
+  }
+
   .content-pair {
     flex-direction: column;
     gap: 1.5rem;
   }
 
-  .content-pair-graphics,
   .content-pair-text {
     width: 100%;
-    padding: 0px;
+    padding: 20px;
   }
 
-  .content-mobile {
-    display: block;
-  }
-
-  .content-nonmobile {
-    display: none;
-  }
-
-  .content-pair-heading {
+  .content-pair-word {
     font-size: 1.6rem;
+    /*text-decoration: underline;*/
+    text-underline-offset: 4px;       
+    text-decoration-thickness: 2px;
   }
 
   .content-pair:hover .content-pair-word {

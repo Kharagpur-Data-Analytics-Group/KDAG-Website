@@ -37,13 +37,6 @@ const resources = [
   },
   {
     id: 6,
-    name: "Python Workshop",
-    subtitle: "Feb 2021",
-    description: "Why is Python so special to scientists? Python provides us with an easy-to-code, object-oriented high-level language. There are different libraries available for different fields like Math, Data Mining, Data exploration, and visualization. The workshop gives an introduction to Python programming and some useful Python libraries - NumPy, pandas, matplotlib.",
-    link: "https://docs.google.com/document/d/1QsdPACSAxuWnUuiuUmHOJ-oPh0dQDN_21DopcFy0tzQ/edit"
-  },
-  {
-    id: 7,
     name: "Winter Workshop",
     subtitle: "Dec 2020",
     description: "Explore Machine learning, Deep learning, and Python programming. Learn about basic visualization and machine learning techniques. The workshop covers visualization techniques, an introduction to machine learning algorithms, neural networks, unsupervised learning algorithms, time series, and an introduction to analyzing data through Kaggle.",

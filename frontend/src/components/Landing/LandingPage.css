@@ -1140,7 +1140,7 @@ a {
 
 @media only screen and (max-width: 900px) {
   .banner {
-    height: 110vh;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.7);
     position: relative;
     top: 250px;
@@ -1148,7 +1148,6 @@ a {
 
   .banner-main {
     height: 100vh;
-    top: -190px;
     background-color: rgba(0, 0, 0, 0.7);
   }
 
