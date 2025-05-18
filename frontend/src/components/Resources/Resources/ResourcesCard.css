@@ -1,6 +1,6 @@
 .resources-list-card-wrapper {
   width: 25%;
-  min-width: 27rem;
+  min-width: 20rem;
   margin: 2rem;
   display: flex;
 }
@@ -157,4 +157,8 @@ y .resources-list-card-left {
     width: 100%;
     padding: 5px;
   }
+
+  .resources-list-card-wrapper {
+  min-width: 27rem;
+}
 }
