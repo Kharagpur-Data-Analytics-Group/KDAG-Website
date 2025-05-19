@@ -277,47 +277,23 @@ const LandingPage = () => {
   </a> */}
 
         <div className="banner-main">
-            <div className="banner-heading-flex-container">
-              <div className="banner-heading-flex">
-                <div className="banner-heading">
-                  <h3>
-                    <Typewriter
-                      words={["Kharagpur Data Analytics Group"]}
-                      loop={Infinity}
-                      cursor
-                      cursorStyle="|"
-                      typeSpeed={70}
-                      deleteSpeed={50}
-                      delaySpeed={5000}
-                    />
-                  </h3>
-                </div>
+          <div className="banner-heading-flex-container">
+            <div className="banner-heading-flex">
+              <div className="banner-heading">
+                <h3>
+                  <Typewriter
+                    words={["Kharagpur Data Analytics Group"]}
+                    loop={Infinity}
+                    cursor
+                    cursorStyle="|"
+                    typeSpeed={70}
+                    deleteSpeed={50}
+                    delaySpeed={5000}
+                  />
+                </h3>
               </div>
             </div>
-
-            <div className="banner-content-wrapper">
-              <div className="banner-content-flex">
-                <img className="banner-poster" src={Poster} alt="Poster" />
-                <div className="banner-content">
-                  <p>
-                    We are excited to announce our collaboration with{" "}
-                    <strong>Chi SquareX</strong>, one of India's top deep-tech
-                    startups specializing in data science, machine learning, and
-                    AI. Together, we're launching <strong>'ML Digest'</strong>,
-                    a blog series dedicated to bringing you the latest
-                    advancements, trends, and insights in machine learning and
-                    deep technology.
-                    <br />
-                    Starting on August 9th, this series will feature in-depth
-                    articles, expert analyses, and cutting-edge research
-                    designed to keep you informed and inspired by the industry's
-                    best. Stay tuned for regular updates and get ready to
-                    explore the future of technology with 'ML Digest.' Follow us
-                    and be part of the innovation wave!
-                  </p>
-                </div>
-              </div>
-            </div>
+          </div>
 
           {/* <div className="temp-banner-heading-flex-container">
 						<img src={Poster} alt="" />
@@ -465,6 +441,33 @@ const LandingPage = () => {
         {/* <link rel="stylesheet" href="dd" >Register Now</link> */}
       </section>
 
+      {/* New Intro Blog Section */}
+      <section className="introblog-section">
+        <Fade bottom delay={200}>
+          <div className="introblog-content-wrapper">
+            <div className="introblog-content-flex">
+              <img className="introblog-poster" src={Poster} alt="Poster" />
+              <div className="introblog-content">
+                <p>
+                  We are excited to announce our collaboration with{" "}
+                  <strong>Chi SquareX</strong>, one of India's top deep-tech
+                  startups specializing in data science, machine learning, and
+                  AI. Together, we're launching <strong>'ML Digest'</strong>, a
+                  blog series dedicated to bringing you the latest advancements,
+                  trends, and insights in machine learning and deep technology.
+                  <br />
+                  Starting on August 9th, this series will feature in-depth
+                  articles, expert analyses, and cutting-edge research designed
+                  to keep you informed and inspired by the industry's best. Stay
+                  tuned for regular updates and get ready to explore the future
+                  of technology with 'ML Digest.' Follow us and be part of the
+                  innovation wave!
+                </p>
+              </div>
+            </div>
+          </div>
+        </Fade>
+      </section>
       {/* content section  */}
       <section className="section-contents">
         {/* <Fade bottom>
