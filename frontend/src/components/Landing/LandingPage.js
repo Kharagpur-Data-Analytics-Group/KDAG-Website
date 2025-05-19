@@ -303,7 +303,7 @@ const LandingPage = () => {
                   <span className="red typewriter-text" >
                     <Typewriter
                       words={['Data Analytics', 'Machine Learning']}
-                      loop={0} // 0 means infinite loop
+                      loop={0} 
                       cursor
                       cursorStyle="|"
                       typeSpeed={100}
