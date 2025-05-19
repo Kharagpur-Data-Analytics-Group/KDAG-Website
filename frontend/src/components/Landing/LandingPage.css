@@ -73,7 +73,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 100px;
+  margin-right: 3rem;
 }
 .img-about-us {
   /*background-color: rgba(0, 0, 0, 0.6);*/
@@ -270,14 +270,15 @@ a {
   .right-about-us{
     width: 100%;
     height: 100%;
-    padding-left: 0rem;
-    padding-right: 0rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
     padding-top: 0rem;
     padding-bottom: 0rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: 0px;
   }
 
   .about-kdag-text {
