@@ -280,17 +280,40 @@ const LandingPage = () => {
           <div className="banner-heading-flex-container">
             <div className="banner-heading-flex">
               <div className="banner-heading">
-                <h3>
-                  <Typewriter
-                    words={["Kharagpur Data Analytics Group"]}
+                <div className="line">
+                  <h3 >KHARAGPUR
+                    {/* <Typewriter
+                    words={["Kharagpur Data Analytics Group"]["ftyf"]}
                     loop={Infinity}
                     cursor
                     cursorStyle="|"
                     typeSpeed={70}
                     deleteSpeed={50}
-                    delaySpeed={5000}
-                  />
-                </h3>
+                    delaySpeed={5000} */}
+                    {/* /> */}
+                  </h3>
+                  <h3 class="red">DATA </h3>
+                </div>
+                <div className="line">
+                  <h3 className="red">ANALYTICS</h3>
+                  <h3 >GROUP</h3>
+                </div>
+                <h1 className="m-t170 fs2rem">
+                  Let's dive into{' '}
+                  <span className="red typewriter-text" >
+                    <Typewriter
+                      words={['Data Analytics', 'Machine Learning']}
+                      loop={0} // 0 means infinite loop
+                      cursor
+                      cursorStyle="|"
+                      typeSpeed={100}
+                      deleteSpeed={60}
+                      delaySpeed={2000}
+                    />
+
+                  </span>
+
+                </h1>
               </div>
             </div>
           </div>
