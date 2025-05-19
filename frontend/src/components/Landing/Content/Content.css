@@ -19,7 +19,7 @@
   align-items: stretch;
   margin: 2rem 0;
   gap: 2rem;
-  transition: transform 0.3s ease;
+  transition: transform 1s ease;
 }
 
 .content-pair:hover {

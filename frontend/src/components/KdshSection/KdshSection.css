@@ -62,14 +62,15 @@ background-color: transparent;
   padding: 10px 20px;
   border-left: 4px solid #000000;
   background-color: #110f0f;
- font-size: 24px;
-
+  font-size: 24px;
   border-radius: 8px;
+  transition: all 0.3s ease;
 }
 .kdsh-feature:hover {
   cursor: pointer;
-   background-color: rgba(104, 58, 58, 0.15);
+  background-color: rgba(104, 58, 58, 0.15);
   box-shadow: 0 0 20px rgba(250, 57, 70, 1);
+  transform: translateY(-3px);
 }
 .kdsh-bg{
 background-color: transparent;
@@ -89,7 +90,7 @@ background-color: transparent;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
-background-color: transparent;
+  background-color: transparent;
   padding: 20px;
   border-radius: 12px;
   width: 100%;
@@ -100,6 +101,7 @@ background-color: transparent;
   cursor: pointer;
    background-color: rgba(104, 58, 58, 0.15);
   box-shadow: 0 0 20px rgba(250, 57, 70, 1);
+  transform: translateY(-2px);
   color: #ffffff;
   
 }
@@ -112,6 +114,7 @@ background-color: transparent;
   text-align: center;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
 .kdsh-stat-item h2 {
