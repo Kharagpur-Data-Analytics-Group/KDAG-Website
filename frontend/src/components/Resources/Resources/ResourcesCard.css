@@ -92,29 +92,29 @@ y .resources-list-card-left {
 .resources-list-card-button {
   margin-top: 1rem;
   color: white;
-  padding: 0.5rem 0.7rem;
+  padding: 10px 20px;
   width: 70%;
   text-align: center;
-  transition: all 0.2s ease;
   white-space: nowrap;
   border-radius: 25px;
   background-image: linear-gradient(
-    to right,
-    #4e3eff,
-    #40dfe4,
-    #30dd8a,
-    #269660
+    90deg,
+    #9a2323b9,
+    #a14a55,
+    #9a2323b9
   );
-  background-size: 300% 100%;
+  background-size: 200% auto;
   box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
   font-weight: 600;
-  transition: 0.3s;
-  padding: 10px;
+  transition: background-position 0.6s ease, transform 0.2s ease;
+  cursor: pointer;
 }
 
 .resources-list-card-button:hover {
-  background-position: 100% 0;
-  text-shadow: 0 0 10px white;
+  background-position: right center;
+  transform: scale(1.03); 
+  /*background-position: 100% 0;*/
+  /*text-shadow: 0 0 3px white;*/
 }
 
 
