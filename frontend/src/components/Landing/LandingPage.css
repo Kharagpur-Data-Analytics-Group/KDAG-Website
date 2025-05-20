@@ -423,7 +423,9 @@ a {
 font-size: 2rem;
 font-weight: bold;
 }
+
 .banner-heading {
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -434,11 +436,15 @@ font-weight: bold;
   font-family: 'Oswald';
   /* transition: all 0.4s; */
 }
-.banner-heading h3{
+@media only screen and (min-width: 900px) {
+
+.banner-heading h3 {
+  font-size: 95px;
   font-weight: 600;
-  font-size: larger;
-  
 }
+
+}
+
 /* .banner-heading-flex:hover .banner-heading {
 	color: #ffffff;
 	-webkit-text-stroke: 2px rgb(0, 0, 0);
@@ -1050,6 +1056,8 @@ a {
   }
 }
 
+
+
 @media only screen and (max-width: 1300px) {
   /*.banner-content-flex {
 		margin: 0 80px;
@@ -1061,16 +1069,24 @@ a {
 }
 
 @media only screen and (max-width: 900px) {
+
+.banner-heading h3 {
+    
+  font-size: 45px;
+  font-weight: 600;
+}
+
   .banner {
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: transparent;
     position: relative;
-    top: 250px;
+    top: 250px; 
+    
   }
 
   .banner-main {
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7);
+     background-color: transparent;
   }
 
   .banner-heading-flex-container {
@@ -1080,11 +1096,13 @@ a {
 
   .banner-heading-flex {
     display: flex;
-    height: 60px;
+   
+    height: 100px;
     border-radius: 50px;
   }
 
   .banner-heading {
+ 
     text-align: center;
     padding: 10px;
     height: 100%;
@@ -1093,13 +1111,10 @@ a {
     -webkit-text-stroke: 0px rgb(255, 255, 255);
   }
 
-  .banner-heading > h3 {
-    font-size: 15px !important;
-    font-weight: 600 !important;
-    text-shadow: 0 0 5px white;
-  }
+
 
   .banner-content-flex {
+    
     justify-content: space-between;
     margin: 0;
     bottom: 580px;
@@ -1124,7 +1139,7 @@ a {
     right: 0;
     text-align: justify;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.06);
+   background-color: transparent;
     border-radius: 20px;
     font-size: 11px;
     font-weight: 500;
@@ -1295,7 +1310,8 @@ a {
 .banner-heading {
   font-family: "Oswald", sans-serif;
   font-weight: 700;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.8);
+ 
   border: none;
   color: white;
   height: 100vh;
@@ -1304,10 +1320,6 @@ a {
   flex-direction: column;
   /* justify-content: space-around; */
   gap: 0.2rem;
-}
-
-.banner-heading h3 {
-  font-size: 95px;
 }
 
 .introblog-section {
@@ -1478,6 +1490,7 @@ a {
     max-width: 100vw;
   }
   .introblog-content-flex {
+  
     flex-direction: column;
     align-items: center;
     padding: 0.2rem;

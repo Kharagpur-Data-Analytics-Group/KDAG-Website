@@ -4,7 +4,7 @@ import React from "react";
 import Fade from "react-reveal/Fade";
 const KdshSection = () => {
   return (
-    <Fade left>
+    <Fade bottom delay={200}>
       <div className="kdsh-section">
         <div
           className="kdsh-bg"
@@ -58,11 +58,11 @@ const KdshSection = () => {
 
                     <div className="kdsh-stats">
                       <div className="kdsh-stat-item">
-                        <h2 data-toggle="counter-up">5000</h2>
+                        <h2 data-toggle="counter-up">5000+</h2>
                         <p>Participants</p>
                       </div>
                       <div className="kdsh-stat-item">
-                        <h2 data-toggle="counter-up">43</h2>
+                        <h2 data-toggle="counter-up">40+</h2>
                         <p> Teams</p>
                       </div>
                       <div className="kdsh-stat-item">
@@ -70,7 +70,7 @@ const KdshSection = () => {
                         <p>Cash Prize</p>
                       </div>
                       <div className="kdsh-stat-item">
-                        <h2 data-toggle="counter-up">650</h2>
+                        <h2 data-toggle="counter-up">200+</h2>
                         <p>Institutes</p>
                       </div>
                     </div>
