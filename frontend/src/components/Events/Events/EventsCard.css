@@ -63,13 +63,7 @@
 .events-card-button {
   width: 100%;
   margin: auto;
-  background-image: linear-gradient(
-    to right,
-    #4e3eff,
-    #40dfe4,
-    #30dd8a,
-    #269660
-  );
+  background-image:linear-gradient( 90deg, #9a2323b9, #a14a55, #9a2323b9 );
   background-size: 300% 100%;
   color: white;
   display: flex;
