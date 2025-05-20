@@ -63,6 +63,7 @@
 .events-card-button {
   width: 100%;
   margin: auto;
+
   background-image:linear-gradient( 90deg, #9a2323b9, #a14a55, #9a2323b9 );
   background-size: 300% 100%;
   color: white;
@@ -72,12 +73,13 @@
   margin-top: 1.5rem;
   border: none;
   border-radius: 30px;
-  transition: 0.3s;
+  transition: 0.7s;
 }
 
 .events-card-button:hover {
   background-position: 100% 0;
-  text-shadow: 0 0 10px white;
+  /*text-shadow: 0 0 10px white;*/
+  transform: scale(1.03);
 }
 
 .events-card-button2 {
