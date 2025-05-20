@@ -497,12 +497,12 @@ const LandingPage = () => {
 							</div>
 						</Fade> */}
             <div className="left-about-us">
-              <Fade left>
+              <Fade bottom>
                 <img src={kdag_about_us} alt="img" className="img-about-us" />
               </Fade>
             </div>
             <div className="right-about-us">
-              <Fade top delay={200}>
+              <Fade bottom delay={200}>
                 <h1 className="heading-about-kdag">About Us</h1>
               </Fade>
               <Fade bottom delay={400}>
