@@ -731,11 +731,11 @@ select:focus,
   color: white;
 }
 
-a {
+/* a {
   color: #7f78d2;
   font-weight: bold;
   margin-top: 20px;
-}
+} */
 
 .gen-link {
   margin-top: 20px;
