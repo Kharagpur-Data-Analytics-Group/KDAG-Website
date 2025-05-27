@@ -1,0 +1,156 @@
+.kdsh-section {
+  background-color: transparent;
+  padding: 0 20px;
+  margin-bottom: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.kdsh-container {
+  max-width: 1200px;
+  margin: auto;
+  background-color: rgb(0, 0, 0, 0.5);
+}
+
+
+.kdsh-heading h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f4f0f0e4;
+}
+
+.kdsh-heading p {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.kdsh-subcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
+.feature-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 900px;
+}
+
+.kdsh-span {
+  font-weight: bold;
+  color: #ff0000;
+  font-size: 3rem;
+}
+
+.kdsh-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1 1 250px;
+  padding: 10px 20px;
+  border-left: 4px solid #000000;
+  background-color: #110f0f;
+  font-size: 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.kdsh-feature:hover {
+  cursor: pointer;
+  background-color: rgba(104, 58, 58, 0.15);
+  box-shadow: 0 0 20px rgba(250, 57, 70, 1);
+  transform: translateY(-3px);
+}
+
+.kdsh-bg {
+  background-color: transparent;
+}
+
+.kdsh-icon {
+  font-size: 24px;
+  color: #ff0000;
+  margin-bottom: 8px;
+}
+
+.kdsh-feature span {
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.kdsh-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.kdsh-stat-item:hover {
+  cursor: pointer;
+  background-color: rgba(104, 58, 58, 0.15);
+  box-shadow: 0 0 20px rgba(250, 57, 70, 1);
+  transform: translateY(-2px);
+  color: #ffffff;
+
+}
+
+.kdsh-stat-item:hover p {
+  color: #ffffff;
+}
+
+.kdsh-stat-item {
+  background-color: #f4f0f0e4;
+  padding: 16px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.kdsh-stat-item h2 {
+  font-size: 2rem;
+  color: #ff0000;
+  margin-bottom: 5px;
+  font-weight: bolder;
+}
+
+.kdsh-stat-item p {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #000000;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .kdsh-heading h1 {
+    font-size: 2.8rem;
+  }
+
+  .kdsh-feature span,
+  .kdsh-stat-item p {
+    font-size: 0.95rem;
+  }
+
+  .kdsh-stat-item h2 {
+    font-size: 1.6rem;
+  }
+}
