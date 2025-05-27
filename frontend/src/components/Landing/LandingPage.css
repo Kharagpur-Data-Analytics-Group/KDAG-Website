@@ -12,6 +12,11 @@ body {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+
+}
+
+.Landing-Page-wrapper {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .section-landing-header {
@@ -31,16 +36,16 @@ body {
 }
 
 .heading-about-kdag {
-  color: white;
+  color: #ffb3b3;
   margin: 1rem auto;
-  font-size: 3rem;
+  font-size: 2.7rem;
   /* -webkit-text-stroke: 2px rgb(255, 255, 255); */
   font-weight: 600;
   font-family: 'Oswald';
 }
 
 .rule-about-kdag {
-  border: 0.1rem solid #ff0000;
+  border: 0.1rem solid rgb(255, 0, 0);
   margin-bottom: 1rem;
   background-color: #ff0000;
 }
@@ -57,32 +62,39 @@ body {
 	align-items: center; */
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   gap: 2rem;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .left-about-us {
-  width: 60%;
-  height: 100%;
+  width: 50%;
+  height: 80%;
   padding-left: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .right-about-us {
-  width: 40%;
-  height: 100%;
+  width: 50%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 3rem;
+  margin-right: 5rem;
+}
+
+.right-about-us p {
+  text-align: center;
+  color: white;
 }
 
 .img-about-us {
   /*background-color: rgba(0, 0, 0, 0.6);*/
-  width: 100%;
-  height: 95%;
+  width: 90%;
+  height: 100%;
 }
 
 @keyframes slideIn {
@@ -103,14 +115,14 @@ body {
   text-align: left;
 }
 
-/* .about-kdag-text i {
-	text-align: center;
-	color: #787878;
-	transition: all 0.4s;
-} */
+.about-kdag-text i {
+  text-align: center;
+  color: #787878;
+  transition: all 0.4s;
+}
 
 /* .about-kdag-text:hover {
-	background: white;
+  background: white;
 } */
 
 /* .about-kdag-text:hover i {
@@ -120,144 +132,26 @@ body {
 /* .about-kdag-text:hover .heading-about-kdag {
 	color: rgb(255, 255, 255);
 	-webkit-text-stroke: 2px rgb(0, 0, 0);
-} */
+}
 
 .about-kdag-image {
-  width: 100%;
+  width: 70%;
   margin-right: 2rem;
 }
 
 .about-kdag-image img {
-  width: 100%;
+  width: 70%;
   border-radius: 5%;
   box-shadow: 10px 10px 30px 0 rgba(0, 0, 0, 0.3);
 }
+*/
 
 .section-contents {
-  margin-top: 15rem;
-  margin-bottom: 4rem;
-}
-
-.section-contacts {
-  position: relative;
-  background-color: #172755;
-  padding: 3rem;
-  margin-top: 10rem;
-}
-
-.Hackathon-button {
-  display: flex;
-  justify-content: center;
-  margin: -6rem auto 2rem;
-  width: 90%;
-  border-bottom: 3px solid #172755;
-  position: relative;
-  z-index: 10;
-  padding: 4rem;
-}
-
-.Hackathon-button-button {
-  padding: 1rem 3rem;
-  background-color: #dc2626;
-  font-size: 2rem;
-  border-radius: 10px;
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
-  font-family: 'Oswald';
-}
-
-.Hackathon-button-button:hover {
-  transform: scale(1.02);
-  background-color: #ed3737;
-  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.5);
-}
-
-.modal-box {
-  top: 100px;
-  /* height: 530px; */
-  max-width: 760px;
-  width: 90%;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: rgb(250, 124, 124);
-  z-index: 100;
-  border-radius: 7px;
-  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.9);
-}
-
-.modal-heading {
-  color: rgb(70, 70, 70);
-  margin-bottom: 50px;
-}
-
-#modal-close {
-  z-index: 110;
-  color: #8e8c8c;
-  font-size: 1.2em;
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
-
-#modal-close:hover {
-  cursor: pointer;
-}
-
-.modal-background {
-  background-color: transparent;
-  height: 100%;
-  position: fixed;
-  top: 0px;
-  width: 100%;
-}
-
-.modal-content {
-  padding: 20px;
-  color: rgb(40, 40, 40);
-  background-color: rgb(229, 220, 220) !important;
-}
-
-a {
-  text-decoration: none !important;
-  color: inherit !important;
-}
-
-#alumni-link {
-  color: #dc2626 !important;
-  transition: 0.9s all;
-}
-
-#alumni-link:hover {
-  font-size: 18px;
-  color: #d237ed !important;
-}
-
-@media screen and (max-width: 1200px) {
-  .section-landing-header {
-    height: 22rem;
-  }
-
-  .Hackathon-button {
-    margin-top: -5rem;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .Hackathon-button-button {
-    font-size: 1.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
+  margin-top: 7rem;
+  /* margin-bottom: 4rem; */
 }
 
 @media screen and (max-width: 800px) {
-  .Hackathon-button-button {
-    font-size: 1.3rem;
-  }
 
   .about-kdag-image {
     display: none;
@@ -332,7 +226,7 @@ a {
 .banner-heading-flex-container {
   bottom: 585px;
   padding: 10px 5px;
-  margin: 0 130px;
+  /* margin: 0 130px; */
   /* overflow: hidden; */
   display: flex;
   flex-direction: column;
@@ -439,63 +333,6 @@ a {
   }
 
 }
-
-/* .banner-heading-flex:hover .banner-heading {
-	color: #ffffff;
-	-webkit-text-stroke: 2px rgb(0, 0, 0);
-	font-family: Arial, Helvetica, sans-serif;
-	background: rgb(255, 255, 255);
-	transform: scale(1.05);
-} */
-/* 
-.register-now-button a {
-  background: transparent;
-  min-width: 300px;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-}
-
-.register-now-button p {
-  text-align: center;
-  background-image: linear-gradient(to right,
-      #1c1cf0,
-      #40dfe4,
-      #30dd8a,
-      #269660);
-  padding: 10px;
-  background-size: 300% 100%;
-  width: 100%;
-  color: white;
-  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
-  border-radius: 30px;
-  border: none;
-  transition: 0.3s;
-}
-
-.register-now-button p:hover {
-  background-position: 100% 0;
-  text-shadow: 0 0 10px white;
-} */
-
-/* .banner-list {
-	margin-left: 20px;
-
-  border: solid 5px red;
-
-} */
-/*.banner-content p strong {
-	font-size: 18px;
-	color: red;
-	text-shadow: 0 0 5px rgb(255, 0, 0);
-}*/
-
-/* .banner-content p strong:hover {
-	color: blue;
-	transition: all 0.6s;
-} */
 
 .banner-heading-flex-container:hover+.banner-content-flex .banner-content {
   background: white;
@@ -905,101 +742,6 @@ a {
   font-size: 400;
 }
 
-/* button */
-/*
-.btn-12,
-.btn-12 *,
-.btn-12 :after,
-.btn-12 :before,
-.btn-12:after,
-.btn-12:before {
-	border: 0 solid;
-	box-sizing: border-box;
-}
-
-.btn-12 {
-	-webkit-tap-highlight-color: transparent;
-	-webkit-appearance: button;
-	background-color: #000;
-	background-image: none;
-	color: #fff;
-	cursor: pointer;
-	font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-		Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-		Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-	font-size: 100%;
-	font-weight: 900;
-	line-height: 1.5;
-	margin: 0;
-	-webkit-mask-image: -webkit-radial-gradient(#000, #fff);
-	padding: 0;
-	text-transform: uppercase;
-	cursor: none;
-}
-
-.btn-12:disabled {
-	cursor: none;
-}
-
-.btn-12:-moz-focusring {
-	outline: auto;
-}
-
-.btn-12 svg {
-	display: block;
-	vertical-align: middle;
-}
-
-.btn-12 [hidden] {
-	display: none;
-}
-
-.btn-12 {
-	border-radius: 99rem;
-	border-width: 2px;
-	overflow: hidden;
-	padding: 0.8rem 3rem;
-	position: relative;
-}
-
-.btn-12 span {
-	mix-blend-mode: difference;
-}
-
-.btn-12:after,
-.btn-12:before {
-	background: linear-gradient(90deg,
-			#fff 25%,
-			transparent 0,
-			transparent 50%,
-			#fff 0,
-			#fff 75%,
-			transparent 0);
-	content: "";
-	inset: 0;
-	position: absolute;
-	transform: translateY(var(--progress, 100%));
-	transition: transform 0.2s ease;
-}
-
-.btn-12:after {
-	--progress: -100%;
-	background: linear-gradient(90deg,
-			transparent 0,
-			transparent 25%,
-			#fff 0,
-			#fff 50%,
-			transparent 0,
-			transparent 75%,
-			#fff 0);
-	z-index: -1;
-}
-
-.btn-12:hover:after,
-.btn-12:hover:before {
-	--progress: 0;
-}
-*/
 .query-button {
   width: fit-content;
   position: relative;
@@ -1036,12 +778,8 @@ a {
   }
 }
 
-
-
 @media only screen and (max-width: 1300px) {
-  /*.banner-content-flex {
-		margin: 0 80px;
-	}*/
+
 
   .banner-content {
     width: 450px;
@@ -1290,7 +1028,7 @@ a {
 .banner-heading {
   font-family: "Oswald", sans-serif;
   font-weight: 700;
-  background-color: rgba(0, 0, 0, 0.8);
+  /* background-color: rgba(0, 0, 0, 0.6); */
 
   border: none;
   color: white;
@@ -1319,7 +1057,7 @@ a {
   gap: 2rem;
   top: 0;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.8);
+  /* background: rgba(0, 0, 0, 0.8); */
   backdrop-filter: blur(10px);
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -1360,11 +1098,11 @@ a {
 .introblog-content {
   flex: 2;
   color: #bfbfbf;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.5;
   text-align: justify;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 15px;
   transition: all 0.4s ease;
   background: rgba(255, 255, 255, 0.04);
@@ -1526,7 +1264,7 @@ a {
 
 .typewriter-text {
   font-size: 3rem;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .m-t170 {

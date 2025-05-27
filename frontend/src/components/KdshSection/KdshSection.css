@@ -1,6 +1,7 @@
 .kdsh-section {
-background-color: transparent;
-  padding: 60px 20px;
+  background-color: transparent;
+  padding: 0 20px;
+  margin-bottom: 30px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
 }
@@ -8,7 +9,7 @@ background-color: transparent;
 .kdsh-container {
   max-width: 1200px;
   margin: auto;
-  background-color: rgb(0, 0, 0,0.6);
+  background-color: rgb(0, 0, 0, 0.5);
 }
 
 
@@ -16,8 +17,8 @@ background-color: transparent;
   font-size: 2.8rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 10px;
-  color: #f4f0f0e4; 
+  margin-bottom: 20px;
+  color: #f4f0f0e4;
 }
 
 .kdsh-heading p {
@@ -40,16 +41,17 @@ background-color: transparent;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  background-color:transparent;
+  background-color: transparent;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   width: 100%;
   max-width: 900px;
 }
-.kdsh-span{
+
+.kdsh-span {
   font-weight: bold;
-  color:#ff0000;
+  color: #ff0000;
   font-size: 3rem;
 }
 
@@ -66,15 +68,18 @@ background-color: transparent;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
+
 .kdsh-feature:hover {
   cursor: pointer;
   background-color: rgba(104, 58, 58, 0.15);
   box-shadow: 0 0 20px rgba(250, 57, 70, 1);
   transform: translateY(-3px);
 }
-.kdsh-bg{
-background-color: transparent;
+
+.kdsh-bg {
+  background-color: transparent;
 }
+
 .kdsh-icon {
   font-size: 24px;
   color: #ff0000;
@@ -97,17 +102,20 @@ background-color: transparent;
   max-width: 900px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
+
 .kdsh-stat-item:hover {
   cursor: pointer;
-   background-color: rgba(104, 58, 58, 0.15);
+  background-color: rgba(104, 58, 58, 0.15);
   box-shadow: 0 0 20px rgba(250, 57, 70, 1);
   transform: translateY(-2px);
   color: #ffffff;
-  
+
 }
+
 .kdsh-stat-item:hover p {
   color: #ffffff;
 }
+
 .kdsh-stat-item {
   background-color: #f4f0f0e4;
   padding: 16px;

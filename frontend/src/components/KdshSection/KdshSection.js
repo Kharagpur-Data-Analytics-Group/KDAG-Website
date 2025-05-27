@@ -23,7 +23,7 @@ const KdshSection = () => {
                   <h1><span className="kdsh-span">Kharagpur Data Science Hackathon </span>2025</h1>
                   <p>
                     KDSH Organized by Kharagpur
-                    Data Analytics Group (KDAG)  is Asia's largest student-run hackathon that brings together the brightest
+                    Data Analytics Group (KDAG)  is India's largest student-run hackathon that brings together the brightest
                     minds to solve real-world problems using data science,
                     machine learning, and artificial intelligence. Known for its
                     innovation-driven challenges, industry partnerships, and
@@ -42,7 +42,7 @@ const KdshSection = () => {
                         <div className="kdsh-icon">
                           <i className="fa fa-check"></i>
                         </div>
-                        <span>Asia’s Largest Data Science Competition</span>
+                        <span>India’s Largest Data Science Hackathon</span>
                       </div>
                       <div className="kdsh-feature">
                         <div className="kdsh-icon">
