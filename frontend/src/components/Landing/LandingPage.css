@@ -108,7 +108,7 @@ body {
   border-radius: 15px;
   /* backdrop-filter: blur(8px); */
   /* background: rgba(255, 255, 255, 0.045); */
-  text-align: center;
+  text-align: justify;
   transition: all 0.4s;
   color: #a2a2a2;
   font-size: large;
@@ -116,7 +116,8 @@ body {
 }
 
 .about-kdag-text i {
-  text-align: center;
+  text-align: justify;
+  text-align-last: justify;
   color: #787878;
   transition: all 0.4s;
 }
