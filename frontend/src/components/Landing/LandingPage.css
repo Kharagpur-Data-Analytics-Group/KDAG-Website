@@ -158,8 +158,14 @@ body {
     display: none;
   }
 
+  .about-kdag-wrapper{
+    height: auto;
+    padding-bottom: 10rem;
+  }
+
   .about-kdag {
     width: 100%;
+    height: auto;
     text-align: center;
     flex-direction: column;
     align-items: center;
@@ -1217,7 +1223,7 @@ select:focus,
     flex-direction: column;
     align-items: center;
     padding: 0.2rem;
-    gap: 1rem;
+    gap: 3rem;
     border-radius: 8px;
     max-width: 100vw;
     width: 100%;
@@ -1275,4 +1281,26 @@ select:focus,
 .fs2rem {
   font-size: 2rem;
 
+}
+
+@media only screen and (max-width: 900px) {
+  .banner {
+    height: auto;
+    top: 15vh;
+    margin-bottom: 32rem;
+  }
+
+  .banner-main {
+    height: auto;
+  }
+
+  .banner-heading-flex-container {
+    margin: 0 10px;
+    bottom: 0;
+    margin-top: 1rem;
+  }
+
+  .banner-heading {
+    height: auto;
+  }
 }
