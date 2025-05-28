@@ -94,7 +94,6 @@ const AuthPage = () => {
 										<button
 											className="hidden"
 											onClick={toggleForm}
-											style={{ cursor: "none" }}
 										>
 											Sign In
 										</button>
@@ -108,7 +107,6 @@ const AuthPage = () => {
 										<button
 											className="hidden"
 											onClick={toggleForm}
-											style={{ cursor: "none" }}
 										>
 											Sign Up
 										</button>

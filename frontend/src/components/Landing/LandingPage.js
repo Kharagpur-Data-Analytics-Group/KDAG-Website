@@ -136,10 +136,8 @@ const LandingPage = () => {
               </Fade>
             </div>
             <div className="right-about-us">
-              <Fade bottom delay={200}>
+              <Fade bottom>
                 <h1 className="heading-about-kdag">The Data Science and Machine Learning Society at IIT Kharagpur</h1>
-              </Fade>
-              <Fade bottom delay={400}>
                 <p className="about-kdag-text">
                   Kharagpur Data Analytics Group (KDAG) is a student-driven
                   initiative dedicated to uniting enthusiasts of Data Analytics,
