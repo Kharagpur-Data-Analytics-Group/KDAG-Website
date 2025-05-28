@@ -10,6 +10,7 @@ import kdag_about_us from "../../assets/KDAG_About_Us.png";
 //   faLocationDot,
 // } from "@fortawesome/free-solid-svg-icons";
 import Poster from "../../assets/pics/events/KDAG ML Digest.jpg";
+import ThinkTank from "../../assets/ThinkTankImg.jpg";
 import { Typewriter } from "react-simple-typewriter";
 // import KDSH5thEdition from "../../assets/pics/events/KDSH 5TH edition.jpg";
 
@@ -102,10 +103,11 @@ const LandingPage = () => {
         <Fade bottom delay={200}>
           <div className="introblog-content-wrapper">
             <div className="introblog-content-flex">
-              <img className="introblog-poster" src={Poster} alt="Poster" />
+              <img className="introblog-poster" src={ThinkTank} alt="Poster" />
               <div className="introblog-content">
                 <p>
-                  We are excited to announce our collaboration with{" "}
+                  <strong>Sharpen your analytical skills with CDC 101: Think Tank</strong>, brought to you by the <strong>Kharagpur Data Analytics Group</strong>. This resource is designed to elevate your CDC placement and internship preparation with <strong>200+</strong> logic puzzles and <strong>120+</strong> probability problems—many sourced from real interviews at top firms like Goldman Sachs, J.P. Morgan, and Morgan Stanley. Dive into topics like Bayes' Theorem, expectations, distributions, and classic challenges like the Monty Hall problem. With step-by-step solutions and varying difficulty levels, Think Tank is ideal for both beginners and advanced learners aiming for roles in software, finance, and quantitative fields.
+                  {/* We are excited to announce our collaboration with{" "}
                   <strong>Chi SquareX</strong>, one of India's top deep-tech
                   startups specializing in data science, machine learning, and
                   AI. Together, we're launching <strong>'ML Digest'</strong>, a
@@ -117,7 +119,7 @@ const LandingPage = () => {
                   to keep you informed and inspired by the industry's best. Stay
                   tuned for regular updates and get ready to explore the future
                   of technology with 'ML Digest.' Follow us and be part of the
-                  innovation wave!
+                  innovation wave! */}
                 </p>
               </div>
             </div>
@@ -135,8 +137,9 @@ const LandingPage = () => {
                 <img src={kdag_about_us} alt="img" className="img-about-us" />
               </Fade>
             </div>
+            <Fade bottom>
             <div className="right-about-us">
-              <Fade bottom>
+              
                 <h1 className="heading-about-kdag">The Data Science and Machine Learning Society at IIT Kharagpur</h1>
                 <p className="about-kdag-text">
                   Kharagpur Data Analytics Group (KDAG) is a student-driven
@@ -152,8 +155,8 @@ const LandingPage = () => {
                   empowering the next generation of data-driven thinkers and
                   innovators.
                 </p>
-              </Fade>
             </div>
+              </Fade>
           </div>
         </div>
         <div>
