@@ -165,6 +165,7 @@
 	-webkit-box-align: stretch;
 	-ms-flex-align: stretch;
 	align-items: stretch;
+	justify-content: space-evenly;
 	padding: 0em;
 }
 
@@ -706,7 +707,7 @@
 
 .ui[class*="four column"].grid > .row > .column,
 .ui[class*="four column"].grid > .column:not(.row) {
-	width: 25%;
+	width: 2%;
 }
 
 .ui[class*="five column"].grid > .row > .column,
