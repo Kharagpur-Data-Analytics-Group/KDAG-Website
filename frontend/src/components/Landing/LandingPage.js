@@ -101,12 +101,17 @@ const LandingPage = () => {
       {/* New Intro Blog Section */}
       <section className="introblog-section">
         <Fade bottom delay={200}>
+
           <div className="introblog-content-wrapper">
             <div className="introblog-content-flex">
+              <a href="https://drive.google.com/file/d/1fNMl2LZt6CwavyZ2PvOGWiNvrx3LXPtO/view">
               <img className="introblog-poster" src={ThinkTank} alt="Poster" />
+              </a>
+             
               <div className="introblog-content">
-                <p>
-                  <strong>Sharpen your analytical skills with CDC 101: Think Tank</strong>, brought to you by the <strong>Kharagpur Data Analytics Group</strong>. This resource is designed to elevate your CDC placement and internship preparation with <strong>200+</strong> logic puzzles and <strong>120+</strong> probability problems—many sourced from real interviews at top firms like Goldman Sachs, J.P. Morgan, and Morgan Stanley. Dive into topics like Bayes' Theorem, expectations, distributions, and classic challenges like the Monty Hall problem. With step-by-step solutions and varying difficulty levels, Think Tank is ideal for both beginners and advanced learners aiming for roles in software, finance, and quantitative fields.
+                 <a href="https://drive.google.com/file/d/1fNMl2LZt6CwavyZ2PvOGWiNvrx3LXPtO/view">
+               <p>
+                  <strong>Sharpen your analytical skills with CDC 101: Think Tank</strong> brought to you by the <strong>Kharagpur Data Analytics Group</strong>. This resource is designed to elevate your CDC placement and internship preparation with <strong>200+</strong> logic puzzles and <strong>120+</strong> probability problems—many sourced from real interviews at top firms like Goldman Sachs, J.P. Morgan, and Morgan Stanley. Dive into topics like Bayes' Theorem, expectations, distributions, and classic challenges like the Monty Hall problem. With step-by-step solutions and varying difficulty levels, Think Tank is ideal for both beginners and advanced learners aiming for roles in software, finance, and quantitative fields.
                   {/* We are excited to announce our collaboration with{" "}
                   <strong>Chi SquareX</strong>, one of India's top deep-tech
                   startups specializing in data science, machine learning, and
@@ -120,7 +125,10 @@ const LandingPage = () => {
                   tuned for regular updates and get ready to explore the future
                   of technology with 'ML Digest.' Follow us and be part of the
                   innovation wave! */}
-                </p>
+                  
+                 </p>
+              </a>
+               
               </div>
             </div>
           </div>
