@@ -12,7 +12,6 @@ import kdag_about_us from "../../assets/KDAG_About_Us.png";
 import Poster from "../../assets/pics/events/KDAG ML Digest.jpg";
 import ThinkTank from "../../assets/ThinkTankImg.jpg";
 import { Typewriter } from "react-simple-typewriter";
-// import KDSH5thEdition from "../../assets/pics/events/KDSH 5TH edition.jpg";
 
 import Content from "./Content/Content.js";
 import Fade from "react-reveal/Fade";
@@ -21,7 +20,7 @@ import Particless from "../Common/Particles/Particless";
 // import Header from "./Header/Header";
 // import associate_sponsor from "./../../assets/kdsh2025_associate_sponsor.jpg";
 // import kdsh2025_logo from "../../assets/kdsh2025_logo.png"; // Adjust path as needed
-import KdshSection from "../KdshSection/KdshSection.js";
+import KdshSection from "./KdshSection/KdshSection.js";
 
 const LandingPage = () => {
 
@@ -104,31 +103,17 @@ const LandingPage = () => {
 
           <div className="introblog-content-wrapper">
             <div className="introblog-content-flex">
-              <a href="https://drive.google.com/file/d/1fNMl2LZt6CwavyZ2PvOGWiNvrx3LXPtO/view">
-              <img className="introblog-poster" src={ThinkTank} alt="Poster" />
+              <a href="https://drive.google.com/file/d/1fNMl2LZt6CwavyZ2PvOGWiNvrx3LXPtO/view" target="_blank" rel="noreferrer">
+                <img className="introblog-poster" src={ThinkTank} alt="Poster" />
               </a>
-             
+
               <div className="introblog-content">
-                 <a href="https://drive.google.com/file/d/1fNMl2LZt6CwavyZ2PvOGWiNvrx3LXPtO/view">
-               <p>
-                  <strong>Sharpen your analytical skills with CDC 101: Think Tank</strong> brought to you by the <strong>Kharagpur Data Analytics Group</strong>. This resource is designed to elevate your CDC placement and internship preparation with <strong>200+</strong> logic puzzles and <strong>120+</strong> probability problems—many sourced from real interviews at top firms like Goldman Sachs, J.P. Morgan, and Morgan Stanley. Dive into topics like Bayes' Theorem, expectations, distributions, and classic challenges like the Monty Hall problem. With step-by-step solutions and varying difficulty levels, Think Tank is ideal for both beginners and advanced learners aiming for roles in software, finance, and quantitative fields.
-                  {/* We are excited to announce our collaboration with{" "}
-                  <strong>Chi SquareX</strong>, one of India's top deep-tech
-                  startups specializing in data science, machine learning, and
-                  AI. Together, we're launching <strong>'ML Digest'</strong>, a
-                  blog series dedicated to bringing you the latest advancements,
-                  trends, and insights in machine learning and deep technology.
-                  <br />
-                  Starting on August 9th, this series will feature in-depth
-                  articles, expert analyses, and cutting-edge research designed
-                  to keep you informed and inspired by the industry's best. Stay
-                  tuned for regular updates and get ready to explore the future
-                  of technology with 'ML Digest.' Follow us and be part of the
-                  innovation wave! */}
-                  
-                 </p>
-              </a>
-               
+                <a href="https://drive.google.com/file/d/1fNMl2LZt6CwavyZ2PvOGWiNvrx3LXPtO/view" target="_blank" rel="noreferrer">
+                  <p>
+                    Sharpen your analytical skills with <strong>CDC 101: Think Tank</strong> brought to you by the Kharagpur Data Analytics Group. This resource is designed to elevate your CDC placement and internship preparation with <strong>200+ logic puzzles and 120+ probability problems</strong> — many sourced from real interviews at top firms like <strong>Goldman Sachs, J.P. Morgan, and Morgan Stanley</strong>. Dive into topics like Bayes' Theorem, expectations, distributions, and classic challenges like the Monty Hall problem. With step-by-step solutions and varying difficulty levels, Think Tank is ideal for both beginners and advanced learners aiming for roles in software, finance, and quantitative fields.
+                  </p>
+                </a>
+
               </div>
             </div>
           </div>
@@ -146,8 +131,8 @@ const LandingPage = () => {
               </Fade>
             </div>
             <Fade bottom>
-            <div className="right-about-us">
-              
+              <div className="right-about-us">
+
                 <h1 className="heading-about-kdag">The Data Science and Machine Learning Society at IIT Kharagpur</h1>
                 <p className="about-kdag-text">
                   Kharagpur Data Analytics Group (KDAG) is a student-driven
@@ -163,8 +148,8 @@ const LandingPage = () => {
                   empowering the next generation of data-driven thinkers and
                   innovators.
                 </p>
-            </div>
-              </Fade>
+              </div>
+            </Fade>
           </div>
         </div>
         <div>

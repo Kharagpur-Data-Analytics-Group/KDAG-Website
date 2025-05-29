@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 
-
 /* Hide scrollbar for Chrome, Safari and Opera */
 body::-webkit-scrollbar {
   display: none;
@@ -152,13 +151,13 @@ body {
   /* margin-bottom: 4rem; */
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
 
   .about-kdag-image {
     display: none;
   }
 
-  .about-kdag-wrapper{
+  .about-kdag-wrapper {
     height: auto;
     padding-bottom: 10rem;
   }
@@ -201,6 +200,13 @@ body {
     font-size: large;
     text-align: center;
     font-size: medium;
+  }
+}
+
+@media screen and (max-width: 800px) {
+
+  .banner-heading {
+    margin-top: 5vh;
   }
 }
 
@@ -1109,7 +1115,10 @@ select:focus,
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.5;
-  text-align:center;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1.5rem;
   border-radius: 15px;
   transition: all 0.4s ease;

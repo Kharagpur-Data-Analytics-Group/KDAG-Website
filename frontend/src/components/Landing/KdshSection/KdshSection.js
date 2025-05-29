@@ -3,7 +3,7 @@ import Fade from "react-reveal/Fade";
 import { useEffect, useRef, useState } from "react";
 
 const KdshSection = () => {
-    const useCounterOnVisible = (target, duration = 1000) => {
+  const useCounterOnVisible = (target, duration = 1000) => {
     const [count, setCount] = useState(0);
     const ref = useRef(null);
     const [hasAnimated, setHasAnimated] = useState(false);
@@ -13,7 +13,7 @@ const KdshSection = () => {
         ([entry]) => {
           if (entry.isIntersecting && !hasAnimated) {
             let start = 0;
-            const step = Math.ceil(target / (duration / 28));
+            const step = Math.ceil(target / (duration / 15));
 
             const interval = setInterval(() => {
               start += step;
@@ -49,13 +49,13 @@ const KdshSection = () => {
       <div className="kdsh-section">
         <div
           className="kdsh-bg"
-          // style={{
-          //   backgroundImage: `url(${bgImg})`,
-          //   backgroundSize: "cover",
-          //   backgroundPosition: "center",
-          //   backgroundRepeat: "no-repeat",
-          //   padding: "60px 0",
-          // }}
+        // style={{
+        //   backgroundImage: `url(${bgImg})`,
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center",
+        //   backgroundRepeat: "no-repeat",
+        //   padding: "60px 0",
+        // }}
         >
           <div className="kdsh-container">
             <div className="kdsh-row">
