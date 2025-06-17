@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import "./course.css";
 
 const DropdownSection = ({ title, items, open, onToggle, onToggleCompleted }) => {
   const contentRef = useRef(null);
@@ -54,8 +55,8 @@ const DropdownSection = ({ title, items, open, onToggle, onToggleCompleted }) =>
             <table className="custom-table">
               <thead>
                 <tr>
-                  <th>Status</th>
-                  <th>Subtopic</th>
+                  <th className="status-heading">Status</th>
+                  <th className="subtopic">Subtopic</th>
                   <th>Resources</th>
                   <th>Difficulty</th>
                 </tr>
@@ -68,6 +69,7 @@ const DropdownSection = ({ title, items, open, onToggle, onToggleCompleted }) =>
                         type="checkbox"
                         checked={item.completed}
                         onChange={() => onToggleCompleted(idx)}
+                        className="checkbox"
                       />
                     </td>
                     <td>{item.name}</td>
@@ -78,7 +80,15 @@ const DropdownSection = ({ title, items, open, onToggle, onToggleCompleted }) =>
                         "—"
                       )}
                     </td>
-                    <td>{item.difficulty}</td>
+                    <td>
+                      {item.difficulty ? (
+                        <span className={`difficulty-tag difficulty-${item.difficulty.toLowerCase()}`}>
+                          {item.difficulty}
+                        </span>
+                      ) : (
+                        "—"
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>

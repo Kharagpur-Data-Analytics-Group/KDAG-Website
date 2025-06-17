@@ -1,98 +1,186 @@
-.dropdown-section {
-  background: #111;
-  color: #fff;
-  margin: 8px auto;
-  width: 90%;
-  max-width: 900px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+/* Global base */
+body {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Inter', sans-serif;
+  background-color: #0a0a0a;
+  color: #f8f8f8;
+  margin: 0;
+  padding: 0;
 }
 
+/* Section container */
+.dropdown-section {
+  background: #120007;
+  margin: 18px auto;
+  width: 92%;
+  max-width: 980px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(255, 59, 59, 0.1);
+  border: 1.5px solid #ff1a1a22;
+  transition: box-shadow 0.3s ease;
+  opacity: 0.9;
+}
+
+/* Header */
 .dropdown-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 20px;
+  padding: 22px;
   cursor: pointer;
-  background: #1c1c1c;
-  border-bottom: 1px solid #333;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #1a0008 0%, #33000f 100%);
+  border-bottom: 1px solid #ff1a1a33;
+}
+
+.dropdown-header:hover {
+  background: linear-gradient(90deg, #33000f 0%, #4d0017 100%);
 }
 
 .dropdown-title {
-  font-weight: bold;
-  font-size: 1.1rem;
-  flex: 1;
+  font-family: 'Space Grotesk', 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #ff4040;
+  text-shadow: 0 2px 10px #ff1a1a55;
 }
 
+/* Progress section */
 .dropdown-progress {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   min-width: 150px;
 }
 
 .progress-bar {
-  height: 6px;
+  height: 8px;
   flex: 1;
-  background: white;
-  border-radius: 5px;
-  overflow: hidden;
+  background: #1a0008;
+  border-radius: 6px;
+  border: 1px solid #ff3b3b44;
 }
 
 .progress-fill {
   height: 100%;
-  background: #4ade80;
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #ff4040, #ff7b7b);
+  border-radius: 6px 0 0 6px;
+  transition: width 0.4s ease;
 }
 
 .progress-text {
-  font-size: 0.9rem;
-  color: #ccc;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.92rem;
+  color: #ff7b7b;
+  font-weight: bold;
 }
 
+/* Dropdown content */
 .dropdown-content {
-  background: #181818;
+  background: #0f0006;
+  transition: max-height 0.4s ease;
+  overflow: hidden;
+  border-radius: 16px;
 }
 
 .content-inner {
-  padding: 20px;
+  padding: 22px;
+  overflow-x: auto;
 }
 
+/* Table styles */
 .custom-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
-  color: #eee;
+  font-size: 0.96rem;
+  color: #f3f3f3;
+  font-family: 'Fira Code', monospace;
+  min-width: 640px;
 }
 
 .custom-table th,
 .custom-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #333;
+  padding: 14px 12px;
+  border-bottom: 1px solid #3a0a13;
+  vertical-align: middle;
 }
 
 .custom-table th {
-  color: #aaa;
-  font-weight: normal;
+  color: #ff7b7b;
+  background: #1c0008;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
 }
 
-.custom-table td.center {
+.custom-table td.center,
+.custom-table th.status-heading {
   text-align: center;
 }
 
-.custom-table a {
-  color: #4ade80;
-  text-decoration: underline;
-}
-
+/* Checkbox */
 input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
+  accent-color: #ff3b3b;
   cursor: pointer;
 }
 
-.dd-container {
-    margin-bottom: 6rem;
+/* Link */
+.custom-table a {
+  color: #ff4d4d;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.custom-table a:hover {
+  color: #ff9c9c;
+}
+
+/* Difficulty Tags */
+.difficulty-tag {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 999px;
+  text-align: center;
+  box-shadow: 0 1px 6px #ff1a1a55;
+}
+
+.difficulty-easy {
+  background-color: #00ff88;
+  color: #0a0a0a;
+}
+
+.difficulty-medium {
+  background-color: #ffd000;
+  color: #0a0a0a;
+}
+
+.difficulty-hard {
+  background-color: #ff3b3b;
+  color: white;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .dropdown-title {
+    font-size: 1.1rem;
+  }
+
+  .progress-text {
+    font-size: 0.8rem;
+  }
+
+  .custom-table {
+    font-size: 0.85rem;
+    min-width: 100%;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 10px 6px;
+  }
 }
