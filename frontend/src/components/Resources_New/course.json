@@ -1,0 +1,65 @@
+[
+  {
+    "title": "Linear Models for regression and classification",
+    "items": [
+      { "name": "Regression: Simple/multiple/ polynomial regression", "completed": true, "difficulty": "Easy" },
+      { "name": "Regularized regression : Ridge, Lasso, Elastic Net", "completed": false, "difficulty": "Easy" },
+      { "name": "Classification: Logistic regression (binary & multiclass)", "completed": true, "difficulty": "Easy" },
+      { "name": "Regression Metrics: MSE, RMSE, MAE, R²", "completed": true, "difficulty": "Easy" },
+      { "name": "Classification Metrics: Accuracy, precision/recall, F1, ROC-AUC", "completed": true, "difficulty": "Easy" }
+    ]
+  },
+  {
+    "title": "Probabilistic Models",
+    "items": [
+      { "name": "Naive Bayes Variants: Gaussian, Multinomial, Bernoulli", "completed": false, "difficulty": "Easy" },
+      { "name": "Beyond NB: Introduction to Bayesian networks", "completed": false, "difficulty": "Medium" }
+    ]
+  },
+  {
+    "title": "Support Vector Machines",
+    "items": [
+      { "name": "Theory Deep-Dive and detailed intuition", "completed": false, "difficulty": "Medium" },
+      { "name": "Linear SVM and non linear SVM", "completed": false, "difficulty": "Medium" },
+      { "name": "SVM regression (often ignored in standard sources)", "completed": false, "difficulty": "Medium" }
+    ]
+  },
+  {
+    "title": "Tree-Based Methods",
+    "items": [
+      { "name": "Decision Trees: Intuition and working, CART algo of training (often ignored), splitting criteria (Gini, entropy), pruning NOTE BOTH CLASSIFICATION AND REGRESSION", "completed": false, "difficulty": "Medium" },
+      { "name": "Ensembles -> Bagging & Random Forest", "completed": false, "difficulty": "Medium" },
+      { "name": "Ensemble -> Boosting -> AdaBoost", "completed": false, "difficulty": "Medium" },
+      { "name": "Ensemble -> Boosting -> XGBoost", "completed": false, "difficulty": "Medium" },
+      { "name": "Ensemble -> Boosting -> CatBoost", "completed": false, "difficulty": "Medium" },
+      { "name": "Ensemble -> Boosting -> LightGBM", "completed": false, "difficulty": "Medium" },
+      { "name": "Ensemble -> Stacking & Voting", "completed": false, "difficulty": "Medium" },
+      { "name": "Matrix comparing pros/cons (speed, interpretability, handling missing values)", "completed": false, "difficulty": "Medium" }
+    ]
+  },
+  {
+    "title": "Unsupervised Learning & Clustering",
+    "items": [
+      { "name": "Clustering Algorithms -> k-means and k-means++", "completed": false, "difficulty": "Medium" },
+      { "name": "Clustering Algorithms -> mean-shift", "completed": false, "difficulty": "Medium" },
+      { "name": "Clustering Algorithms -> DBSCAN", "completed": false, "difficulty": "Medium" },
+      { "name": "Clustering Algorithms -> HDBSCAN", "completed": false, "difficulty": "Medium" },
+      { "name": "Clustering Algorithms -> scores for validation", "completed": false, "difficulty": "Medium" },
+      { "name": "Dimensionality Reduction -> Linear -> PCA", "completed": false, "difficulty": "Medium" },
+      { "name": "Dimensionality Reduction -> Linear -> random projection", "completed": false, "difficulty": "Medium" },
+      { "name": "Dimensionality Reduction -> Linear -> LDA", "completed": false, "difficulty": "Medium" },
+      { "name": "Dimensionality Reduction -> Manifold: LLE", "completed": false, "difficulty": "Medium" },
+      { "name": "Dimensionality Reduction -> Manifold: t-SNE", "completed": false, "difficulty": "Medium" },
+      { "name": "Dimensionality Reduction -> Manifold: UMAP", "completed": false, "difficulty": "Medium" }
+    ]
+  },
+  {
+    "title": "Intro Neural Networks",
+    "items": [
+      { "name": "Basics: Neuron, architecture, activation functions. Training: Forward/backpropagation, loss functions", "completed": false, "difficulty": "Medium" },
+      { "name": "Vanishing/exploding gradients and ways to tackle it: 1. Weight initialization techniques 2. Batch Normalisation 3. Gradient clipping", "completed": false, "difficulty": "Medium" },
+      { "name": "Optimisers (IN DETAIL)", "completed": false, "difficulty": "Medium" },
+      { "name": "Regularization: L1/L2, dropout, MC-dropout, max-norm", "completed": false, "difficulty": "Medium" }
+    ]
+  }
+]

@@ -1,0 +1,98 @@
+.dropdown-section {
+  background: #111;
+  color: #fff;
+  margin: 8px auto;
+  width: 90%;
+  max-width: 900px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  cursor: pointer;
+  background: #1c1c1c;
+  border-bottom: 1px solid #333;
+}
+
+.dropdown-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  flex: 1;
+}
+
+.dropdown-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 150px;
+}
+
+.progress-bar {
+  height: 6px;
+  flex: 1;
+  background: white;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #4ade80;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.dropdown-content {
+  background: #181818;
+}
+
+.content-inner {
+  padding: 20px;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  color: #eee;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.custom-table th {
+  color: #aaa;
+  font-weight: normal;
+}
+
+.custom-table td.center {
+  text-align: center;
+}
+
+.custom-table a {
+  color: #4ade80;
+  text-decoration: underline;
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.dd-container {
+    margin-bottom: 6rem;
+}
