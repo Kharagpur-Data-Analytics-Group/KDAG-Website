@@ -1,0 +1,81 @@
+.progress-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #7032323e;
+  border-radius: 1.2rem;
+  box-shadow: 0 0 25px #ff1a1a22;
+  width: 100%;
+  max-width: 400px;
+  padding: 1.5rem 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  margin: 1rem auto;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #1a0008 0%, #33000f 100%);
+}
+
+.progress-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 2px dashed #ff1a1a55;
+  padding-right: 1.5rem;
+}
+
+.progress-label {
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ff4d4d;
+}
+
+.progress-fraction {
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  font-weight: 500;
+  color: #fff;
+}
+
+.progress-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1.5rem;
+}
+
+.circular-progress {
+  width: 100px;
+  height: 100px;
+}
+
+.bg-circle,
+.fg-circle {
+  fill: none;
+  stroke-width: 8;
+}
+
+.bg-circle {
+  stroke: url(#gradGray);
+  opacity: 0.25;
+  filter: blur(0.3px);
+}
+
+.fg-circle {
+  stroke: url(#gradRed);
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  /*filter: drop-shadow(0 0 8px #ff1a1a88);*/
+}
+
+.progress-percent {
+  font-size: 1.2rem;
+  font-weight: bold;
+  fill: #ff8080;
+  text-shadow: 0 0 3px #ff1a1a;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}

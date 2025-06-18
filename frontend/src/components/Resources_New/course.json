@@ -2,11 +2,11 @@
   {
     "title": "Linear Models for regression and classification",
     "items": [
-      { "name": "Regression: Simple/multiple/ polynomial regression", "completed": true, "difficulty": "Easy" },
+      { "name": "Regression: Simple/multiple/ polynomial regression", "completed": false, "difficulty": "Easy" },
       { "name": "Regularized regression : Ridge, Lasso, Elastic Net", "completed": false, "difficulty": "Easy" },
-      { "name": "Classification: Logistic regression (binary & multiclass)", "completed": true, "difficulty": "Easy" },
-      { "name": "Regression Metrics: MSE, RMSE, MAE, R²", "completed": true, "difficulty": "Easy" },
-      { "name": "Classification Metrics: Accuracy, precision/recall, F1, ROC-AUC", "completed": true, "difficulty": "Easy" }
+      { "name": "Classification: Logistic regression (binary & multiclass)", "completed": false, "difficulty": "Easy" },
+      { "name": "Regression Metrics: MSE, RMSE, MAE, R²", "completed": false, "difficulty": "Easy" },
+      { "name": "Classification Metrics: Accuracy, precision/recall, F1, ROC-AUC", "completed": false, "difficulty": "Easy" }
     ]
   },
   {
