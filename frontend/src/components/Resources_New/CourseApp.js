@@ -2,7 +2,7 @@
 import { useState } from "react";
 import DropdownSection from "./sheet.js";
 import initialSections from "./course.json";
-import CircularProgress from "./ProgressCard.js";
+import ProgressCard from "./ProgressCard.js";
 import "./course.css";
 
 function App() {
@@ -15,6 +15,39 @@ function App() {
     (total, section) => total + section.items.filter((item) => item.completed).length,
     0
   );
+
+  const easyCount = initialSections.reduce(
+    (total, section) =>
+      total + section.items.filter((item) => item.difficulty === "Easy").length,
+    0
+  );
+  const mediumCount = initialSections.reduce(
+    (total, section) =>
+      total + section.items.filter((item) => item.difficulty === "Medium").length,
+    0
+  );
+  const hardCount = initialSections.reduce(
+    (total, section) =>
+      total + section.items.filter((item) => item.difficulty === "Hard").length,
+    0
+  );
+
+  const easyCompleted = sections.reduce(
+    (total, section) =>
+      total + section.items.filter((item) => item.difficulty === "Easy" && item.completed).length,
+    0
+  );
+  const mediumCompleted = sections.reduce(
+    (total, section) =>
+      total + section.items.filter((item) => item.difficulty === "Medium" && item.completed).length,
+    0
+  );
+  const hardCompleted = sections.reduce(
+    (total, section) =>
+      total + section.items.filter((item) => item.difficulty === "Hard" && item.completed).length,
+    0
+  );
+
   const [openIndex, setOpenIndex] = useState(null);
 
   const percentage = ((totalCompleted / totalSubtopics) * 100).toFixed(1);
@@ -38,7 +71,16 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-black px-2 py-8 app-container">
-      <CircularProgress completed={totalCompleted} total={totalSubtopics}/>
+      <ProgressCard
+        totalCompleted={totalCompleted}
+        totalCount={totalSubtopics}
+        easyCompleted={easyCompleted}
+        easyCount={easyCount}
+        mediumCompleted={mediumCompleted}
+        mediumCount={mediumCount}
+        hardCompleted={hardCompleted}
+        hardCount={hardCount}
+      />
       <div className="w-full max-w-3xl mt-6">
         {sections.map((section, idx) => (
           <DropdownSection

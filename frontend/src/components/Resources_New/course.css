@@ -1,4 +1,3 @@
-/* Global Base */
 body {
   font-family: 'JetBrains Mono', 'Fira Code', 'Inter', sans-serif;
   background-color: #0a0a0a;
@@ -7,7 +6,6 @@ body {
   padding: 0;
 }
 
-/* Section Container */
 .dropdown-section {
   background: #120007;
   margin: 18px auto;
@@ -20,31 +18,49 @@ body {
   opacity: 0.9;
 }
 
-/* Header */
 .dropdown-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 22px;
   cursor: pointer;
   border-radius: 16px;
   background: linear-gradient(90deg, #1a0008 0%, #33000f 100%);
   border-bottom: 1px solid #ff1a1a33;
+  gap: 18px;
 }
 
 .dropdown-header:hover {
   background: linear-gradient(90deg, #33000f 0%, #4d0017 100%);
 }
 
+.dropdown-chevron {
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  margin-right: 2px;
+  margin-left: 2px;
+  height: 1.3em;
+  width: 1.3em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dropdown-chevron polyline {
+  stroke: #ff4040;
+}
+
+.dropdown-chevron.open {
+  transform: rotate(90deg);
+}
+
 .dropdown-title {
   font-family: 'Space Grotesk', 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   color: #ff4040;
   text-shadow: 0 2px 10px #ff1a1a55;
+  vertical-align: middle;
+  margin-right: auto;
 }
 
-/* Progress Section */
 .dropdown-progress {
   display: flex;
   align-items: center;
@@ -62,7 +78,7 @@ body {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #ff4040, #ff7b7b);
+  background: linear-gradient(90deg, #3685ff, #5e9fff);
   border-radius: 6px 0 0 6px;
   transition: width 0.4s ease;
 }
@@ -118,6 +134,17 @@ body {
   text-align: center;
 }
 
+.center-icon {
+  text-align: center;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.center-icon > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /* Checkbox */
 input[type="checkbox"] {
   width: 18px;
@@ -162,94 +189,6 @@ input[type="checkbox"] {
 .difficulty-hard {
   background-color: #ff3b3b;
   color: white;
-}
-
-/* Progress Box Styles */
-.progress-box {
-  width: 100%;
-  max-width: 480px;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  border-radius: 1rem;
-  background-color: #121212;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.25);
-  text-align: center;
-  color: #f8f8f8;
-}
-
-.progress-label {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #ff4444;
-  margin-bottom: 0.6rem;
-}
-
-.progress-bar-track {
-  background-color: #2a2a2a;
-  height: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #ff1a1a, #990000);
-  transition: width 0.4s ease-in-out;
-  border-radius: 10px 0 0 10px;
-}
-
-/* Circular Progress */
-.circular-progress-container {
-  width: 500px;
-  height: 100px;
-  margin-bottom: 2rem;
-  margin-left: 1rem;
-  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.5));
-  /*display: flex;
-  justify-content: space-between;*/
-}
-
-.progress-stats {
-  width: 50%;
-}
-
-.circular-progress {
-  width: 50%;
-  height: 100%;
-}
-
-.circular-progress text {
-  font-family: 'JetBrains Mono', monospace;
-  fill: #ff4d4d;
-  dominant-baseline: middle;
-  text-anchor: middle;
-  font-size: 100px;
-  font-weight: bold;
-}
-
-.circular-progress .progress-count {
-  font-size: 7px;
-}
-
-.circular-progress .progress-percent {
-  font-size: 1rem;
-  fill: #ff7b7b;
-}
-
-.bg-circle {
-  fill: none;
-  stroke: #222;
-  stroke-width: 10;
-}
-
-.fg-circle {
-  fill: none;
-  stroke-width: 10;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 1s ease-in-out;
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-  filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.7));
 }
 
 /* Responsive */

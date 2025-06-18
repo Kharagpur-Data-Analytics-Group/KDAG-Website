@@ -58,8 +58,8 @@
     "items": [
       { "name": "Basics: Neuron, architecture, activation functions. Training: Forward/backpropagation, loss functions", "completed": false, "difficulty": "Medium" },
       { "name": "Vanishing/exploding gradients and ways to tackle it: 1. Weight initialization techniques 2. Batch Normalisation 3. Gradient clipping", "completed": false, "difficulty": "Medium" },
-      { "name": "Optimisers (IN DETAIL)", "completed": false, "difficulty": "Medium" },
-      { "name": "Regularization: L1/L2, dropout, MC-dropout, max-norm", "completed": false, "difficulty": "Medium" }
+      { "name": "Optimisers (IN DETAIL)", "completed": false, "difficulty": "Hard" },
+      { "name": "Regularization: L1/L2, dropout, MC-dropout, max-norm", "completed": false, "difficulty": "Hard" }
     ]
   }
 ]

@@ -1,5 +1,25 @@
 import { useRef, useEffect, useState } from "react";
 import "./course.css";
+import Star from "./RevisionIcon.js";
+
+const Chevron = ({ open }) => (
+  <svg
+    className={`dropdown-chevron${open ? " open" : ""}`}
+    width="22"
+    height="22"
+    viewBox="0 0 22 22"
+    style={{ verticalAlign: "middle" }}
+  >
+    <polyline
+      points="7,6 12,11 7,16"
+      fill="none"
+      stroke="#ff4040"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 const DropdownSection = ({ title, items, open, onToggle, onToggleCompleted }) => {
   const contentRef = useRef(null);
@@ -33,6 +53,7 @@ const DropdownSection = ({ title, items, open, onToggle, onToggleCompleted }) =>
   return (
     <div className="dropdown-section">
       <div className="dropdown-header" onClick={onToggle}>
+        <Chevron open={open} />
         <span className="dropdown-title">{title}</span>
         <div className="dropdown-progress">
           <div className="progress-bar">
@@ -58,6 +79,7 @@ const DropdownSection = ({ title, items, open, onToggle, onToggleCompleted }) =>
                   <th className="status-heading">Status</th>
                   <th className="subtopic">Subtopic</th>
                   <th>Resources</th>
+                  <th>Revision</th>
                   <th>Difficulty</th>
                 </tr>
               </thead>
@@ -73,14 +95,17 @@ const DropdownSection = ({ title, items, open, onToggle, onToggleCompleted }) =>
                       />
                     </td>
                     <td>{item.name}</td>
-                    <td>
+                    <td className="center-icon">
                       {item.resource ? (
                         <a href={item.resource} target="_blank" rel="noreferrer">Link</a>
                       ) : (
                         "—"
                       )}
                     </td>
-                    <td>
+                    <td className="center-icon">
+                      <Star />
+                    </td>
+                    <td className="center-icon">
                       {item.difficulty ? (
                         <span className={`difficulty-tag difficulty-${item.difficulty.toLowerCase()}`}>
                           {item.difficulty}

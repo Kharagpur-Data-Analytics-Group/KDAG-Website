@@ -7,8 +7,7 @@ import App from "./CourseApp"; // Import the CourseApp component
   return (
     <>
       <Particless />
-    <div className="course-container" style={{padding: "100px" }}>
-        
+    <div className="course-container" style={{padding: "100px" }}>  
     </div>
     <App/>
     </>
