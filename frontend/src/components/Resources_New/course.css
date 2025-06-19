@@ -1,5 +1,5 @@
 body {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Inter', sans-serif;
+  font-family: "JetBrains Mono", "Fira Code", "Inter", sans-serif;
   background-color: #0a0a0a;
   color: #f8f8f8;
   margin: 0;
@@ -34,7 +34,7 @@ body {
 }
 
 .dropdown-chevron {
-  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   margin-right: 2px;
   margin-left: 2px;
   height: 1.3em;
@@ -52,7 +52,7 @@ body {
 }
 
 .dropdown-title {
-  font-family: 'Space Grotesk', 'Montserrat', sans-serif;
+  font-family: "Space Grotesk", "Montserrat", sans-serif;
   font-weight: 800;
   font-size: 1.35rem;
   color: #ff4040;
@@ -84,7 +84,7 @@ body {
 }
 
 .progress-text {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 0.92rem;
   color: #ff7b7b;
   font-weight: bold;
@@ -109,7 +109,7 @@ body {
   border-collapse: collapse;
   font-size: 0.96rem;
   color: #f3f3f3;
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   min-width: 640px;
 }
 
@@ -165,6 +165,32 @@ input[type="checkbox"] {
   color: #ff9c9c;
 }
 
+.bookmark-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: filter 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookmark-btn svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.bookmark-btn.active svg {
+  filter: drop-shadow(0 0 6px #ff4040aa);
+}
+
+.bookmark-btn:focus {
+  outline: 2px solid #ff4040;
+}
+
 /* Difficulty Tags */
 .difficulty-tag {
   display: inline-block;
@@ -209,5 +235,10 @@ input[type="checkbox"] {
   .custom-table th,
   .custom-table td {
     padding: 10px 6px;
+  }
+
+  .bookmark-btn svg {
+    width: 18px;
+    height: 18px;
   }
 }

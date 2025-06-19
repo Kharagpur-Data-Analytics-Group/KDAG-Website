@@ -43,7 +43,7 @@ const AuthStatus = () => {
 
 		checkAuthStatus();
 	}, []);
-
+	// return { isLoggedIn: true };
 	return { isLoggedIn };
 };
 

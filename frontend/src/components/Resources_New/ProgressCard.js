@@ -11,14 +11,16 @@ const ProgressSummaryCard = ({
   hardCompleted,
   hardCount,
 }) => {
-  const totalPercent = totalCount > 0 ? Math.round((totalCompleted / totalCount) * 100) : 0;
+  const totalPercent =
+    totalCount > 0 ? Math.round((totalCompleted / totalCount) * 100) : 0;
   const radius = 48;
   const stroke = 8;
   const normalizedRadius = radius - stroke / 2;
   const circumference = 2 * Math.PI * normalizedRadius;
   const offset = circumference - (totalPercent / 100) * circumference;
 
-  const getPercent = (done, total) => (total > 0 ? Math.round((done / total) * 100) : 0);
+  const getPercent = (done, total) =>
+    total > 0 ? Math.round((done / total) * 100) : 0;
 
   return (
     <div className="progress-summary-card">

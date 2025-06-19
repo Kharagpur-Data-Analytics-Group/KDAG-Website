@@ -12,7 +12,8 @@ function App() {
     0
   );
   const totalCompleted = sections.reduce(
-    (total, section) => total + section.items.filter((item) => item.completed).length,
+    (total, section) =>
+      total + section.items.filter((item) => item.completed).length,
     0
   );
 
@@ -23,7 +24,8 @@ function App() {
   );
   const mediumCount = initialSections.reduce(
     (total, section) =>
-      total + section.items.filter((item) => item.difficulty === "Medium").length,
+      total +
+      section.items.filter((item) => item.difficulty === "Medium").length,
     0
   );
   const hardCount = initialSections.reduce(
@@ -34,17 +36,26 @@ function App() {
 
   const easyCompleted = sections.reduce(
     (total, section) =>
-      total + section.items.filter((item) => item.difficulty === "Easy" && item.completed).length,
+      total +
+      section.items.filter(
+        (item) => item.difficulty === "Easy" && item.completed
+      ).length,
     0
   );
   const mediumCompleted = sections.reduce(
     (total, section) =>
-      total + section.items.filter((item) => item.difficulty === "Medium" && item.completed).length,
+      total +
+      section.items.filter(
+        (item) => item.difficulty === "Medium" && item.completed
+      ).length,
     0
   );
   const hardCompleted = sections.reduce(
     (total, section) =>
-      total + section.items.filter((item) => item.difficulty === "Hard" && item.completed).length,
+      total +
+      section.items.filter(
+        (item) => item.difficulty === "Hard" && item.completed
+      ).length,
     0
   );
 
@@ -61,7 +72,24 @@ function App() {
           ? {
               ...section,
               items: section.items.map((item, iIdx) =>
-                iIdx === itemIdx ? { ...item, completed: !item.completed } : item
+                iIdx === itemIdx
+                  ? { ...item, completed: !item.completed }
+                  : item
+              ),
+            }
+          : section
+      )
+    );
+  };
+
+  const handleToggleRevision = (sectionIdx, itemIdx) => {
+    setSections((prevSections) =>
+      prevSections.map((section, sIdx) =>
+        sIdx === sectionIdx
+          ? {
+              ...section,
+              items: section.items.map((item, iIdx) =>
+                iIdx === itemIdx ? { ...item, revision: !item.revision } : item
               ),
             }
           : section
@@ -92,6 +120,7 @@ function App() {
             isFirst={idx === 0}
             isLast={idx === sections.length - 1}
             onToggleCompleted={(itemIdx) => handleToggleCompleted(idx, itemIdx)}
+            onToggleRevision={(itemIdx) => handleToggleRevision(idx, itemIdx)}
           />
         ))}
       </div>

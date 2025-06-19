@@ -1,0 +1,81 @@
+.login-prompt-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(10,0,0,0.7);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.login-prompt-box {
+  margin-top: 120px;
+  background: #120007;
+  border: 2px solid #ff4040;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #ff1a1a44;
+  padding: 2.2rem 2.5rem 1.5rem 2.5rem;
+  min-width: 340px;
+  max-width: 90vw;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: slideDown 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-80px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.login-prompt-text {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #ff4040;
+  margin-bottom: 1.8rem;
+  text-align: center;
+  text-shadow: 0 2px 10px #ff1a1a55;
+}
+
+.login-prompt-btn {
+  background: linear-gradient(90deg, #ff4040 0%, #333 100%);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #ff1a1a33;
+  transition: background 0.2s, color 0.2s;
+}
+
+.login-prompt-btn:hover {
+  background: linear-gradient(90deg, #ff7b7b 0%, #222 100%);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .login-prompt-box {
+    min-width: 96vw;
+    max-width: 99vw;
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
+    margin-top: 60px;
+    border-radius: 12px;
+  }
+  .login-prompt-text {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .login-prompt-btn {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}

@@ -7,7 +7,7 @@
   width: 100%;
   max-width: 1100px;
   padding: 2rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   margin: 1rem auto;
   box-sizing: border-box;
   gap: 2rem;
@@ -73,7 +73,7 @@
   width: 96px;
   height: 96px;
   display: block;
-  transform: rotate(-90deg);  
+  transform: rotate(-90deg);
 }
 
 .bg-circle,
