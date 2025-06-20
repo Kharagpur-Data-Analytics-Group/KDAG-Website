@@ -1,6 +1,7 @@
 .progress-summary-card {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   background: #111;
   border-radius: 1.5rem;
   box-shadow: 0 0 25px #ff1a1a22;
@@ -32,9 +33,16 @@
   max-width: 360px;
   flex: 0 0 auto;
   padding: 0 1.2rem;
-  border-right: 2px solid #333;
+  border-right: 2px solid #8e8e8e;
 }
 
+.d-progress-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 .total-text-group {
   display: flex;
   flex-direction: column;
@@ -154,12 +162,21 @@
   .progress-summary-card {
     flex-direction: column;
     align-items: center;
-    padding: 1.5rem;
+    padding: 1.0rem;
     gap: 1.5rem;
   }
 
+  .d-progress-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0rem;
+  }
+
   .total-progress-section {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
     border-right: none;
     border-bottom: none;
@@ -179,10 +196,12 @@
   }
 
   .progress-section {
+    flex: 1 1 20px;
     width: 100%;
-    padding: 0.5rem 0;
+    padding: 1rem;
     align-items: center;
     text-align: center;
+    min-width: 3rem;
   }
 
   .progress-title,
@@ -194,5 +213,13 @@
     margin-top: 0.4rem;
     width: 100%;
     max-width: 320px;
+  }
+
+  .total-title {
+    font-size: 1.8rem;
+  }
+
+  .total-fraction{
+    font-size: 1.5rem;
   }
 }
