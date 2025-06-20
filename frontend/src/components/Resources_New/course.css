@@ -51,6 +51,13 @@ body {
   transform: rotate(90deg);
 }
 
+td.center .bookmark-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .dropdown-title {
   font-family: "Space Grotesk", "Montserrat", sans-serif;
   font-weight: 800;
@@ -66,6 +73,10 @@ body {
   align-items: center;
   gap: 14px;
   min-width: 150px;
+}
+
+td.center {
+  text-align: center;
 }
 
 .progress-bar {
