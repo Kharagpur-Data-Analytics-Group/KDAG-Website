@@ -116,7 +116,7 @@ const DropdownSection = ({
               <tbody>
                 {items.map((item, idx) => (
                   <tr key={idx}>
-                    <td className="center">
+                    <td className="center checkbox-cell">
                       <input
                         type="checkbox"
                         checked={item.completed}
