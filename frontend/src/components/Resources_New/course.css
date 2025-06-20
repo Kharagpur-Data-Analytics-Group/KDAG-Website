@@ -66,7 +66,12 @@ td.center .bookmark-btn {
   text-shadow: 0 2px 10px #ff1a1a55;
   vertical-align: middle;
   margin-right: auto;
+  white-space: normal;         /* <-- allow line breaks */
+  word-wrap: break-word;       /* <-- wrap long words */
+  overflow: visible;           /* <-- remove hidden overflow */
+  max-width: calc(100% - 160px);
 }
+
 
 .dropdown-progress {
   display: flex;
@@ -231,9 +236,17 @@ input[type="checkbox"] {
 /* Responsive */
 @media (max-width: 768px) {
   .dropdown-title {
-    font-size: 1.1rem;
+    font-size: 1.9rem;
   }
 
+  .dropdown-header {
+    width: 100%
+  }
+
+  .dropdown-section {
+    margin:5px;
+    width: 97%;
+  }
   .progress-text {
     font-size: 0.8rem;
   }
@@ -245,11 +258,17 @@ input[type="checkbox"] {
 
   .custom-table th,
   .custom-table td {
-    padding: 10px 6px;
+    padding: 8px 6px;
+    font-size: 0.85rem;
   }
 
   .bookmark-btn svg {
     width: 18px;
     height: 18px;
+  }
+
+  .content-inner {
+    padding:  10px;
+    overflow-x: auto;
   }
 }
