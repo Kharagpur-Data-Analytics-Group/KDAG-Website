@@ -47,7 +47,7 @@ const AuthPage = () => {
 	const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
 
 	function handleGoogleAuth() {
-		const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&access_type=offline&scope=email&prompt=consent`;
+		const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&access_type=offline&scope=email%20profile%20openid&prompt=consent`;
 		window.location.href = googleAuthUrl;
 	}
 
