@@ -1,113 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap");
+
+* {
+  /* font-family: "Inter", "Segoe UI", "Helvetica Neue", sans-serif; */
+  box-sizing: border-box;
+}
+
 .content-container {
   margin: auto;
-  width: 80%;
+  width: 85%;
+  max-width: 1200px;
+  padding: 2rem 1rem;
   position: relative;
   z-index: 15;
 }
 
 .content-pair {
   display: flex;
-  margin-top: 10px;
-  transition: all 0.4s;
+  align-items: stretch;
+  margin: 2rem 0;
+  gap: 2.5rem;
+  transition: transform 1s ease;
+}
+
+.content-pair:hover {
+  transform: translateY(-5px);
 }
 
 .content-pair-text {
-  width: 50%;
-  font-size: 1.2rem;
+  flex: 1;
   padding: 2rem;
   border-radius: 15px;
-  backdrop-filter: blur(10px);
-  background:rgba(255, 255, 255, 0.055);
-  margin-bottom: 15px;
-  transition: all 0.4s;
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.content-pair-text hr{
-  width: 100%;
-  background: rgb(27, 27, 27);
-}
-
-.content-pair:hover .content-pair-text{
-  background: white;
+.content-pair:hover .content-pair-text {
+  background-color: rgba(104, 58, 58, 0.15);
+  box-shadow: 0 0 20px rgba(250, 57, 70, 1);
 }
 
 .content-pair-heading {
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.4;
   margin-bottom: 1rem;
-  color: #ffffff;
-}
-
-.content-pair:hover .content-pair-heading{
-  color: black;
 }
 
 .content-pair-word {
+  position: relative;
+  display: inline-block;
   text-transform: uppercase;
-  transition: all 0.4s;
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #fb8787;
+  transition: all 0.3s ease;
 }
 
-.content-pair:hover .content-pair-word{
-  font-size: 2.3rem;
-  color: white;
-  -webkit-text-stroke: 2px rgb(0, 0, 0);
+.content-pair-word::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 3px;
+  background-color: #ffb3b3;
+  border-radius: 2px;
+  transition: transform calc(0.1s * var(--word-length, 10)) ease;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.content-pair:hover .content-pair-word::after {
+  transform: scaleX(1);
+}
+
+.content-pair:hover .content-pair-word {
+  font-size: 2.1rem;
 }
 
 .content-pair-paragraph {
-  color: #a5a9ae;
-  /* font-family: "Merriweather", "Times New Roman", serif; */
-  transition: all 0.4s;
+  color: #d2c9c9;
+  line-height: 1.7;
+  font-size: 1.15rem;
+  font-weight: 400;
+  transition: color 0.3s;
 }
 
-.content-pair:hover .content-pair-paragraph{
-  color: #6f6f6f;
+.content-pair:hover .content-pair-paragraph {
+  color: #f5dada;
 }
 
 .content-pair-graphics {
-  width: 50%;
-  padding: 1rem;  
+  flex: 1;
+  padding: 0px;
 }
 
 .content-pair-graphics img {
   width: 100%;
+  height: 100%;
   border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.4s;
+  transition: all 0.3s ease;
 }
 
-.content-pair:hover .content-pair-graphics img{
-  border: rgb(255, 255, 255) solid 2px;
-  border-radius: 24px;
+.content-pair:hover .content-pair-graphics img {
+  border: 3px solid rgb(112, 43, 43);
+  border-radius: 30px;
+  box-shadow: 0 0 20px rgba(195, 65, 65, 1);
+}
+
+.content-pair-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .content-mobile {
   display: none;
 }
 
-.content-pair-link {
-  text-decoration: none;
-}
-
 @media (max-width: 800px) {
-  .content-pair {
-    display: block;
+
+  .content-pair-graphics{
+    display: none;
   }
 
-  .content-pair-graphics {
-    width: 100%;
+  .content-pair {
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   .content-pair-text {
     width: 100%;
+    padding: 20px;
   }
 
-  .content-mobile {
-    display: block;
+  .content-pair-word {
+    font-size: 1.6rem;
+    /*text-decoration: underline;*/
+    text-underline-offset: 4px;       
+    text-decoration-thickness: 2px;
   }
 
-  .content-nonmobile {
-    display: none;
+  .content-pair:hover .content-pair-word {
+    font-size: 1.7rem;
   }
 }

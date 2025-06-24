@@ -67,7 +67,6 @@
 	letter-spacing: 0.5px;
 	text-transform: uppercase;
 	margin-top: 10px;
-	cursor: none;
 }
 
 .auth-container button[type="submit"] {
@@ -79,7 +78,6 @@
 	font-weight: 600;
 	letter-spacing: 0.5px;
 	margin-top: 10px;
-	cursor: none;
 	background-image: linear-gradient(
 		to right,
 		#4e3eff,
@@ -178,7 +176,6 @@
 	justify-content: center;
 	align-items: center;
 	padding: 0 10px;
-	cursor: none;
 	transition: all 0.3s;
 }
 

@@ -1,7 +1,7 @@
 .blog-list-card {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
   margin: 2rem;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   height: 95%;
   background-color: rgba(255, 255, 255, 0.062);
   backdrop-filter: blur(10px);
@@ -10,20 +10,22 @@
   /* border: red solid 20px; */
 }
 
-.blog-list-card:hover  {
+.blog-list-card:hover {
   transform: scale(1.02);
-  background: white;
+  background-color: rgba(104, 58, 58, 0.15);
+  box-shadow: 0 0 20px rgba(250, 57, 70, 1);
+  transform: translateY(-5px);
 }
 
-.blog-list-card:hover .blog-list-card-title{
-  color: black;
+.blog-list-card:hover .blog-list-card-title {
+  color: white;
 }
 
-.blog-list-card:hover .blog-list-card-description{
-  color: black;
+.blog-list-card:hover .blog-list-card-description {
+  color: white;
 }
 
-.blog-list-card:hover .blog-list-card-tag{
+.blog-list-card:hover .blog-list-card-tag {
   color: #44a200;
 }
 
