@@ -52,10 +52,21 @@ const GoogleAuthCallback = () => {
 					return response.json();
 				})
 				.then((data) => {
-					const { access_token } = data;
+					const { access_token, user_info } = data;
 					localStorage.setItem("access_token", access_token);
 					setRedirect(data.redirect);
 					setUid(data.uid);
+
+					// Pre-fill form with Google profile data
+					if (user_info) {
+						setRegister_firstName(user_info.given_name || "");
+						setRegister_lastName(user_info.family_name || "");
+
+						// Extract username from email (part before @)
+						const email = user_info.email || "";
+						const username = email.split('@')[0] || "";
+						setRegister_userName(username);
+					}
 				})
 				.catch((error) => {
 					console.error("Error during authentication:", error);
@@ -82,7 +93,7 @@ const GoogleAuthCallback = () => {
 			uid: uid,
 		};
 
-		const token  = localStorage.getItem("access_token")
+		const token = localStorage.getItem("access_token")
 
 		const response = await fetch(
 			`${process.env.REACT_APP_FETCH_URL}/user/signup`,
@@ -90,7 +101,7 @@ const GoogleAuthCallback = () => {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					"Authorization" : `Bearer ${token}`,
+					"Authorization": `Bearer ${token}`,
 				},
 				body: JSON.stringify({
 					...user_data,
@@ -135,17 +146,20 @@ const GoogleAuthCallback = () => {
 										type="text"
 										placeholder="First Name"
 										required
+										value={register_firstName}
 										onChange={(e) => setRegister_firstName(e.target.value)}
 									/>
 									<input
 										type="text"
 										placeholder="Last Name"
+										value={register_lastName}
 										onChange={(e) => setRegister_lastName(e.target.value)}
 									/>
 									<input
 										type="text"
 										placeholder="Username"
 										required
+										value={register_userName}
 										onChange={(e) => setRegister_userName(e.target.value)}
 									/>
 									<input

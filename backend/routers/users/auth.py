@@ -83,7 +83,7 @@ def google_callback():
         user_data["username"] = ""
         user_data["phone"] = ""
         user_data["college"] = ""
-        user_data["f_name"] = ""
+        user_data["picture"] = ""
 
         if id_token_str:
             try:
@@ -91,6 +91,14 @@ def google_callback():
                     id_token_str, google_requests.Request(), GOOGLE_CLIENT_ID
                 )
                 email = id_info.get("email")
+                
+                # Extract profile information from Google
+                given_name = id_info.get("given_name", "")
+                family_name = id_info.get("family_name", "")
+                picture = id_info.get("picture", "")
+                
+                # Extract username from email (part before @)
+                username = email.split('@')[0] if email else ""
 
             except ValueError as e:
                 print("Error during token validation:", str(e))
@@ -103,9 +111,16 @@ def google_callback():
             user = users.find_one({"email": email})
 
             if not user:
+                # Create new user with Google profile data
                 user_data["email"] = email
+                user_data["f_name"] = given_name
+                user_data["l_name"] = family_name
+                user_data["username"] = username
+                user_data["picture"] = picture
                 users.insert_one(user_data)
-            else:
+                
+                # Get the newly created user
+                user = users.find_one({"email": email})
                 is_admin = user.get("is_admin")
                 uid = str(user.get("_id"))
                 jwt_access_token = create_access_token(
@@ -116,13 +131,42 @@ def google_callback():
                     },
                     expires_delta=timedelta(hours=1),
                 )
-                # jwt_refresh_token = create_refresh_token(
-                #     identity={
-                #         "user_id": uid,
-                #         "google_refresh_token": refresh_token,
-                #         "is_admin": is_admin,
-                #     }
-                # )
+                users.update_one(
+                    {"_id": ObjectId(uid)}, {"$set": {"refresh_token": refresh_token}}
+                )
+                response = make_response(
+                    jsonify(
+                        {
+                            "message": "User account successfully activated. Please complete the remaining details.",
+                            "uid": uid,
+                            "user_info": id_info,
+                            "redirect": "usual_redirect_page_",
+                            "access_token": jwt_access_token,
+                        }
+                    )
+                )
+                return response, 200
+            else:
+                # Update existing user with latest Google profile data
+                users.update_one(
+                    {"email": email}, 
+                    {"$set": {
+                        "f_name": given_name,
+                        "l_name": family_name,
+                        "username": username,
+                        "picture": picture,
+                    }}
+                )
+                is_admin = user.get("is_admin")
+                uid = str(user.get("_id"))
+                jwt_access_token = create_access_token(
+                    identity={
+                        "user_id": uid,
+                        "google_access_token": access_token,
+                        "is_admin": is_admin,
+                    },
+                    expires_delta=timedelta(hours=1),
+                )
                 users.update_one(
                     {"_id": ObjectId(uid)}, {"$set": {"refresh_token": refresh_token}}
                 )
@@ -134,7 +178,6 @@ def google_callback():
                             "user_info": id_info,
                             "redirect": "Forum_page_",
                             "access_token": jwt_access_token,
-                            # "refresh_token": jwt_refresh_token
                         }
                     )
                 )
@@ -142,41 +185,6 @@ def google_callback():
         else:
             return jsonify({"error": "Failed to obtain ID token"}), 400
 
-        user = users.find_one({"email": email})
-        is_admin = user.get("is_admin")
-        uid = str(user.get("_id"))
-        jwt_access_token = create_access_token(
-            identity={
-                "user_id": uid,
-                "google_access_token": access_token,
-                "is_admin": is_admin,
-            },
-            expires_delta=timedelta(hours=1),
-        )
-        users.update_one(
-            {"_id": ObjectId(uid)}, {"$set": {"refresh_token": refresh_token}}
-        )
-        # jwt_refresh_token = create_refresh_token(
-        #     identity={
-        #         "user_id": uid,
-        #         "google_refresh_token": refresh_token,
-        #         "is_admin": is_admin,
-        #     }
-        # )
-        response = make_response(
-            jsonify(
-                {
-                    "message": "User account successfully activated. Please complete the remaining details.",
-                    "uid": uid,
-                    "user_info": id_info,
-                    "redirect": "usual_redirect_page_",
-                    "access_token": jwt_access_token,
-                    # "refresh_token": jwt_refresh_token,
-                }
-            )
-        )
-
-        return response, 200
     except Exception as e:
         print("Error in Google OAuth callback:", e)
         return (
