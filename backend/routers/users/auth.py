@@ -18,6 +18,7 @@ import requests
 import bcrypt
 import jwt
 import os
+import json
 
 load_dotenv()
 user_auth = Blueprint("user_auth", __name__)
@@ -28,6 +29,9 @@ REDIRECT_URI = os.getenv("REDIRECT_URI")
 GOOGLE_TOKEN_URL = os.getenv("GOOGLE_TOKEN_URL")
 GOOGLE_TOKEN_INFO_URL = os.getenv("GOOGLE_TOKEN_INFO_URL")
 GOOGLE_TOKEN_INFO_URL_2 = os.getenv("GOOGLE_TOKEN_INFO_URL_2")
+
+with open(os.path.join(os.path.dirname(__file__), "sections.json"), "r") as f:
+    SECTIONS_TEMPLATE = json.load(f)
 
 
 @user_auth.route("/auth/google/callback", methods=["POST"])
@@ -118,6 +122,21 @@ def google_callback():
                 user_data["username"] = username
                 user_data["picture"] = picture
                 users.insert_one(user_data)
+                user = users.find_one({"email": email}) 
+
+                resources = mongo.db.resources_page
+                default_sections = SECTIONS_TEMPLATE.copy() 
+
+                for section in default_sections:
+                    for item in section["items"]:
+                        item["completed"] = False
+                        item["revision"] = False
+
+                resources.insert_one({
+                    "user_id": str(user["_id"]),
+                    "sections": default_sections
+                })
+
                 
                 # Get the newly created user
                 user = users.find_one({"email": email})
