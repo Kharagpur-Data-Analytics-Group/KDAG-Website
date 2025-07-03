@@ -45,7 +45,7 @@ const UserProfilePublic = () => {
 		};
 
 		fetchUserInfo();
-	}, []);
+	}, [user_id]);
 	
 	const history = useHistory();
 	useEffect(() => {
