@@ -58,7 +58,7 @@ const UserProfileSelf = () => {
 		if (!isLoggedIn) {
 			history.push("/auth");
 		}
-	}, [isLoggedIn]);
+	}, [history , isLoggedIn]);
 	const [activeContent, setActiveContent] = useState("content6");
 	const [toggle, setToggle] = useState(false);
 	const password_hashed = "***************  ";

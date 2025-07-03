@@ -28,7 +28,7 @@ const GoogleAuthCallback = () => {
 	}
 
 	useEffect(() => {
-		if (redirect == "Forum_page_") {
+		if (redirect === "Forum_page_" && register_college !== '' && register_firstName !== '' && register_lastName !== '' && register_userName !== '') {
 			history.push("/forum");
 		}
 	}, [redirect]);
@@ -53,6 +53,7 @@ const GoogleAuthCallback = () => {
 				})
 				.then((data) => {
 					const { access_token, user_info } = data;
+					console.log(data)
 					localStorage.setItem("access_token", access_token);
 					setRedirect(data.redirect);
 					setUid(data.uid);

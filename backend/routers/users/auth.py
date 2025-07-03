@@ -274,7 +274,6 @@ def auth_status():
             )
 
         user_info = response.json()
-        print("true")
         return jsonify({"loggedIn": True, "user": user_info})
 
     except jwt.InvalidTokenError:
@@ -309,9 +308,11 @@ def user_signup():
 
         updated_data = {key: data.get(key, user.get(key)) for key in reqd_fields}
         updated_data["active"] = True
+        print(uid)
 
-        if users.find_one({"username": updated_data["username"]}):
+        if users.find_one({"username": updated_data["username"], "_id": {"$ne": ObjectId(uid)}}):
             return jsonify({"message": "Please choose a different username"}), 400
+
 
         users.update_one({"_id": ObjectId(data.get("uid"))}, {"$set": updated_data})
 
