@@ -1,12 +1,46 @@
 // App.js
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DropdownSection from "./sheet.js";
 import initialSections from "./course.json";
 import ProgressCard from "./ProgressCard.js";
 import "./course.css";
 
 function App() {
+  const BASE_URL = process.env.REACT_APP_FETCH_URL;
+
   const [sections, setSections] = useState(initialSections);
+  const [Loading, setLoading] = useState(true);
+  // const [error, setError] = useState(false);
+ useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("access_token");  
+
+        const res = await fetch(`${BASE_URL}/resources/`, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch course data");
+
+        const data = await res.json();
+        // console.log("Fetched data:", data.sections);
+        // console.log("Fetched data:", data);
+//setting the courses 
+      setSections(data[0]?.sections || []);
+        
+      } catch (err) {
+        console.error("Error:", err);
+        // setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const totalSubtopics = initialSections.reduce(
     (total, section) => total + section.items.length,
     0
@@ -96,7 +130,7 @@ function App() {
       )
     );
   };
-
+  if (Loading) return <p> loading</p>
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-black px-2 py-8 app-container">
       <ProgressCard

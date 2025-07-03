@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from routers.users.auth import user_auth
+from routers.users.resources import resources
 from routers.posts.post_crud import post_crud
 from routers.replies.handle_replies import reply_crud
 # from routers.kdsh2025.register import kdsh2025
@@ -22,6 +23,7 @@ CORS(app)
 app.register_blueprint(user_auth, url_prefix="/user")
 app.register_blueprint(post_crud, url_prefix="/")
 app.register_blueprint(reply_crud, url_prefix="/reply")
+app.register_blueprint(resources,url_prefix="/resources")
 # app.register_blueprint(kdsh2025, url_prefix="/kdsh2025")
 # app.register_blueprint(kdsh2025_mod, url_prefix="/kdsh2025_mod")
 

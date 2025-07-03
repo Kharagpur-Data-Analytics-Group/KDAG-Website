@@ -12,6 +12,7 @@ coverage
 build
 
 # misc
+venv
 env
 .env
 .DS_Store

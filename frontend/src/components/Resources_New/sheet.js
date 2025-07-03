@@ -1,8 +1,8 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
 import LoginPrompt from "./LoginPrompt";
 import AuthStatus from "../AuthenticationPages/AuthStatus";
 import "./course.css";
-
+import { AuthContext } from "../../context/AuthContext";
 const Chevron = ({ open }) => (
   <svg
     className={`dropdown-chevron${open ? " open" : ""}`}
@@ -30,7 +30,8 @@ const DropdownSection = ({
   onToggleCompleted,
   onToggleRevision,
 }) => {
-  const { isLoggedIn } = AuthStatus();
+
+  const { isLoggedIn } = useContext(AuthContext);
   const [showPrompt, setShowPrompt] = useState(false);
   const contentRef = useRef(null);
   const [maxHeight, setMaxHeight] = useState("0px");
@@ -41,6 +42,9 @@ const DropdownSection = ({
   const progressPercent = total > 0 ? (completed / total) * 100 : 0;
 
   useEffect(() => {
+    if (!isLoggedIn) {
+      setShowPrompt(true);
+    }
     if (open) {
       setShouldRender(true);
       setTimeout(() => {

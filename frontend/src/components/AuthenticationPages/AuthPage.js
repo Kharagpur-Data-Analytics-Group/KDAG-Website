@@ -36,11 +36,11 @@ const AuthPage = () => {
 	};
 
 	if (rDirect) {
-		history.push("/forum");
+		history.push("/resources_new");
 	}
 
 	if (isLoggedIn) {
-		history.push("/forum");
+		history.push("/resources_new");
 	}
 
 	const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;

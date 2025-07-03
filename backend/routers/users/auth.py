@@ -16,12 +16,14 @@ from bson import ObjectId
 from datetime import timedelta
 import requests
 import bcrypt
+from pymongo import MongoClient
 import jwt
 import os
 import json
 
 load_dotenv()
 user_auth = Blueprint("user_auth", __name__)
+MONGO_URI=os.getenv("MONGO_URI")
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
@@ -38,7 +40,7 @@ with open(os.path.join(os.path.dirname(__file__), "sections.json"), "r") as f:
 def google_callback():
     try:
         from app import mongo
-
+ 
         data = request.get_json()
         code = data.get("code")
 
@@ -78,7 +80,7 @@ def google_callback():
         else:
             print("Expiration time not provided in the token response.")
 
-        users = mongo.db.users
+        users = mongo.cx["KDAG-BACKEND"].users
         user_data = {}
         user_data["is_admin"] = False
         user_data["active"] = False
@@ -124,7 +126,7 @@ def google_callback():
                 users.insert_one(user_data)
                 user = users.find_one({"email": email}) 
 
-                resources = mongo.db.resources_page
+                resources = mongo.cx["KDAG-BACKEND"].resources_page
                 default_sections = SECTIONS_TEMPLATE.copy() 
 
                 for section in default_sections:
@@ -207,7 +209,7 @@ def google_callback():
     except Exception as e:
         print("Error in Google OAuth callback:", e)
         return (
-            jsonify({"error": "An error occurred during the authentication process -- {e}"}),
+            jsonify({"error": f"An error occurred during the authentication process -- {e}"}),
             500,
         )
 
@@ -287,7 +289,7 @@ def user_signup():
     try:
         from app import mongo
 
-        users = mongo.db.users
+        users = mongo.cx["KDAG-BACKEND"].users
         data = request.get_json()
 
         uid = data.get("uid")
@@ -327,7 +329,7 @@ def user_signup():
 # def add_fields_to_users():
 #     try:
 #         from app import mongo
-#         mongo.db.users.update_many(
+#         mongo.cx.["KDAG-BACKEND"].users.update_many(
 #             {},
 #             {
 #                 "$set": {
@@ -349,7 +351,7 @@ def user_login():
         from app import mongo
 
         data = request.get_json()
-        users = mongo.db.users
+        users = mongo.cx["KDAG-BACKEND"].users
         user = users.find_one({"username": data["username"]})
         if user and bcrypt.checkpw(
             data["password"].encode("utf-8"), user["password"].encode("utf-8")
@@ -394,7 +396,7 @@ def profile(uid):
     try:
         from app import mongo
 
-        users = mongo.db.users
+        users = mongo.cx["KDAG-BACKEND"].users
         user = users.find_one(ObjectId(uid))
         if not user:
             user_info = {
@@ -443,7 +445,7 @@ def profile_self(uid):
         if "error" in token_info:
             return jsonify({"message": "Invalid access token"}), 401
 
-        users = mongo.db.users
+        users = mongo.cx["KDAG-BACKEND"].users
         user = users.find_one(ObjectId(uid))
 
         if not user:
@@ -463,7 +465,7 @@ def edit_profile(uid):
     try:
         from app import mongo
 
-        users = mongo.db.users
+        users = mongo.cx["KDAG-BACKEND"].users
         data = request.get_json()
         current_user = get_jwt_identity()
         if current_user["user_id"] != uid:
@@ -518,7 +520,7 @@ def refresh_google_access_token():
         )
         token_info = token_info_response.json()
 
-        user = mongo.db.users.find_one({"_id": ObjectId(uid)})
+        user = mongo.cx["KDAG-BACKEND"].users.find_one({"_id": ObjectId(uid)})
         if not user or "refresh_token" not in user:
             return (
                 jsonify({"message": "No refresh token found, please re-authenticate"}),
