@@ -9,27 +9,20 @@ function App() {
   const BASE_URL = process.env.REACT_APP_FETCH_URL;
 
   const [sections, setSections] = useState(initialSections);
-  const [Loading, setLoading] = useState(true);
-  // const [error, setError] = useState(false);
- useEffect(() => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem("access_token");  
-
+        const token = localStorage.getItem("access_token");
         const res = await fetch(`${BASE_URL}/resources/`, {
           headers: {
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
-
         if (!res.ok) throw new Error("Failed to fetch course data");
-
         const data = await res.json();
-        // console.log("Fetched data:", data.sections);
-        // console.log("Fetched data:", data);
-//setting the courses 
-      setSections(data[0]?.sections || []);
-        
+        setSections(data[0]?.sections || []);
       } catch (err) {
         console.error("Error:", err);
         // setError(err.message);
@@ -37,10 +30,10 @@ function App() {
         setLoading(false);
       }
     };
-
     fetchData();
-  }, []);
+  }, [BASE_URL]);
 
+  // Progress calculations
   const totalSubtopics = initialSections.reduce(
     (total, section) => total + section.items.length,
     0
@@ -50,7 +43,6 @@ function App() {
       total + section.items.filter((item) => item.completed).length,
     0
   );
-
   const easyCount = initialSections.reduce(
     (total, section) =>
       total + section.items.filter((item) => item.difficulty === "Easy").length,
@@ -67,7 +59,6 @@ function App() {
       total + section.items.filter((item) => item.difficulty === "Hard").length,
     0
   );
-
   const easyCompleted = sections.reduce(
     (total, section) =>
       total +
@@ -95,42 +86,84 @@ function App() {
 
   const [openIndex, setOpenIndex] = useState(null);
 
-  const percentage = ((totalCompleted / totalSubtopics) * 100).toFixed(1);
-  const circumference = 2 * Math.PI * 45;
-  const offset = circumference - (circumference * percentage) / 100;
+  // PATCH handlers
+  const handleToggleCompleted = async (sectionIdx, itemIdx) => {
+    const section = sections[sectionIdx];
+    const item = section.items[itemIdx];
+    const newValue = !item.completed;
 
-  const handleToggleCompleted = (sectionIdx, itemIdx) => {
-    setSections((prevSections) =>
-      prevSections.map((section, sIdx) =>
-        sIdx === sectionIdx
-          ? {
-              ...section,
-              items: section.items.map((item, iIdx) =>
-                iIdx === itemIdx
-                  ? { ...item, completed: !item.completed }
-                  : item
-              ),
-            }
-          : section
-      )
-    );
+    try {
+      const token = localStorage.getItem("access_token");
+      await fetch(`${BASE_URL}/resources/update`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          section_title: section.title,
+          item_name: item.name, 
+          field: "completed",
+          value: newValue,
+        }),
+      });
+
+      setSections((prev) =>
+        prev.map((sec, sIdx) =>
+          sIdx === sectionIdx
+            ? {
+                ...sec,
+                items: sec.items.map((itm, iIdx) =>
+                  iIdx === itemIdx ? { ...itm, completed: newValue } : itm
+                ),
+              }
+            : sec
+        )
+      );
+    } catch (err) {
+      console.error("Error updating completion status:", err);
+    }
   };
 
-  const handleToggleRevision = (sectionIdx, itemIdx) => {
-    setSections((prevSections) =>
-      prevSections.map((section, sIdx) =>
-        sIdx === sectionIdx
-          ? {
-              ...section,
-              items: section.items.map((item, iIdx) =>
-                iIdx === itemIdx ? { ...item, revision: !item.revision } : item
-              ),
-            }
-          : section
-      )
-    );
+  const handleToggleRevision = async (sectionIdx, itemIdx) => {
+    const section = sections[sectionIdx];
+    const item = section.items[itemIdx];
+    const newValue = !item.revision;
+
+    try {
+      const token = localStorage.getItem("access_token");
+      await fetch(`${BASE_URL}/resources/update`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          section_title: section.title,
+          item_name: item.name, 
+          field: "revision",
+          value: newValue,
+        }),
+      });
+
+      setSections((prev) =>
+        prev.map((sec, sIdx) =>
+          sIdx === sectionIdx
+            ? {
+                ...sec,
+                items: sec.items.map((itm, iIdx) =>
+                  iIdx === itemIdx ? { ...itm, revision: newValue } : itm
+                ),
+              }
+            : sec
+        )
+      );
+    } catch (err) {
+      console.error("Error updating revision status:", err);
+    }
   };
-  if (Loading) return <p> loading</p>
+
+  if (loading) return <p>loading...</p>;
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-black px-2 py-8 app-container">
       <ProgressCard
