@@ -40,9 +40,7 @@ const DropdownSection = ({
   const completed = items.filter((i) => i.completed).length;
   const total = items.length;
   const progressPercent = total > 0 ? (completed / total) * 100 : 0;
-  if (!isLoggedIn) {
-    setShowPrompt(true)
-}
+
   useEffect(() => {
   
     setShowPrompt(false);
