@@ -478,6 +478,9 @@ def edit_profile(uid):
 
         reqd_fields = ["username", "f_name", "l_name", "email", "phone", "college"]
         updated_data = {key: user.get(key) for key in reqd_fields}
+        
+        if users.find_one({"username": updated_data["username"], "_id": {"$ne": ObjectId(uid)}}):
+            return jsonify({"message": "Please choose a different username"}), 400
 
         for key in reqd_fields:
             if data.get(key) is not None:

@@ -19,9 +19,12 @@ const active_style = {
 
 const Navbar = ({ noborder }) => {
 	const history = useHistory();
-	const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+	const { isLoggedIn, setIsLoggedIn, checkAuthStatus } = useContext(AuthContext);
 	const [userId, setUserId] = useState("empty");
 	const token = localStorage.getItem("access_token");
+	useEffect(() => {
+		checkAuthStatus();
+	  }, []);
 
 	useEffect(() => {
 		if (token) {

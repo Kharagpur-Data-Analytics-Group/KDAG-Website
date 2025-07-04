@@ -163,7 +163,7 @@ const EditProfile = () => {
 									onChange={(e) => setPhone(e.target.value)}
 								/>
 							</div>
-							<input type="submit" value="Update" style={{cursor:"none"}}/>
+							<input type="submit" value="Update"/>
 						</form>
 					</div>
 				</div>

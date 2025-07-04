@@ -527,7 +527,7 @@ body {
 
 input[type="text"] {
   height: 40px;
-  cursor: none;
+  /* cursor: none; */
 }
 
 input[type="text"]:active,

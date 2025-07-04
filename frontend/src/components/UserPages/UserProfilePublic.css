@@ -22,8 +22,8 @@
 .edit_profile_button a {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-    margin-bottom: 20px;
+	/* justify-content: center; */
+    margin-bottom: 2px;
     margin-left: 4px;
 }
 .edit_profile_button a img {
