@@ -12,26 +12,54 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem("access_token");
-        const res = await fetch(`${BASE_URL}/resources/`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        if (!res.ok) throw new Error("Failed to fetch course data");
-        const data = await res.json();
-        setSections(data[0]?.sections || []);
-      } catch (err) {
-        console.error("Error:", err);
-        // setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [BASE_URL]);
+  const fetchData = async () => {
+    try {
+      const token = localStorage.getItem("access_token");
+      const res = await fetch(`${BASE_URL}/resources/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!res.ok) throw new Error("Failed to fetch course data");
+      const data = await res.json();
+
+      const updatedSections = data[0]?.sections || [];
+
+      // Merge backend data with initialSections
+      const merged = initialSections.map((initialSection) => {
+        const matchingBackendSection = updatedSections.find(
+          (s) => s.title === initialSection.title
+        );
+
+        if (!matchingBackendSection) return initialSection;
+
+        return {
+          ...initialSection,
+          items: initialSection.items.map((initialItem) => {
+            const matchingBackendItem = matchingBackendSection.items.find(
+              (i) => i.name === initialItem.name
+            );
+
+            return {
+              ...initialItem,
+              ...(matchingBackendItem || {}),
+              resource: initialItem.resource, // override resource from JSON always
+            };
+          }),
+        };
+      });
+
+      setSections(merged);
+    } catch (err) {
+      console.error("Error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, [BASE_URL]);
+
 
   // Progress calculations
   const totalSubtopics = initialSections.reduce(
