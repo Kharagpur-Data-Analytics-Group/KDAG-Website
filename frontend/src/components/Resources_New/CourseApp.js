@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import DropdownSection from "./sheet.js";
 import initialSections from "./course.json";
 import ProgressCard from "./ProgressCard.js";
+import Header from "./Header/Header.js";
 import "./course.css";
 
 function App() {
@@ -194,6 +195,7 @@ function App() {
   if (loading) return <p>loading...</p>;
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-black px-2 py-8 app-container">
+      <Header />
       <ProgressCard
         totalCompleted={totalCompleted}
         totalCount={totalSubtopics}

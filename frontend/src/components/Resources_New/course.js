@@ -7,7 +7,7 @@ const Course = () => {
   return (
     <>
       <Particless />
-      <div className="course-container" style={{ padding: "100px" }}></div>
+      <div className="course-container"></div>
       <App />
     </>
   );
