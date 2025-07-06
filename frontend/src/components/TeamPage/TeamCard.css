@@ -13,33 +13,33 @@
 	background: rgba(255, 255, 255, 0.042);
 	backdrop-filter: blur(3px);
 	font-weight: 500;
-	box-shadow: 
+	/* box-shadow: 
 		0px 0px 0 1px rgb(255, 255, 255),
 		07px -07px 0 -1px black,
 		07px -07px yellow, 
 		14px -14px 0 -1px rgb(0, 0, 0),
 		14px -14px 0 green,
 		21px -21px 0 -1px rgb(0, 0, 0),
-		21px -21px 0 red;
+		21px -21px 0 red; */
 	transition: all 0.7s, box-shadow 1s, top 1s, left 1s;
 }
 
-.member-card-head:hover {
+/* .member-card-head:hover {
 	background: white;
 	border-radius: 5px;
 	border-top-right-radius: 150px;
 	border-top-left-radius: 5px;
 	width: 105%;
-	height: auto;
-	box-shadow: 
+	height: auto; */
+/* box-shadow: 
 		0px 0px 0 1px rgb(255, 255, 255),
 		15px -15px 0 -1px black,
 		15px -15px rgb(255, 255, 255), 
 		-15px 15px 0 -1px rgb(0, 0, 0),
 		-15px 15px 0 rgb(255, 255, 255),
 		0px 0px 0 0px rgb(0, 0, 0),
-		0px 0px 0 rgb(255, 255, 255);
-}
+		0px 0px 0 rgb(255, 255, 255); */
+/* } */
 
 .member-card-wrapper {
 	width: 100%;
@@ -58,17 +58,17 @@
 	background: rgba(255, 255, 255, 0.042);
 	backdrop-filter: blur(3px);
 	font-weight: 500;
-	box-shadow: 
+	/* box-shadow: 
 		0px 0px 0 1px rgb(255, 255, 255),
 		15px -15px 0 -1px black,
 		15px -15px rgb(255, 255, 255), 
 		-15px 15px 0 -1px rgb(255, 255, 255),
-		-15px 15px 0 rgb(255, 255, 255);
+		-15px 15px 0 rgb(255, 255, 255); */
 	transition: all 0.7s, box-shadow 1s, top 1s, left 1s;
 }
 
 .member-card:hover {
-	background: white;
+	/* background: white;
 	border-top-right-radius: 150px;
 	width: 80%;
 	box-shadow: 
@@ -76,19 +76,21 @@
 	20px -20px 0 -1px black,
 	20px -20px rgb(255, 255, 255), 
 	-20px 20px 0 -1px black,
-	-20px 20px 0 rgb(255, 255, 255);
+	-20px 20px 0 rgb(255, 255, 255); */
+	background-color: rgba(104, 58, 58, 0.15);
+	box-shadow: 0 0 25px rgba(250, 57, 70, 1);
 }
 
 .member-card:hover p {
-	color: black;
+	color: rgb(211, 33, 33);
 	border-top-right-radius: 50px;
 	font-weight: 800;
 }
 
 .member-card-head:hover p {
-	color: black;
+	color: #fb8787;
 	border-top-right-radius: 50px;
-	font-weight: 800;
+	/* font-weight: 800; */
 }
 
 .member-profile-image {
@@ -117,7 +119,7 @@
 	transition: all 0.8s;
 }
 
-.member-card:hover .member-profile-image {
+/* .member-card:hover .member-profile-image {
 	height: 14rem;
 	width: 14rem;
 	top: 0px;
@@ -126,9 +128,9 @@
 	border-bottom-left-radius: 0;
 	border-top-left-radius: 0;
 	box-shadow: 5px 5px 10px rgb(60, 60, 60);
-}
+} */
 
-.member-card-head:hover .member-profile-image-head {
+/* .member-card-head:hover .member-profile-image-head {
 	height: 14rem;
 	width: 14rem;
 	top: 0px;
@@ -137,7 +139,7 @@
 	border-bottom-left-radius: 0;
 	border-top-left-radius: 0;
 	box-shadow: 5px 5px 10px rgb(60, 60, 60);
-}
+} */
 
 .member-profile-image img {
 	width: 100%;
@@ -161,14 +163,14 @@
 
 .member-name-head {
 	font-size: 1.5rem;
-    text-align: center;
-    color: #fff;
-    height: 65px;
-    position: relative;
-    bottom: 0px;
-    transition: all 0.5s;
-    font-family: 'Satisfy', cursive;
-    line-height: 25px;
+	text-align: center;
+	color: #fff;
+	height: 65px;
+	position: relative;
+	bottom: 0px;
+	transition: all 0.5s;
+	font-family: 'Satisfy', cursive;
+	line-height: 25px;
 }
 
 .member-card:hover .member-name {
@@ -227,20 +229,21 @@
 }
 
 .member-social-icon-icon:hover {
-	color: #f53d3d;
+	color: #fb8787;
 }
 
 @media screen and (max-width: 1200px) {
 	.member-profile-follow {
 		opacity: 1;
 	}
-	.member-card:hover {
+
+	/* .member-card:hover {
 		border-top-right-radius: 120px;
-	}
-	.member-card:hover .member-profile-image {
+	} */
+	/* .member-card:hover .member-profile-image {
 		top: 0px;
 		left: -35px;
-	}
+	} */
 }
 
 @media screen and (max-width: 1000px) {
@@ -249,6 +252,7 @@
 		max-width: 15rem;
 		margin: 1.4rem;
 	}
+
 	.member-card {
 		padding: 2rem;
 		border-radius: 5px;
@@ -262,41 +266,45 @@
 		font-weight: 500;
 		box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
 	}
+
 	.member-card-head {
-		box-shadow: 0px 0px 0 1px rgb(255, 255, 255), 06px -06px 0 -1px black,
+		/* box-shadow: 0px 0px 0 1px rgb(255, 255, 255), 06px -06px 0 -1px black,
 		06px -06px yellow, 12px -12px 0 -1px rgb(0, 0, 0), 12px -12px 0 red,
-		18px -18px 0 -1px rgb(0, 0, 0), 18px -18px 0 blue;
+		18px -18px 0 -1px rgb(0, 0, 0), 18px -18px 0 blue; */
 	}
 
 	.member-card:hover {
 		transform: scale(1.05);
-		background: white;
+		/* background: white;
 		border-top-right-radius: 80px;
-		width: 110%;
-		box-shadow: 
+		width: 110%; */
+		background-color: rgba(104, 58, 58, 0.15);
+		box-shadow: 0 0 25px rgba(250, 57, 70, 1);
+		/* box-shadow: 
 		0px 0px 0 1px rgb(255, 255, 255),
 		10px -10px 0 -1px black,
 		10px -10px rgb(255, 255, 255), 
 		-10px 10px 0 -1px black,
-		-10px 10px 0 rgb(255, 255, 255);
+		-10px 10px 0 rgb(255, 255, 255); */
 	}
+
 	.member-card-head:hover {
-		transform: scale(1.05);
-		background: white;
+		transform: scale(2.05);
+		/* background: white;
 		border-top-right-radius: 100px;
-		width: 100%;
+		width: 100%; */
 	}
-	.member-card-head:hover .member-profile-image-head {
+	/* .member-card-head:hover .member-profile-image-head {
 		height: 12rem;
 		width: 12rem;
 		top: 0px;
 		left: -30px;
-	}
+	} */
 }
 
 @media screen and (max-width: 800px) {
 	.member-profile-follow {
-		color: #777;
+		color: #ea1313;
 		display: flex;
 		justify-content: space-between;
 		position: relative;
@@ -304,7 +312,23 @@
 		transition: all 0.3s;
 		opacity: 1;
 	}
+
 	.member-social-icon {
 		padding-right: 0px;
 	}
+}
+
+.member-card-head .member-name-head {
+	color: #fb8787;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.member-card-head:hover{
+	background-color: rgba(104, 58, 58, 0.15);
+    box-shadow: 0 0 25px rgba(250, 57, 70, 1)
+}
+
+.member-card-head p{
+	color: #f7f7f7;
+	font-weight: bold;
 }
