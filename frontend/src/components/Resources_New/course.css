@@ -24,10 +24,11 @@ body {
   padding: 22px;
   cursor: pointer;
   border-radius: 16px;
- 
   border-bottom: 1px solid #ff1a1a44;
   gap: 18px;
 }
+
+
 
 .dropdown-header:hover {
   background: linear-gradient(90deg, #300008 0%, #4d000f 100%);
@@ -146,6 +147,7 @@ td.center.checkbox-cell {
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.05em;
+
 }
 
 .custom-table td {
@@ -159,7 +161,7 @@ td.center.checkbox-cell {
 }
 
 .custom-table td.center,
-.custom-table th.status-heading {
+.custom-table th.center-th {
   text-align: center;
 }
 
