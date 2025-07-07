@@ -1,11 +1,13 @@
+# External dependency required: Pandoc CLI (https://pandoc.org/installing.html)
+# Install Pandoc separately; not a Python package
+#
+# All Python dependencies below:
 aiohappyeyeballs==2.4.4
 aiohttp==3.11.10
 aiosignal==1.3.2
 attrs==24.3.0
 bcrypt==4.1.2
-beautifulsoup4==4.12.2
 blinker==1.7.0
-bson==0.5.1
 cachetools==5.5.0
 certifi==2024.8.30
 cffi==1.17.1
@@ -15,7 +17,6 @@ colorama==0.4.6
 cryptography==44.0.0
 Deprecated==1.2.15
 dnspython==2.6.1
-docx_viewer==0.9.0
 Flask==3.0.2
 Flask-Cors==4.0.0
 Flask-JWT-Extended==4.6.0
@@ -28,7 +29,6 @@ httplib2==0.22.0
 idna==3.10
 itsdangerous==2.1.2
 Jinja2==3.1.3
-mammoth==1.5.0
 MarkupSafe==2.1.5
 multidict==6.1.0
 oauthlib==3.2.2
