@@ -10,12 +10,12 @@
 }
 
 .logout_container_01:hover button{
-    box-shadow: 2px 2px 0px white;
+    /*box-shadow: 2px 2px 0px white;*/
 }
 
 .logout_container_01 button{
-    border-radius: 50%;
-	cursor:none;
+    border-radius: 0%;
+	cursor: auto;
     padding: 10px 12px;
 	border-radius: 60px;
 	font-weight: 600;
