@@ -31,7 +31,7 @@ const GoogleAuthCallback = () => {
 		if (redirect === "Forum_page_" && register_college !== '' && register_firstName !== '' && register_lastName !== '' && register_userName !== '') {
 			history.push("/forum");
 		}
-	}, [redirect]);
+	}, [redirect, register_college, register_firstName, register_lastName, register_userName]);
 
 	useEffect(() => {
 		const queryParams = new URLSearchParams(location.search);
@@ -67,6 +67,8 @@ const GoogleAuthCallback = () => {
 						const email = user_info.email || "";
 						const username = email.split('@')[0] || "";
 						setRegister_userName(username);
+						setRegister_college(user_info.college || "");
+						setRegister_phone(user_info.phone || "");
 					}
 				})
 				.catch((error) => {
@@ -167,12 +169,14 @@ const GoogleAuthCallback = () => {
 										type="text"
 										placeholder="College"
 										required
+										value={register_college}
 										onChange={(e) => setRegister_college(e.target.value)}
 									/>
 									<input
 										type="number"
 										placeholder="Phone No."
 										required
+										value={register_phone}
 										onChange={(e) => setRegister_phone(e.target.value)}
 									/>
 
