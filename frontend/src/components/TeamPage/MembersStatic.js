@@ -1,81 +1,106 @@
 const members = [
 	{
-		image: "images/Heads_2024_Photos/Siddharth.jpeg",
-		name: "Siddharth Jain",
-		email: "sid73372211@icloud.com",
-		facebook: "",
-		twitter: "www.twitter.com",
-		linkedin: "https://www.linkedin.com/in/siddharth-jain-4a0a0724b",
-	},
-	{
-		image: "images/Heads_2024_Photos/Nyasa.jpeg",
-		name: "Nyasa",
-		email: "nyasajha@gmail.com",
-		facebook: "https://www.facebook.com/profile.php?id=61555053890291&mibextid=ZbWKwL",
-		linkedin: "https://www.linkedin.com/in/nyasa-5ab168287",
+		image: "images/Heads_2025_photos/Asmit.jpeg",
+		name: "Asmit Chauhan",
+		email: "asmit.chauhan.2005@gmail.com" ,
+		linkedin: "http://linkedin.com/in/asmit-chauhan-2606612a8",
+        instagram:"https://www.instagram.com/asmit_chauhan_05/",
+
 	},
 
-	{
-		image: "images/Heads_2024_Photos/Ishan.jpeg",
-		name: "Ishan Mukherjee",
-		email: "smukherjeemaths@gmail.com",
-		facebook: "https://www.facebook.com/ishan.mukherjee.92?mibextid=ZbWKwL",
-		twitter: "www.twitter.com",
-		linkedin: "https://www.linkedin.com/in/ishan-mukherjee-b07129288",
-	},
+    {
+        image: "images/Heads_2025_photos/Raghuveer.jpeg",
+		name: "Raghuveer V",
+		email: "vraghuveer382@gmail.com" ,
+		linkedin: "https://www.linkedin.com/in/raghuveer-v/",
+        instagram:"https://www.instagram.com/aceking_raghu/",
+        facebook: "https://www.facebook.com/raghuveer.v.52/",
+    },
 
-	{
-		image: "images/Heads_2024_Photos/Devodita.jpeg",
-		name: "Devodita Chakravarty",
-		email: "devoditac@kgpian.iitkgp.ac.in",
-		facebook: "https://www.facebook.com/profile.php?id=100087751952869&mibextid=ZbWKwL",
-		twitter: "www.twitter.com",
-		linkedin: "https://www.linkedin.com/in/devodita",
-	},
+    {
+        image: "images/Heads_2025_photos/Aiswani.png",
+		name: "Aiswani Mondal",
+		email: "bwnaiswani2005@gmail.com" ,
+		linkedin: "https://in.linkedin.com/in/aiswani-mondal-036888289",
+    },
 
-	{
-		name: "Aakarsh Raaj",
-		image: "images/Heads_2024_Photos/Aakarsh.jpg",
-		email: "aakarshraaj032@gmail.com",
-		facebook: "https://www.facebook.com/profile.php?id=100088122276212&mibextid=ZbWKwL",
-		twitter: "www.twitter.com",
-		linkedin: "https://www.linkedin.com/in/aakarsh-raaj-959a02257",
-	},
+    {
+        image: "images/Heads_2025_photos/Shaurya.jpeg",
+		name: "Shaurya Raj",
+		email: "shauryaraj694@gmail.com" ,
+		linkedin: "https://www.linkedin.com/in/shaurya-raj-921261298/",
+        instagram:"https://www.instagram.com/_shaurya.raj_/",
+    },
 
-	{
-		name: "Rwik Dey",
-		image: "images/Heads_2024_Photos/Rwik.jpg",
-		email: "rwikdey@gmail.com",
-		facebook: "https://www.facebook.com/profile.php?id=100087640278350&mibextid=ZbWKwL",
-		twitter: "www.twitter.com",
-		linkedin: "https://www.linkedin.com/in/rwik-dey-840b70254",
-	},
+    {
+        image: "images/Heads_2025_photos/Madhav.jpeg",
+		name: "Madhav Agarwal",
+		email: "madhavagarwal50@gmail.com" ,
+		linkedin: "https://www.linkedin.com/in/madhav-agarwal07?",
+        instagram:"https://www.instagram.com/madhav_agarwal04?igsh=c25xNTQ3azQ5bGV6&utm_source=qr",
+        facebook: "https://www.facebook.com/share/1CpExbxY9L/?mibextid=wwXIfr",
+    },
 
-	{
-		name: "Bhavesh Pabnani",
-		image: "images/Heads_2024_Photos/Bhavesh.jpg",
-		email: "bhaveshpabnani@gmail.com",
-		facebook: "https://www.facebook.com/profile.php?id=100087666813728&mibextid=ZbWKwL",
-		twitter: "www.twitter.com",
-		linkedin: "https://www.linkedin.com/in/bhavesh-pabnani-97a033250",
-	},
+    {
+        image: "images/Heads_2025_photos/Geetesh.jpeg",
+		name: "Geetesh Chandra Paidi",
+		email: "paidigeetesh@gmail.com" ,
+		linkedin: "www.linkedin.com/in/geeteshchandrapaidi",
+        instagram:"https://www.instagram.com/geeteshchandrapaidi?igsh=azhwaG5td3BvN2I=",
+        facebook: "https://www.facebook.com/TryingToCookSomeFood/about",
+    },
 
-	{
-		name: "Subarno Maji",
-		image: "images/Heads_2024_Photos/Subarno.jpeg",
-		email: "subarnomaji@gmail.com",
-		facebook: "https://www.facebook.com/profile.php?id=100083622261232&mibextid=ZbWKwL",
-		linkedin: "https://www.linkedin.com/in/subarno-maji-6076a425b",
-	},
+    {
+        image: "images/Heads_2025_photos/Prabhat.jpeg",
+		name: "Prabhat Kumar",
+		email: "princeranjan1721@gmail.com" ,
+		linkedin: "https://www.linkedin.com/in/prabhat-kumar-02307a290",
+        instagram:"https://www.instagram.com/pra_bhat_2/",
+        facebook: "https://www.facebook.com/profile.php?id=100050500339759",
+    },
 
-	{
-		name: "Srinjoy Das",
-		image: "images/Heads_2024_Photos/Srinjoy.jpeg",
-		email: "srinjoydas566@gmail.com",
-		facebook: "https://www.facebook.com/srinjoy.das.12?mibextid=ZbWKwL",
-		twitter: "www.twitter.com",
-		linkedin: "https://www.linkedin.com/in/srinjoy-das-174648202",
-	},
+    {
+        image: "images/Heads_2025_photos/Shehryaar.jpeg",
+		name: "Shehryaar Shah Khan",
+		email: "shehryaarshahkhan@gmail.com" ,
+		linkedin: "https://www.linkedin.com/in/shehryaar-shah-khan-4a18b9308?",
+    },
+
+    {
+        image: "images/Heads_2025_photos/Utkarsh.jpeg",
+		name: "Utkarsh Mishra",
+		email: "utmmishra2005@gmail.com" ,
+		linkedin: "https://www.linkedin.com/in/utkarsh-mishra-a23539289?",
+        instagram:"https://www.instagram.com/utkarshmishra25125/",
+        facebook: "https://www.facebook.com/share/16MJpSZT3F/?mibextid=wwXIfr",
+    },
+
+    {
+        image: "images/Heads_2025_photos/Pratyush.jpeg",
+		name: "Pratyush Chatterjee",
+		email: "chatterjeepratyush2006@gmail.com" ,
+		linkedin: "https://www.linkedin.com/in/pchat",
+        instagram:"https://www.instagram.com/the__prat_?igsh=em5xZmZ5dGRwdm1m",
+    },
+
+    {
+        image: "images/Heads_2025_photos/Udit.jpeg",
+		name: "Udit Mohan",
+		email: "uditmpradhan@gmail.com" ,
+		linkedin: "https://www.linkedin.com/in/uditmohanpradhan?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        instagram:"https://www.instagram.com/_udit.__.raj_?igsh=MWo5bmk2aGl1ZW16aw==",
+        facebook: "https://www.facebook.com/share/1FF7nTd2Li/",
+    },
+
+    {
+        image: "images/Heads_2025_photos/Nayandeep.jpeg",
+		name: "Nayandeep Deb",
+		email: "nayandeepdeb125@gmail.com" ,
+		linkedin: "https://www.linkedin.com/in/nayandeep-deb-882636290/",
+        instagram:"https://www.instagram.com/markio125/",
+        facebook: "https://www.facebook.com/share/19pbtBGuVK/?mibextid=qi2Omg",
+    },
+
 ];
 
 export default members;

@@ -7,6 +7,7 @@ from routers.users.auth import user_auth
 from routers.users.resources import resources
 from routers.posts.post_crud import post_crud
 from routers.replies.handle_replies import reply_crud
+from docx_viewer import docx_viewer
 # from routers.kdsh2025.register import kdsh2025
 # from routers.kdsh2025_mod.kdsh2025_mod import kdsh2025_mod
 
@@ -24,6 +25,7 @@ app.register_blueprint(user_auth, url_prefix="/user")
 app.register_blueprint(post_crud, url_prefix="/")
 app.register_blueprint(reply_crud, url_prefix="/reply")
 app.register_blueprint(resources,url_prefix="/resources")
+app.register_blueprint(docx_viewer, url_prefix="/docx")
 # app.register_blueprint(kdsh2025, url_prefix="/kdsh2025")
 # app.register_blueprint(kdsh2025_mod, url_prefix="/kdsh2025_mod")
 
@@ -34,5 +36,5 @@ def home():
     return "Hello World!!"
 
 
-# if __name__ == "__main__":
-#     app.run(debug=True, host="0.0.0.0", port=5000)
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=5000)

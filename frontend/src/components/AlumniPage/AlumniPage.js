@@ -10,6 +10,7 @@ import members_2021 from "./AlumniStatic2021";
 import members_2022 from "./AlumniStatic2022";
 import members_2023 from "./AlumniStatic2023";
 import members_2024 from "./AlumniStatic2024";
+import members_2025 from "./AlumniStatic2025";
 import Header from "./Header";
 import Fade from "react-reveal/Fade";
 import Particless from "../Common/Particles/Particless";
@@ -19,6 +20,14 @@ const AlumniPage = () => {
 	return (
 		<>
 			<Header />
+			<Fade left>
+				<AlumniPageHeading text="Graduating Batch Of 2025" />
+			</Fade>{" "}
+			<div className="alumni-members-list">
+				{members_2025?.map((member) => {
+					return <TeamCardAlum key={member.id} member={member} />;
+				})}
+			</div>
 			<Fade left>
 				<AlumniPageHeading text="Graduating Batch Of 2024" />
 			</Fade>{" "}

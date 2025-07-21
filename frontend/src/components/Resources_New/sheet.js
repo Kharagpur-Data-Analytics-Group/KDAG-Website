@@ -109,11 +109,11 @@ const DropdownSection = ({
             <table className="custom-table">
               <thead>
                 <tr>
-                  <th className="status-heading">Status</th>
+                  <th className="center-th">Status</th>
                   <th className="subtopic">Subtopic</th>
-                  <th>Resources</th>
-                  <th>Revision</th>
-                  <th>Difficulty</th>
+                  <th className="center-th"> Resources</th>
+                  <th className="center-th">Revision</th>
+                  <th className="center-th">Difficulty</th>
                 </tr>
               </thead>
               <tbody>
@@ -131,9 +131,10 @@ const DropdownSection = ({
                     <td className="center-icon">
                       {item.resource ? (
                         <a
-                          href={item.resource}
+                          href={`http://127.0.0.1:5000/docx/view_docx?url=${encodeURIComponent(item.resource)}`}
                           target="_blank"
-                          rel="noreferrer"
+                          rel="noopener noreferrer"
+                          style={{ color: "#ff4040", textDecoration: "underline" }}
                         >
                           Link
                         </a>

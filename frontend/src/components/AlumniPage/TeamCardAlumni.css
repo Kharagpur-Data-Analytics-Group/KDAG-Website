@@ -15,33 +15,33 @@
 	border-top-right-radius: 5px;
 	border-top-left-radius: 5px;
 	width: 100%;
-	background: rgba(0, 0, 0, 0.205);
-	backdrop-filter: blur(3px);
+	/* background: rgba(0, 0, 0, 0.205); */
+	/* backdrop-filter: blur(3px); */
 	font-weight: 500;
-	box-shadow: 0px 0px 0 1px rgb(255, 255, 255), 15px -15px 0 -1px black,
+	/* box-shadow: 0px 0px 0 1px rgb(255, 255, 255), 15px -15px 0 -1px black,
 		15px -15px rgb(255, 255, 255), -15px 15px 0 -1px rgb(255, 255, 255),
-		-15px 15px 0 rgb(255, 255, 255);
+		-15px 15px 0 rgb(255, 255, 255); */
 	transition: all 0.7s, box-shadow 1s, top 1s, left 1s;
 }
 
-.alumni-member-card:hover {
+/* .alumni-member-card:hover {
 	background: white;
 	border-radius: 5px;
 	border-top-right-radius: 150px;
 	border-top-left-radius: 5px;
 	width: 105%;
-	height: auto;
-	box-shadow: 0px 0px 0 1px rgb(255, 255, 255), 15px -15px 0 -1px black,
+	height: auto; */
+	/* box-shadow: 0px 0px 0 1px rgb(255, 255, 255), 15px -15px 0 -1px black,
 		15px -15px rgb(255, 255, 255), -15px 15px 0 -1px rgb(0, 0, 0),
 		-15px 15px 0 rgb(255, 255, 255), 0px 0px 0 0px rgb(0, 0, 0),
-		0px 0px 0 rgb(255, 255, 255);
-}
+		0px 0px 0 rgb(255, 255, 255); */
+/* } */
 
-.alumni-member-card:hover p {
+/* .alumni-member-card:hover p {
 	color: black;
 	border-top-right-radius: 50px;
 	font-weight: 800;
-}
+} */
 
 .alumni-member-profile-image {
 	position: relative;
@@ -56,7 +56,7 @@
 	transition: all 0.8s;
 }
 
-.alumni-member-card:hover .alumni-member-profile-image {
+/* .alumni-member-card:hover .alumni-member-profile-image {
 	height: 14rem;
 	width: 14rem;
 	top: 0px;
@@ -65,7 +65,7 @@
 	border-bottom-left-radius: 0;
 	border-top-left-radius: 0;
 	box-shadow: 5px 5px 10px rgb(60, 60, 60);
-}
+} */
 
 .alumni-member-profile-image img {
 	width: 100%;
@@ -141,21 +141,21 @@
 }
 
 .alumni-member-social-icon-icon:hover {
-	color: #f53d3d;
+	color: #fb8787;
 }
 
 @media screen and (max-width: 1200px) {
 	.alumni-member-profile-follow {
 		opacity: 1;
 	}
-	.alumni-member-card:hover {
+	/* .alumni-member-card:hover {
 		border-top-right-radius: 120px;
 	}
 	.alumni-member-card:hover .alumni-member-profile-image {
 		top: 0px;
 		left: -35px;
-	}
-}
+	}*/
+} 
 
 @media screen and (max-width: 1000px) {
 	.alumni-member-card-wrapper {
@@ -170,32 +170,32 @@
 		border-top-left-radius: 5px;
 		transition: all 0.3s ease;
 		width: 90%;
-		background: rgba(255, 255, 255, 0.042);
+		/* background: rgba(255, 255, 255, 0.042); */
 		backdrop-filter: blur(3px);
 		transition: all 0.7s;
 		font-weight: 500;
-		box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
+		/* box-shadow: 0 0 2px rgba(255, 255, 255, 0.35); */
 		margin-bottom: 25px;
-		box-shadow: 0px 0px 0 1px rgb(255, 255, 255), 06px -06px 0 -1px black,
+		/* box-shadow: 0px 0px 0 1px rgb(255, 255, 255), 06px -06px 0 -1px black,
 			06px -06px yellow, 12px -12px 0 -1px rgb(0, 0, 0), 12px -12px 0 red,
-			18px -18px 0 -1px rgb(0, 0, 0), 18px -18px 0 blue;
+			18px -18px 0 -1px rgb(0, 0, 0), 18px -18px 0 blue; */
 	}
 
 	.alumni-member-card:hover {
-		box-shadow: 0px 0px 0 1px rgb(255, 255, 255), 10px -10px 0 -1px black,
+		/* box-shadow: 0px 0px 0 1px rgb(255, 255, 255), 10px -10px 0 -1px black,
 			10px -10px rgb(255, 255, 255), -10px 10px 0 -1px black,
-			-10px 10px 0 rgb(255, 255, 255);
-		transform: scale(1.05);
+			-10px 10px 0 rgb(255, 255, 255); */
+		/* transform: scale(1.05);
 		background: white;
 		border-top-right-radius: 100px;
-		width: 100%;
+		width: 100%; */
 	}
-	.alumni-member-card:hover .alumni-member-profile-image {
+	/* .alumni-member-card:hover .alumni-member-profile-image {
 		height: 12rem;
 		width: 12rem;
 		top: 0px;
 		left: -30px;
-	}
+	} */
 }
 
 @media screen and (max-width: 800px) {
@@ -211,4 +211,19 @@
 	.alumni-member-social-icon {
 		padding-right: 0px;
 	}
+}
+
+.alumni-member-card:hover{
+	background-color: rgba(104, 58, 58, 0.15);
+    box-shadow: 0 0 25px rgba(250, 57, 70, 1);
+}
+
+.alumni-member-card:hover p{
+	color: #fb8787;
+}
+
+
+.alumni-member-card p{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: bold;
 }

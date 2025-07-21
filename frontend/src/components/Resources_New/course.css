@@ -24,10 +24,11 @@ body {
   padding: 22px;
   cursor: pointer;
   border-radius: 16px;
-  background: linear-gradient(90deg, #1c000a 0%, #3a000f 100%);
   border-bottom: 1px solid #ff1a1a44;
   gap: 18px;
 }
+
+
 
 .dropdown-header:hover {
   background: linear-gradient(90deg, #300008 0%, #4d000f 100%);
@@ -146,6 +147,7 @@ td.center.checkbox-cell {
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.05em;
+
 }
 
 .custom-table td {
@@ -159,7 +161,7 @@ td.center.checkbox-cell {
 }
 
 .custom-table td.center,
-.custom-table th.status-heading {
+.custom-table th.center-th {
   text-align: center;
 }
 
@@ -248,6 +250,16 @@ input[type="checkbox"] {
   color: #ffffff;
   box-shadow: 0 0 8px #ff3b3b66;
 }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 @media (max-width: 768px) {
   .dropdown-title {

@@ -22,13 +22,15 @@ const TeamCard = ({ member }) => {
 						</div>
 						<div class="member-social-icon">
 							<div class="member-social-icon-icon">
-								<a
-									href={member?.facebook || "#"}
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									<i class="fab fa-facebook"></i>
-								</a>
+								{member?.facebook && (
+									<a
+										href={member?.facebook || "#"}
+										target="_blank"
+										rel="noreferrer noopener"
+									>
+										<i class="fab fa-facebook"></i>
+									</a>
+								)}
 							</div>
 							{/* <div class="member-social-icon-icon">
                 					 <a href={member?.twitter || "#"}><i class="fab fa-twitter"></i></a>
@@ -41,6 +43,24 @@ const TeamCard = ({ member }) => {
 								>
 									<i class="fab fa-linkedin"></i>
 								</a>
+							</div>
+							<div class="member-social-icon-icon">
+								{member?.instagram && (
+									<a
+										href={member.instagram}
+										target="_blank"
+										rel="noreferrer noopener"
+									>
+										<i className="fab fa-instagram"></i>
+									</a>
+								)}
+							</div>
+							<div class="member-social-icon-icon">
+								{member?.email && (
+									<a href={`mailto:${member.email}`}>
+										<i className="fas fa-envelope"></i>
+									</a>
+								)}
 							</div>
 						</div>
 					</div>
