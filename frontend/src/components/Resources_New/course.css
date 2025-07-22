@@ -260,6 +260,47 @@ input[type="checkbox"] {
   }
 }
 
+.custom-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  width: 100vw;
+  background: transparent;
+  z-index: 1000;
+}
+
+.custom-loading-spinner {
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 5px solid #ff4040;
+  border-top: 5px solid #1a0008;
+  border-radius: 50%;
+  animation: custom-spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 18px #ff404055;
+}
+
+@keyframes custom-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.custom-loading-text {
+  color: #ff4040;
+  font-size: 1.5rem;
+  font-family: "JetBrains Mono", monospace;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 12px #ff404055;
+  margin-bottom: 2rem;
+}
 
 @media (max-width: 768px) {
   .dropdown-title {

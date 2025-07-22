@@ -11,56 +11,64 @@ function App() {
 
   const [sections, setSections] = useState(initialSections);
   const [loading, setLoading] = useState(true);
+  const [openIndex, setOpenIndex] = useState(null);
 
   useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const token = localStorage.getItem("access_token");
-      const res = await fetch(`${BASE_URL}/resources/`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if (!res.ok) throw new Error("Failed to fetch course data");
-      const data = await res.json();
-
-      const updatedSections = data[0]?.sections || [];
-
-      // Merge backend data with initialSections
-      const merged = initialSections.map((initialSection) => {
-        const matchingBackendSection = updatedSections.find(
-          (s) => s.title === initialSection.title
-        );
-
-        if (!matchingBackendSection) return initialSection;
-
-        return {
-          ...initialSection,
-          items: initialSection.items.map((initialItem) => {
-            const matchingBackendItem = matchingBackendSection.items.find(
-              (i) => i.name === initialItem.name
-            );
-
-            return {
-              ...initialItem,
-              ...(matchingBackendItem || {}),
-              resource: initialItem.resource, // override resource from JSON always
-            };
-          }),
-        };
-      });
-
-      setSections(merged);
-    } catch (err) {
-      console.error("Error:", err);
-    } finally {
-      setLoading(false);
+    if (loading) {
+      document.body.classList.add("hide-footer");
+    } else {
+      document.body.classList.remove("hide-footer");
     }
-  };
+    return () => document.body.classList.remove("hide-footer");
+  }, [loading]);
 
-  fetchData();
-}, [BASE_URL]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("access_token");
+        const res = await fetch(`${BASE_URL}/resources/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!res.ok) throw new Error("Failed to fetch course data");
+        const data = await res.json();
 
+        const updatedSections = data[0]?.sections || [];
+
+        const merged = initialSections.map((initialSection) => {
+          const matchingBackendSection = updatedSections.find(
+            (s) => s.title === initialSection.title
+          );
+
+          if (!matchingBackendSection) return initialSection;
+
+          return {
+            ...initialSection,
+            items: initialSection.items.map((initialItem) => {
+              const matchingBackendItem = matchingBackendSection.items.find(
+                (i) => i.name === initialItem.name
+              );
+
+              return {
+                ...initialItem,
+                ...(matchingBackendItem || {}),
+                resource: initialItem.resource,
+              };
+            }),
+          };
+        });
+
+        setSections(merged);
+      } catch (err) {
+        console.error("Error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [BASE_URL]);
 
   // Progress calculations
   const totalSubtopics = initialSections.reduce(
@@ -113,9 +121,6 @@ function App() {
     0
   );
 
-  const [openIndex, setOpenIndex] = useState(null);
-
-  // PATCH handlers
   const handleToggleCompleted = async (sectionIdx, itemIdx) => {
     const section = sections[sectionIdx];
     const item = section.items[itemIdx];
@@ -192,7 +197,14 @@ function App() {
     }
   };
 
-  if (loading) return <p>loading...</p>;
+  if (loading)
+    return (
+      <div className="custom-loading-container">
+        <div className="custom-loading-spinner"></div>
+        <div className="custom-loading-text">Loading Resources...</div>
+      </div>
+    );
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-start bg-black px-2 py-8 app-container">
       <Header />

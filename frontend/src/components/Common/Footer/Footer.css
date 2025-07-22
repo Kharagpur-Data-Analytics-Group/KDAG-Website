@@ -4828,3 +4828,7 @@ ol.ui.horizontal.list li:before,
 	width: 1.5rem;
 	height: 1.5rem;
 }
+
+body.hide-footer footer, body.hide-footer .footer, body.hide-footer .footer-main-class {
+  display: none !important;
+}
