@@ -118,9 +118,14 @@ const GoogleAuthCallback = () => {
 				setUserMessage("Registration successful");
 				setShowUsermessage(true);
 				setIsSignUpActive(!isSignUpActive);
-				setInterval(() => {
+				
+
+				window.location.reload();
+setInterval(() => {
+
 					history.push("/forum");
 				}, 2000);
+
 			} else {
 				const jsonData = await response.json();
 				setUserMessage(jsonData.message);
