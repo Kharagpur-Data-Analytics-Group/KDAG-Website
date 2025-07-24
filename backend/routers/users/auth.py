@@ -203,6 +203,7 @@ def google_callback():
                             "uid": uid,
                             "user_info": user_info,
                             "redirect": "Forum_page_",
+                            "user_exists": True,
                             "access_token": jwt_access_token,
                         }
                     )
