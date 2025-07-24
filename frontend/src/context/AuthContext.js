@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const access_token = localStorage.getItem("access_token");
       if (access_token) {
+        // console.log("hello i am cheking auth")
         const response = await fetch(
           `${process.env.REACT_APP_FETCH_URL}/user/auth/google/status`,
           {
@@ -27,13 +28,15 @@ export const AuthProvider = ({ children }) => {
 
         if (response.ok) {
           const data = await response.json();
+
+          // console.log("data",data)
           if (data.loggedIn) {
+
             setIsLoggedIn(true);
             setUserInfo(data.user);
           } else {
             setIsLoggedIn(false);
             setUserInfo(null);
-            console.log(data);
           }
         } else {
           setIsLoggedIn(false);

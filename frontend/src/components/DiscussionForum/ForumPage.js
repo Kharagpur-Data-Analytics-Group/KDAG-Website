@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Header from "./Header";
 import Fade from "react-reveal/Fade";
 import Particless from "../Common/Particles/Particless";
 import DiscussionCard from "./DiscussionCard";
 import icon_add from "./asset_addition_symbol.png";
+import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 
 const ForumPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
+	const { isLoggedIn, setIsLoggedIn, checkAuthStatus } = useContext(AuthContext);
 	const [posts, setPosts] = useState([]);
 	const [searchQuery, setSearchQuery] = useState("");
 	const [filteredPosts, setFilteredPosts] = useState([]);
+
+	useEffect(() => {
+			checkAuthStatus();
+		  }, []);
 
 	useEffect(() => {
 		const fetchPosts = async () => {

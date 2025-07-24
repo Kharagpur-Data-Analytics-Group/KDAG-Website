@@ -4,6 +4,7 @@ import TeamCardSM from "./TeamCardSM";
 import TeamPageHeading from "./TeamPageHeading";
 import members from "./MembersStatic";
 import advisors from "./AdvisorsStatic";
+import seniorAdvisors from "./Senior-AdvisorsStatic"
 import Header from "./Header";
 import Fade from "react-reveal/Fade";
 import Particless from "../Common/Particles/Particless";
@@ -33,6 +34,16 @@ const TeamPage = () => {
 					return <TeamCardSM key={member.id} member={member} />;
 				})}
 			</div>
+
+			<Fade left>
+				<TeamPageHeading text="Senior Advisors" />
+			</Fade>
+			<div className="members-head-list-SM">
+				{seniorAdvisors?.map((member) => {
+					return <TeamCardSM key={member.id} member={member} />;
+				})}
+			</div>
+
 
 			<br />
 			<br />
