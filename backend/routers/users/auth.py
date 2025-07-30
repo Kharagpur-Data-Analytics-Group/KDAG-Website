@@ -191,13 +191,19 @@ def google_callback():
                 users.update_one(
                     {"_id": ObjectId(uid)}, {"$set": {"refresh_token": refresh_token}}
                 )
+                user_info = {
+                    **id_info,
+                    "phone": user.get("phone", ""),
+                    "college": user.get("college", "")
+                }
                 response = make_response(
                     jsonify(
                         {
                             "message": "You already have an account. Logging you in",
                             "uid": uid,
-                            "user_info": id_info,
+                            "user_info": user_info,
                             "redirect": "Forum_page_",
+                            "user_exists": True,
                             "access_token": jwt_access_token,
                         }
                     )
@@ -479,16 +485,16 @@ def edit_profile(uid):
         reqd_fields = ["username", "f_name", "l_name", "email", "phone", "college"]
         updated_data = {key: user.get(key) for key in reqd_fields}
         
-        if users.find_one({"username": updated_data["username"], "_id": {"$ne": ObjectId(uid)}}):
-            return jsonify({"message": "Please choose a different username"}), 400
 
         for key in reqd_fields:
             if data.get(key) is not None:
                 updated_data[key] = data[key]
 
+        if users.find_one({"username": updated_data["username"], "_id": {"$ne": ObjectId(uid)}}):
+            return jsonify({"message": "Please choose a different username"}), 400
+        
         users.update_one({"_id": ObjectId(uid)}, {"$set": updated_data})
 
-        updated_user = users.find_one({"_id": ObjectId(uid)})
 
         if (
             updated_data["username"]
