@@ -32,6 +32,7 @@ import PrivacyPolicy from "../components/Privacy Policies/PrivacyPolicy.js";
 import RegisterPage from "../components/RegisterPage/RegisterPage.js";
 import Success from "../components/RegisterPage/Success.js";
 import Course from "../components/Resources_New/course.js";
+import Register from '../components/AuthenticationPages/Register.js';
 
 const AppRouter = () => {
 	return (
@@ -72,6 +73,9 @@ const AppRouter = () => {
 							</Route>
 							<Route path="/google-auth/callback">
 								<GoogleCallback />
+							</Route>
+							<Route path={`/register`}>
+								<Register />	
 							</Route>
 							<Route path="/alumni">
 								<AlumniPage />

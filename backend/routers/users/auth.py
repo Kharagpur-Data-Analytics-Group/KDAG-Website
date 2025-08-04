@@ -43,6 +43,7 @@ def google_callback():
  
         data = request.get_json()
         code = data.get("code")
+        print("Received authorization code:", code)
 
         if not code:
             return jsonify({"error": "No authorization code provided"}), 400
