@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Header.css";
+// import "./Header.css";
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
