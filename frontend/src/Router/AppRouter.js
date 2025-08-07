@@ -33,6 +33,7 @@ import RegisterPage from "../components/RegisterPage/RegisterPage.js";
 import Success from "../components/RegisterPage/Success.js";
 import Course from "../components/Resources_New/course.js";
 import Register from '../components/AuthenticationPages/Register.js';
+import DocxLoader from "../components/Resources_New/DocxLoader.js";		
 
 const AppRouter = () => {
 	return (
@@ -55,6 +56,9 @@ const AppRouter = () => {
 							</Route>
 							<Route path="/resources">
 								<ResourcesPage />
+							</Route>
+							<Route exact path="/resources_new/docx_loader">
+								<DocxLoader />
 							</Route>
 							<Route path="/resources_new">
 								<Course />
