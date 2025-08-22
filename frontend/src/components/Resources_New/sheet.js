@@ -131,7 +131,7 @@ const DropdownSection = ({
                     <td className="center-icon">
                       {item.resource ? (
                         <a
-                          href={`/resources_new/docx_loader?url=${encodeURIComponent(item.resource)}&name=${encodeURIComponent(item.name)}`}
+                          href={`./Content/st11.html`}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{ color: "#ff4040", textDecoration: "underline" }}
