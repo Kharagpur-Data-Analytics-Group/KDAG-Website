@@ -96,8 +96,7 @@ const KdshSection = () => {
                           <i className="fa fa-check"></i>
                         </div>
                         <span>
-                          Collaborations with Top Companies in Tech and
-                          Analytics
+                          Collaborations with Top Companies in Tech
                         </span>
                       </div>
                     </div>
