@@ -18,7 +18,7 @@ const TeamCard = ({ member }) => {
                         </div> */}
 					<div class="member-profile-follow">
 						<div class="member-follow-text">
-							<span>Follow on</span>
+							<span>Follow</span>
 						</div>
 						<div class="member-social-icon">
 							<div class="member-social-icon-icon">
