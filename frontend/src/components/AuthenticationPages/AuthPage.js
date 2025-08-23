@@ -67,18 +67,18 @@ const AuthPage = () => {
 										<h1>Create Account</h1>
 										<button className="GoogleSignup" onClick={handleGoogleAuth}>
 											<img src={google_logo} alt="google_logo" />
-											<p>Sign Up with Google</p>
+											<p>Register</p>
 										</button>
 									</>
 								</form>
 							</div>
 							<div className="form-container sign-in">
 								<form onSubmit={submitLogin}>
-									<h1>Sign In</h1>
+									<h1>Login with Google</h1>
 									<>
 										<button className="GoogleSignup" onClick={handleGoogleAuth}>
 											<img src={google_logo} alt="google_logo" />
-											<p>Sign In with Google</p>
+											<p>Sign In</p>
 										</button>
 									</>
 								</form>
