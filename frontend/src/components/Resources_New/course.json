@@ -14,7 +14,7 @@
         "id": 12,
         "name": "Regularized regression : Ridge, Lasso, Elastic Net",
         "completed": false,
-        "difficulty": "Easy",
+        "difficulty": "Medium",
         "revision": false,
         "resource": "https://drive.google.com/file/d/1BdClRlwXfUr_5ymPxIKJrJDO9yzD3R7v/view?usp=drive_link"
       },
@@ -59,7 +59,7 @@
         "id": 22,
         "name": "Multinomial Naive Bayes",
         "completed": false,
-        "difficulty": "Easy",
+        "difficulty": "Medium",
         "revision": false,
         "resource": "https://drive.google.com/file/d/1r7qGEn_7zFtDdjFpdkuXqO_7a2CQF_NS/view?usp=drive_link"
       },
@@ -86,15 +86,15 @@
     "items": [
       {
         "id": 31,
-        "name": "Theory Deep-Dive and detailed intuition",
+        "name": "Theory Deep-Dive",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Easy",
         "revision": false,
         "resource": "https://drive.google.com/file/d/1Vb3441QGeHNkeIpjHGUCVomP1sjwCcW0/view?usp=drive_link"
       },
       {
         "id": 32,
-        "name": "Linear SVM and non linear SVM",
+        "name": "Linear SVM and Non Linear SVM",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
@@ -102,7 +102,7 @@
       },
       {
         "id": 33,
-        "name": "SVM regression (often ignored in standard sources)",
+        "name": "SVM regression",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
@@ -115,9 +115,9 @@
     "items": [
       {
         "id": 41,
-        "name": "Decision Trees: Intuition and working, CART algo of training (often ignored), splitting criteria (Gini, entropy), pruning NOTE BOTH CLASSIFICATION AND REGRESSION",
+        "name": "Decision Trees: Intuition and Inner Working",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Easy",
         "revision": false,
         "resource": "https://drive.google.com/file/d/12QHeZ64tEjkk1BU39uOMs1w0606Bz-v6/view?usp=drive_link"
       },
@@ -141,7 +141,7 @@
         "id": 44,
         "name": "Ensemble -> Boosting -> XGBoost",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Hard",
         "revision": false,
         "resource": "https://drive.google.com/file/d/1dKRVJNjZ8CuqrnQlqPrucOU9F7Todke8/view?usp=drive_link"
       },
@@ -157,7 +157,7 @@
         "id": 46,
         "name": "Ensemble -> Boosting -> LightGBM",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Hard",
         "revision": false,
         "resource": "https://drive.google.com/file/d/1K2pi5nNqvuKuvw_Y3SiFPlKN1dNFe1My/view?usp=drive_link"
       },
@@ -177,15 +177,15 @@
     "items": [
       {
         "id": 51,
-        "name": "Clustering Algorithms -> k-means and k-means++",
+        "name": "Clustering Algorithms -> K-Means and K-Means++",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Easy",
         "revision": false,
         "resource": "https://drive.google.com/file/d/12R83az3bywkEpJ-FgfPskiBNjICXTBSO/view?usp=drive_link"
       },
       {
         "id": 52,
-        "name": "Clustering Algorithms -> mean-shift",
+        "name": "Clustering Algorithms -> Mean-Shift",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
@@ -201,7 +201,7 @@
       },
       {
         "id": 55,
-        "name": "Clustering Algorithms -> scores for validation",
+        "name": "Clustering Algorithms -> Metrics",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
@@ -217,7 +217,7 @@
       },
       {
         "id": 57,
-        "name": "Dimensionality Reduction -> Linear -> random projection",
+        "name": "Dimensionality Reduction -> Linear -> Random Projection",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
@@ -243,7 +243,7 @@
         "id": 60,
         "name": "Dimensionality Reduction -> Manifold: t-SNE",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Hard",
         "revision": false,
         "resource": "https://drive.google.com/file/d/1OnW-geEjN-5pRdmfXFhPdVHyqz5KPork/view?usp=drive_link"
       },
@@ -251,7 +251,7 @@
         "id": 61,
         "name": "Dimensionality Reduction -> Manifold: UMAP",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Hard",
         "revision": false,
         "resource": "https://drive.google.com/file/d/1E_ZDTMBvgajih2p33fziZ7HHv-xw2fRz/view?usp=drive_link"
       }
@@ -262,23 +262,23 @@
     "items": [
       {
         "id": 71,
-        "name": "Basics: Neuron, architecture, activation functions",
+        "name": "Basics: Neuron, Architecture, Activation Functions",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Easy",
         "revision": false,
         "resource": "https://drive.google.com/file/d/1DopbHqfH964oxa7z26t-YnfXzrd_TbvS/view?usp=drive_link"
       },
       {
         "id": 72,
-        "name": "Training: Forward/backpropagation, loss functions",
+        "name": "Training: Forward/Backpropagation, Loss Functions",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Hard",
         "revision": false,
         "resource": "https://drive.google.com/file/d/1xbo5OBnYlONB7ap1rLtVzj6-gvKf2tu3/view?usp=drive_link"
       },
       {
         "id": 73,
-        "name": "Vanishing/exploding gradients and ways to tackle it: 1. Weight initialization techniques 2. Batch Normalisation 3. Gradient clipping",
+        "name": "Vanishing & Exploding Gradients and Solutions",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
@@ -286,7 +286,7 @@
       },
       {
         "id": 74,
-        "name": "Optimisers (IN DETAIL)",
+        "name": "Optimisers",
         "completed": false,
         "difficulty": "Hard",
         "revision": false,
