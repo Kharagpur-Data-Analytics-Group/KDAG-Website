@@ -81,7 +81,7 @@ const Register = () => {
         setIsSignUpActive(!isSignUpActive);
 
         localStorage.setItem("just_registered", "true");
-        window.location.href = "/resoures_new";
+        window.location.href = "/resources_new";
       } else {
         const jsonData = await response.json();
         setUserMessage(jsonData.message);
