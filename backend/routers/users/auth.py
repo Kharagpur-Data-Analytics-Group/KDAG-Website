@@ -23,7 +23,7 @@ import json
 import copy
 
 load_dotenv()
-user_auth = Blueprint("user_auth", _name_)
+user_auth = Blueprint("user_auth", __name__)
 MONGO_URI=os.getenv("MONGO_URI")
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
@@ -33,7 +33,7 @@ GOOGLE_TOKEN_URL = os.getenv("GOOGLE_TOKEN_URL")
 GOOGLE_TOKEN_INFO_URL = os.getenv("GOOGLE_TOKEN_INFO_URL")
 GOOGLE_TOKEN_INFO_URL_2 = os.getenv("GOOGLE_TOKEN_INFO_URL_2")
 
-with open(os.path.join(os.path.dirname(_file_), "sections.json"), "r") as f:
+with open(os.path.join(os.path.dirname(__file__), "sections.json"), "r") as f:
     SECTIONS_TEMPLATE = json.load(f)
 
 
