@@ -165,6 +165,20 @@ function App() {
     const newValue = !item.revision;
 
     try {
+
+      setSections((prev) =>
+        prev.map((sec, sIdx) =>
+          sIdx === sectionIdx
+            ? {
+                ...sec,
+                items: sec.items.map((itm, iIdx) =>
+                  iIdx === itemIdx ? { ...itm, revision: newValue } : itm
+                ),
+              }
+            : sec
+        )
+      );
+      
       const token = localStorage.getItem("access_token");
       await fetch(`${BASE_URL}/resources/update`, {
         method: "PATCH",
@@ -180,18 +194,7 @@ function App() {
         }),
       });
 
-      setSections((prev) =>
-        prev.map((sec, sIdx) =>
-          sIdx === sectionIdx
-            ? {
-                ...sec,
-                items: sec.items.map((itm, iIdx) =>
-                  iIdx === itemIdx ? { ...itm, revision: newValue } : itm
-                ),
-              }
-            : sec
-        )
-      );
+      
     } catch (err) {
       console.error("Error updating revision status:", err);
     }
