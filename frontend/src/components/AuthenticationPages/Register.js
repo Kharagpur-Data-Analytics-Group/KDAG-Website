@@ -81,10 +81,7 @@ const Register = () => {
         setIsSignUpActive(!isSignUpActive);
 
         localStorage.setItem("just_registered", "true");
-        window.location.href = "/forum";
-        // setInterval(() => {
-        //   history.push("/forum");
-        // });
+        window.location.href = "/resoures_new";
       } else {
         const jsonData = await response.json();
         setUserMessage(jsonData.message);

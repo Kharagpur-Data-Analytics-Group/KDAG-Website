@@ -131,7 +131,7 @@ const DropdownSection = ({
                     <td className="center-icon">
                       {item.resource ? (
                         <a
-                          href={`./Content/st11.html`}
+                          href={item.resource}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{ color: "#ff4040", textDecoration: "underline" }}
