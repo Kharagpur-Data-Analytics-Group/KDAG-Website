@@ -13,8 +13,8 @@
 	right: 0;
 	background-color: cyan;
 	height: 50px;
-	width: 50px;
-	border-radius: 50%;
+	border-radius: 60px;
+	padding: 0px 10px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -34,6 +34,11 @@
 }
 .edit_profile_button_icon img {
 	height: 100px;
+}
+@media screen and (max-width: 768px){
+	.edit_profile_button a span{
+		display: none;
+	}
 }
 .profile_container {
 	position: relative;

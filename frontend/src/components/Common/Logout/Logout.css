@@ -1,42 +1,47 @@
-.logout_outer_container_01{
-    position: fixed;
-    bottom: 10%;
-    right: 25px;
-	z-index: 555555;
+.logout_outer_container_01 {
+  position: fixed;
+  bottom: 10%;
+  right: 25px;
+  z-index: 555555;
 }
 
-.logout_container_01{
-    transition: 0.5s all;
+.logout_container_01 {
+  transition: 0.5s all;
 }
 
-.logout_container_01:hover button{
-    /*box-shadow: 2px 2px 0px white;*/
+.logout_container_01:hover button {
+  /*box-shadow: 2px 2px 0px white;*/
 }
 
-.logout_container_01 button{
-    border-radius: 0%;
-	cursor: auto;
-    padding: 10px 12px;
-	border-radius: 60px;
-	font-weight: 600;
-	font-style: italic;
-	border: none;
-	background-image: linear-gradient(
-		to right,
-		#ff8800,
-		#ffdaaa,
-		#30dd8a,
-		#269660
-	);
-	background-size: 300% 100%;
-	transition: all 0.3s;
+.logout_container_01 button {
+  border-radius: 0%;
+  cursor: auto;
+  padding: 10px 12px;
+  border-radius: 60px;
+  font-weight: 600;
+  font-style: bold;
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    #ff8800,
+    #ffdaaa,
+    #30dd8a,
+    #269660
+  );
+  background-size: 300% 100%;
+  transition: all 0.3s;
 }
 
 .logout_container_01 button:hover {
-	background-position: 100% 0;
-	text-shadow: 0 0 10px white;
+  background-position: 100% 0;
+  text-shadow: 0 0 10px white;
 }
 
-.logout_container_01 button img{
-    height: 25px;
+.logout_container_01 button img {
+  height: 25px;
+}
+@media screen and (max-width: 768px) {
+  .logout_container_01 button span {
+    display: none;
+  }
 }

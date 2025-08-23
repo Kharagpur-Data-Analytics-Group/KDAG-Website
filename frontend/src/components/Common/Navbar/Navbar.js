@@ -63,7 +63,7 @@ const Navbar = ({ noborder }) => {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
@@ -169,7 +169,7 @@ const Navbar = ({ noborder }) => {
                   viewBox="0 0 76 51"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-				  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
                   <rect
                     width="76"
@@ -199,68 +199,96 @@ const Navbar = ({ noborder }) => {
                 {/* <img class="dropdown hamburgermenu" src={ham} alt="menu" /> */}
 
                 {isMenuOpen && (
-					<ul>
-                  <li>
-                    <NavLink to="/events" onClick={()=>setIsMenuOpen(!isMenuOpen)}>Events</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/gallery" onClick={()=>setIsMenuOpen(!isMenuOpen)}>Gallery</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/resources_new" onClick={()=>setIsMenuOpen(!isMenuOpen)}>ML Sheet</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/resources" onClick={()=>setIsMenuOpen(!isMenuOpen)}>Resources</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/blogs" onClick={()=>setIsMenuOpen(!isMenuOpen)}>Blog</NavLink>
-                  </li>
-                  <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                    <NavLink to="/team" onClick={()=>setIsMenuOpen(!isMenuOpen)}>Team</NavLink>
-                  </li>
-                  <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                    <NavLink to="/alumni" onClick={()=>setIsMenuOpen(!isMenuOpen)}>Alumni</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/forum" onClick={()=>setIsMenuOpen(!isMenuOpen)}>
-                      {" "}
-                      <img src={forum_img} alt="" />
-                    </NavLink>
-                  </li>
-                  {!isLoggedIn && (
+                  <ul>
                     <li>
-                      <NavLink to="/auth" onClick={()=>setIsMenuOpen(!isMenuOpen)}>
-                        {" "}
-                        <img src={register_img} alt="" />
+                      <NavLink
+                        to="/events"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Events
                       </NavLink>
                     </li>
-                  )}
-                  {isLoggedIn && (
-					<li>
-					  <NavLink
-						to={`/user_profile_self/${userId}`}
-						onClick={()=>setIsMenuOpen(!isMenuOpen)}
-					  >
-						{" "}
-						<img src={profile_icon} alt="" />
-					  </NavLink>
-					</li>
-					
-				  )}
-                  {isLoggedIn && (
-					<li>
-					  <NavLink
-						to={``}
-						onClick={()=>setIsMenuOpen(!isMenuOpen)}
-					  >
-						Log Out
-					  </NavLink>
-					</li>
-					
-				  )}
-                </ul>
-				)}
-				
+                    <li>
+                      <NavLink
+                        to="/gallery"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Gallery
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/resources_new"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        ML Sheet
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/resources"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Resources
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/blogs"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Blog
+                      </NavLink>
+                    </li>
+                    <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                      <NavLink
+                        to="/team"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Team
+                      </NavLink>
+                    </li>
+                    <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                      <NavLink
+                        to="/alumni"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Alumni
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/forum"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        {" "}
+                        <img src={forum_img} alt="" />
+                      </NavLink>
+                    </li>
+                    {!isLoggedIn && (
+                      <li>
+                        <NavLink
+                          to="/auth"
+                          onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        >
+                          {" "}
+                          <img src={register_img} alt="" />
+                        </NavLink>
+                      </li>
+                    )}
+                    {isLoggedIn && (
+                      <li>
+                        <NavLink
+                          to={`/user_profile_self/${userId}`}
+                          onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        >
+                          {" "}
+                          <img src={profile_icon} alt="" />
+                        </NavLink>
+                      </li>
+                    )}
+                  </ul>
+                )}
               </li>
             </ul>
           </nav>
