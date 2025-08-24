@@ -6,12 +6,13 @@ import subprocess
 docx_viewer = Blueprint("docx_viewer", __name__)
 
 @docx_viewer.route("/view_docx", methods=["GET"])
-def view_docx_embedded():
+def view_docx():
     """
-    Usage: /docx/view_docx_embedded?url=<direct_docx_file_url>
+    Usage: /docx/view_docx?url=<direct_docx_file_url>
     Returns a themed HTML page with the DOCX content, with all images embedded as base64 and equations as LaTeX (MathJax).
     """
     docx_url = request.args.get("url")
+    docx_name = request.args.get("name", "ML Resource")
     if not docx_url:
         return "Missing 'url' parameter", 400
 
@@ -45,9 +46,11 @@ def view_docx_embedded():
     <html>
     <head>
         <meta charset=\"utf-8\"/>
-        <title>DOCX Preview</title>
+        <title>{docx_name}</title>
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@400;700&display=swap');
+            
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@400;700&display=swap');
             body {{
                 margin: 0 !important;
                 padding-top: 0 !important;
@@ -198,7 +201,6 @@ def view_docx_embedded():
             mjx-container[jax="CHTML"] {{
                 color: #ff4040;
             }}
-            /* Responsive styles */
             @media (max-width: 900px) {{
                 .docx-content {{
                     padding: 24px 8px 24px 8px;
@@ -227,6 +229,8 @@ def view_docx_embedded():
                     font-size: 0.95em;
                 }}
             }}
+
+
         </style>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>

@@ -77,7 +77,8 @@ const UserProfileSelf = () => {
 				<div className="outer_profile_self_container">
 					<div className="edit_profile_button">
 						<Link to={`/edit_profile/${user_id}`}>
-							<img src={edit_icon_img} />
+							<img src={edit_icon_img} alt=" " /> 
+							<span><b>Edit Profile</b></span>
 						</Link>
 					</div>
 					<Fade left>

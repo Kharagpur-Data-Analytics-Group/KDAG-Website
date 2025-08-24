@@ -385,3 +385,31 @@
 		backdrop-filter: blur(10px);
 	}
 }
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: transparent;
+  padding-bottom: 120px; 
+}
+
+.loader {
+  border: 8px solid rgba(255, 255, 255, 0.1);
+  border-left-color: #fff;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+.loader-text {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  text-align: center;
+}
+.loader-hidden {
+  display: none;
+}

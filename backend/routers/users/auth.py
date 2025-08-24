@@ -20,6 +20,7 @@ from pymongo import MongoClient
 import jwt
 import os
 import json
+import copy
 
 load_dotenv()
 user_auth = Blueprint("user_auth", __name__)
@@ -43,6 +44,7 @@ def google_callback():
  
         data = request.get_json()
         code = data.get("code")
+        print("Received authorization code:", code)
 
         if not code:
             return jsonify({"error": "No authorization code provided"}), 400
@@ -127,7 +129,7 @@ def google_callback():
                 user = users.find_one({"email": email}) 
 
                 resources = mongo.cx["KDAG-BACKEND"].resources_page
-                default_sections = SECTIONS_TEMPLATE.copy() 
+                default_sections = copy.deepcopy(SECTIONS_TEMPLATE) 
 
                 for section in default_sections:
                     for item in section["items"]:
@@ -180,6 +182,56 @@ def google_callback():
                 )
                 is_admin = user.get("is_admin")
                 uid = str(user.get("_id"))
+
+                # --- Sync resources_page with latest SECTIONS_TEMPLATE ---
+                resources = mongo.cx["KDAG-BACKEND"].resources_page
+                existing_resource = resources.find_one({"user_id": uid})
+
+                if existing_resource:
+                    updated_sections = []
+
+                    for new_section in SECTIONS_TEMPLATE:
+                        # Try to find matching section in user’s resources
+                        old_section = next(
+                            (s for s in existing_resource.get("sections", []) if s["title"] == new_section["title"]),
+                            None
+                        )
+
+                        if old_section:
+                            merged_items = []
+                            for new_item in new_section["items"]:
+                                old_item = next((i for i in old_section["items"] if i["name"] == new_item["name"]), None)
+                                merged_items.append({
+                                    **new_item,
+                                    "completed": old_item["completed"] if old_item else False,
+                                    "revision": old_item["revision"] if old_item else False,
+                                })
+                            updated_sections.append({
+                                "title": new_section["title"],
+                                "items": merged_items
+                            })
+                        else:
+                            # Entirely new section → initialize with defaults
+                            for item in new_section["items"]:
+                                item["completed"] = False
+                                item["revision"] = False
+                            updated_sections.append(new_section)
+
+                    # Save merged result back
+                    resources.update_one(
+                        {"user_id": uid},
+                        {"$set": {"sections": updated_sections}}
+                    )
+                else:
+                    # If user somehow has no resources, create them fresh
+                    default_sections = copy.deepcopy(SECTIONS_TEMPLATE)
+                    for section in default_sections:
+                        for item in section["items"]:
+                            item["completed"] = False
+                            item["revision"] = False
+                    resources.insert_one({"user_id": uid, "sections": default_sections})
+                # ---------------------------------------------------------
+
                 jwt_access_token = create_access_token(
                     identity={
                         "user_id": uid,
@@ -209,6 +261,7 @@ def google_callback():
                     )
                 )
                 return response, 200
+
         else:
             return jsonify({"error": "Failed to obtain ID token"}), 400
 

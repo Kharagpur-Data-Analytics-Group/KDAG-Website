@@ -3,39 +3,44 @@
     "title": "Linear Models for regression and classification",
     "items": [
       {
+        "id": 11,
         "name": "Regression: Simple/multiple/ polynomial regression",
         "completed": false,
         "difficulty": "Easy",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1qqbLY2c_l8dmpWGdA7tw4p6wsd0Yd0a_/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1wx8xUrb3mcr0qiy0mg4ZWaon16yKsJvt/view?usp=sharing"
       },
       {
+        "id": 12,
         "name": "Regularized regression : Ridge, Lasso, Elastic Net",
         "completed": false,
-        "difficulty": "Easy",
+        "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1BdClRlwXfUr_5ymPxIKJrJDO9yzD3R7v/view?usp=drive_link"
       },
       {
+        "id": 13,
         "name": "Classification: Logistic regression (binary & multiclass)",
         "completed": false,
         "difficulty": "Easy",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1JbvcRDKEfcWgcyDQlwnQvoTcZfbx4ySVLsgLVZ_Qm1k/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1IcLbHFrYuo1xHk4RE7Er8jMV3ZjMPSUX/view?usp=drive_link"
       },
       {
+        "id": 14,
         "name": "Regression Metrics: MSE, RMSE, MAE, R²",
         "completed": false,
         "difficulty": "Easy",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1JAJa0eFyqHawTy5IE_hoMjR9NXnw2Pbm/view?usp=drive_link"
       },
       {
+        "id": 15,
         "name": "Classification Metrics: Accuracy, precision/recall, F1, ROC-AUC",
         "completed": false,
         "difficulty": "Easy",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1VXlzPdKu53yVVyyPYO59xEcRM6fRJwxz/view?usp=drive_link"
       }
     ]
   },
@@ -43,32 +48,36 @@
     "title": "Probabilistic Models",
     "items": [
       {
+        "id": 21,
         "name": "Gaussian Naive Bayes",
         "completed": false,
         "difficulty": "Easy",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1GXvZh3Nt3bReu1H_ihg5zTypD2FMYCpAjASBUSdp2dQ/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1nwbtQcLG4bAR_HYFMCUdyQPVntCSnYej/view?usp=drive_link"
       },
       {
+        "id": 22,
         "name": "Multinomial Naive Bayes",
         "completed": false,
-        "difficulty": "Easy",
+        "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/16vbx0Z6K6lNU7J5tacxaUVFzYWChwDNBIfr1WQxZH0M/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1r7qGEn_7zFtDdjFpdkuXqO_7a2CQF_NS/view?usp=drive_link"
       },
       {
+        "id": 23,
         "name": "Bernoulli Naive Bayes",
         "completed": false,
         "difficulty": "Easy",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1pEqx1yQVRXl1CquNu6NbYdLWRagE915Zm05NW70wSyU/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1c4cdCBz_sQ8nVyh-n-nMhii6rfuYW4_Z/view?usp=drive_link"
       },
       {
+        "id": 24,
         "name": "Beyond NB: Introduction to Bayesian networks",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1V6kwnIBAQwucjFbaayktRmmuwRQl5NiosLknczkBU0s/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1IxIqJBzGfCTB0rZ9oMXU5HcO8D1ydOTP/view?usp=drive_link"
       }
     ]
   },
@@ -76,25 +85,28 @@
     "title": "Support Vector Machines",
     "items": [
       {
-        "name": "Theory Deep-Dive and detailed intuition",
+        "id": 31,
+        "name": "Theory Deep-Dive",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Easy",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1Vb3441QGeHNkeIpjHGUCVomP1sjwCcW0/view?usp=drive_link"
       },
       {
-        "name": "Linear SVM and non linear SVM",
+        "id": 32,
+        "name": "Linear SVM and Non Linear SVM",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1mv5qAgdnc_Ge6HjIUp1aWiUNbf5IYkPX/view?usp=drive_link"
       },
       {
-        "name": "SVM regression (often ignored in standard sources)",
+        "id": 33,
+        "name": "SVM regression",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1A--7BcAMTqU6GsDdtREXGBMMdZv_8-6L/view?usp=drive_link"
       }
     ]
   },
@@ -102,142 +114,146 @@
     "title": "Tree-Based Methods",
     "items": [
       {
-        "name": "Decision Trees: Intuition and working, CART algo of training (often ignored), splitting criteria (Gini, entropy), pruning NOTE BOTH CLASSIFICATION AND REGRESSION",
+        "id": 41,
+        "name": "Decision Trees: Intuition and Inner Working",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Easy",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/12QHeZ64tEjkk1BU39uOMs1w0606Bz-v6/view?usp=drive_link"
       },
       {
+        "id": 42,
         "name": "Ensembles -> Bagging & Random Forest",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/14KJsjkvu_ei8E3Z0sQ8AehLz-SgCY0e4/view?usp=drive_link"
       },
       {
+        "id": 43,
         "name": "Ensemble -> Boosting -> AdaBoost",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1PjFCYu4jt8kRAkayISBR5LT8Bknd8ErV/view?usp=drive_link"
       },
       {
+        "id": 44,
         "name": "Ensemble -> Boosting -> XGBoost",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Hard",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1dKRVJNjZ8CuqrnQlqPrucOU9F7Todke8/view?usp=drive_link"
       },
       {
+        "id": 45,
         "name": "Ensemble -> Boosting -> CatBoost",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1w0jEm3JCD2WwutHBPss4qgW5Kzb3SlA4/view?usp=drive_link"
       },
       {
+        "id": 46,
         "name": "Ensemble -> Boosting -> LightGBM",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Hard",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1K2pi5nNqvuKuvw_Y3SiFPlKN1dNFe1My/view?usp=drive_link"
       },
       {
+        "id": 47,
         "name": "Ensemble -> Stacking & Voting",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1yV9R5YWD8Lx8INFMLUCdgiCluTKxHVandsU6oTF5Iw8/export?format=docx"
-      },
-      {
-        "name": "Matrix comparing pros/cons (speed, interpretability, handling missing values)",
-        "completed": false,
-        "difficulty": "Medium",
-        "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/193ltfn13RAzT49M1WeFEQntEzwDVfOHk/view?usp=drive_link"
       }
+      
     ]
   },
   {
     "title": "Unsupervised Learning & Clustering",
     "items": [
       {
-        "name": "Clustering Algorithms -> k-means and k-means++",
+        "id": 51,
+        "name": "Clustering Algorithms -> K-Means and K-Means++",
+        "completed": false,
+        "difficulty": "Easy",
+        "revision": false,
+        "resource": "https://drive.google.com/file/d/12R83az3bywkEpJ-FgfPskiBNjICXTBSO/view?usp=drive_link"
+      },
+      {
+        "id": 52,
+        "name": "Clustering Algorithms -> Mean-Shift",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1_GT2Wxqm1JNOC85TPwrbKYxDshR8dzxh/view?usp=drive_link"
       },
       {
-        "name": "Clustering Algorithms -> mean-shift",
-        "completed": false,
-        "difficulty": "Medium",
-        "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
-      },
-      {
+        "id": 53,
         "name": "Clustering Algorithms -> DBSCAN",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1txnghRWqrKmDa2GiaDWPqNCBq1Rbe8jw/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1nA17mDInHzTgFwGlf0QZK-lvg_ir_R9F/view?usp=drive_link"
       },
       {
-        "name": "Clustering Algorithms -> HDBSCAN",
+        "id": 55,
+        "name": "Clustering Algorithms -> Metrics",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1Lf5RIiuyXOGUbJoBcH_pMxHYjFEH1JZO/view?usp=drive_link"
       },
       {
-        "name": "Clustering Algorithms -> scores for validation",
-        "completed": false,
-        "difficulty": "Medium",
-        "revision": false,
-        "resource": "https://docs.google.com/document/d/1ZdV1SXi2YG7UkGUuIhcvXeeWniLFiauN/export?format=docx"
-      },
-      {
+        "id": 56,
         "name": "Dimensionality Reduction -> Linear -> PCA",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1_hXmiwQmubxz9x_on4-KRODIzwt-3G3N/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1cILt5F2bA_SuuYxso2fNhq2yCyfLM00r/view?usp=drive_link"
       },
       {
-        "name": "Dimensionality Reduction -> Linear -> random projection",
+        "id": 57,
+        "name": "Dimensionality Reduction -> Linear -> Random Projection",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1gwBgR1x1TN8lryfs5TazlAvqcDwJusm9/view?usp=drive_link"
       },
       {
+        "id": 58,
         "name": "Dimensionality Reduction -> Linear -> LDA",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1u0xqS0LO1LYXyWqu8ZInXKLWwEpPr8D4/view?usp=drive_link"
       },
       {
+        "id": 59,
         "name": "Dimensionality Reduction -> Manifold: LLE",
         "completed": false,
         "difficulty": "Medium",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/144p8HVEFxjX5fkO06qWsL8UwaHKE5aIa/view?usp=drive_link"
       },
       {
+        "id": 60,
         "name": "Dimensionality Reduction -> Manifold: t-SNE",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Hard",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1aZRUxo2GNkqdoeuOhBluWq0msuv3SU4A/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1OnW-geEjN-5pRdmfXFhPdVHyqz5KPork/view?usp=drive_link"
       },
       {
+        "id": 61,
         "name": "Dimensionality Reduction -> Manifold: UMAP",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Hard",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1E_ZDTMBvgajih2p33fziZ7HHv-xw2fRz/view?usp=drive_link"
       }
     ]
   },
@@ -245,39 +261,44 @@
     "title": "Intro Neural Networks",
     "items": [
       {
-        "name": "Basics: Neuron, architecture, activation functions",
+        "id": 71,
+        "name": "Basics: Neuron, Architecture, Activation Functions",
         "completed": false,
-        "difficulty": "Medium",
+        "difficulty": "Easy",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1FYZyAXPV-npq6fmIwzWvOmSrdYCX8vyx/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1DopbHqfH964oxa7z26t-YnfXzrd_TbvS/view?usp=drive_link"
       },
       {
-        "name": "Training: Forward/backpropagation, loss functions",
-        "completed": false,
-        "difficulty": "Medium",
-        "revision": false,
-        "resource": "https://docs.google.com/document/d/1morvIwHYKVpyGuz1asz3V0ix7EXeE9zj/export?format=docx"
-      },
-      {
-        "name": "Vanishing/exploding gradients and ways to tackle it: 1. Weight initialization techniques 2. Batch Normalisation 3. Gradient clipping",
-        "completed": false,
-        "difficulty": "Medium",
-        "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
-      },
-      {
-        "name": "Optimisers (IN DETAIL)",
+        "id": 72,
+        "name": "Training: Forward/Backpropagation, Loss Functions",
         "completed": false,
         "difficulty": "Hard",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/12NM6eg7Qvhfk_o3BEDOvbprtBvzz1g2n/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1xbo5OBnYlONB7ap1rLtVzj6-gvKf2tu3/view?usp=drive_link"
       },
       {
+        "id": 73,
+        "name": "Vanishing & Exploding Gradients and Solutions",
+        "completed": false,
+        "difficulty": "Medium",
+        "revision": false,
+        "resource": "https://drive.google.com/file/d/17-d1-FGbcmm9kTozhM7_J3ULgSodBP4D/view?usp=drive_link"
+      },
+      {
+        "id": 74,
+        "name": "Optimisers",
+        "completed": false,
+        "difficulty": "Hard",
+        "revision": false,
+        "resource": "https://drive.google.com/file/d/1aZk5hWQm-qL9iL-dLuYd5nsEIXBSPa9s/view?usp=drive_link"
+      },
+      {
+        "id": 75,
         "name": "Regularization: L1/L2, dropout, MC-dropout, max-norm",
         "completed": false,
         "difficulty": "Hard",
         "revision": false,
-        "resource": "https://docs.google.com/document/d/1ulbZMKT-qW9hDpKkVoRd-bAAuYcOqo1lpEFkloWuqNs/export?format=docx"
+        "resource": "https://drive.google.com/file/d/1_t0z6J6ekWhKt9Ep2M7_LweMe3YCGxzS/view?usp=drive_link"
       }
     ]
   }
