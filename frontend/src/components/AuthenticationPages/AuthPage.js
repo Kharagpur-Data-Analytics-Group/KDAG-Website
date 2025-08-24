@@ -36,11 +36,11 @@ const AuthPage = () => {
 	};
 
 	if (rDirect) {
-		history.push("/resources_new");
+		history.push("/ml_sheet");
 	}
 
 	if (isLoggedIn) {
-		history.push("/resources_new");
+		history.push("/ml_sheet");
 	}
 
 	const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;

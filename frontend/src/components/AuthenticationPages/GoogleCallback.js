@@ -32,7 +32,7 @@ const GoogleAuthCallback = () => {
 
         if (data.user_exists) {
           localStorage.setItem("access_token", data.access_token);
-          window.location.href = "/resources_new";
+          window.location.href = "/ml_sheet";
         } else {
           localStorage.setItem("register_user_info", JSON.stringify(user_info));
           localStorage.setItem("uid", data.uid);
