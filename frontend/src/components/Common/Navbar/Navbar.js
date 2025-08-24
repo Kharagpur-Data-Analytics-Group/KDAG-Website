@@ -108,7 +108,7 @@ const Navbar = ({ noborder }) => {
               </NavLink>
             </div>
             <div className="kdag-nav-item">
-              <NavLink activeStyle={active_style} to="/resources_new">
+              <NavLink activeStyle={active_style} to="/ml_sheet">
                 ML Sheet
               </NavLink>
             </div>
@@ -218,7 +218,7 @@ const Navbar = ({ noborder }) => {
                     </li>
                     <li>
                       <NavLink
-                        to="/resources_new"
+                        to="/ml_sheet"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                       >
                         ML Sheet
