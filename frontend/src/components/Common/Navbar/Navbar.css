@@ -125,6 +125,45 @@
   text-decoration: none;
 }
 
+/* ML Sheet Highlight Styles - Override default hover and active effects */
+.kdag-nav-item.ml-sheet:hover {
+  color: white !important;
+  -webkit-text-stroke: 0px !important;
+  text-shadow: none !important;
+}
+
+.kdag-nav-item.ml-sheet::after {
+  display: none !important;
+}
+
+.kdag-nav-item.ml-sheet:hover::after {
+  display: none !important;
+  transform: none !important;
+  opacity: 0 !important;
+}
+
+.kdag-nav-item.ml-sheet a {
+  background: linear-gradient(90deg, rgba(255,0,0,0.1), rgba(255,0,0,0.2)) !important;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255, 0, 0, 0.4) !important;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.kdag-nav-item.ml-sheet a:hover {
+  background: linear-gradient(90deg, rgba(255,0,0,0.2), rgba(255,0,0,0.3)) !important;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.6) !important;
+}
+
+/* Active state for ML Sheet - cleaner modern style */
+.kdag-nav-item.ml-sheet a.active {
+  background: linear-gradient(90deg, rgba(255,0,0,0.25), rgba(255,0,0,0.35)) !important;
+  border: 1px solid rgba(255, 0, 0, 0.6) !important;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5) !important;
+  color: #ffffff !important;
+}
+
 .kdag-nav-mobile ul {
   -webkit-font-smoothing: antialiased;
   background: rgba(255, 0, 0, 0);
@@ -307,4 +346,3 @@
     width: 285px;
   } */
 }
-

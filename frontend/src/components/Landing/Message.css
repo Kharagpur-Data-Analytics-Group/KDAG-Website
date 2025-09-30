@@ -1,0 +1,131 @@
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.popup-box {
+  background: rgba(43, 35, 35, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(195, 65, 65, 0.3);
+  color: #fff;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(195, 65, 65, 0.2), 0 0 80px rgba(195, 65, 65, 0.1);
+  animation: slideUp 0.4s ease;
+}
+
+.popup-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, #d24747, #cf5a5a, #dc6464);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 40px rgba(207, 90, 90, 0.3);
+}
+
+.popup-text {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.highlight {
+  color: rgb(195, 65, 65);
+  font-weight: 600;
+}
+
+.popup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.popup-btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.popup-btn.primary {
+  background: rgb(195, 65, 65);
+  color: #fff;
+  border: 3px solid rgb(112, 43, 43);
+}
+
+.popup-btn.secondary {
+  background: transparent;
+  color: #aaa;
+  border: 2px solid #444;
+}
+
+.popup-btn.primary:hover {
+  border: 3px solid rgb(112, 43, 43);
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(195, 65, 65, 1);
+  background: rgb(180, 55, 55);
+  transform: scale(1.05);
+}
+
+.popup-btn.secondary:hover {
+  border: 3px solid rgb(112, 43, 43);
+  box-shadow: 0 0 15px rgba(195, 65, 65, 0.6);
+  color: #fff;
+  transform: scale(1.02);
+}
+
+@media(max-width: 450px){
+  .popup-box{
+    width: 90%;
+    padding: 20px;
+  }
+
+  .popup-title{
+    font-size: 2.8rem;
+  }
+
+  .popup-text{
+    font-size: 1.4rem;
+  }
+
+  .popup-btn{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.3rem;
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+}
