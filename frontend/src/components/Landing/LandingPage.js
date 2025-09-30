@@ -21,6 +21,7 @@ import Particless from "../Common/Particles/Particless";
 // import associate_sponsor from "./../../assets/kdsh2025_associate_sponsor.jpg";
 // import kdsh2025_logo from "../../assets/kdsh2025_logo.png"; // Adjust path as needed
 import KdshSection from "./KdshSection/KdshSection.js";
+import Message from "./Message.js"
 
 const LandingPage = () => {
 
@@ -95,7 +96,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-
+      <Message/>
 
       {/* New Intro Blog Section */}
       <section className="introblog-section">

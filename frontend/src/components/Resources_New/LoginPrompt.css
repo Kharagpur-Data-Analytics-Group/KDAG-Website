@@ -45,21 +45,23 @@
 }
 
 .login-prompt-btn {
-  background: linear-gradient(90deg, #ff4040 0%, #333 100%);
-  color: #fff;
-  border: none;
-  border-radius: 999px;
-  padding: 0.7rem 2.2rem;
-  font-size: 1.1rem;
-  font-weight: 700;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 8px #ff1a1a33;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: rgb(195, 65, 65);
+  color: #fff;
+  border: 3px solid rgb(112, 43, 43);
 }
 
 .login-prompt-btn:hover {
-  background: linear-gradient(90deg, #ff7b7b 0%, #222 100%);
-  color: #fff;
+  border: 3px solid rgb(112, 43, 43);
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(195, 65, 65, 1);
+  background: rgb(180, 55, 55);
+  transform: scale(1.05);
 }
 
 @media (max-width: 768px) {

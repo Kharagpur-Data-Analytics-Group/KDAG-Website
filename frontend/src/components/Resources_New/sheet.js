@@ -131,10 +131,17 @@ const DropdownSection = ({
                     <td className="center-icon">
                       {item.resource ? (
                         <a
-                          href={item.resource}
+                          href={isLoggedIn ? item.resource : "#"}
                           target="_blank"
                           rel="noopener noreferrer"
-                          style={{ color: "#ff4040", textDecoration: "underline" }}
+                          style={{ color: "#ff4040", textDecoration: "underline", cursor: "pointer" }}
+                          onClick={(e) => {
+                            if (!isLoggedIn) {
+                              e.preventDefault(); // stop navigation
+                              setShowPrompt(true); // show your warning/prompt
+                              return;
+                            }
+                          }}
                         >
                           Link
                         </a>
@@ -142,6 +149,7 @@ const DropdownSection = ({
                         "—"
                       )}
                     </td>
+
                     <td className="center">
                       <button
                         className={`bookmark-btn${

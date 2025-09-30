@@ -164,10 +164,8 @@
   font-size: 18px;
   font-weight: 500;
   text-shadow: 0 0 10px black;
-  font-style: italic;
   color: white;
   transition: all 0.2s;
-  cursor: none !important;
 }
 
 .floating-action-button:hover {
