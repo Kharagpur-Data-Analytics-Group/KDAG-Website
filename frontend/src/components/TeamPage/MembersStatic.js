@@ -85,7 +85,7 @@ const members = [
 
     {
         image: "images/Heads_2025_photos/Udit.jpeg",
-        name: "Udit Mohan",
+        name: "Udit Mohan Pradhan",
         email: "uditmpradhan@gmail.com",
         linkedin: "https://www.linkedin.com/in/uditmohanpradhan?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         instagram: "https://www.instagram.com/_udit.__.raj_?igsh=MWo5bmk2aGl1ZW16aw==",
