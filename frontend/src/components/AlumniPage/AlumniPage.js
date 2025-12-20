@@ -12,7 +12,7 @@ import members_2023 from "./AlumniStatic2023";
 import members_2024 from "./AlumniStatic2024";
 import members_2025 from "./AlumniStatic2025";
 import Header from "./Header";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import Particless from "../Common/Particles/Particless";
 import "./AlumniPage.css";
 

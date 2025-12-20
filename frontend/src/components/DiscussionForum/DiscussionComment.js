@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import "./DiscussionComment.css";
 import { useHistory } from "react-router-dom";
 import DiscussionComment2 from "./DiscussionComment2";

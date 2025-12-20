@@ -1,7 +1,7 @@
 import React from "react";
 import "./BlogCard.css";
 import dataAnalysis from "./../../../assets/pics/dataanlysis_nyc.png";
-import Fade from "react-reveal/Fade";
+import Fade from "../../Common/Motion/Fade.js"
 
 const BlogCard = ({ blog }) => {
 	const spaces = " ".repeat(10);

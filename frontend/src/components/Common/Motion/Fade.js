@@ -6,8 +6,8 @@ const Fade = ({
   right,
   up,
   bottom, // alias for down
-  delay = 0,   // delay in ms, just like react-reveal
-  duration = 1000, // default 1000ms like react-reveal
+  delay = 0,   // delay in ms
+  duration = 1000, // default 1000ms
   distance = 40,  // how far to slide from
   ...props
 }) => {
@@ -29,6 +29,11 @@ const Fade = ({
         opacity: { duration: duration / 1000, ease: "easeInOut", delay: delay / 1000 },
         x:       { duration: duration / 1000, ease: "easeInOut", delay: delay / 1000 },
         y:       { duration: duration / 1000, ease: "easeInOut", delay: delay / 1000 },
+      }}
+      style={{
+        display: "flex", // preserve child layout like React Reveal
+        justifyContent: "center",
+        height: "100%"
       }}
     >
       {children}

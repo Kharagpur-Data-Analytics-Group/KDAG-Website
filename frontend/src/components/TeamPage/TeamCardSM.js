@@ -1,7 +1,6 @@
 import React from "react";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import "./TeamCardSM.css";
-import Flex from "react-reveal/Fade";
 import "./TeamCard.css";
 
 const TeamCardSM = ({ member }) => {
@@ -56,7 +55,7 @@ const TeamCardSM = ({ member }) => {
 		// 	</Fade>
 		// </div>
 		<div class="member-card-wrapper-head">
-			<Flex bottom>
+			<Fade bottom>
 				<div className="member-card-head">
 					<div class="member-profile-image-head">
 						<img src={member?.image} alt="Image" />
@@ -96,7 +95,7 @@ const TeamCardSM = ({ member }) => {
 						</div>
 					</div>
 				</div>
-			</Flex>
+			</Fade>
 		</div>
 	);
 };

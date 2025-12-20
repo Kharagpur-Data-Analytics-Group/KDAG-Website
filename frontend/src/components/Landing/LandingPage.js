@@ -14,7 +14,7 @@ import ThinkTank from "../../assets/ThinkTankImg.jpg";
 import { Typewriter } from "react-simple-typewriter";
 
 import Content from "./Content/Content.js";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import Particless from "../Common/Particles/Particless";
 // import video1 from "./Video/final.mp4";
 // import Header from "./Header/Header";
@@ -125,13 +125,11 @@ const LandingPage = () => {
       <section className="section-contents">
 
         <div className="about-kdag-wrapper">
+          <Fade bottom>
           <div className="about-kdag">
             <div className="left-about-us">
-              <Fade bottom>
                 <img src={kdag_about_us} alt="img" className="img-about-us" />
-              </Fade>
             </div>
-            <Fade bottom>
               <div className="right-about-us">
 
                 <h1 className="heading-about-kdag">The Data Science and Machine Learning Society at IIT Kharagpur</h1>
@@ -150,8 +148,8 @@ const LandingPage = () => {
                   innovators.
                 </p>
               </div>
-            </Fade>
           </div>
+          </Fade>
         </div>
         <div>
           <KdshSection />

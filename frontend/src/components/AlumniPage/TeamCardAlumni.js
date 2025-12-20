@@ -1,11 +1,11 @@
 import React from "react";
-import Flex from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js";
 import "./TeamCardAlumni.css";
 
 const TeamCardAlum = ({ member }) => {
 	return (
 		<div class="alumni-member-card-wrapper">
-			<Flex bottom>
+			<Fade bottom>
 				<div className="alumni-member-card">
 					<div class="alumni-member-profile-image">
 						<img src={member?.image} alt="John" />
@@ -48,7 +48,7 @@ const TeamCardAlum = ({ member }) => {
 						</div>
 					</div>
 				</div>
-			</Flex>
+			</Fade>
 		</div>
 	);
 };

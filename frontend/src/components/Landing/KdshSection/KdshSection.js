@@ -1,5 +1,5 @@
 import "./KdshSection.css";
-import Fade from "react-reveal/Fade";
+import Fade from "../../Common/Motion/Fade.js"
 import { useEffect, useRef, useState } from "react";
 
 const KdshSection = () => {

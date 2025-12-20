@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import Fade from "react-reveal/Fade";
+import Fade from "../../Common/Motion/Fade.js"
 import { AuthContext } from "../../../context/AuthContext";
 import logout_icon from "../../../assets/pics/logout.png";
 import "./Logout.css";
