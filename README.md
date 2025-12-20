@@ -2,7 +2,7 @@
 
 Web application for KDAG (Kharagpur Data Analytics Group) with React frontend and Flask backend.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 KDAG-Website/
@@ -58,7 +58,7 @@ KDAG-Website/
    ```
    App runs on `http://localhost:3000`
 
-## 📜 Available Scripts
+## Available Scripts
 
 ### Frontend
 - `npm run dev` - Start development server (recommended)
