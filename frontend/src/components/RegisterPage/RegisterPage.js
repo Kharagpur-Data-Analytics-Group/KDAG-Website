@@ -395,7 +395,7 @@ const RegisterPage = () => {
 				<Fade top>
 					<div className="register-header">
 						<div className="spacer layer1"></div>
-						<div className="register-kdsh">KDSH 2025</div>
+						<div className="register-kdsh">KDSH 2026</div>
 						<div className="register-kdsh-desc">
 							<p>
 								The 5th Edition of the{" "}
