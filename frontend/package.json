@@ -73,6 +73,9 @@
     ]
   },
   "homepage": "",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "devDependencies": {
     "cross-env": "^7.0.3",
     "gh-pages": "^6.3.0",
