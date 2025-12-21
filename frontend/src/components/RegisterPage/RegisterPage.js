@@ -479,12 +479,12 @@ const RegisterPage = () => {
 											href="https://github.com"
 											target="_blank"
 											rel="noopener noreferrer"
-											style={{ borderBottom: "solid blue 2px", color: "blue" }}
+											style={{ borderBottom: "solid #34a5c1 2px", color: "#34a5c1" }}
 										>
 											<p
 												style={{
 													cursor: "pointer",
-													color: "blue",
+													color: "#34a5c1",
 													display: "inline-flex",
 												}}
 											>
@@ -509,7 +509,7 @@ const RegisterPage = () => {
 											paddingLeft: "40px",
 											fontWeight: "600",
 											paddingBottom: "8px",
-											color: "blue",
+											color: "#34a5c1",
 											cursor: "pointer",
 										}}
 									>
@@ -518,7 +518,7 @@ const RegisterPage = () => {
 											href="https://github.com/pathwaycom/llm-app"
 											target="_blank"
 											rel="noopener noreferrer"
-											style={{ borderBottom: "solid blue 2px" }}
+											style={{ borderBottom: "solid #34a5c1 2px" }}
 										>
 											https://github.com/pathwaycom/llm-app
 										</a>
@@ -545,7 +545,7 @@ const RegisterPage = () => {
 											paddingLeft: "40px",
 											fontWeight: "600",
 											paddingBottom: "8px",
-											color: "blue",
+											color: "#34a5c1",
 											cursor: "pointer",
 										}}
 									>
@@ -554,7 +554,7 @@ const RegisterPage = () => {
 											href="https://github.com/pathwaycom/pathway"
 											target="_blank"
 											rel="noopener noreferrer"
-											style={{ borderBottom: "solid blue 2px" }}
+											style={{ borderBottom: "solid #34a5c1 2px" }}
 										>
 											https://github.com/pathwaycom/pathway
 										</a>
@@ -643,27 +643,23 @@ const RegisterPage = () => {
 									REGISTER
 								</h1>
 								<br />
-								<input
-									style={{ marginRight: "15px", marginBottom: "15px" }}
-									type="text"
-									name="name"
-									placeholder="Team Name"
-									required
-									onChange={handleTeamName}
-								/>
-								<input
-									style={{ marginBottom: "15px" }}
-									type="number"
-									name="numMembers"
-									placeholder="Number of members"
-									onChange={handleNumMembers}
-									required
-								/>
+								<div className="register-form-details" style={{display: "flex", alignItems: "center", marginBottom: "30px"}}>
+									Team Name
+									<div style={{ width: "10px" }}></div>
+									<input
+										type="text"
+										name="name"
+										placeholder="Team Name"
+										required
+										onChange={handleTeamName}
+									/>
+								</div>
+								
 								<div className="register-form-details">
-									Details of Member 1 : Team Leader
+									 Member 1 : Team Leader
 								</div>
 								{/* 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 */}
-								<>
+								<div style={{marginBottom: "20px"}}>
 									<div className="register-form-icons">
 										<img src={user_icon} alt="user" />
 										<input
@@ -766,8 +762,19 @@ const RegisterPage = () => {
 											onChange={(e) => setGitHubID1(e.target.value)}
 										/>
 									</div>
-								</>
-								{/* <div className="register-form-details">Details of Member 2</div> */}
+								</div>
+								<div className="register-form-details" style={{display: "flex", alignItems: "center", marginBottom: "30px"}}>
+									Team Size
+									<div style={{ width: "10px" }}></div>
+									<input
+										type="number"
+										name="numMembers"
+										placeholder="Number of members"
+										onChange={handleNumMembers}
+										required
+									/>
+								</div>
+								{/* <div className="register-form-details"> Member 2</div> */}
 								{/* 22222222222222222222222222222222222222222222222222222222222222222222222222222222222222 */}
 								{/* <>
 									<div className="register-form-icons">
@@ -877,7 +884,7 @@ const RegisterPage = () => {
 								{numMembers >= 2 && (
 									<>
 										<div className="register-form-details">
-											Details of Member 2
+											 Member 2
 										</div>
 
 										<>
@@ -990,7 +997,7 @@ const RegisterPage = () => {
 								{numMembers >= 3 && (
 									<>
 										<div className="register-form-details">
-											Details of Member 3
+											 Member 3
 										</div>
 
 										<>
@@ -1103,7 +1110,7 @@ const RegisterPage = () => {
 								{numMembers === 5 && (
 									<>
 										<div className="register-form-details">
-											Details of Member 4
+											 Member 4
 										</div>
 
 										<>
