@@ -10,6 +10,7 @@ from routers.replies.handle_replies import reply_crud
 from docx_viewer import docx_viewer
 # from routers.kdsh2025.register import kdsh2025
 # from routers.kdsh2025_mod.kdsh2025_mod import kdsh2025_mod
+from routers.kdsh.register import kdsh
 
 import os
 
@@ -28,6 +29,7 @@ app.register_blueprint(resources,url_prefix="/resources")
 app.register_blueprint(docx_viewer, url_prefix="/docx")
 # app.register_blueprint(kdsh2025, url_prefix="/kdsh2025")
 # app.register_blueprint(kdsh2025_mod, url_prefix="/kdsh2025_mod")
+app.register_blueprint(kdsh, url_prefix="/kdsh")
 
 
 

@@ -177,8 +177,8 @@ const RegisterPage = () => {
 			}
 
 			const registerPromise = fetch(
-				`${process.env.REACT_APP_FETCH_URL}/kdsh2025/check_register`,
-				// "http://localhost:5000/kdsh2025/check_register",
+				`${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
+				// "http://localhost:5000/kdsh/check_register",
 				{
 					method: "POST",
 					headers: {
@@ -1107,7 +1107,7 @@ const RegisterPage = () => {
 									</>
 								)}
 								{/* 555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555 */}
-								{numMembers === 5 && (
+								{numMembers === 4 && (
 									<>
 										<div className="register-form-details">
 											 Member 4
