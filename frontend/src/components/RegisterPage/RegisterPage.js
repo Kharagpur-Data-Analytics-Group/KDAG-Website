@@ -391,7 +391,7 @@ const RegisterPage = () => {
 						<div className="register-kdsh">KDSH 2026</div>
 						<div className="register-kdsh-desc">
 							<p>
-								The 5th Edition of the{" "}
+								The 6th Edition of the{" "}
 								<strong>Kharagpur Data Science Hackathon</strong> (KDSH) is here
 								to redefine excellence in data science. Dive into machine
 								learning, solve real-world challenges, and showcase your
