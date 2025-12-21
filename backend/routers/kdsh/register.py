@@ -148,6 +148,35 @@ def check_repositories(gitHub_users):
 
     return missing_repos_by_user
 
+def check_starred_repositories(missing_repos_by_users):
+    all_starred = True
+    missing_repos_messages = []
+    for github_id, missing_repos in missing_repos_by_users.items():
+        if missing_repos == "success":
+            continue
+        elif missing_repos == "error":
+            all_starred = False
+            missing_repos_messages.append(
+                f""" You have entered incorrect GitHub Id --- {github_id} .Please check and enter the correct GitHub ID"""
+            )
+        elif missing_repos == "error1":
+            all_starred = False
+            missing_repos_messages = [
+                "The server seems to be experiencing unexpected load. Please try again after some time. If the issue persists contact us at kdag.kgp@gmail.com"
+            ]
+        else:
+            repo_messages = [f'GitHub user {github_id} has not starred the "']
+            repo_messages.append('", "'.join(missing_repos))
+            repo_messages.append('" repository(s).')
+            all_starred = False
+            missing_repos_messages.append("".join(repo_messages))
+    if all_starred:
+        print("All users have starred the required repositories.")
+        return "success"
+    else:
+        message = " ".join(missing_repos_messages)
+        return message
+
 
 @kdsh.route("/check_register", methods=["POST"])
 def check_multiple_stars():
