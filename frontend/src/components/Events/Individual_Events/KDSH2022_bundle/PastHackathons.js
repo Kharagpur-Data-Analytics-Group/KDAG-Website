@@ -1,6 +1,6 @@
 import React from "react";
 import "./PastHackathons.css";
-import Fade from "react-reveal/Fade";
+import Fade from "../../../Common/Motion/Fade.js"
 import KDSH2021 from "../../../../assets/pics/HACKPoster.png";
 import KDSH2020 from "../../../../assets/pics/events/KDSH2020.jpg";
 

@@ -121,7 +121,7 @@ const AppRouter = () => {
 							</Route>
 							<Route path="/register-success">
 								<Success />
-							</Route>
+							</Route> 
 						</Switch>
 					</ScrollToTop>
 					<Footer />

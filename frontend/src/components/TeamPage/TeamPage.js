@@ -6,7 +6,7 @@ import members from "./MembersStatic";
 import advisors from "./AdvisorsStatic";
 import seniorAdvisors from "./Senior-AdvisorsStatic"
 import Header from "./Header";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import Particless from "../Common/Particles/Particless";
 import "./TeamPage.css";
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import Particless from "../Common/Particles/Particless";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -395,7 +395,7 @@ const RegisterPage = () => {
 				<Fade top>
 					<div className="register-header">
 						<div className="spacer layer1"></div>
-						<div className="register-kdsh">KDSH 2025</div>
+						<div className="register-kdsh">KDSH 2026</div>
 						<div className="register-kdsh-desc">
 							<p>
 								The 5th Edition of the{" "}
@@ -454,7 +454,7 @@ const RegisterPage = () => {
 				<Fade right>
 					<div className="kdsh2025_star_outer">
 						<div className="kdsh2025_star_header">
-							<span>💻 How to Star a repository ? 🤔</span>
+							<span>How to Star a repository ?</span>
 							<button onClick={handleShowHowTo}>
 								<img src={show_icon} alt="show" />
 							</button>

@@ -1,105 +1,143 @@
-.register-container .register-header .spacer {
-	aspect-ratio: 1500/700;
+.register-container .register-header {
+	position: relative;
+	min-height: 100vh;
 	width: 100%;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	padding-top: 120px;
+	box-sizing: border-box;
+	overflow: hidden;
 }
 
 .register-container .register-header .layer1 {
-	background-image: url("./../../assets/KDSH2025_cover1.png");
-	background-size: cover; 
-	background-position: center; 
-	background-repeat: no-repeat; 
-	background-attachment: fixed; 
-	height: 100vh; 
-	width: 100%; 
+	position: absolute;
+	inset: 0;
+	background-image: url("./../../assets/KDSH2025_cover.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: -1;
+}
+
+.register-container .register-header::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
 }
 
 .register-container .register-header .register-kdsh {
-	position: absolute;
-	top: 155px;
-	left: 38%;
-	font-size: 50px;
+	font-size: clamp(48px, 6vw, 72px);
 	font-weight: 900;
-	color: rgb(255, 255, 255);
-	padding: 5px 25px;
-	text-wrap: nowrap;
+	letter-spacing: -0.03em;
+	color: #ffffff;
+	margin-bottom: 30px;
+	text-align: center;
+	text-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 }
 
 .register-container .register-header .register-kdsh-desc {
-	border: solid rgba(255, 255, 255, 0.178) 2px;
-	padding: 25px;
-	font-weight: 600;
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 40px;
+	font-size: 18px;
+	line-height: 1.7;
+	font-weight: 500;
+	color: #ffffff;
 	text-align: justify;
-	position: absolute;
-	top: 300px;
-	font-size: 20px;
-	line-height: 25px;
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
-	background: rgba(255, 255, 255, 0.045);
-	border-radius: 15px;
-	margin: 0 200px;
+
+	background: rgba(255, 255, 255, 0.08);
+	backdrop-filter: blur(25px);
+	-webkit-backdrop-filter: blur(12px);
+
+	border-radius: 20px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+
+	box-shadow:
+		0 30px 60px rgba(0, 0, 0, 0.35),
+		inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .register-container .register-header .register-kdsh-desc ul {
+	margin-top: 30px;
+	padding: 0;
 	list-style: none;
-	text-decoration: none;
-	color: aqua;
-	transition: all 0.3s;
-	width: max-content;
 	display: flex;
+	gap: 20px;
+	justify-content: flex-start;
+	flex-wrap: wrap;
 }
 
 .register-container .register-header .register-kdsh-desc ul li {
-	border: solid rgba(255, 255, 255, 0.311) 2px;
-	padding: 5px;
-	margin-right: 20px;
-	overflow: hidden;
 	position: relative;
-	transition: all 0.2s;
+	padding: 12px 26px;
+	border-radius: 12px;
+	font-weight: 700;
+	font-size: 16px;
+	color: #ffffff;
 	cursor: pointer;
+
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+
+	transition: all 0.25s ease;
+	overflow: hidden;
+}
+
+.register-container .register-header .register-kdsh-desc ul li {
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .register-container .register-header .register-kdsh-desc ul li:hover {
-	text-shadow: cyan 0 0 8px;
-	border: solid white 2px;
+	transform: scale(1.03);
+	/*box-shadow: 0 5px 5px rgba(0, 255, 255, 0.35);*/
+	border-color: rgba(255, 255, 255, 0.6);
 }
+
 
 .register-container .register-header .register-kdsh-desc ul li::before {
 	content: "";
 	position: absolute;
 	top: 0;
-	left: 0;
-	width: 100%;
+	left: -100%;
+	width: 60%;
 	height: 100%;
 	background: linear-gradient(
-		45deg,
+		120deg,
 		transparent,
-		transparent,
-		rgba(255, 255, 255, 0.056),
-		rgba(255, 255, 255, 0.156),
-		rgba(255, 255, 255, 0.25),
-		rgba(255, 255, 255, 0.156),
-		rgba(255, 255, 255, 0.056),
-		transparent,
+		rgba(255, 255, 255, 0.35),
 		transparent
 	);
-	animation: heading-slide-through 2s ease-in infinite;
-	transform-origin: bottom left;
-	z-index: -1;
-	cursor: pointer;
+	animation: shimmer 2.5s infinite;
 }
 
-@keyframes heading-slide-through {
+@keyframes shimmer {
 	0% {
-		transform: translateX(-100%);
+		left: -100%;
 	}
 	100% {
-		transform: translateX(400%);
+		left: 200%;
 	}
 }
+
+@media (max-width: 900px) {
+	.register-container .register-header {
+		padding-top: 100px;
+	}
+
+	.register-container .register-header .register-kdsh-desc {
+		margin: 0 20px;
+		padding: 28px;
+		font-size: 16px;
+	}
+
+	.register-container .register-header .register-kdsh-desc ul {
+		justify-content: center;
+	}
+}
+
 
 .kdsh2025_star_outer {
 	position: relative;
@@ -414,7 +452,7 @@ input[type="number"] {
 		margin-top: 200px;
 	}
 	/* />>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-	.kdsh2025_star_content .step_one,
+	/*.kdsh2025_star_content .step_one,
 	.kdsh2025_star_content .step_two {
 		overflow-x: scroll;
 		scrollbar-width: 5px;
@@ -424,7 +462,7 @@ input[type="number"] {
 		min-width: 900px;
 		margin-bottom: 10px;
 		border: solid white 1px;
-	}
+	}*/
 }
 
 @media (max-width: 700px) {

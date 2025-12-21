@@ -113,6 +113,11 @@ const Navbar = ({ noborder }) => {
               </NavLink>
             </div>
             <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/register-kdsh">
+                KDSH
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
               <NavLink activeStyle={active_style} to="/resources">
                 Resources
               </NavLink>

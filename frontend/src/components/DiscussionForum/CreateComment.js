@@ -1,5 +1,5 @@
 import Particless from "../Common/Particles/Particless";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import { useHistory } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";

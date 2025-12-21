@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./DiscussionCard.css";

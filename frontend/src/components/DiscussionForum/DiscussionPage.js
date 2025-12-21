@@ -1,7 +1,7 @@
 import React from "react";
 import "./DiscussionPage.css";
 import HeaderDiscussion from "./HeaderDiscussion";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import Particless from "../Common/Particles/Particless";
 import "./DiscussionComment.css";
 
