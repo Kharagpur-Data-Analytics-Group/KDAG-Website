@@ -7,14 +7,7 @@ import { handleSubmit } from "./useFormStates";
 import useFormStates from "./useFormStates";
 import "./RegisterPage.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import user_icon from "./../../assets/kdsh2025_user.png";
-import mail_icon from "./../../assets/kdsh2025_mail.png";
-import contact_icon from "./../../assets/kdsh2025_contact.png";
-import college_icon from "./../../assets/kdsh2025_college.png";
-import degree_icon from "./../../assets/kdsh2025_degree.png";
-import YOS_icon from "./../../assets/kdsh2025_YOS.png";
-import github_icon from "./../../assets/kdsh2025_github.png";
-import gender_icon from "./../../assets/kdsh2025_gender.png";
+import RegisterFormCard from "./RegisterFormCard.js";
 import kdsh_2025 from "./../../assets/kdsh2025_logo.png";
 import show_icon from "./../../assets/show_icon.png";
 import repo1 from "./../../assets/llm_repo.png";
@@ -643,8 +636,8 @@ const RegisterPage = () => {
 									REGISTER
 								</h1>
 								<br />
-								<div className="register-form-details" style={{display: "flex", alignItems: "center", marginBottom: "30px"}}>
-									Team Name
+								<div className="register-form-details-special">
+									<div id="header">Team Name</div>
 									<div style={{ width: "10px" }}></div>
 									<input
 										type="text"
@@ -655,116 +648,32 @@ const RegisterPage = () => {
 									/>
 								</div>
 								
+								{/* 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 */}
 								<div className="register-form-details">
 									 Member 1 : Team Leader
 								</div>
-								{/* 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 */}
-								<div style={{marginBottom: "20px"}}>
-									<div className="register-form-icons">
-										<img src={user_icon} alt="user" />
-										<input
-											type="text"
-											name="firstname"
-											placeholder="First Name"
-											required
-											value={firstname1}
-											onChange={(e) => setFirstname1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={user_icon} alt="user" />
-										<input
-											type="text"
-											name="lastname"
-											placeholder="Last Name"
-											value={lastname1}
-											onChange={(e) => setLastname1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-gender">
-										<label htmlFor="gender">
-											<img src={gender_icon} alt="gender" />
-										</label>
-										<select
-											id="gender"
-											name="gender"
-											value={gender1}
-											onChange={(e) => setGender1(e.target.value)}
-										>
-											<option value="male">Male</option>
-											<option value="female">Female</option>
-											<option value="other">Other</option>
-										</select>
-									</div>
-									<div className="register-form-icons">
-										<img src={mail_icon} alt="user" />
-										<input
-											type="email"
-											name="email"
-											placeholder="Email Id"
-											required
-											value={mail1}
-											onChange={(e) => setMail1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={contact_icon} alt="user" />
-										<input
-											type="number"
-											name="phone"
-											placeholder="Contact Number"
-											required
-											value={mobile1}
-											onChange={(e) => setMobile1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={college_icon} alt="user" />
-										<input
-											type="text"
-											name="college"
-											placeholder="College Name"
-											required
-											value={college1}
-											onChange={(e) => setCollege1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={degree_icon} alt="user" />
-										<input
-											type="text"
-											name="degree"
-											placeholder="Degree"
-											required
-											value={degree1}
-											onChange={(e) => setDegree1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={YOS_icon} alt="user" />
-										<input
-											type="number"
-											name="year"
-											placeholder="Year of Study - 1/2/3..."
-											required
-											value={YOS1}
-											onChange={(e) => setYOS1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={github_icon} alt="user" />
-										<input
-											type="text"
-											name="githubid"
-											placeholder="Github Username"
-											required
-											value={GitHubID1}
-											onChange={(e) => setGitHubID1(e.target.value)}
-										/>
-									</div>
-								</div>
-								<div className="register-form-details" style={{display: "flex", alignItems: "center", marginBottom: "30px"}}>
-									Team Size
+								<RegisterFormCard 
+									firstname={firstname1}
+									setFirstname={setFirstname1}
+									lastname={lastname1}
+									setLastname={setLastname1}
+									gender={gender1}
+									setGender={setGender1}
+									mail={mail1}
+									setMail={setMail1}
+									mobile={mobile1}
+									setMobile={setMobile1}
+									college={college1}
+									setCollege={setCollege1}
+									degree={degree1}
+									setDegree={setDegree1}
+									YOS={YOS1}
+									setYOS={setYOS1}
+									GitHubID={GitHubID1}
+									setGitHubID={setGitHubID1}
+								/>
+								<div className="register-form-details-special">
+									<div id="header">Team Size</div>
 									<div style={{ width: "10px" }}></div>
 									<input
 										type="number"
@@ -774,454 +683,98 @@ const RegisterPage = () => {
 										required
 									/>
 								</div>
-								{/* <div className="register-form-details"> Member 2</div> */}
-								{/* 22222222222222222222222222222222222222222222222222222222222222222222222222222222222222 */}
-								{/* <>
-									<div className="register-form-icons">
-										<img src={user_icon} alt="user" />
-										<input
-											type="text"
-											name="firstname"
-											placeholder="First Name"
-											required
-											value={firstname2}
-											onChange={(e) => setFirstname2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={user_icon} alt="user" />
-										<input
-											type="text"
-											name="lastname"
-											placeholder="Last Name"
-											value={lastname2}
-											onChange={(e) => setLastname2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-gender">
-										<label htmlFor="gender">
-											<img src={gender_icon} alt="gender" />
-										</label>
-										<select
-											id="gender"
-											name="gender"
-											value={gender2}
-											onChange={(e) => setGender2(e.target.value)}
-										>
-											<option value="male">Male</option>
-											<option value="female">Female</option>
-											<option value="other">Other</option>
-										</select>
-									</div>
-									<div className="register-form-icons">
-										<img src={mail_icon} alt="user" />
-										<input
-											type="email"
-											name="email"
-											placeholder="Email Id"
-											required
-											value={mail2}
-											onChange={(e) => setMail2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={contact_icon} alt="user" />
-										<input
-											type="number"
-											name="phone"
-											placeholder="Contact Number"
-											required
-											value={mobile2}
-											onChange={(e) => setMobile2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={college_icon} alt="user" />
-										<input
-											type="text"
-											name="college"
-											placeholder="College Name"
-											required
-											value={college2}
-											onChange={(e) => setCollege2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={degree_icon} alt="user" />
-										<input
-											type="text"
-											name="degree"
-											placeholder="Degree"
-											required
-											value={degree2}
-											onChange={(e) => setDegree2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={YOS_icon} alt="user" />
-										<input
-											type="number"
-											name="year"
-											placeholder="Year of Study - 1/2/3..."
-											required
-											value={YOS2}
-											onChange={(e) => setYOS2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={github_icon} alt="user" />
-										<input
-											type="text"
-											name="githubid"
-											placeholder="Github Username"
-											required
-											value={GitHubID2}
-											onChange={(e) => setGitHubID2(e.target.value)}
-										/>
-									</div>
-								</> */}
-								{/* 333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333 */}
+								{/* 222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222 */}
 								{numMembers >= 2 && (
 									<>
 										<div className="register-form-details">
 											 Member 2
 										</div>
 
-										<>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="firstname"
-													placeholder="First Name"
-													required
-													value={firstname2}
-													onChange={(e) => setFirstname2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="lastname"
-													placeholder="Last Name"
-													value={lastname2}
-													onChange={(e) => setLastname2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-gender">
-												<label htmlFor="gender">
-													<img src={gender_icon} alt="gender" />
-												</label>
-												<select
-													id="gender"
-													name="gender"
-													value={gender2}
-													onChange={(e) => setGender2(e.target.value)}
-												>
-													<option value="male">Male</option>
-													<option value="female">Female</option>
-													<option value="other">Other</option>
-												</select>
-											</div>
-											<div className="register-form-icons">
-												<img src={mail_icon} alt="user" />
-												<input
-													type="email"
-													name="email"
-													placeholder="Email Id"
-													required
-													value={mail2}
-													onChange={(e) => setMail2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={contact_icon} alt="user" />
-												<input
-													type="number"
-													name="phone"
-													placeholder="Contact Number"
-													required
-													value={mobile2}
-													onChange={(e) => setMobile2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={college_icon} alt="user" />
-												<input
-													type="text"
-													name="college"
-													placeholder="College Name"
-													required
-													value={college2}
-													onChange={(e) => setCollege2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={degree_icon} alt="user" />
-												<input
-													type="text"
-													name="degree"
-													placeholder="Degree"
-													required
-													value={degree2}
-													onChange={(e) => setDegree2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={YOS_icon} alt="user" />
-												<input
-													type="number"
-													name="year"
-													placeholder="Year of Study - 1/2/3..."
-													required
-													value={YOS2}
-													onChange={(e) => setYOS2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={github_icon} alt="user" />
-												<input
-													type="text"
-													name="githubid"
-													placeholder="Github Username"
-													required
-													value={GitHubID2}
-													onChange={(e) => setGitHubID2(e.target.value)}
-												/>
-											</div>
-										</>
+										<RegisterFormCard 
+											firstname={firstname2}
+											setFirstname={setFirstname2}
+											lastname={lastname2}
+											setLastname={setLastname2}
+											gender={gender2}
+											setGender={setGender2}
+											mail={mail2}
+											setMail={setMail2}
+											mobile={mobile2}
+											setMobile={setMobile2}
+											college={college2}
+											setCollege={setCollege2}
+											degree={degree2}
+											setDegree={setDegree2}
+											YOS={YOS2}
+											setYOS={setYOS2}
+											GitHubID={GitHubID2}
+											setGitHubID={setGitHubID2}
+										/>
 									</>
 								)}
-								{/* 444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444 */}
+								{/* 333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333 */}
 								{numMembers >= 3 && (
 									<>
 										<div className="register-form-details">
 											 Member 3
 										</div>
 
-										<>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="firstname"
-													placeholder="First Name"
-													required
-													value={firstname3}
-													onChange={(e) => setFirstname3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="lastname"
-													placeholder="Last Name"
-													value={lastname3}
-													onChange={(e) => setLastname3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-gender">
-												<label htmlFor="gender">
-													<img src={gender_icon} alt="gender" />
-												</label>
-												<select
-													id="gender"
-													name="gender"
-													value={gender3}
-													onChange={(e) => setGender3(e.target.value)}
-												>
-													<option value="male">Male</option>
-													<option value="female">Female</option>
-													<option value="other">Other</option>
-												</select>
-											</div>
-											<div className="register-form-icons">
-												<img src={mail_icon} alt="user" />
-												<input
-													type="email"
-													name="email"
-													placeholder="Email Id"
-													required
-													value={mail3}
-													onChange={(e) => setMail3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={contact_icon} alt="user" />
-												<input
-													type="number"
-													name="phone"
-													placeholder="Contact Number"
-													required
-													value={mobile3}
-													onChange={(e) => setMobile3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={college_icon} alt="user" />
-												<input
-													type="text"
-													name="college"
-													placeholder="College Name"
-													required
-													value={college3}
-													onChange={(e) => setCollege3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={degree_icon} alt="user" />
-												<input
-													type="text"
-													name="degree"
-													placeholder="Degree"
-													required
-													value={degree3}
-													onChange={(e) => setDegree3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={YOS_icon} alt="user" />
-												<input
-													type="number"
-													name="year"
-													placeholder="Year of Study - 1/2/3..."
-													required
-													value={YOS3}
-													onChange={(e) => setYOS3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={github_icon} alt="user" />
-												<input
-													type="text"
-													name="githubid"
-													placeholder="Github Username"
-													required
-													value={GitHubID3}
-													onChange={(e) => setGitHubID3(e.target.value)}
-												/>
-											</div>
-										</>
+										<RegisterFormCard 
+											firstname={firstname3}
+											setFirstname={setFirstname3}
+											lastname={lastname3}
+											setLastname={setLastname3}
+											gender={gender3}
+											setGender={setGender3}
+											mail={mail3}
+											setMail={setMail3}
+											mobile={mobile3}
+											setMobile={setMobile3}
+											college={college3}
+											setCollege={setCollege3}
+											degree={degree3}
+											setDegree={setDegree3}
+											YOS={YOS3}
+											setYOS={setYOS3}
+											GitHubID={GitHubID3}
+											setGitHubID={setGitHubID3}
+										/>
 									</>
 								)}
-								{/* 555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555 */}
+								{/* 444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444 */}
 								{numMembers === 4 && (
 									<>
 										<div className="register-form-details">
 											 Member 4
 										</div>
 
-										<>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="firstname"
-													placeholder="First Name"
-													required
-													value={firstname4}
-													onChange={(e) => setFirstname4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="lastname"
-													placeholder="Last Name"
-													value={lastname4}
-													onChange={(e) => setLastname4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-gender">
-												<label htmlFor="gender">
-													<img src={gender_icon} alt="gender" />
-												</label>
-												<select
-													id="gender"
-													name="gender"
-													value={gender4}
-													onChange={(e) => setGender4(e.target.value)}
-												>
-													<option value="male">Male</option>
-													<option value="female">Female</option>
-													<option value="other">Other</option>
-												</select>
-											</div>
-											<div className="register-form-icons">
-												<img src={mail_icon} alt="user" />
-												<input
-													type="email"
-													name="email"
-													placeholder="Email Id"
-													required
-													value={mail4}
-													onChange={(e) => setMail4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={contact_icon} alt="user" />
-												<input
-													type="number"
-													name="phone"
-													placeholder="Contact Number"
-													required
-													value={mobile4}
-													onChange={(e) => setMobile4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={college_icon} alt="user" />
-												<input
-													type="text"
-													name="college"
-													placeholder="College Name"
-													required
-													value={college4}
-													onChange={(e) => setCollege4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={degree_icon} alt="user" />
-												<input
-													type="text"
-													name="degree"
-													placeholder="Degree"
-													required
-													value={degree4}
-													onChange={(e) => setDegree4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={YOS_icon} alt="user" />
-												<input
-													type="number"
-													name="year"
-													placeholder="Year of Study - 1/2/3..."
-													required
-													value={YOS4}
-													onChange={(e) => setYOS4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={github_icon} alt="user" />
-												<input
-													type="text"
-													name="githubid"
-													placeholder="Github Username"
-													required
-													value={GitHubID4}
-													onChange={(e) => setGitHubID4(e.target.value)}
-												/>
-											</div>
-										</>
+										<RegisterFormCard 
+											firstname={firstname4}
+											setFirstname={setFirstname4}
+											lastname={lastname4}
+											setLastname={setLastname4}
+											gender={gender4}
+											setGender={setGender4}
+											mail={mail4}
+											setMail={setMail4}
+											mobile={mobile4}
+											setMobile={setMobile4}
+											college={college4}
+											setCollege={setCollege4}
+											degree={degree4}
+											setDegree={setDegree4}
+											YOS={YOS4}
+											setYOS={setYOS4}
+											GitHubID={GitHubID4}
+											setGitHubID={setGitHubID4}
+										/>
 									</>
 								)} 
-								<button className="register-form-submit" type="submit">
-									<p>Register</p>
-								</button>
+								{numMembers !== 1 && (
+									<button className="register-form-submit" type="submit">
+										<p>Register</p>
+									</button>
+								)}
 							</div>
 						</form>
 					</div>
