@@ -201,7 +201,7 @@
 .kdsh2025_star_content .step_two img {
 	width: 100%;
 	margin-bottom: 10px;
-	border: solid white 1px;
+	border: solid rgb(129, 129, 129) 1px;
 	margin-top: 10px;
 }
 
@@ -213,7 +213,6 @@
 	background: rgba(255, 255, 255, 0.045);
 	padding: 25px;
 	width: 80%;
-	position: relative;
 	left: 10%;
 	margin-bottom: 300px;
 	margin-top: 150px;
@@ -275,9 +274,33 @@
 	color: white;
 	font-weight: 600;
 	position: relative;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 	font-size: 18px;
+	padding-left: 90px;
 }
+
+.register-form-details-special {
+	color: white;
+	display: flex;
+	align-items: center;
+	font-weight: 600;
+	position: relative;
+	margin-bottom: 30px;
+	font-size: 18px;
+	padding-left: 90px;
+}
+
+.register-form-submit {
+	background: transparent;
+	min-width: 300px;
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px; 
+	padding-left: 90px;
+}
+
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -290,14 +313,6 @@ input[type="number"] {
 	-moz-appearance: textfield;
 }
 
-.register-form-submit {
-	background: transparent;
-	min-width: 300px;
-	border: none;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 
 .register-form-submit p {
 	text-align: center;
@@ -425,6 +440,9 @@ input[type="number"] {
 }
 
 @media (max-width: 790px) {
+	.register-form-details-special #header {
+		display: none;
+	}
 	.kdsh2025_star_outer {
 		top: 100px;
 		margin: 0px 100px;
@@ -466,6 +484,16 @@ input[type="number"] {
 }
 
 @media (max-width: 700px) {
+	.register-form-details {
+		padding-left: 60px;
+	}
+	.register-form-details-special {
+		padding-left: 70px;
+	}
+	.register-form-submit {
+		padding-left: 70px;
+		min-width: 350px;
+	}
 	.register-container .register-header .register-kdsh {
 		top: 95px;
 		left: 22%;
@@ -503,13 +531,23 @@ input[type="number"] {
 }
 
 @media (max-width: 575px) {
+	.register-form-details-special {
+		padding-left: 40px;
+	}
+	.register-form-details {
+		padding-left: 30px;
+	}
+	.register-form-submit {
+		padding-left: 60px;
+		min-width: 320px;
+	}
 	.register-container .register-header .register-kdsh {
 		top: 85px;
 		left: 14%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
-
+	
 	.register-container .register-header .register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
@@ -523,10 +561,20 @@ input[type="number"] {
 }
 
 @media (max-width: 515px) {
+	.register-form-details-special {
+		padding-left: 30px;
+	}
+	.register-form-details {
+		padding-left: 20px;
+	}
+	.register-form-submit {
+		padding-left: 60px;
+		min-width: 280px;
+	}
 	.register-form-gender select {
 		width: 265px;
 	}
-
+	
 	.register-form input {
 		width: 265px;
 	}
@@ -539,7 +587,7 @@ input[type="number"] {
 		font-size: 45px;
 		padding: 5px 25px;
 	}
-
+	
 	.register-container .register-header .register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
@@ -547,13 +595,35 @@ input[type="number"] {
 		margin: 0 40px;
 		font-size: 16px;
 	}
-
+	
 	.register-container .register-header .register-kdsh img {
 		height: 100px;
 	}
 }
 
+@media (max-width: 480px) {
+	.register-form-details-special {
+		padding-left: 30px;
+	}
+	.register-form-details {
+		padding-left: 10px;
+	}
+	.register-form-submit {
+		padding-left: 40px;
+		min-width: 260px;
+	}
+	.register-form input {
+		width: 240px;
+	}
+	.register-form-gender select {
+		width: 240px;
+	}
+}
+
 @media (max-width: 460px) {
+	.register-form-details {
+		padding-left: 20px;
+	}
 	.register-container .register-header .register-kdsh {
 		top: 80px;
 		left: 10%;
@@ -578,26 +648,11 @@ input[type="number"] {
 	}
 }
 
-@media (max-width: 480px) {
-	.register-form input {
-		width: 240px;
-	}
-	.register-form-gender select {
-		width: 240px;
-	}
-}
-
 @media (max-width: 450px) {
 	.register-form input {
-		width: 230px;
-	}
-	.register-form-gender select {
 		width: 210px;
 	}
-}
-
-@media (max-width: 450px) {
-	.register-form input {
+	.register-form-gender select {
 		width: 210px;
 	}
 }
@@ -612,6 +667,16 @@ input[type="number"] {
 	}
 }
 @media (max-width: 400px) {
+	.register-form-details-special {
+		padding-left: 10px;
+	}
+	.register-form-details {
+		padding-left: 5px;
+	}
+	.register-form-submit {
+		padding-left: 25px;
+		min-width: 220px;
+	}
 	.register-form input {
 		width: 200px;
 	}
@@ -649,5 +714,61 @@ input[type="number"] {
 	}
 	.register-form-gender select {
 		width: 192px;
+	}
+}
+
+@media (max-width: 375px) {
+	.register-form input {
+		width: 180px;
+	}
+	.register-form-gender select {
+		width: 182px;
+	}
+	.register-form-details-special {
+		padding-left: 15px;
+	}
+	.register-form-submit {
+		padding-left: 25px;
+		min-width: 190px;
+	}
+}
+
+@media (max-width: 360px) {
+	.register-form input {
+		width: 170px;
+	}
+	.register-form-gender select {
+		width: 172px;
+	}
+}
+
+@media (max-width: 350px) {
+	.register-form input {
+		width: 160px;
+	}
+	.register-form-gender select {
+		width: 162px;
+	}
+}
+
+@media (max-width: 340px) {
+	.register-form input {
+		width: 150px;
+	}
+	.register-form-gender select {
+		width: 152px;
+	}
+}
+
+@media (max-width: 325px) {
+	.register-form input {
+		width: 130px;
+	}
+	.register-form-gender select {
+		width: 132px;
+	}
+	.register-form-submit {
+		padding-left: 20px;
+		min-width: 170px;
 	}
 }
