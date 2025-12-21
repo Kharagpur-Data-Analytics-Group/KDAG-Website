@@ -454,7 +454,7 @@ const RegisterPage = () => {
 				<Fade right>
 					<div className="kdsh2025_star_outer">
 						<div className="kdsh2025_star_header">
-							<span>💻 How to Star a repository ? 🤔</span>
+							<span>How to Star a repository ?</span>
 							<button onClick={handleShowHowTo}>
 								<img src={show_icon} alt="show" />
 							</button>

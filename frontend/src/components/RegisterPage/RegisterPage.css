@@ -452,7 +452,7 @@ input[type="number"] {
 		margin-top: 200px;
 	}
 	/* />>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-	.kdsh2025_star_content .step_one,
+	/*.kdsh2025_star_content .step_one,
 	.kdsh2025_star_content .step_two {
 		overflow-x: scroll;
 		scrollbar-width: 5px;
@@ -462,7 +462,7 @@ input[type="number"] {
 		min-width: 900px;
 		margin-bottom: 10px;
 		border: solid white 1px;
-	}
+	}*/
 }
 
 @media (max-width: 700px) {
