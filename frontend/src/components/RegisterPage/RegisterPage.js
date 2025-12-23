@@ -648,7 +648,7 @@ const RegisterPage = () => {
 									/>
 								</div>
 								
-								{/* 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 */}
+								
 								<div className="register-form-details">
 									 Member 1 : Team Leader
 								</div>
@@ -683,7 +683,7 @@ const RegisterPage = () => {
 										required
 									/>
 								</div>
-								{/* 222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222 */}
+								
 								{numMembers >= 2 && (
 									<>
 										<div className="register-form-details">
@@ -712,7 +712,7 @@ const RegisterPage = () => {
 										/>
 									</>
 								)}
-								{/* 333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333 */}
+								
 								{numMembers >= 3 && (
 									<>
 										<div className="register-form-details">
@@ -741,7 +741,7 @@ const RegisterPage = () => {
 										/>
 									</>
 								)}
-								{/* 444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444 */}
+								
 								{numMembers === 4 && (
 									<>
 										<div className="register-form-details">
