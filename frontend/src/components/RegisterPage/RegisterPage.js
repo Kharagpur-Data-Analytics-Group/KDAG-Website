@@ -166,6 +166,7 @@ const RegisterPage = () => {
 				toast.error(
 					"Please note a minimum of 2 and a maximum of 5 members are allowed per team."
 				);
+				console.log(numMembers);
 				return false;
 			}
 
@@ -329,20 +330,22 @@ const RegisterPage = () => {
 
 	const handleNumMembers = (e) => {
 		const value = e.target.value;
-		if (value > 4) {
-			toast.error("There can be a maximum of 4 participants in a team!", {
-				position: "top-center",
-				draggable: true,
-				theme: "dark",
-			});
-		} else if (value < 2) {
-			toast.error("There have to be a minimum of 2 members in a team!", {
-				position: "top-center",
-				draggable: true,
-				theme: "dark",
-			});
-		} else if (value <= 4) {
-			setNumMembers(Number(value));
+		if (value !== "") {
+			if (value > 4) {
+				toast.error("There can be a maximum of 4 participants in a team!", {
+					position: "top-center",
+					draggable: true,
+					theme: "dark",
+				});
+			} else if (value < 2) {
+				toast.error("There have to be a minimum of 2 members in a team!", {
+					position: "top-center",
+					draggable: true,
+					theme: "dark",
+				});
+			} else if (value <= 4) {
+				setNumMembers(Number(value));
+			}
 		}
 	};
 
@@ -628,12 +631,12 @@ const RegisterPage = () => {
 							<div>
 								<h1
 									style={{
-										fontStyle: "italic",
-										textShadow: "0 0 50px #1c1cf0, 0 0 100px red",
+										// fontStyle: "italic",
+										textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
 										marginBottom: "25px",
 									}}
 								>
-									REGISTER
+									Register
 								</h1>
 								<br />
 								<div className="register-form-details-special">
