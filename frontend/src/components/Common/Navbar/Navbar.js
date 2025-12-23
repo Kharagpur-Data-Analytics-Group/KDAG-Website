@@ -202,6 +202,14 @@ const Navbar = ({ noborder }) => {
                   <ul>
                     <li>
                       <NavLink
+                        to="/register-kdsh"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        KDSH
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
                         to="/events"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                       >

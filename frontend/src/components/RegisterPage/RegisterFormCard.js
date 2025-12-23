@@ -38,6 +38,7 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
                 <select
                     id="gender"
                     name="gender"
+                    placeholder="Gender"
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
                 >
