@@ -3,11 +3,19 @@ from dotenv import load_dotenv
 import os, csv, json, requests, asyncio, aiohttp
 from flask import Blueprint, jsonify, request, current_app
 from datetime import datetime
+import secrets
+import string
+
 
 
 kdsh = Blueprint("kdsh", __name__)
 
 load_dotenv()
+
+def generate_team_code(length=8):
+    chars = string.ascii_uppercase + string.digits
+    return ''.join(secrets.choice(chars) for _ in range(length))
+
 
 
 def serialize_document(doc):
@@ -179,24 +187,18 @@ def check_starred_repositories(missing_repos_by_users):
 
 
 @kdsh.route("/check_register", methods=["POST"])
-def check_multiple_stars():
+def check_register():
     try:
-        import re
         from app import mongo
+        import re
 
         data = request.get_json()
-        if not data:
-            return jsonify({"error": "No data provided."}), 400
 
-        if not isinstance(data, list):
-            return jsonify({"error": "Expected a JSON array of member objects."}), 400
+        # -------- PAYLOAD VALIDATION --------
+        if not data or not isinstance(data, dict):
+            return jsonify({"error": "Invalid payload. Expected JSON object."}), 400
 
-        num_members = len(data)
-        if num_members < 1:
-            return jsonify({"error": "There must be at least 1 member in the team."}), 400
-        if num_members > 4:
-            return jsonify({"error": "There can be a maximum of 4 members in the team."}), 400
-
+        # -------- REQUIRED FIELDS (LEADER ONLY) --------
         required_fields = [
             "isTeamLeader",
             "firstname",
@@ -209,174 +211,118 @@ def check_multiple_stars():
             "YOS",
             "GitHubID",
             "teamName",
-            "numMembers",
         ]
 
-        validation_errors = []
-        github_users = []
-        team_names = []
-        numMembers_values = []
-        leader_count = 0
+        missing = [f for f in required_fields if f not in data]
+        if missing:
+            return jsonify({"error": f"Missing fields: {', '.join(missing)}"}), 400
 
-        for idx, member in enumerate(data, start=1):
+        # -------- LEADER CHECK (CRITICAL) --------
+        if data["isTeamLeader"] is not True:
+            return jsonify({"error": "Only team leaders can create a team."}), 400
 
-            if not isinstance(member, dict):
-                return jsonify({"error": f"Member {idx} must be an object."}), 400
+        # -------- BASIC SANITIZATION --------
+        firstname = data["firstname"].strip()
+        lastname = data["lastname"].strip()
+        email = data["mail"].strip().lower()
+        mobile = str(data["mobile"]).strip()
+        github_id = data["GitHubID"].strip().lower()
+        team_name = data["teamName"].strip().lower()
 
-            missing_fields = [f for f in required_fields if f not in member]
-            if missing_fields:
-                validation_errors.append(f"Member {idx} missing fields: {', '.join(missing_fields)}")
-                continue
+        # -------- BASIC VALIDATIONS --------
+        if not firstname or not lastname:
+            return jsonify({"error": "Firstname and lastname cannot be empty."}), 400
 
-            # isTeamLeader must be boolean
-            if not isinstance(member.get("isTeamLeader"), bool):
-                validation_errors.append(f"Member {idx} field 'isTeamLeader' must be boolean.")
-            if member.get("isTeamLeader") is True:
-                leader_count += 1
+        if not re.match(r"^[^@]+@[^@]+\.[^@]+$", email):
+            return jsonify({"error": "Invalid email format."}), 400
 
-            # firstname/lastname not empty
-            firstname = str(member.get("firstname") or "").strip()
-            lastname = str(member.get("lastname") or "").strip()
-            if not firstname:
-                validation_errors.append(f"Member {idx} 'firstname' must be a non-empty string.")
-            if not lastname:
-                validation_errors.append(f"Member {idx} 'lastname' must be a non-empty string.")
-
-            # email validation
-            email = str(member.get("mail") or "").strip()
-            if not re.match(r"^[^@]+@[^@]+\.[^@]+$", email):
-                validation_errors.append(f"Member {idx} has invalid email: '{email}'.")
-
-            # mobile validation
-            mobile = str(member.get("mobile") or "").strip()
-            if not re.match(r"^\d{10}$", mobile):
-                validation_errors.append(
-                    f"Member {idx} has invalid mobile number: '{mobile}'. Expected 10 digits."
-                )
-
-            # YOS integer check
-            yos = member.get("YOS")
-            try:
-                int(yos)
-            except:
-                validation_errors.append(f"Member {idx} 'YOS' must be an integer.")
-
-            # GitHubID
-            git = str(member.get("GitHubID") or "").strip().lower()
-            if not git:
-                validation_errors.append(f"Member {idx} GitHubID is missing or empty.")
-            github_users.append(git)
-
-            # capture teamName & numMembers
-            team_names.append(str(member.get("teamName") or "").strip().lower())
-            numMembers_values.append(member.get("numMembers"))
-
-        # Leader must be exactly 1
-        if leader_count != 1:
-            return (
-                jsonify({"error": f"There must be exactly one team leader. Found {leader_count}."}),
-                400,
-            )
-
-        # If other validation errors exist
-        if validation_errors:
-            return jsonify({"error": "Validation failed.", "details": validation_errors}), 400
-
-        # Team name consistency
-        if len(set(team_names)) != 1:
-            return jsonify({"error": "Team name mismatch across members."}), 400
-
-        # Validate numMembers consistency
-        if len(set(numMembers_values)) != 1:
-            return jsonify({"error": "numMembers mismatch across members."}), 400
+        if not re.match(r"^\d{10}$", mobile):
+            return jsonify({"error": "Invalid mobile number. Must be 10 digits."}), 400
 
         try:
-            reported_num = int(list(set(numMembers_values))[0])
+            yos = int(data["YOS"])
+            if yos <= 0:
+                raise ValueError
         except:
-            return jsonify({"error": "numMembers must be an integer."}), 400
+            return jsonify({"error": "YOS must be a valid positive integer."}), 400
 
-        if reported_num != num_members:
-            return jsonify(
-                {"error": f"numMembers ({reported_num}) does not match actual count ({num_members})."}
-            ), 400
+        if not github_id:
+            return jsonify({"error": "GitHubID is required."}), 400
 
-        # Duplicate GitHub IDs
-        duplicates = [g for g in set(github_users) if github_users.count(g) > 1 and g]
-        if duplicates:
-            return jsonify(
-                {"error": "Duplicate GitHub IDs found across team members.", "duplicates": duplicates}
-            ), 400
+        if not team_name:
+            return jsonify({"error": "Team name cannot be empty."}), 400
 
-        # Now check GitHub starring rules
-        missing_repos_by_users = check_repositories(github_users)
-        starred_users = check_starred_repositories(missing_repos_by_users)
-        team_name = team_names[0]
+        # -------- DUPLICATE CHECKS --------
+        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+            {"GitHubID": github_id}
+        ):
+            return jsonify({"error": "GitHub ID already registered."}), 400
 
-        if starred_users != "success":
-            # Store in failed registrations
-            participants_data = []
-            for member in data:
-                participants_data.append(
-                    {
-                        **member,
-                        "GitHubID": str(member["GitHubID"]).strip().lower(),
-                        "teamName": team_name,
-                        "logs": starred_users,
-                        "time": datetime.now(),
-                    }
-                )
-            try:
-                mongo.cx["KDSH_2026"].kdsh2026_failed_registrations.insert_many(participants_data)
-            except:
-                pass
+        if mongo.cx["KDSH_2026"].kdsh2026_teams.find_one(
+            {"teamName": team_name}
+        ):
+            return jsonify({"error": "Team name already exists."}), 400
 
-            return jsonify({"error": starred_users}), 400
+        # -------- GITHUB STAR CHECK (LEADER ONLY) --------
+        starred_repos = get_starred_repositories(github_id)
 
-        # Check existing entries
-        existing = mongo.cx["KDSH_2026"].kdsh2026_participants.find(
-            {"GitHubID": {"$in": github_users}}
-        )
-        existing_list = [x["GitHubID"] for x in existing]
-        if existing_list:
-            return jsonify({"error": f"Already registered: {', '.join(existing_list)}"}), 400
+        if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
+            return jsonify({"error": "GitHub validation failed. Try again later."}), 400
 
-        if mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamName": team_name}):
-            return jsonify({"error": f"Team '{team_name}' already exists."}), 400
+        missing_repos = check_required_repositories(starred_repos)
+        if missing_repos:
+            return jsonify({
+                "error": f'Please star required repositories: {", ".join(missing_repos)}'
+            }), 400
 
-        # Insert participants
-        participants_data = []
-        for member in data:
-            participants_data.append(
-                {
-                    **member,
-                    "GitHubID": str(member["GitHubID"]).lower(),
-                    "teamName": team_name,
-                }
-            )
-        mongo.cx["KDSH_2026"].kdsh2026_participants.insert_many(participants_data)
+        # -------- GENERATE UNIQUE TEAM CODE --------
+        while True:
+            team_code = generate_team_code()
+            if not mongo.cx["KDSH_2026"].kdsh2026_teams.find_one(
+                {"teamCode": team_code}
+            ):
+                break
 
-        # Create team entry
-        leader = next(m for m in data if m["isTeamLeader"])
-        members = [m for m in data if not m["isTeamLeader"]]
-
-        team_record = {
+        # -------- INSERT LEADER --------
+        mongo.cx["KDSH_2026"].kdsh2026_participants.insert_one({
+            "isTeamLeader": True,
+            "firstname": firstname,
+            "lastname": lastname,
+            "gender": data["gender"],
+            "mail": email,
+            "mobile": mobile,
+            "college": data["college"],
+            "degree": data["degree"],
+            "YOS": yos,
+            "GitHubID": github_id,
             "teamName": team_name,
-            "numMembers": reported_num,
-            "teamleader_github": leader["GitHubID"].lower(),
-            "teamleader_email": leader["mail"],
-            "members_github": [m["GitHubID"].lower() for m in members],
-            "members_email": [m["mail"] for m in members],
-        }
-        mongo.cx["KDSH_2026"].kdsh2026_teams.insert_one(team_record)
+            "registered_at": datetime.utcnow()
+        })
+
+        # -------- CREATE TEAM --------
+        mongo.cx["KDSH_2026"].kdsh2026_teams.insert_one({
+            "teamName": team_name,
+            "teamCode": team_code,
+            "teamleader_github": github_id,
+            "teamleader_email": email,
+            "members_github": [],
+            "members_email": [],
+            "numMembers": 1,
+            "is_active": False,
+            "created_at": datetime.utcnow()
+        })
 
         return jsonify({
-            "message": "Successfully registered your team for KDSH 2025!",
-            "registration": "success",
+            "message": "Team created successfully. Share the team code with your teammates.",
+            "teamCode": team_code,
+            "teamName": team_name,
+            "status": "PARTIAL_REGISTRATION"
         }), 200
 
     except Exception as e:
-        print(e)
-        return jsonify({"error": str(e)}), 500
+        print("check_register error:", e)
+        return jsonify({"error": "Internal server error."}), 500
+
 
 
 @kdsh.route("/get_participant_mod", methods=["POST"])
@@ -427,3 +373,150 @@ def check_team():
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+
+@kdsh.route("/join_team", methods=["POST"])
+def join_team():
+    try:
+        from app import mongo
+        import re
+
+        data = request.get_json()
+
+        # -------- PAYLOAD VALIDATION --------
+        if not data or not isinstance(data, dict):
+            return jsonify({"error": "Invalid payload. Expected JSON object."}), 400
+
+        # -------- REQUIRED FIELDS --------
+        required_fields = [
+            "firstname",
+            "lastname",
+            "gender",
+            "mail",
+            "mobile",
+            "college",
+            "degree",
+            "YOS",
+            "GitHubID",
+            "teamCode",
+        ]
+
+        missing = [f for f in required_fields if f not in data]
+        if missing:
+            return jsonify({"error": f"Missing fields: {', '.join(missing)}"}), 400
+
+        # -------- BASIC SANITIZATION --------
+        firstname = str(data["firstname"]).strip()
+        lastname = str(data["lastname"]).strip()
+        email = str(data["mail"]).strip().lower()
+        mobile = str(data["mobile"]).strip()
+        github_id = str(data["GitHubID"]).strip().lower()
+        team_code = str(data["teamCode"]).strip().upper()
+
+        # -------- BASIC VALIDATIONS --------
+        if not firstname or not lastname:
+            return jsonify({"error": "Firstname and lastname cannot be empty."}), 400
+
+        if not re.match(r"^[^@]+@[^@]+\.[^@]+$", email):
+            return jsonify({"error": "Invalid email format."}), 400
+
+        if not re.match(r"^\d{10}$", mobile):
+            return jsonify({"error": "Invalid mobile number. Must be 10 digits."}), 400
+
+        try:
+            yos = int(data["YOS"])
+            if yos <= 0:
+                raise ValueError
+        except:
+            return jsonify({"error": "YOS must be a valid positive integer."}), 400
+
+        if not github_id:
+            return jsonify({"error": "GitHubID is required."}), 400
+
+        if not team_code:
+            return jsonify({"error": "Team code is required."}), 400
+
+        # -------- TEAM CODE CHECK --------
+        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        if not team:
+            return jsonify({"error": "Invalid team code."}), 400
+
+        # -------- TEAM SIZE CHECK --------
+        if team["numMembers"] >= 4:
+            return jsonify({"error": "Team is already full."}), 400
+
+        # -------- DUPLICATE USER CHECK --------
+        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+            {"GitHubID": github_id}
+        ):
+            return jsonify({"error": "GitHub ID already registered."}), 400
+
+        # -------- GITHUB STAR CHECK --------
+        starred_repos = get_starred_repositories(github_id)
+
+        if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
+            return jsonify({
+                "error": "GitHub validation failed. Please try again later."
+            }), 400
+
+        missing_repos = check_required_repositories(starred_repos)
+        if missing_repos:
+            return jsonify({
+                "error": f'Please star required repositories: {", ".join(missing_repos)}'
+            }), 400
+
+        # -------- ATOMIC TEAM UPDATE (SAFE JOIN) --------
+        update_result = mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+            {
+                "_id": team["_id"],
+                "numMembers": {"$lt": 4},
+                "members_github": {"$ne": github_id}
+            },
+            {
+                "$push": {
+                    "members_github": github_id,
+                    "members_email": email
+                },
+                "$inc": {"numMembers": 1}
+            }
+        )
+
+        if update_result.modified_count == 0:
+            return jsonify({"error": "Failed to join team. Try again."}), 400
+
+        # -------- INSERT PARTICIPANT --------
+        mongo.cx["KDSH_2026"].kdsh2026_participants.insert_one({
+            "isTeamLeader": False,
+            "firstname": firstname,
+            "lastname": lastname,
+            "gender": data["gender"],
+            "mail": email,
+            "mobile": mobile,
+            "college": data["college"],
+            "degree": data["degree"],
+            "YOS": yos,
+            "GitHubID": github_id,
+            "teamName": team["teamName"],
+            "joined_at": datetime.utcnow()
+        })
+
+        # -------- ACTIVATE TEAM IF >= 2 --------
+        mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+            {
+                "_id": team["_id"],
+                "numMembers": {"$gte": 2}
+            },
+            {
+                "$set": {"is_active": True}
+            }
+        )
+
+        return jsonify({
+            "message": "Successfully joined the team.",
+            "teamName": team["teamName"],
+            "teamStatus": "ACTIVE"
+        }), 200
+
+    except Exception as e:
+        print("join_team error:", e)
+        return jsonify({"error": "Internal server error."}), 500
+
