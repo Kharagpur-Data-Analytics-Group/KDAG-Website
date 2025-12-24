@@ -149,11 +149,7 @@
 
 .important-note {
   margin-top: 0px;
-  background: linear-gradient(
-    135deg,
-    rgba(59, 130, 246, 0.15),
-    rgba(37, 99, 235, 0.15)
-  );
+  background: rgba(15, 23, 42, 0.75);
   border: 1px solid rgba(59, 130, 246, 0.4);
   border-radius: 18px;
   padding: 24px;

@@ -26,7 +26,7 @@ export default function GitHubStarGuide() {
               <div className="step-number">1</div>
               <div className="step-content">
                 <h3 className="step-title">Visit GitHub and Log In</h3>
-                <p className="step-description">
+                <p className="step-description" style={{marginBottom:"0px"}}>
                   Go to{" "}
                   <a
                     href="https://github.com"
@@ -36,7 +36,8 @@ export default function GitHubStarGuide() {
                   >
                     GitHub <ExternalLink className="link-icon" />
                   </a>{" "}
-                  and log in using your account credentials.
+                  and log in using your account credentials. If you don’t have
+										an account, click Sign Up to create one
                 </p>
               </div>
             </div>

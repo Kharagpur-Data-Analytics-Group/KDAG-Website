@@ -2,8 +2,8 @@
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(8px);
+  /*backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(8px);*/
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,9 +28,7 @@
 }
 
 .popup-box {
-  background: rgba(43, 35, 35, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgb(10, 10, 10);
   border: 2px solid rgba(195, 65, 65, 0.3);
   color: #fff;
   border-radius: 20px;

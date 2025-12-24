@@ -37,7 +37,7 @@ export default function NewFeaturePopup() {
   };
 
   const handleExploreClick = () => {
-    window.location.href = "/ml_sheet";
+    window.location.href = "/register-kdsh";
   };
 
   if (!visible) return null;

@@ -66,13 +66,13 @@
 	list-style: none;
 	display: flex;
 	gap: 20px;
-	justify-content: flex-start;
+	justify-content: space-evenly;
 	flex-wrap: wrap;
 }
 
 .register-container .register-header .register-kdsh-desc ul li {
 	position: relative;
-	padding: 12px 26px;
+	padding: 12px 56px;
 	border-radius: 12px;
 	font-weight: 700;
 	font-size: 16px;
@@ -141,9 +141,9 @@
 .register-form {
 	border: solid rgba(255, 255, 255, 0.05) 2px;
 	border-top: 5px solid #1c1cf0;
-	backdrop-filter: blur(10px);
-	-webkit-backdrop-filter: blur(10px);
-	background: rgb(31, 31, 31, 0.445);
+	/*backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);*/
+	background: rgb(21, 21, 21);
 	padding: 25px;
 	width: 80%;
 	left: 10%;

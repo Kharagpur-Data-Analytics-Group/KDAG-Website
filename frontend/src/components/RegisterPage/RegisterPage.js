@@ -22,6 +22,9 @@ const RegisterPage = () => {
 	const [successPage, setSuccessPage] = useState(false);
 	const history = useHistory();
 	const [showHowTo, setShowHowTo] = useState(true);
+	const [registrationMode, setRegistrationMode] = useState(null); // null, 'leader', or 'member'
+	const [teamCode, setTeamCode] = useState("");
+	const [teamCodeDisplay, setTeamCodeDisplay] = useState(""); // For displaying team code after leader registration
 
 	const handleShowHowTo = () => {
 		setShowHowTo(!showHowTo);
@@ -33,196 +36,167 @@ const RegisterPage = () => {
 		}
 	}, [successPage, history]);
 
-	const handleRegister = (e) => {
+	const handleTeamLeaderRegister = (e) => {
 		e.preventDefault();
 
-		const checkData = [
-			{
-				firstname: firstname1,
-				mobile: mobile1,
-				college: college1,
-				YOS: YOS1,
-				GitHubID: GitHubID1,
-			},
-			{
-				firstname: firstname2,
-				mobile: mobile2,
-				college: college2,
-				YOS: YOS2,
-				GitHubID: GitHubID2,
-			},
-			{
-				firstname: firstname3,
-				mobile: mobile3,
-				college: college3,
-				YOS: YOS3,
-				GitHubID: GitHubID3,
-			},
-			{
-				firstname: firstname4,
-				mobile: mobile4,
-				college: college4,
-				YOS: YOS4,
-				GitHubID: GitHubID4,
-			},
-			// ,
-			// {
-			// 	firstname: firstname5,
-			// 	mobile: mobile5,
-			// 	college: college5,
-			// 	YOS: YOS5,
-			// 	GitHubID: GitHubID5,
-			// },
-		];
-
-		const allSubmitSuccessful = checkData
-			.slice(0, numMembers)
-			.every((data) =>
-				handleSubmit(
-					data.firstname,
-					data.mobile,
-					data.college,
-					data.YOS,
-					data.GitHubID
-				)
-			);
-
-		if (allSubmitSuccessful) {
-			const formData = [
-				{
-					isTeamLeader: true,
-					firstname: firstname1,
-					lastname: lastname1,
-					gender: gender1,
-					mail: mail1,
-					mobile: mobile1,
-					college: college1,
-					degree: degree1,
-					YOS: Number(YOS1),
-					GitHubID: GitHubID1,
-					teamName: team,
-					numMembers: Number(numMembers),
-				},
-				{
-					isTeamLeader: false,
-					firstname: firstname2,
-					lastname: lastname2,
-					gender: gender2,
-					mail: mail2,
-					mobile: mobile2,
-					college: college2,
-					degree: degree2,
-					YOS: Number(YOS2),
-					GitHubID: GitHubID2,
-					teamName: team,
-					numMembers: Number(numMembers),
-				},
-				{
-					isTeamLeader: false,
-					firstname: firstname3,
-					lastname: lastname3,
-					gender: gender3,
-					mail: mail3,
-					mobile: mobile3,
-					college: college3,
-					degree: degree3,
-					YOS: Number(YOS3),
-					GitHubID: GitHubID3,
-					teamName: team,
-					numMembers: Number(numMembers),
-				},
-				{
-					isTeamLeader: false,
-					firstname: firstname4,
-					lastname: lastname4,
-					gender: gender4,
-					mail: mail4,
-					mobile: mobile4,
-					college: college4,
-					degree: degree4,
-					YOS: Number(YOS4),
-					GitHubID: GitHubID4,
-					teamName: team,
-					numMembers: Number(numMembers),
-				},
-				// ,
-				// {
-				// 	isTeamLeader: false,
-				// 	firstname: firstname5,
-				// 	lastname: lastname5,
-				// 	gender: gender5,
-				// 	mail: mail5,
-				// 	mobile: mobile5,
-				// 	college: college5,
-				// 	degree: degree5,
-				// 	YOS: Number(YOS5),
-				// 	GitHubID: GitHubID5,
-				// 	teamName: team,
-				// 	numMembers: Number(numMembers),
-				// },
-			];
-			const finalData = formData.slice(0, numMembers);
-
-			if (numMembers > 4 || numMembers < 1) {
-				toast.error(
-					"Please note a minimum of 2 and a maximum of 5 members are allowed per team."
-				);
-				console.log(numMembers);
-				return false;
-			}
-
-			const registerPromise = fetch(
-				`${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
-				// "http://localhost:5000/kdsh/check_register",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(finalData),
-				}
-			)
-				.then((response) => response.json())
-				.then((data) => {
-					if (
-						data.message &&
-						data.registration &&
-						data.registration === "success"
-					) {
-						setSuccessPage(true);
-						toast.success(data.message, {
-							theme: "dark",
-						});
-					} else if (data.error) {
-						toast.error(data.error, {
-							position: "top-center",
-							draggable: true,
-							autoClose: 15000,
-						});
-					}
-				})
-				.catch((error) => {
-					console.error("Error during registration:", error);
-					toast.error("😔 Registration failed, please try again later.", {
-						position: "top-center",
-						draggable: true,
-					});
-				});
-			toast.promise(
-				registerPromise,
-				{
-					pending:
-						"⏳ Registering your team...This may take several minutes, Please stay with us!!!",
-					error: "😔 Registration failed. Please try again LATER!!",
-				},
-				{
-					position: "top-center",
-					autoClose: 8000,
-				}
-			);
-		} else {
+		// Validate team leader form
+		if (!handleSubmit(firstname1, mobile1, college1, YOS1, GitHubID1)) {
 			return false;
 		}
+
+		if (!team || team.trim() === "") {
+			toast.error("Please enter a team name", {
+				position: "top-center",
+				draggable: true,
+				theme: "dark",
+			});
+			return false;
+		}
+
+		const formData = {
+			isTeamLeader: true,
+			firstname: firstname1,
+			lastname: lastname1,
+			gender: gender1,
+			mail: mail1,
+			mobile: mobile1,
+			college: college1,
+			degree: degree1,
+			YOS: Number(YOS1),
+			GitHubID: GitHubID1,
+			teamName: team,
+		};
+
+		const registerPromise = fetch(
+			`${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			}
+		)
+			.then(async (response) => {
+				const data = await response.json();
+				if (!response.ok) {
+					// Handle error responses
+					throw new Error(data.error || `Server error: ${response.status}`);
+				}
+				return data;
+			})
+			.then((data) => {
+				if (data.teamCode && data.message) {
+					setTeamCodeDisplay(data.teamCode);
+					toast.success(data.message, {
+						theme: "dark",
+						autoClose: 10000,
+					});
+				}
+			})
+			.catch((error) => {
+				console.error("Error during registration:", error);
+				const errorMessage = error.message || "😔 Registration failed, please try again later.";
+				toast.error(errorMessage, {
+					position: "top-center",
+					draggable: true,
+					autoClose: 15000,
+				});
+			});
+
+		toast.promise(
+			registerPromise,
+			{
+				pending:
+					"⏳ Creating your team...This may take several minutes, Please stay with us!!!",
+				error: "😔 Registration failed. Please try again LATER!!",
+			},
+			{
+				position: "top-center",
+				autoClose: 8000,
+			}
+		);
+	};
+
+	const handleJoinTeam = (e) => {
+		e.preventDefault();
+
+		// Validate team code
+		if (!teamCode || teamCode.trim() === "") {
+			toast.error("Please enter a team code", {
+				position: "top-center",
+				draggable: true,
+				theme: "dark",
+			});
+			return false;
+		}
+
+		// Validate member form
+		if (!handleSubmit(firstname1, mobile1, college1, YOS1, GitHubID1)) {
+			return false;
+		}
+
+		const formData = {
+			firstname: firstname1,
+			lastname: lastname1,
+			gender: gender1,
+			mail: mail1,
+			mobile: mobile1,
+			college: college1,
+			degree: degree1,
+			YOS: Number(YOS1),
+			GitHubID: GitHubID1,
+			teamCode: teamCode.trim().toUpperCase(),
+		};
+
+		const joinPromise = fetch(
+			`${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
+			{
+				method: "POST",
+		 		headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			}
+		)
+			.then(async (response) => {
+				const data = await response.json();
+				if (!response.ok) {
+					// Handle error responses
+					throw new Error(data.error || `Server error: ${response.status}`);
+				}
+				return data;
+			})
+			.then((data) => {
+				if (data.message) {
+					setSuccessPage(true);
+					toast.success(data.message, {
+						theme: "dark",
+					});
+				}
+			})
+			.catch((error) => {
+				console.error("Error during joining team:", error);
+				const errorMessage = error.message || "😔 Failed to join team, please try again later.";
+				toast.error(errorMessage, {
+					position: "top-center",
+					draggable: true,
+					autoClose: 15000,
+				});
+			});
+
+		toast.promise(
+			joinPromise,
+			{
+				pending:
+					"⏳ Joining team...This may take several minutes, Please stay with us!!!",
+				error: "😔 Failed to join team. Please try again LATER!!",
+			},
+			{
+				position: "top-center",
+				autoClose: 8000,
+			}
+		);
 	};
 
 	const {
@@ -326,29 +300,7 @@ const RegisterPage = () => {
 		setGitHubID5,
 	} = useFormStates();
 
-	const [numMembers, setNumMembers] = useState(1);
 	const [team, setTeam] = useState("");
-
-	const handleNumMembers = (e) => {
-		const value = e.target.value;
-		if (value !== "") {
-			if (value > 4) {
-				toast.error("There can be a maximum of 4 participants in a team!", {
-					position: "top-center",
-					draggable: true,
-					theme: "dark",
-				});
-			} else if (value < 2) {
-				toast.error("There have to be a minimum of 2 members in a team!", {
-					position: "top-center",
-					draggable: true,
-					theme: "dark",
-				});
-			} else if (value <= 4) {
-				setNumMembers(Number(value));
-			}
-		}
-	};
 
 	const handleTeamName = (e) => {
 		const value = e.target.value;
@@ -380,6 +332,11 @@ const RegisterPage = () => {
 		}
 
 		setTeam(value);
+	};
+
+	const handleTeamCodeChange = (e) => {
+		const value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+		setTeamCode(value);
 	};
 
 	const handleKdshClick = (e) => {
@@ -430,7 +387,7 @@ const RegisterPage = () => {
 										rel="noreferrer noopener"
 										style={{ cursor: "pointer" }}
 									>
-										👉 Pathway
+										Pathway
 									</a>
 								</li>
 								<li>
@@ -441,7 +398,7 @@ const RegisterPage = () => {
 										rel="noreferrer noopener"
 										style={{ cursor: "pointer" }}
 									>
-										👉 LLM App
+										LLM App
 									</a>
 								</li>
 							</ul>
@@ -451,159 +408,203 @@ const RegisterPage = () => {
 				<Star/>
 				<Fade left>
 					<div className="register-form">
-						<form onSubmit={handleRegister}>
+						{!registrationMode ? (
+							// Mode Selection
 							<div>
 								<h1
 									style={{
-										// fontStyle: "italic",
 										textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
 										marginBottom: "25px",
 									}}
 								>
-									Register
+									Choose Registration Type
 								</h1>
-								<br />
-								<div className="register-form-details-special">
-									<div id="header">Team Name</div>
-									<div style={{ width: "10px" }}></div>
-									<input
-										type="text"
-										name="name"
-										placeholder="Team Name"
-										required
-										onChange={handleTeamName}
-									/>
-								</div>
-								
-								
-								<div className="register-form-details">
-									 Member 1 : Team Leader
-								</div>
-								<RegisterFormCard 
-									firstname={firstname1}
-									setFirstname={setFirstname1}
-									lastname={lastname1}
-									setLastname={setLastname1}
-									gender={gender1}
-									setGender={setGender1}
-									mail={mail1}
-									setMail={setMail1}
-									mobile={mobile1}
-									setMobile={setMobile1}
-									college={college1}
-									setCollege={setCollege1}
-									degree={degree1}
-									setDegree={setDegree1}
-									YOS={YOS1}
-									setYOS={setYOS1}
-									GitHubID={GitHubID1}
-									setGitHubID={setGitHubID1}
-								/>
-								<div className="register-form-details-special">
-									<div id="header">Team Size</div>
-									<div style={{ width: "10px" }}></div>
-									<input
-										type="number"
-										name="numMembers"
-										placeholder="Number of members"
-										onChange={handleNumMembers}
-										required
-									/>
-								</div>
-								
-								{numMembers >= 2 && (
-									<>
-										<div className="register-form-details">
-											 Member 2
-										</div>
-
-										<RegisterFormCard 
-											firstname={firstname2}
-											setFirstname={setFirstname2}
-											lastname={lastname2}
-											setLastname={setLastname2}
-											gender={gender2}
-											setGender={setGender2}
-											mail={mail2}
-											setMail={setMail2}
-											mobile={mobile2}
-											setMobile={setMobile2}
-											college={college2}
-											setCollege={setCollege2}
-											degree={degree2}
-											setDegree={setDegree2}
-											YOS={YOS2}
-											setYOS={setYOS2}
-											GitHubID={GitHubID2}
-											setGitHubID={setGitHubID2}
-										/>
-									</>
-								)}
-								
-								{numMembers >= 3 && (
-									<>
-										<div className="register-form-details">
-											 Member 3
-										</div>
-
-										<RegisterFormCard 
-											firstname={firstname3}
-											setFirstname={setFirstname3}
-											lastname={lastname3}
-											setLastname={setLastname3}
-											gender={gender3}
-											setGender={setGender3}
-											mail={mail3}
-											setMail={setMail3}
-											mobile={mobile3}
-											setMobile={setMobile3}
-											college={college3}
-											setCollege={setCollege3}
-											degree={degree3}
-											setDegree={setDegree3}
-											YOS={YOS3}
-											setYOS={setYOS3}
-											GitHubID={GitHubID3}
-											setGitHubID={setGitHubID3}
-										/>
-									</>
-								)}
-								
-								{numMembers === 4 && (
-									<>
-										<div className="register-form-details">
-											 Member 4
-										</div>
-
-										<RegisterFormCard 
-											firstname={firstname4}
-											setFirstname={setFirstname4}
-											lastname={lastname4}
-											setLastname={setLastname4}
-											gender={gender4}
-											setGender={setGender4}
-											mail={mail4}
-											setMail={setMail4}
-											mobile={mobile4}
-											setMobile={setMobile4}
-											college={college4}
-											setCollege={setCollege4}
-											degree={degree4}
-											setDegree={setDegree4}
-											YOS={YOS4}
-											setYOS={setYOS4}
-											GitHubID={GitHubID4}
-											setGitHubID={setGitHubID4}
-										/>
-									</>
-								)} 
-								{numMembers !== 1 && (
-									<button className="register-form-submit" type="submit">
-										<p>Register</p>
+								<div style={{ display: "flex", flexDirection: "column", gap: "20px", alignItems: "center" }}>
+									<button
+										className="register-form-submit"
+										type="button"
+										onClick={() => setRegistrationMode("leader")}
+										style={{ minWidth: "300px" }}
+									>
+										<p>Register as Team Leader</p>
 									</button>
-								)}
+									<button
+										className="register-form-submit"
+										type="button"
+										onClick={() => setRegistrationMode("member")}
+										style={{ minWidth: "300px" }}
+									>
+										<p>Join a Team with Team Code</p>
+									</button>
+								</div>
 							</div>
-						</form>
+						) : registrationMode === "leader" ? (
+							// Team Leader Registration Form
+							<form onSubmit={handleTeamLeaderRegister}>
+								<div>
+									<h1
+										style={{
+											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+											marginBottom: "25px",
+										}}
+									>
+										Register as Team Leader
+									</h1>
+									<br />
+									{teamCodeDisplay ? (
+										<div style={{
+											background: "rgba(0, 255, 17, 0.1)",
+											border: "2px solid #00ff11",
+											borderRadius: "10px",
+											padding: "20px",
+											marginBottom: "30px",
+											textAlign: "center"
+										}}>
+											<h2 style={{ color: "#00ff11", marginBottom: "10px" }}>
+												Team Created Successfully!
+											</h2>
+											<p style={{ color: "white", marginBottom: "15px" }}>
+												Your Team Code:
+											</p>
+											<div style={{
+												fontSize: "32px",
+												fontWeight: "bold",
+												color: "#00ff11",
+												letterSpacing: "5px",
+												marginBottom: "15px",
+												fontFamily: "monospace"
+											}}>
+												{teamCodeDisplay}
+											</div>
+											<p style={{ color: "white", fontSize: "14px" }}>
+												Share this code with your teammates so they can join your team.
+											</p>
+										</div>
+									) : (
+										<>
+											<div className="register-form-details-special">
+												<div id="header">Team Name</div>
+												<div style={{ width: "10px" }}></div>
+												<input
+													type="text"
+													name="name"
+													placeholder="Team Name"
+													required
+													onChange={handleTeamName}
+													value={team}
+												/>
+											</div>
+											
+											<div className="register-form-details">
+												Team Leader Details
+											</div>
+											<RegisterFormCard 
+												firstname={firstname1}
+												setFirstname={setFirstname1}
+												lastname={lastname1}
+												setLastname={setLastname1}
+												gender={gender1}
+												setGender={setGender1}
+												mail={mail1}
+												setMail={setMail1}
+												mobile={mobile1}
+												setMobile={setMobile1}
+												college={college1}
+												setCollege={setCollege1}
+												degree={degree1}
+												setDegree={setDegree1}
+												YOS={YOS1}
+												setYOS={setYOS1}
+												GitHubID={GitHubID1}
+												setGitHubID={setGitHubID1}
+											/>
+											<button className="register-form-submit" type="submit">
+												<p>Create Team</p>
+											</button>
+										</>
+									)}
+									<button
+										className="register-form-submit"
+										type="button"
+										onClick={() => {
+											setRegistrationMode(null);
+											setTeamCodeDisplay("");
+											setTeam("");
+										}}
+										style={{ marginTop: "20px", minWidth: "300px" }}
+									>
+										<p>Back to Selection</p>
+									</button>
+								</div>
+							</form>
+						) : (
+							// Team Member Registration Form
+							<form onSubmit={handleJoinTeam}>
+								<div>
+									<h1
+										style={{
+											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+											marginBottom: "25px",
+										}}
+									>
+										Join a Team
+									</h1>
+									<br />
+									<div className="register-form-details-special">
+										<div id="header">Team Code</div>
+										<div style={{ width: "10px" }}></div>
+										<input
+											type="text"
+											name="teamCode"
+											placeholder="Enter Team Code"
+											required
+											onChange={handleTeamCodeChange}
+											value={teamCode}
+											maxLength={8}
+											style={{ textTransform: "uppercase", letterSpacing: "2px", fontFamily: "monospace" }}
+										/>
+									</div>
+									
+									<div className="register-form-details">
+										Your Details
+									</div>
+									<RegisterFormCard 
+										firstname={firstname1}
+										setFirstname={setFirstname1}
+										lastname={lastname1}
+										setLastname={setLastname1}
+										gender={gender1}
+										setGender={setGender1}
+										mail={mail1}
+										setMail={setMail1}
+										mobile={mobile1}
+										setMobile={setMobile1}
+										college={college1}
+										setCollege={setCollege1}
+										degree={degree1}
+										setDegree={setDegree1}
+										YOS={YOS1}
+										setYOS={setYOS1}
+										GitHubID={GitHubID1}
+										setGitHubID={setGitHubID1}
+									/>
+									<button className="register-form-submit" type="submit">
+										<p>Join Team</p>
+									</button>
+									<button
+										className="register-form-submit"
+										type="button"
+										onClick={() => {
+											setRegistrationMode(null);
+											setTeamCode("");
+										}}
+										style={{ marginTop: "20px", minWidth: "300px" }}
+									>
+										<p>Back to Selection</p>
+									</button>
+								</div>
+							</form>
+						)}
 					</div>
 				</Fade>
 			</div>

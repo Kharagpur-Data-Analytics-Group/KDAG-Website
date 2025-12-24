@@ -120,7 +120,7 @@ def get_starred_repositories(github_id):
 
 
 def check_required_repositories(starred_repos):
-    required_repos = ["pathway", "llm-app"]
+    required_repos = []
     starred_repo_names = [
         repo["name"] for repo in starred_repos["starred_repositories"]
     ]
@@ -500,4 +500,3 @@ def join_team():
     except Exception as e:
         print("join_team error:", e)
         return jsonify({"error": "Internal server error."}), 500
-
