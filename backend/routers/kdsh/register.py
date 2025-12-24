@@ -194,11 +194,9 @@ def check_register():
 
         data = request.get_json()
 
-        # -------- PAYLOAD VALIDATION --------
         if not data or not isinstance(data, dict):
             return jsonify({"error": "Invalid payload. Expected JSON object."}), 400
 
-        # -------- REQUIRED FIELDS (LEADER ONLY) --------
         required_fields = [
             "isTeamLeader",
             "firstname",
@@ -229,7 +227,6 @@ def check_register():
         github_id = data["GitHubID"].strip().lower()
         team_name = data["teamName"].strip().lower()
 
-        # -------- BASIC VALIDATIONS --------
         if not firstname or not lastname:
             return jsonify({"error": "Firstname and lastname cannot be empty."}), 400
 
@@ -252,7 +249,6 @@ def check_register():
         if not team_name:
             return jsonify({"error": "Team name cannot be empty."}), 400
 
-        # -------- DUPLICATE CHECKS --------
         if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
             {"GitHubID": github_id}
         ):
@@ -263,7 +259,6 @@ def check_register():
         ):
             return jsonify({"error": "Team name already exists."}), 400
 
-        # -------- GITHUB STAR CHECK (LEADER ONLY) --------
         starred_repos = get_starred_repositories(github_id)
 
         if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
@@ -275,7 +270,6 @@ def check_register():
                 "error": f'Please star required repositories: {", ".join(missing_repos)}'
             }), 400
 
-        # -------- GENERATE UNIQUE TEAM CODE --------
         while True:
             team_code = generate_team_code()
             if not mongo.cx["KDSH_2026"].kdsh2026_teams.find_one(
@@ -283,7 +277,6 @@ def check_register():
             ):
                 break
 
-        # -------- INSERT LEADER --------
         mongo.cx["KDSH_2026"].kdsh2026_participants.insert_one({
             "isTeamLeader": True,
             "firstname": firstname,
@@ -299,7 +292,6 @@ def check_register():
             "registered_at": datetime.utcnow()
         })
 
-        # -------- CREATE TEAM --------
         mongo.cx["KDSH_2026"].kdsh2026_teams.insert_one({
             "teamName": team_name,
             "teamCode": team_code,
@@ -382,11 +374,9 @@ def join_team():
 
         data = request.get_json()
 
-        # -------- PAYLOAD VALIDATION --------
         if not data or not isinstance(data, dict):
             return jsonify({"error": "Invalid payload. Expected JSON object."}), 400
 
-        # -------- REQUIRED FIELDS --------
         required_fields = [
             "firstname",
             "lastname",
@@ -404,7 +394,6 @@ def join_team():
         if missing:
             return jsonify({"error": f"Missing fields: {', '.join(missing)}"}), 400
 
-        # -------- BASIC SANITIZATION --------
         firstname = str(data["firstname"]).strip()
         lastname = str(data["lastname"]).strip()
         email = str(data["mail"]).strip().lower()
@@ -412,7 +401,6 @@ def join_team():
         github_id = str(data["GitHubID"]).strip().lower()
         team_code = str(data["teamCode"]).strip().upper()
 
-        # -------- BASIC VALIDATIONS --------
         if not firstname or not lastname:
             return jsonify({"error": "Firstname and lastname cannot be empty."}), 400
 
@@ -435,22 +423,18 @@ def join_team():
         if not team_code:
             return jsonify({"error": "Team code is required."}), 400
 
-        # -------- TEAM CODE CHECK --------
         team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
         if not team:
             return jsonify({"error": "Invalid team code."}), 400
 
-        # -------- TEAM SIZE CHECK --------
         if team["numMembers"] >= 4:
             return jsonify({"error": "Team is already full."}), 400
 
-        # -------- DUPLICATE USER CHECK --------
         if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
             {"GitHubID": github_id}
         ):
             return jsonify({"error": "GitHub ID already registered."}), 400
 
-        # -------- GITHUB STAR CHECK --------
         starred_repos = get_starred_repositories(github_id)
 
         if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
@@ -464,7 +448,6 @@ def join_team():
                 "error": f'Please star required repositories: {", ".join(missing_repos)}'
             }), 400
 
-        # -------- ATOMIC TEAM UPDATE (SAFE JOIN) --------
         update_result = mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
             {
                 "_id": team["_id"],
@@ -483,7 +466,6 @@ def join_team():
         if update_result.modified_count == 0:
             return jsonify({"error": "Failed to join team. Try again."}), 400
 
-        # -------- INSERT PARTICIPANT --------
         mongo.cx["KDSH_2026"].kdsh2026_participants.insert_one({
             "isTeamLeader": False,
             "firstname": firstname,
@@ -499,7 +481,6 @@ def join_team():
             "joined_at": datetime.utcnow()
         })
 
-        # -------- ACTIVATE TEAM IF >= 2 --------
         mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
             {
                 "_id": team["_id"],
