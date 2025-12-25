@@ -78,7 +78,7 @@ const RegisterPage = () => {
 
 		const registerPromise = fetch(
 			// `${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
-			'http://localhost:5001/kdsh/check_register',
+			'http://localhost:5000/kdsh/check_register',
 			{
 				method: "POST",
 				headers: {
@@ -159,7 +159,7 @@ const RegisterPage = () => {
 
 		const joinPromise = fetch(
 			// `${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
-			'http://localhost:5001/kdsh/join_team',
+			'http://localhost:5000/kdsh/join_team',
 			{
 				method: "POST",
 				headers: {

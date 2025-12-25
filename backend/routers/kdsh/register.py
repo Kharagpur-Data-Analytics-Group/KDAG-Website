@@ -8,7 +8,6 @@ import string
 from flask_jwt_extended import jwt_required, decode_token, get_jwt_identity
 from bson.objectid import ObjectId
 
-
 kdsh = Blueprint("kdsh", __name__)
 
 load_dotenv()
@@ -17,15 +16,31 @@ def generate_team_code(length=8):
     chars = string.ascii_uppercase + string.digits
     return ''.join(secrets.choice(chars) for _ in range(length))
 
-
-
 def serialize_document(doc):
-    """Converts MongoDB documents to JSON-serializable format."""
     if not doc:
         return None
     doc["_id"] = str(doc["_id"])
     return doc
 
+def _extract_email_from_identity(mongo, identity):
+    if not identity:
+        return None
+    if isinstance(identity, dict):
+        email = identity.get("email")
+        if email:
+            return email.lower()
+        user_id = identity.get("user_id")
+        if user_id:
+            try:
+                user = mongo.cx["KDAG-BACKEND"]["users"].find_one({"_id": ObjectId(user_id)})
+                if user and user.get("email"):
+                    return user["email"].lower()
+            except Exception:
+                return None
+        return None
+    if isinstance(identity, str):
+        return identity.lower()
+    return None
 
 async def fetch_page(session, url, headers):
     """Fetch a single page of starred repositories."""
@@ -216,16 +231,16 @@ def check_register():
         if missing:
             return jsonify({"error": f"Missing fields: {', '.join(missing)}"}), 400
 
-        # -------- LEADER CHECK (CRITICAL) --------
+        # LEADER CHECK (CRITICAL)
         if data["isTeamLeader"] is not True:
             return jsonify({"error": "Only team leaders can create a team."}), 400
 
-        # -------- BASIC SANITIZATION --------
+        # BASIC SANITIZATION
         firstname = data["firstname"].strip()
         lastname = data["lastname"].strip()
         email = data["mail"].strip().lower()
         mobile = str(data["mobile"]).strip()
-        github_id = data["GitHubID"].strip().lower()
+        github_id = data["GitHubID"].strip().lower()    
         team_name = data["teamName"].strip().lower()
 
         if not firstname or not lastname:
@@ -301,7 +316,6 @@ def check_register():
             "members_github": [],
             "members_email": [],
             "numMembers": 1,
-            "is_active": False,
             "created_at": datetime.utcnow()
         })
 
@@ -488,7 +502,7 @@ def join_team():
                 "numMembers": {"$gte": 2}
             },
             {
-                "$set": {"is_active": True}
+                "$set": {}
             }
         )
 
@@ -637,3 +651,147 @@ def remove_member():
         return jsonify({"error": "Internal server error"}), 500
 
 
+@kdsh.route("/edit_team_details", methods=['PATCH'])
+@jwt_required()
+def edit_team_details():
+    try:
+        from app import mongo
+
+        identity = get_jwt_identity()
+        user_email = _extract_email_from_identity(mongo, identity)
+        if not user_email:
+            return jsonify({"error": "Unauthorized or invalid token."}), 401
+
+        data = request.get_json()
+        if not data or 'teamCode' not in data:
+            return jsonify({"error": "Team code is required."}), 400
+
+        team_code = data['teamCode'].strip().upper()
+
+        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        if not team:
+            return jsonify({"error": "Team not found."}), 404
+
+        team_leader_email = (team.get("teamleader_email") or "").lower()
+        if team_leader_email != user_email:
+            return jsonify({"error": "Only team leader can edit team details."}), 403
+
+        blocked_fields = {
+            "teamCode", "teamleader_github", "teamleader_email",
+            "members_github", "members_email", "numMembers", "_id"
+        }
+
+        update_fields = {
+            k: v for k, v in data.items()
+            if k not in blocked_fields and k != "teamCode"
+        }
+
+        if not update_fields:
+            return jsonify({"error": "No editable fields provided."}), 400
+
+        mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+            {"teamCode": team_code},
+            {"$set": update_fields}
+        )
+
+        return jsonify({"message": "Team details updated successfully."}), 200
+
+    except Exception as e:
+        print("edit_team_details error:", e)
+        return jsonify({"error": "Internal server error."}), 500
+
+
+@kdsh.route("/delete", methods=['DELETE'])
+@jwt_required()
+def delete_team_member():
+    try:
+        from app import mongo
+
+        identity = get_jwt_identity()
+        user_email = _extract_email_from_identity(mongo, identity)
+        if not user_email:
+            return jsonify({"error": "Unauthorized or invalid token."}), 401
+
+        data = request.get_json()
+        if not data or 'teamCode' not in data or 'GitHubID' not in data:
+            return jsonify({"error": "Team code and GitHub ID are required."}), 400
+
+        team_code = data['teamCode'].strip().upper()
+        github_id = data['GitHubID'].strip().lower()
+
+        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        if not team:
+            return jsonify({"error": "Team not found."}), 404
+
+        team_leader_email = (team.get("teamleader_email") or "").lower()
+        if team_leader_email != user_email:
+            return jsonify({"error": "Only team leader can remove members."}), 403
+
+        if github_id == (team.get("teamleader_github") or ""):
+            return jsonify({"error": "Cannot remove team leader."}), 400
+
+        participant = mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+            {"GitHubID": github_id}
+        )
+        if not participant:
+            return jsonify({"error": "Participant not found."}), 404
+
+        mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+            {"teamCode": team_code},
+            {
+                "$pull": {
+                    "members_github": github_id,
+                    "members_email": participant.get("mail")
+                },
+                "$inc": {"numMembers": -1}
+            }
+        )
+
+        mongo.cx["KDSH_2026"].kdsh2026_participants.delete_one(
+            {"GitHubID": github_id}
+        )
+
+        return jsonify({"message": "Member removed successfully."}), 200
+
+    except Exception as e:
+        print("delete_team_member error:", e)
+        return jsonify({"error": "Internal server error."}), 500
+
+
+@kdsh.route("/delete_team", methods=['DELETE'])
+@jwt_required()
+def delete_team():
+    try:
+        from app import mongo
+
+        identity = get_jwt_identity()
+        user_email = _extract_email_from_identity(mongo, identity)
+        if not user_email:
+            return jsonify({"error": "Unauthorized or invalid token."}), 401
+
+        data = request.get_json()
+        if not data or 'teamCode' not in data:
+            return jsonify({"error": "Team code is required."}), 400
+
+        team_code = data['teamCode'].strip().upper()
+
+        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        if not team:
+            return jsonify({"error": "Team not found."}), 404
+
+        team_leader_email = (team.get("teamleader_email") or "").lower()
+        if team_leader_email != user_email:
+            return jsonify({"error": "Only team leader can delete the team."}), 403
+
+        gh_ids = [team.get("teamleader_github"), *team.get("members_github", [])]
+
+        mongo.cx["KDSH_2026"].kdsh2026_teams.delete_one({"teamCode": team_code})
+        mongo.cx["KDSH_2026"].kdsh2026_participants.delete_many(
+            {"GitHubID": {"$in": [g for g in gh_ids if g]}}
+        )
+
+        return jsonify({"message": "Team deleted successfully."}), 200
+
+    except Exception as e:
+        print("delete_team error:", e)
+        return jsonify({"error": "Internal server error."}), 500
