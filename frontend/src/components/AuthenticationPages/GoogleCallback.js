@@ -37,7 +37,8 @@ const GoogleAuthCallback = () => {
           localStorage.setItem("register_user_info", JSON.stringify(user_info));
           localStorage.setItem("uid", data.uid);
           localStorage.setItem("access_token", data.access_token);
-          history.push("/register");
+          // history.push("/register");
+          window.location.href = "/ml_sheet";
         }
       })
       .catch((error) => {
