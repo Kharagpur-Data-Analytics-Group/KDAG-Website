@@ -155,7 +155,7 @@ const RegisterPage = () => {
 			'http://localhost:5000/kdsh/join_team',
 			{
 				method: "POST",
-		 		headers: {
+				headers: {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify(formData),
@@ -407,7 +407,7 @@ const RegisterPage = () => {
 						</div>
 					</div>
 				</Fade>
-				<Star/>
+				<Star />
 				<Fade left>
 					<div className="register-form">
 						{!registrationMode ? (
@@ -417,7 +417,7 @@ const RegisterPage = () => {
 									style={{
 										textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
 										marginBottom: "25px",
-										textAlign: "center",	
+										textAlign: "center",
 									}}
 								>
 									Choose Registration Type
@@ -444,7 +444,7 @@ const RegisterPage = () => {
 						) : registrationMode === "leader" ? (
 							// Team Leader Registration Form
 							<form onSubmit={handleTeamLeaderRegister}>
-								<div>
+								<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
 									<h1
 										style={{
 											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
@@ -461,7 +461,8 @@ const RegisterPage = () => {
 											borderRadius: "10px",
 											padding: "20px",
 											marginBottom: "30px",
-											textAlign: "center"
+											textAlign: "center",
+											width: "100%",
 										}}>
 											<h2 style={{ color: "#00ff11", marginBottom: "10px" }}>
 												Team Created Successfully!
@@ -475,7 +476,7 @@ const RegisterPage = () => {
 												color: "#00ff11",
 												letterSpacing: "5px",
 												marginBottom: "15px",
-												fontFamily: "monospace"
+												fontFamily: "monospace",
 											}}>
 												{teamCodeDisplay}
 											</div>
@@ -484,7 +485,7 @@ const RegisterPage = () => {
 											</p>
 										</div>
 									) : (
-										<>
+										<div>
 											<div className="register-form-details-special">
 												<div id="header">Team Name</div>
 												<div style={{ width: "10px" }}></div>
@@ -497,11 +498,11 @@ const RegisterPage = () => {
 													value={team}
 												/>
 											</div>
-											
+
 											<div className="register-form-details">
 												Team Leader Details
 											</div>
-											<RegisterFormCard 
+											<RegisterFormCard
 												firstname={firstname1}
 												setFirstname={setFirstname1}
 												lastname={lastname1}
@@ -521,10 +522,12 @@ const RegisterPage = () => {
 												GitHubID={GitHubID1}
 												setGitHubID={setGitHubID1}
 											/>
-											<button className="register-form-submit" type="submit">
-												<p>Create Team</p>
-											</button>
-										</>
+											<div style={{width: "100%", display: 'flex', justifyContent: 'center'}}>
+												<button className="register-form-submit" type="submit">
+													<p>Create Team</p>
+												</button>
+											</div>
+										</div>
 									)}
 									<button
 										className="register-form-submit"
@@ -534,7 +537,7 @@ const RegisterPage = () => {
 											setTeamCodeDisplay("");
 											setTeam("");
 										}}
-										style={{ marginTop: "20px", minWidth: "300px" }}
+										style={{ minWidth: "300px", maxWidth: "400px" }}
 									>
 										<p>Back to Selection</p>
 									</button>
@@ -543,7 +546,7 @@ const RegisterPage = () => {
 						) : (
 							// Team Member Registration Form
 							<form onSubmit={handleJoinTeam}>
-								<div>
+								<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
 									<h1
 										style={{
 											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
@@ -567,11 +570,11 @@ const RegisterPage = () => {
 											style={{ textTransform: "uppercase", letterSpacing: "2px", fontFamily: "monospace" }}
 										/>
 									</div>
-									
+
 									<div className="register-form-details">
 										Your Details
 									</div>
-									<RegisterFormCard 
+									<RegisterFormCard
 										firstname={firstname1}
 										setFirstname={setFirstname1}
 										lastname={lastname1}
@@ -591,9 +594,11 @@ const RegisterPage = () => {
 										GitHubID={GitHubID1}
 										setGitHubID={setGitHubID1}
 									/>
-									<button className="register-form-submit" type="submit">
+									<div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+										<button className="register-form-submit" type="submit">
 										<p>Join Team</p>
 									</button>
+									</div>
 									<button
 										className="register-form-submit"
 										type="button"
@@ -601,7 +606,7 @@ const RegisterPage = () => {
 											setRegistrationMode(null);
 											setTeamCode("");
 										}}
-										style={{ marginTop: "20px", minWidth: "300px" }}
+										style={{minWidth: "300px", maxWidth: '400px' }}
 									>
 										<p>Back to Selection</p>
 									</button>
