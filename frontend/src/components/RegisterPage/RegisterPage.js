@@ -68,7 +68,8 @@ const RegisterPage = () => {
 		};
 
 		const registerPromise = fetch(
-			`${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
+			// `${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
+			'http://localhost:5000/kdsh/check_register',
 			{
 				method: "POST",
 				headers: {
@@ -150,7 +151,8 @@ const RegisterPage = () => {
 		};
 
 		const joinPromise = fetch(
-			`${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
+			// `${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
+			'http://localhost:5000/kdsh/join_team',
 			{
 				method: "POST",
 		 		headers: {
@@ -415,11 +417,12 @@ const RegisterPage = () => {
 									style={{
 										textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
 										marginBottom: "25px",
+										textAlign: "center",	
 									}}
 								>
 									Choose Registration Type
 								</h1>
-								<div style={{ display: "flex", flexDirection: "column", gap: "20px", alignItems: "center" }}>
+								<div style={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
 									<button
 										className="register-form-submit"
 										type="button"

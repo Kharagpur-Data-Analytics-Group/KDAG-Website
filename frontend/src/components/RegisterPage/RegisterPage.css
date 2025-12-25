@@ -141,12 +141,14 @@
 .register-form {
 	border: solid rgba(255, 255, 255, 0.05) 2px;
 	border-top: 5px solid #1c1cf0;
+	border-radius: 1.2rem;
 	/*backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);*/
 	background: rgb(21, 21, 21);
+	max-width: 900px;
 	padding: 25px;
 	width: 80%;
-	left: 10%;
+	/* left: 10%; */
 	margin-bottom: 300px;
 	margin-top: 150px;
 }
@@ -255,7 +257,7 @@
 	justify-content: center;
 	align-items: center;
 	margin-top: 30px; 
-	padding-left: 90px;
+	/* padding-left: 90px; */
 }
 
 
