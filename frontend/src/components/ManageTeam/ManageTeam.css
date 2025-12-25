@@ -1,0 +1,171 @@
+.manage-team-container {
+	min-height: 100vh;
+	padding: 120px 20px 50px;
+	background: #0a0a0a;
+	color: white;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.manage-team-header {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.manage-team-header h1 {
+	font-size: 2.5rem;
+	margin-bottom: 10px;
+	text-shadow: 0 0 10px rgba(28, 28, 240, 0.5);
+}
+
+.manage-team-header p {
+	font-size: 1.2rem;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.manage-team-message {
+	text-align: center;
+	padding: 60px 20px;
+}
+
+.manage-team-message h2 {
+	font-size: 2rem;
+	margin-bottom: 20px;
+}
+
+.manage-team-message p {
+	font-size: 1.1rem;
+	color: rgba(255, 255, 255, 0.7);
+	margin-bottom: 30px;
+}
+
+.create-team-link {
+	display: inline-block;
+	padding: 12px 30px;
+	background: linear-gradient(to right, #1c1cf0, #40dfe4);
+	color: white;
+	text-decoration: none;
+	border-radius: 30px;
+	font-weight: 600;
+	transition: all 0.3s;
+}
+
+.create-team-link:hover {
+	transform: scale(1.05);
+	box-shadow: 0 0 20px rgba(28, 28, 240, 0.5);
+}
+
+.teams-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+	gap: 30px;
+	margin-top: 30px;
+}
+
+.team-card {
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 15px;
+	padding: 25px;
+	transition: all 0.3s;
+}
+
+.team-card:hover {
+	background: rgba(255, 255, 255, 0.08);
+	border-color: rgba(28, 28, 240, 0.5);
+	transform: translateY(-5px);
+	box-shadow: 0 5px 20px rgba(28, 28, 240, 0.3);
+}
+
+.team-card-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.team-card-header h2 {
+	font-size: 1.5rem;
+	margin: 0;
+	color: #fff;
+}
+
+.team-status {
+	padding: 5px 15px;
+	border-radius: 20px;
+	font-size: 0.85rem;
+	font-weight: 600;
+}
+
+.team-status.active {
+	background: rgba(0, 255, 17, 0.2);
+	color: #00ff11;
+	border: 1px solid #00ff11;
+}
+
+.team-status.inactive {
+	background: rgba(255, 255, 255, 0.1);
+	color: rgba(255, 255, 255, 0.7);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.team-card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.team-info-item {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.team-info-item strong {
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 0.9rem;
+}
+
+.team-code-display {
+	font-family: monospace;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #00ff11;
+	letter-spacing: 3px;
+	padding: 10px;
+	background: rgba(0, 255, 17, 0.1);
+	border: 2px solid #00ff11;
+	border-radius: 8px;
+	text-align: center;
+}
+
+.members-list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-top: 5px;
+}
+
+.member-item {
+	padding: 8px 12px;
+	background: rgba(255, 255, 255, 0.05);
+	border-radius: 5px;
+	font-size: 0.9rem;
+}
+
+.member-item strong {
+	color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+	.teams-list {
+		grid-template-columns: 1fr;
+	}
+
+	.manage-team-header h1 {
+		font-size: 2rem;
+	}
+}
+

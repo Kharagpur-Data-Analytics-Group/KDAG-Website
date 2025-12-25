@@ -149,7 +149,7 @@ const Navbar = ({ noborder }) => {
               <div className="kdag-nav-item">
                 <NavLink
                   activeStyle={active_style}
-                  to={`/user_profile_self/${userId}`}
+                  to={`/manage-team`}
                 >
                   <img src={profile_icon} alt="" />
                 </NavLink>
@@ -278,7 +278,7 @@ const Navbar = ({ noborder }) => {
                     {isLoggedIn && (
                       <li>
                         <NavLink
-                          to={`/user_profile_self/${userId}`}
+                          to="/manage-team"
                           onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                           {" "}

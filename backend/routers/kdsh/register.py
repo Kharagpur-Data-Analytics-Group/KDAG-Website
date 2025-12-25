@@ -5,6 +5,9 @@ from flask import Blueprint, jsonify, request, current_app
 from datetime import datetime
 import secrets
 import string
+from flask_jwt_extended import jwt_required, decode_token, get_jwt_identity
+from bson.objectid import ObjectId
+
 
 kdsh = Blueprint("kdsh", __name__)
 
@@ -498,3 +501,47 @@ def join_team():
     except Exception as e:
         print("join_team error:", e)
         return jsonify({"error": "Internal server error."}), 500
+
+@kdsh.route("/get_user_teams", methods=["GET"])
+@jwt_required()
+def get_user_teams():
+    try:
+        from app import mongo
+
+        identity = get_jwt_identity()
+        print("JWT identity:", identity)
+
+        user_id = identity.get("user_id")
+        if not user_id:
+            return jsonify({"error": "User ID missing from token"}), 400
+
+        user = mongo.cx["KDAG-BACKEND"]["users"].find_one({
+            "_id": ObjectId(user_id)
+        })
+
+        if not user:
+            return jsonify({"error": "User not found"}), 404
+
+        user_email = user.get("email", "").lower()
+        if not user_email:
+            return jsonify({"error": "User email missing"}), 400
+
+        teams = list(
+            mongo.cx["KDSH_2026"]["kdsh2026_teams"].find({
+                "teamleader_email": user_email
+            })
+        )
+
+        for team in teams:
+            team["_id"] = str(team["_id"])
+
+        return jsonify({
+            "teams": teams,
+            "count": len(teams)
+        }), 200
+
+    except Exception as e:
+        print("get_user_teams error:", e)
+        return jsonify({"error": "Internal server error."}), 500
+
+
