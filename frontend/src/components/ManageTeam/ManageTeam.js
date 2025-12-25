@@ -68,12 +68,47 @@ const ManageTeam = () => {
     }
   };
 
-  const removeMember = async (memberId) => {
-    toast.info(`Remove member functionality: ${memberId}`, {
-      position: "bottom-right",
-    });
-    // Implement actual remove logic here
-  };
+  const removeMember = async (memberGithubId) => {
+  if (!window.confirm("Are you sure you want to remove this member?")) return;
+
+  try {
+    const token = localStorage.getItem("access_token");
+    if (!token) {
+      toast.error("You must be logged in");
+      return;
+    }
+
+    const team = teams[0]; // since only one team per leader
+
+    const res = await fetch(
+      `${process.env.REACT_APP_FETCH_URL}/kdsh/remove_member`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          GitHubID: memberGithubId,
+          teamCode: team.teamCode,
+        }),
+      }
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.error || "Failed to remove member");
+
+    toast.success("Member removed successfully");
+
+    // Refresh UI
+    fetchUserTeams();
+
+  } catch (err) {
+    toast.error(err.message || "Something went wrong");
+  }
+};
+
 
   const editLeader = () => {
     toast.info("Edit team leader details coming soon!", {

@@ -572,5 +572,68 @@ def get_user_teams():
         print("get_user_teams error:", e)
         return jsonify({"error": "Internal server error"}), 500
 
+@kdsh.route("/remove_member", methods=["POST"])
+@jwt_required()
+def remove_member():
+    try:
+        from app import mongo
+        data = request.get_json()
+
+        github_to_remove = data.get("GitHubID")
+        team_code = data.get("teamCode")
+
+        if not github_to_remove or not team_code:
+            return jsonify({"error": "GitHubID and teamCode are required"}), 400
+
+        identity = get_jwt_identity()
+        user_id = identity.get("user_id")
+
+        user = mongo.cx["KDAG-BACKEND"]["users"].find_one(
+            {"_id": ObjectId(user_id)}
+        )
+        if not user:
+            return jsonify({"error": "User not found"}), 404
+
+        leader_email = user["email"].lower()
+
+        team = mongo.cx["KDSH_2026"]["kdsh2026_teams"].find_one(
+            {"teamCode": team_code}
+        )
+
+        if not team:
+            return jsonify({"error": "Team not found"}), 404
+
+        if team["teamleader_email"].lower() != leader_email:
+            return jsonify({"error": "Only the team leader can remove members"}), 403
+
+        if github_to_remove == team["teamleader_github"]:
+            return jsonify({"error": "Leader cannot remove themselves"}), 400
+
+        if github_to_remove not in team["members_github"]:
+            return jsonify({"error": "Member not found in team"}), 404
+
+        mongo.cx["KDSH_2026"]["kdsh2026_teams"].update_one(
+            {"_id": team["_id"]},
+            {
+                "$pull": {
+                    "members_github": github_to_remove,
+                    "members_email": {"$in": [github_to_remove]}
+                },
+                "$inc": {"numMembers": -1},
+                "$set": {
+                    "is_active": team["numMembers"] - 1 >= 2
+                }
+            }
+        )
+
+        mongo.cx["KDSH_2026"]["kdsh2026_participants"].delete_one(
+            {"GitHubID": github_to_remove}
+        )
+
+        return jsonify({"message": "Member removed successfully"}), 200
+
+    except Exception as e:
+        print("remove_member error:", e)
+        return jsonify({"error": "Internal server error"}), 500
 
 
