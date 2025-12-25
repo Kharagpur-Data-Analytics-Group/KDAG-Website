@@ -701,63 +701,6 @@ def edit_team_details():
         return jsonify({"error": "Internal server error."}), 500
 
 
-@kdsh.route("/delete", methods=['DELETE'])
-@jwt_required()
-def delete_team_member():
-    try:
-        from app import mongo
-
-        identity = get_jwt_identity()
-        user_email = _extract_email_from_identity(mongo, identity)
-        if not user_email:
-            return jsonify({"error": "Unauthorized or invalid token."}), 401
-
-        data = request.get_json()
-        if not data or 'teamCode' not in data or 'GitHubID' not in data:
-            return jsonify({"error": "Team code and GitHub ID are required."}), 400
-
-        team_code = data['teamCode'].strip().upper()
-        github_id = data['GitHubID'].strip().lower()
-
-        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
-        if not team:
-            return jsonify({"error": "Team not found."}), 404
-
-        team_leader_email = (team.get("teamleader_email") or "").lower()
-        if team_leader_email != user_email:
-            return jsonify({"error": "Only team leader can remove members."}), 403
-
-        if github_id == (team.get("teamleader_github") or ""):
-            return jsonify({"error": "Cannot remove team leader."}), 400
-
-        participant = mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
-            {"GitHubID": github_id}
-        )
-        if not participant:
-            return jsonify({"error": "Participant not found."}), 404
-
-        mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
-            {"teamCode": team_code},
-            {
-                "$pull": {
-                    "members_github": github_id,
-                    "members_email": participant.get("mail")
-                },
-                "$inc": {"numMembers": -1}
-            }
-        )
-
-        mongo.cx["KDSH_2026"].kdsh2026_participants.delete_one(
-            {"GitHubID": github_id}
-        )
-
-        return jsonify({"message": "Member removed successfully."}), 200
-
-    except Exception as e:
-        print("delete_team_member error:", e)
-        return jsonify({"error": "Internal server error."}), 500
-
-
 @kdsh.route("/delete_team", methods=['DELETE'])
 @jwt_required()
 def delete_team():
