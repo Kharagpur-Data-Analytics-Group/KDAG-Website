@@ -6,8 +6,6 @@ from datetime import datetime
 import secrets
 import string
 
-
-
 kdsh = Blueprint("kdsh", __name__)
 
 load_dotenv()
@@ -120,7 +118,7 @@ def get_starred_repositories(github_id):
 
 
 def check_required_repositories(starred_repos):
-    required_repos = []
+    required_repos = ["pathway", "llm-app"]
     starred_repo_names = [
         repo["name"] for repo in starred_repos["starred_repositories"]
     ]

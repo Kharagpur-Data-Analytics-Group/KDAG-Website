@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Fade from "../Common/Motion/Fade.js"
 import Particless from "../Common/Particles/Particless";
 import { toast } from "react-toastify";
@@ -16,15 +16,20 @@ import starred from "./../../assets/starred_repo.png";
 import profile_icon from "./../../assets/profile_icon.png";
 import profile_menu from "./../../assets/profile_menu.png";
 import Star from "./Star.js";
+import { AuthContext } from "../../context/AuthContext";
+import LoginPrompt from "../Resources_New/LoginPrompt";
+import "../Resources_New/LoginPrompt.css";
 
 const RegisterPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
+	const { isLoggedIn } = useContext(AuthContext);
 	const [successPage, setSuccessPage] = useState(false);
 	const history = useHistory();
 	const [showHowTo, setShowHowTo] = useState(true);
-	const [registrationMode, setRegistrationMode] = useState(null); // null, 'leader', or 'member'
+	const [registrationMode, setRegistrationMode] = useState(null); 
 	const [teamCode, setTeamCode] = useState("");
-	const [teamCodeDisplay, setTeamCodeDisplay] = useState(""); // For displaying team code after leader registration
+	const [teamCodeDisplay, setTeamCodeDisplay] = useState(""); 
+	const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
 	const handleShowHowTo = () => {
 		setShowHowTo(!showHowTo);
@@ -39,7 +44,11 @@ const RegisterPage = () => {
 	const handleTeamLeaderRegister = (e) => {
 		e.preventDefault();
 
-		// Validate team leader form
+		if (!isLoggedIn) {
+			setShowLoginPrompt(true);
+			return false;
+		}
+
 		if (!handleSubmit(firstname1, mobile1, college1, YOS1, GitHubID1)) {
 			return false;
 		}
@@ -121,7 +130,6 @@ const RegisterPage = () => {
 	const handleJoinTeam = (e) => {
 		e.preventDefault();
 
-		// Validate team code
 		if (!teamCode || teamCode.trim() === "") {
 			toast.error("Please enter a team code", {
 				position: "top-center",
@@ -131,7 +139,6 @@ const RegisterPage = () => {
 			return false;
 		}
 
-		// Validate member form
 		if (!handleSubmit(firstname1, mobile1, college1, YOS1, GitHubID1)) {
 			return false;
 		}
@@ -162,7 +169,6 @@ const RegisterPage = () => {
 			.then(async (response) => {
 				const data = await response.json();
 				if (!response.ok) {
-					// Handle error responses
 					throw new Error(data.error || `Server error: ${response.status}`);
 				}
 				return data;
@@ -189,8 +195,8 @@ const RegisterPage = () => {
 			joinPromise,
 			{
 				pending:
-					"⏳ Joining team...This may take several minutes, Please stay with us!!!",
-				error: "😔 Failed to join team. Please try again LATER!!",
+					"Joining team...This may take several minutes, Please stay with us!!!",
+				error: "Failed to join team. Please try again LATER!!",
 			},
 			{
 				position: "top-center",
@@ -409,7 +415,6 @@ const RegisterPage = () => {
 				<Fade left>
 					<div className="register-form">
 						{!registrationMode ? (
-							// Mode Selection
 							<div>
 								<h1
 									style={{
@@ -423,7 +428,13 @@ const RegisterPage = () => {
 									<button
 										className="register-form-submit"
 										type="button"
-										onClick={() => setRegistrationMode("leader")}
+										onClick={() => {
+											if (!isLoggedIn) {
+												setShowLoginPrompt(true);
+												return;
+											}
+											setRegistrationMode("leader");
+										}}
 										style={{ minWidth: "300px" }}
 									>
 										<p>Register as Team Leader</p>
@@ -439,7 +450,6 @@ const RegisterPage = () => {
 								</div>
 							</div>
 						) : registrationMode === "leader" ? (
-							// Team Leader Registration Form
 							<form onSubmit={handleTeamLeaderRegister}>
 								<div>
 									<h1
@@ -538,7 +548,6 @@ const RegisterPage = () => {
 								</div>
 							</form>
 						) : (
-							// Team Member Registration Form
 							<form onSubmit={handleJoinTeam}>
 								<div>
 									<h1
@@ -609,6 +618,11 @@ const RegisterPage = () => {
 				</Fade>
 			</div>
 			{particless}
+			<LoginPrompt 
+				open={showLoginPrompt} 
+				onClose={() => setShowLoginPrompt(false)}
+				message="Login to our website to register as a team leader"
+			/>
 		</>
 	);
 };
