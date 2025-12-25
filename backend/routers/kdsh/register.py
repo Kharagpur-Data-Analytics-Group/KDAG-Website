@@ -502,46 +502,75 @@ def join_team():
         print("join_team error:", e)
         return jsonify({"error": "Internal server error."}), 500
 
+from bson.objectid import ObjectId
+from flask_jwt_extended import jwt_required, get_jwt_identity
+
 @kdsh.route("/get_user_teams", methods=["GET"])
 @jwt_required()
 def get_user_teams():
     try:
         from app import mongo
-
+        
         identity = get_jwt_identity()
-        print("JWT identity:", identity)
-
         user_id = identity.get("user_id")
-        if not user_id:
-            return jsonify({"error": "User ID missing from token"}), 400
 
-        user = mongo.cx["KDAG-BACKEND"]["users"].find_one({
-            "_id": ObjectId(user_id)
-        })
+        user = mongo.cx["KDAG-BACKEND"]["users"].find_one(
+            {"_id": ObjectId(user_id)}
+        )
 
         if not user:
             return jsonify({"error": "User not found"}), 404
 
-        user_email = user.get("email", "").lower()
-        if not user_email:
-            return jsonify({"error": "User email missing"}), 400
+        email = user["email"].lower()
 
         teams = list(
-            mongo.cx["KDSH_2026"]["kdsh2026_teams"].find({
-                "teamleader_email": user_email
-            })
+            mongo.cx["KDSH_2026"]["kdsh2026_teams"].find(
+                {"teamleader_email": email}
+            )
         )
 
-        for team in teams:
-            team["_id"] = str(team["_id"])
+        if not teams:
+            return jsonify({"teams": []}), 200
 
-        return jsonify({
-            "teams": teams,
-            "count": len(teams)
-        }), 200
+        participants_col = mongo.cx["KDSH_2026"]["kdsh2026_participants"]
+
+        enriched = []
+
+        for t in teams:
+
+            gh_ids = [t["teamleader_github"], *t["members_github"]]
+
+            people = list(
+                participants_col.find(
+                    {"GitHubID": {"$in": gh_ids}},
+                    {"_id": 0} 
+                )
+            )
+
+            leader = next(
+                (p for p in people if p["GitHubID"] == t["teamleader_github"]),
+                None,
+            )
+
+            members = [
+                p for p in people if p["GitHubID"] in t["members_github"]
+            ]
+
+            enriched.append({
+                "_id": str(t["_id"]),
+                "teamName": t["teamName"],
+                "teamCode": t["teamCode"],
+                "created_at": t["created_at"],
+                "numMembers": t["numMembers"],
+                "leader": leader,
+                "members": members,
+            })
+
+        return jsonify({"teams": enriched}), 200
 
     except Exception as e:
         print("get_user_teams error:", e)
-        return jsonify({"error": "Internal server error."}), 500
+        return jsonify({"error": "Internal server error"}), 500
+
 
 
