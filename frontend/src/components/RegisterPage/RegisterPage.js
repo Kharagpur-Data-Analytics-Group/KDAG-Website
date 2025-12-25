@@ -30,6 +30,8 @@ const RegisterPage = () => {
 	const [teamCode, setTeamCode] = useState("");
 	const [teamCodeDisplay, setTeamCodeDisplay] = useState(""); 
 	const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+	const [hasTeam, setHasTeam] = useState(false);
+	const [checkingTeam, setCheckingTeam] = useState(false);
 
 	const handleShowHowTo = () => {
 		setShowHowTo(!showHowTo);
@@ -40,6 +42,42 @@ const RegisterPage = () => {
 			history.push("/register-success");
 		}
 	}, [successPage, history]);
+
+	useEffect(() => {
+		if (isLoggedIn) {
+			checkUserTeam();
+		}
+	}, [isLoggedIn]);
+
+	const checkUserTeam = async () => {
+		setCheckingTeam(true);
+		try {
+			const token = localStorage.getItem("access_token");
+			if (!token) {
+				setCheckingTeam(false);
+				return;
+			}
+
+			const res = await fetch(
+				`${process.env.REACT_APP_FETCH_URL}/kdsh/get_user_teams`,
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+				}
+			);
+
+			const data = await res.json();
+			if (res.ok && data.teams && data.teams.length > 0) {
+				setHasTeam(true);
+			}
+		} catch (error) {
+			console.error("Error checking team status:", error);
+		} finally {
+			setCheckingTeam(false);
+		}
+	};
 
 	const handleTeamLeaderRegister = (e) => {
 		e.preventDefault();
@@ -78,7 +116,7 @@ const RegisterPage = () => {
 
 		const registerPromise = fetch(
 			// `${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
-			'http://localhost:5000/kdsh/check_register',
+			'http://localhost:5001/kdsh/check_register',
 			{
 				method: "POST",
 				headers: {
@@ -159,7 +197,7 @@ const RegisterPage = () => {
 
 		const joinPromise = fetch(
 			// `${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
-			'http://localhost:5000/kdsh/join_team',
+			'http://localhost:5001/kdsh/join_team',
 			{
 				method: "POST",
 				headers: {
@@ -416,42 +454,63 @@ const RegisterPage = () => {
 				<Star />
 				<Fade left>
 					<div className="register-form">
-						{!registrationMode ? (
-							<div>
-								<h1
-									style={{
-										textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
-										marginBottom: "25px",
-										textAlign: "center",
-									}}
-								>
-									Choose Registration Type
-								</h1>
-								<div style={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+						{checkingTeam ? (
+							<div style={{ padding: "40px", textAlign: "center" }}>
+								<h2>Checking team status...</h2>
+							</div>
+						) : !registrationMode ? (
+							hasTeam ? (
+								<div style={{ textAlign: "center", padding: "40px 20px" }}>
+									<h2 style={{ marginBottom: "20px", color: "#fff" }}>You are already part of a team!</h2>
+									<p style={{ marginBottom: "30px", color: "#ccc" }}>
+										Visit the Manage Team dashboard to view your team details or make changes.
+									</p>
 									<button
 										className="register-form-submit"
 										type="button"
-										onClick={() => {
-											if (!isLoggedIn) {
-												setShowLoginPrompt(true);
-												return;
-											}
-											setRegistrationMode("leader");
-										}}
-										style={{ minWidth: "300px" }}
+										onClick={() => history.push("/manage-team")}
+										style={{ minWidth: "300px", margin: "0 auto" }}
 									>
-										<p>Register as Team Leader</p>
-									</button>
-									<button
-										className="register-form-submit"
-										type="button"
-										onClick={() => setRegistrationMode("member")}
-										style={{ minWidth: "300px" }}
-									>
-										<p>Join a Team with Team Code</p>
+										<p>Manage Team</p>
 									</button>
 								</div>
-							</div>
+							) : (
+								<div>
+									<h1
+										style={{
+											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+											marginBottom: "25px",
+											textAlign: "center",
+										}}
+									>
+										Choose Registration Type
+									</h1>
+									<div style={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+										<button
+											className="register-form-submit"
+											type="button"
+											onClick={() => {
+												if (!isLoggedIn) {
+													setShowLoginPrompt(true);
+													return;
+												}
+												setRegistrationMode("leader");
+											}}
+											style={{ minWidth: "300px" }}
+										>
+											<p>Register as Team Leader</p>
+										</button>
+										<button
+											className="register-form-submit"
+											type="button"
+											onClick={() => setRegistrationMode("member")}
+											style={{ minWidth: "300px" }}
+										>
+											<p>Join a Team with Team Code</p>
+										</button>
+									</div>
+								</div>
+							)
 						) : registrationMode === "leader" ? (
 							<form onSubmit={handleTeamLeaderRegister}>
 								<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>

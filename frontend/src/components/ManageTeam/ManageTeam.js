@@ -4,13 +4,17 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./ManageTeam.css";
 import Particless from "../Common/Particles/Particless";
-import { Copy, Check, Users, Calendar } from "lucide-react";
+import { Copy, Check, Users, Calendar, Edit2, Trash2, X, Save } from "lucide-react";
+import Footer from "../Common/Footer/Footer";
 
 const ManageTeam = () => {
   const { isLoggedIn } = useContext(AuthContext);
   const [teams, setTeams] = useState([]);
   const [loading, setLoading] = useState(true);
   const [copiedCode, setCopiedCode] = useState(null);
+  const [editingTeamId, setEditingTeamId] = useState(null);
+  const [editTeamName, setEditTeamName] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -19,6 +23,100 @@ const ManageTeam = () => {
       setLoading(false);
     }
   }, [isLoggedIn]);
+
+  const handleEditClick = (team) => {
+    setEditingTeamId(team._id);
+    setEditTeamName(team.teamName);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingTeamId(null);
+    setEditTeamName("");
+  };
+
+  const handleSaveTeamName = async (team) => {
+    if (!editTeamName.trim()) {
+      toast.error("Team name cannot be empty");
+      return;
+    }
+
+    if (editTeamName.trim() === team.teamName) {
+      handleCancelEdit();
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("access_token");
+      const res = await fetch(
+        `${process.env.REACT_APP_FETCH_URL}/kdsh/edit_team_details`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            teamCode: team.teamCode,
+            teamName: editTeamName.trim(),
+          }),
+        }
+      );
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to update team name");
+      }
+
+      toast.success("Team name updated successfully");
+      
+      // Update local state
+      setTeams(teams.map(t => 
+        t._id === team._id ? { ...t, teamName: editTeamName.trim() } : t
+      ));
+      
+      handleCancelEdit();
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleDeleteTeam = async (team) => {
+    if (!window.confirm(`Are you sure you want to delete the team "${team.teamName}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    setIsDeleting(true);
+    try {
+      const token = localStorage.getItem("access_token");
+      const res = await fetch(
+        `${process.env.REACT_APP_FETCH_URL}/kdsh/delete_team`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            teamCode: team.teamCode,
+          }),
+        }
+      );
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to delete team");
+      }
+
+      toast.success("Team deleted successfully");
+      
+      // Update local state
+      setTeams(teams.filter(t => t._id !== team._id));
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
 
   const fetchUserTeams = async () => {
     try {
@@ -178,6 +276,7 @@ const ManageTeam = () => {
   }
 
   return (
+    <>
     <div className="mt-wrapper">
       <Particless />
 
@@ -188,7 +287,64 @@ const ManageTeam = () => {
 
       {teams.map((team) => (
         <div className="mt-card" key={team._id}>
-          <div className="mt-title">{team.teamName}</div>
+          {editingTeamId === team._id ? (
+            <div className="mt-edit-container" style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px' }}>
+              <input
+                type="text"
+                value={editTeamName}
+                onChange={(e) => setEditTeamName(e.target.value)}
+                className="mt-edit-input"
+                style={{
+                  padding: '8px 12px',
+                  borderRadius: '6px',
+                  border: '1px solid #333',
+                  background: '#1a1a1a',
+                  color: '#fff',
+                  fontSize: '1.2rem',
+                  flex: 1
+                }}
+              />
+              <button 
+                onClick={() => handleSaveTeamName(team)}
+                className="mt-action-btn save"
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#4ade80' }}
+                title="Save"
+              >
+                <Save size={24} />
+              </button>
+              <button 
+                onClick={handleCancelEdit}
+                className="mt-action-btn cancel"
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#f87171' }}
+                title="Cancel"
+              >
+                <X size={24} />
+              </button>
+            </div>
+          ) : (
+            <div className="mt-title-container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div className="mt-title">{team.teamName}</div>
+              <div className="mt-actions" style={{ display: 'flex', gap: '10px' }}>
+                <button 
+                  onClick={() => handleEditClick(team)}
+                  className="mt-action-btn edit"
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#60a5fa' }}
+                  title="Edit Team Name"
+                >
+                  <Edit2 size={20} />
+                </button>
+                <button 
+                  onClick={() => handleDeleteTeam(team)}
+                  className="mt-action-btn delete"
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#f87171' }}
+                  title="Delete Team"
+                  disabled={isDeleting}
+                >
+                  <Trash2 size={20} />
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className="mt-code-section">
             <label className="mt-code-label">Team Code</label>
@@ -343,6 +499,7 @@ const ManageTeam = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 

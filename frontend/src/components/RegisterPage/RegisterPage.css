@@ -277,9 +277,9 @@ input[type="number"] {
 	background-image: linear-gradient(
 		to right,
 		#1c1cf0,
-		#40dfe4,
-		#30dd8a,
-		#269660
+		#3572c3,
+		#3572c3,
+		#1c1cf0
 	);
 	padding: 10px;
 	background-size: 300% 100%;
@@ -293,7 +293,7 @@ input[type="number"] {
 
 .register-form-submit p:hover {
 	background-position: 100% 0;
-	text-shadow: 0 0 10px white;
+	transform: scale(1.05);
 }
 
 @media (max-width: 1300px) {
