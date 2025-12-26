@@ -16,7 +16,7 @@ import college2_img from "../../assets/pics/college2.png";
 import user_profile_img from "../../assets/pics/user_profile.png";
 import edit_icon_img from "../../assets/pics/edit.png";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import "./UserProfileSelf.css";
 
 const UserProfileSelf = () => {

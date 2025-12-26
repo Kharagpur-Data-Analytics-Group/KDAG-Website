@@ -1,6 +1,6 @@
 import "./CommunityGuidelines.css";
 import React, { useEffect, useState } from "react";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import Particless from "../Common/Particles/Particless";
 
 const CommunityGuidelines = () => {

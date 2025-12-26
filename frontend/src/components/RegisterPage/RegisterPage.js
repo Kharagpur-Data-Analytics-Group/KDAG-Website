@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Fade from "react-reveal/Fade";
+import React, { useEffect, useState, useContext } from "react";
+import Fade from "../Common/Motion/Fade.js"
 import Particless from "../Common/Particles/Particless";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,14 +7,7 @@ import { handleSubmit } from "./useFormStates";
 import useFormStates from "./useFormStates";
 import "./RegisterPage.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import user_icon from "./../../assets/kdsh2025_user.png";
-import mail_icon from "./../../assets/kdsh2025_mail.png";
-import contact_icon from "./../../assets/kdsh2025_contact.png";
-import college_icon from "./../../assets/kdsh2025_college.png";
-import degree_icon from "./../../assets/kdsh2025_degree.png";
-import YOS_icon from "./../../assets/kdsh2025_YOS.png";
-import github_icon from "./../../assets/kdsh2025_github.png";
-import gender_icon from "./../../assets/kdsh2025_gender.png";
+import RegisterFormCard from "./RegisterFormCard.js";
 import kdsh_2025 from "./../../assets/kdsh2025_logo.png";
 import show_icon from "./../../assets/show_icon.png";
 import repo1 from "./../../assets/llm_repo.png";
@@ -22,12 +15,23 @@ import repo2 from "./../../assets/pathway_repo.png";
 import starred from "./../../assets/starred_repo.png";
 import profile_icon from "./../../assets/profile_icon.png";
 import profile_menu from "./../../assets/profile_menu.png";
+import Star from "./Star.js";
+import { AuthContext } from "../../context/AuthContext";
+import LoginPrompt from "../Resources_New/LoginPrompt";
+import "../Resources_New/LoginPrompt.css";
 
 const RegisterPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
+	const { isLoggedIn } = useContext(AuthContext);
 	const [successPage, setSuccessPage] = useState(false);
 	const history = useHistory();
 	const [showHowTo, setShowHowTo] = useState(true);
+	const [registrationMode, setRegistrationMode] = useState(null); 
+	const [teamCode, setTeamCode] = useState("");
+	const [teamCodeDisplay, setTeamCodeDisplay] = useState(""); 
+	const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+	const [hasTeam, setHasTeam] = useState(false);
+	const [checkingTeam, setCheckingTeam] = useState(false);
 
 	const handleShowHowTo = () => {
 		setShowHowTo(!showHowTo);
@@ -39,195 +43,206 @@ const RegisterPage = () => {
 		}
 	}, [successPage, history]);
 
-	const handleRegister = (e) => {
-		e.preventDefault();
+	useEffect(() => {
+		if (isLoggedIn) {
+			checkUserTeam();
+		}
+	}, [isLoggedIn]);
 
-		const checkData = [
-			{
-				firstname: firstname1,
-				mobile: mobile1,
-				college: college1,
-				YOS: YOS1,
-				GitHubID: GitHubID1,
-			},
-			{
-				firstname: firstname2,
-				mobile: mobile2,
-				college: college2,
-				YOS: YOS2,
-				GitHubID: GitHubID2,
-			},
-			{
-				firstname: firstname3,
-				mobile: mobile3,
-				college: college3,
-				YOS: YOS3,
-				GitHubID: GitHubID3,
-			},
-			{
-				firstname: firstname4,
-				mobile: mobile4,
-				college: college4,
-				YOS: YOS4,
-				GitHubID: GitHubID4,
-			},
-			// ,
-			// {
-			// 	firstname: firstname5,
-			// 	mobile: mobile5,
-			// 	college: college5,
-			// 	YOS: YOS5,
-			// 	GitHubID: GitHubID5,
-			// },
-		];
-
-		const allSubmitSuccessful = checkData
-			.slice(0, numMembers)
-			.every((data) =>
-				handleSubmit(
-					data.firstname,
-					data.mobile,
-					data.college,
-					data.YOS,
-					data.GitHubID
-				)
-			);
-
-		if (allSubmitSuccessful) {
-			const formData = [
-				{
-					isTeamLeader: true,
-					firstname: firstname1,
-					lastname: lastname1,
-					gender: gender1,
-					mail: mail1,
-					mobile: mobile1,
-					college: college1,
-					degree: degree1,
-					YOS: Number(YOS1),
-					GitHubID: GitHubID1,
-					teamName: team,
-					numMembers: Number(numMembers),
-				},
-				{
-					isTeamLeader: false,
-					firstname: firstname2,
-					lastname: lastname2,
-					gender: gender2,
-					mail: mail2,
-					mobile: mobile2,
-					college: college2,
-					degree: degree2,
-					YOS: Number(YOS2),
-					GitHubID: GitHubID2,
-					teamName: team,
-					numMembers: Number(numMembers),
-				},
-				{
-					isTeamLeader: false,
-					firstname: firstname3,
-					lastname: lastname3,
-					gender: gender3,
-					mail: mail3,
-					mobile: mobile3,
-					college: college3,
-					degree: degree3,
-					YOS: Number(YOS3),
-					GitHubID: GitHubID3,
-					teamName: team,
-					numMembers: Number(numMembers),
-				},
-				{
-					isTeamLeader: false,
-					firstname: firstname4,
-					lastname: lastname4,
-					gender: gender4,
-					mail: mail4,
-					mobile: mobile4,
-					college: college4,
-					degree: degree4,
-					YOS: Number(YOS4),
-					GitHubID: GitHubID4,
-					teamName: team,
-					numMembers: Number(numMembers),
-				},
-				// ,
-				// {
-				// 	isTeamLeader: false,
-				// 	firstname: firstname5,
-				// 	lastname: lastname5,
-				// 	gender: gender5,
-				// 	mail: mail5,
-				// 	mobile: mobile5,
-				// 	college: college5,
-				// 	degree: degree5,
-				// 	YOS: Number(YOS5),
-				// 	GitHubID: GitHubID5,
-				// 	teamName: team,
-				// 	numMembers: Number(numMembers),
-				// },
-			];
-			const finalData = formData.slice(0, numMembers);
-
-			if (numMembers > 4 || numMembers < 1) {
-				toast.error(
-					"Please note a minimum of 2 and a maximum of 5 members are allowed per team."
-				);
-				return false;
+	const checkUserTeam = async () => {
+		setCheckingTeam(true);
+		try {
+			const token = localStorage.getItem("access_token");
+			if (!token) {
+				setCheckingTeam(false);
+				return;
 			}
 
-			const registerPromise = fetch(
-				`${process.env.REACT_APP_FETCH_URL}/kdsh2025/check_register`,
-				// "http://localhost:5000/kdsh2025/check_register",
+			const res = await fetch(
+				`${process.env.REACT_APP_FETCH_URL}/kdsh/get_user_teams`,
 				{
-					method: "POST",
 					headers: {
+						Authorization: `Bearer ${token}`,
 						"Content-Type": "application/json",
 					},
-					body: JSON.stringify(finalData),
-				}
-			)
-				.then((response) => response.json())
-				.then((data) => {
-					if (
-						data.message &&
-						data.registration &&
-						data.registration === "success"
-					) {
-						setSuccessPage(true);
-						toast.success(data.message, {
-							theme: "dark",
-						});
-					} else if (data.error) {
-						toast.error(data.error, {
-							position: "top-center",
-							draggable: true,
-							autoClose: 15000,
-						});
-					}
-				})
-				.catch((error) => {
-					console.error("Error during registration:", error);
-					toast.error("😔 Registration failed, please try again later.", {
-						position: "top-center",
-						draggable: true,
-					});
-				});
-			toast.promise(
-				registerPromise,
-				{
-					pending:
-						"⏳ Registering your team...This may take several minutes, Please stay with us!!!",
-					error: "😔 Registration failed. Please try again LATER!!",
-				},
-				{
-					position: "top-center",
-					autoClose: 8000,
 				}
 			);
-		} else {
+
+			const data = await res.json();
+			if (res.ok && data.teams && data.teams.length > 0) {
+				setHasTeam(true);
+			}
+		} catch (error) {
+			console.error("Error checking team status:", error);
+		} finally {
+			setCheckingTeam(false);
+		}
+	};
+
+	const handleTeamLeaderRegister = (e) => {
+		e.preventDefault();
+
+		if (!isLoggedIn) {
+			setShowLoginPrompt(true);
 			return false;
 		}
+
+		if (!handleSubmit(firstname1, mobile1, college1, YOS1, GitHubID1)) {
+			return false;
+		}
+
+		if (!team || team.trim() === "") {
+			toast.error("Please enter a team name", {
+				position: "top-center",
+				draggable: true,
+				theme: "dark",
+			});
+			return false;
+		}
+
+		const formData = {
+			isTeamLeader: true,
+			firstname: firstname1,
+			lastname: lastname1,
+			gender: gender1,
+			mail: mail1,
+			mobile: mobile1,
+			college: college1,
+			degree: degree1,
+			YOS: Number(YOS1),
+			GitHubID: GitHubID1,
+			teamName: team,
+		};
+
+		const registerPromise = fetch(
+			// `${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
+			'http://localhost:5001/kdsh/check_register',
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			}
+		)
+			.then(async (response) => {
+				const data = await response.json();
+				if (!response.ok) {
+					// Handle error responses
+					throw new Error(data.error || `Server error: ${response.status}`);
+				}
+				return data;
+			})
+			.then((data) => {
+				if (data.teamCode && data.message) {
+					setTeamCodeDisplay(data.teamCode);
+					toast.success(data.message, {
+						theme: "dark",
+						autoClose: 10000,
+					});
+				}
+			})
+			.catch((error) => {
+				console.error("Error during registration:", error);
+				const errorMessage = error.message || "😔 Registration failed, please try again later.";
+				toast.error(errorMessage, {
+					position: "top-center",
+					draggable: true,
+					autoClose: 15000,
+				});
+			});
+
+		toast.promise(
+			registerPromise,
+			{
+				pending:
+					"⏳ Creating your team...This may take several minutes, Please stay with us!!!",
+				error: "😔 Registration failed. Please try again LATER!!",
+			},
+			{
+				position: "top-center",
+				autoClose: 8000,
+			}
+		);
+	};
+
+	const handleJoinTeam = (e) => {
+		e.preventDefault();
+
+		if (!teamCode || teamCode.trim() === "") {
+			toast.error("Please enter a team code", {
+				position: "top-center",
+				draggable: true,
+				theme: "dark",
+			});
+			return false;
+		}
+
+		if (!handleSubmit(firstname1, mobile1, college1, YOS1, GitHubID1)) {
+			return false;
+		}
+
+		const formData = {
+			firstname: firstname1,
+			lastname: lastname1,
+			gender: gender1,
+			mail: mail1,
+			mobile: mobile1,
+			college: college1,
+			degree: degree1,
+			YOS: Number(YOS1),
+			GitHubID: GitHubID1,
+			teamCode: teamCode.trim().toUpperCase(),
+		};
+
+		const joinPromise = fetch(
+			// `${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
+			'http://localhost:5001/kdsh/join_team',
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			}
+		)
+			.then(async (response) => {
+				const data = await response.json();
+				if (!response.ok) {
+					throw new Error(data.error || `Server error: ${response.status}`);
+				}
+				return data;
+			})
+			.then((data) => {
+				if (data.message) {
+					setSuccessPage(true);
+					toast.success(data.message, {
+						theme: "dark",
+					});
+				}
+			})
+			.catch((error) => {
+				console.error("Error during joining team:", error);
+				const errorMessage = error.message || "😔 Failed to join team, please try again later.";
+				toast.error(errorMessage, {
+					position: "top-center",
+					draggable: true,
+					autoClose: 15000,
+				});
+			});
+
+		toast.promise(
+			joinPromise,
+			{
+				pending:
+					"Joining team...This may take several minutes, Please stay with us!!!",
+				error: "Failed to join team. Please try again LATER!!",
+			},
+			{
+				position: "top-center",
+				autoClose: 8000,
+			}
+		);
 	};
 
 	const {
@@ -331,27 +346,7 @@ const RegisterPage = () => {
 		setGitHubID5,
 	} = useFormStates();
 
-	const [numMembers, setNumMembers] = useState(1);
 	const [team, setTeam] = useState("");
-
-	const handleNumMembers = (e) => {
-		const value = e.target.value;
-		if (value > 4) {
-			toast.error("There can be a maximum of 4 participants in a team!", {
-				position: "top-center",
-				draggable: true,
-				theme: "dark",
-			});
-		} else if (value < 2) {
-			toast.error("There have to be a minimum of 2 members in a team!", {
-				position: "top-center",
-				draggable: true,
-				theme: "dark",
-			});
-		} else if (value <= 4) {
-			setNumMembers(Number(value));
-		}
-	};
 
 	const handleTeamName = (e) => {
 		const value = e.target.value;
@@ -385,6 +380,11 @@ const RegisterPage = () => {
 		setTeam(value);
 	};
 
+	const handleTeamCodeChange = (e) => {
+		const value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+		setTeamCode(value);
+	};
+
 	const handleKdshClick = (e) => {
 		history.push("/");
 	};
@@ -395,10 +395,10 @@ const RegisterPage = () => {
 				<Fade top>
 					<div className="register-header">
 						<div className="spacer layer1"></div>
-						<div className="register-kdsh">KDSH 2025</div>
+						<div className="register-kdsh">KDSH 2026</div>
 						<div className="register-kdsh-desc">
 							<p>
-								The 5th Edition of the{" "}
+								The 6th Edition of the{" "}
 								<strong>Kharagpur Data Science Hackathon</strong> (KDSH) is here
 								to redefine excellence in data science. Dive into machine
 								learning, solve real-world challenges, and showcase your
@@ -433,7 +433,7 @@ const RegisterPage = () => {
 										rel="noreferrer noopener"
 										style={{ cursor: "pointer" }}
 									>
-										👉 Pathway
+										Pathway
 									</a>
 								</li>
 								<li>
@@ -444,783 +444,254 @@ const RegisterPage = () => {
 										rel="noreferrer noopener"
 										style={{ cursor: "pointer" }}
 									>
-										👉 LLM App
+										LLM App
 									</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</Fade>
-				<Fade right>
-					<div className="kdsh2025_star_outer">
-						<div className="kdsh2025_star_header">
-							<span>💻 How to Star a repository ? 🤔</span>
-							<button onClick={handleShowHowTo}>
-								<img src={show_icon} alt="show" />
-							</button>
-						</div>
-						{showHowTo && (
-							<div className="kdsh2025_star_content">
-								<p
-									style={{
-										fontSize: "20px",
-										fontWeight: "600",
-										marginBottom: "30px",
-									}}
-								>
-									Starring a repository is a simple process.
-								</p>
-
-								<div className="step_two" style={{ paddingBottom: "15px" }}>
-									<p className="kdsh2025_list_label">1</p>{" "}
-									<span>
-										Visit{" "}
-										<a
-											href="https://github.com"
-											target="_blank"
-											rel="noopener noreferrer"
-											style={{ borderBottom: "solid blue 2px", color: "blue" }}
-										>
-											<p
-												style={{
-													cursor: "pointer",
-													color: "blue",
-													display: "inline-flex",
-												}}
-											>
-												GitHub
-											</p>
-										</a>{" "}
-										and log in using your account credentials. If you don’t have
-										an account, click Sign Up to create one.
-									</span>
-								</div>
-
-								<div className="step_one" style={{ marginBottom: "50px" }}>
-									<p className="kdsh2025_list_label">2</p>{" "}
-									<span>
-										Open Repository 1 and click the Star button at the top-right
-										corner of the page. Check the image below to locate the Star
-										button:
-									</span>
-									<p
-										style={{
-											margin: "0px",
-											paddingLeft: "40px",
-											fontWeight: "600",
-											paddingBottom: "8px",
-											color: "blue",
-											cursor: "pointer",
-										}}
-									>
-										Repository 1 :{" "}
-										<a
-											href="https://github.com/pathwaycom/llm-app"
-											target="_blank"
-											rel="noopener noreferrer"
-											style={{ borderBottom: "solid blue 2px" }}
-										>
-											https://github.com/pathwaycom/llm-app
-										</a>
-									</p>
-									<a
-										href="https://github.com/pathwaycom/llm-app"
-										target="_blank"
-										rel="noopener noreferrer"
-										style={{ cursor: "pointer" }}
-									>
-										<img src={repo1} alt="repo1" />
-									</a>
-								</div>
-
-								<div className="step_one" style={{ marginBottom: "50px" }}>
-									<p className="kdsh2025_list_label">3</p>{" "}
-									<span>
-										Similarly, navigate to Repository 2 and click the Star
-										button. Check the image below to locate the Star button:
-									</span>
-									<p
-										style={{
-											margin: "0px",
-											paddingLeft: "40px",
-											fontWeight: "600",
-											paddingBottom: "8px",
-											color: "blue",
-											cursor: "pointer",
-										}}
-									>
-										Repository 2 :{" "}
-										<a
-											href="https://github.com/pathwaycom/pathway"
-											target="_blank"
-											rel="noopener noreferrer"
-											style={{ borderBottom: "solid blue 2px" }}
-										>
-											https://github.com/pathwaycom/pathway
-										</a>
-									</p>
-									<a
-										href="https://github.com/pathwaycom/pathway"
-										target="_blank"
-										rel="noopener noreferrer"
-										style={{ cursor: "pointer" }}
-									>
-										<img src={repo2} alt="repo1" />
-									</a>
-								</div>
-								<div className="step_two">
-									<p className="kdsh2025_list_label">4</p>{" "}
-									<span>
-										Once you star a repository, the icon will update to look
-										like this:
-									</span>
-									<img src={starred} alt="starred" />
-								</div>
-								<div
-									className="step_two"
-									style={{ paddingTop: "15px", paddingBottom: "15px" }}
-								>
-									<span
-										style={{
-											color: "red",
-											textShadow: "0 0 5px red",
-											fontWeight: "600",
-											fontSize: "18px",
-										}}
-									>
-										IMPORTANT NOTE: Make sure to use the same GitHub username in
-										the registration form as the one you used to star
-										the repositories.
-									</span>
-								</div>
-								<div className="step_one" style={{ marginBottom: "50px" }}>
-									<p className="kdsh2025_list_label">5</p>{" "}
-									<span>
-										You can access your Github username by clicking on the
-										profile icon as shown in the image below:
-									</span>
-									<a
-										href="https://github.com/pathwaycom/pathway"
-										target="_blank"
-										rel="noopener noreferrer"
-										style={{ cursor: "pointer" }}
-									>
-										<img src={profile_icon} alt="repo1" />
-									</a>
-								</div>
-								<div className="step_one" style={{ marginBottom: "50px" }}>
-									<p className="kdsh2025_list_label">6</p>{" "}
-									<span>
-										After Clicking on the profile icon, you will find your
-										username displayed at the top of the menu that appears, next
-										to the profile image, as shown in the image below:
-									</span>
-									<a
-										href="https://github.com/pathwaycom/llm-app"
-										target="_blank"
-										rel="noopener noreferrer"
-										style={{ cursor: "pointer" }}
-									>
-										<img src={profile_menu} alt="repo1" />
-									</a>
-								</div>
-							</div>
-						)}
-					</div>
-				</Fade>
-
+				<Star />
 				<Fade left>
 					<div className="register-form">
-						<form onSubmit={handleRegister}>
-							<div>
-								<h1
-									style={{
-										fontStyle: "italic",
-										textShadow: "0 0 50px #1c1cf0, 0 0 100px red",
-										marginBottom: "25px",
-									}}
-								>
-									REGISTER
-								</h1>
-								<br />
-								<input
-									style={{ marginRight: "15px", marginBottom: "15px" }}
-									type="text"
-									name="name"
-									placeholder="Team Name"
-									required
-									onChange={handleTeamName}
-								/>
-								<input
-									style={{ marginBottom: "15px" }}
-									type="number"
-									name="numMembers"
-									placeholder="Number of members"
-									onChange={handleNumMembers}
-									required
-								/>
-								<div className="register-form-details">
-									Details of Member 1 : Team Leader
-								</div>
-								{/* 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 */}
-								<>
-									<div className="register-form-icons">
-										<img src={user_icon} alt="user" />
-										<input
-											type="text"
-											name="firstname"
-											placeholder="First Name"
-											required
-											value={firstname1}
-											onChange={(e) => setFirstname1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={user_icon} alt="user" />
-										<input
-											type="text"
-											name="lastname"
-											placeholder="Last Name"
-											value={lastname1}
-											onChange={(e) => setLastname1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-gender">
-										<label htmlFor="gender">
-											<img src={gender_icon} alt="gender" />
-										</label>
-										<select
-											id="gender"
-											name="gender"
-											value={gender1}
-											onChange={(e) => setGender1(e.target.value)}
-										>
-											<option value="male">Male</option>
-											<option value="female">Female</option>
-											<option value="other">Other</option>
-										</select>
-									</div>
-									<div className="register-form-icons">
-										<img src={mail_icon} alt="user" />
-										<input
-											type="email"
-											name="email"
-											placeholder="Email Id"
-											required
-											value={mail1}
-											onChange={(e) => setMail1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={contact_icon} alt="user" />
-										<input
-											type="number"
-											name="phone"
-											placeholder="Contact Number"
-											required
-											value={mobile1}
-											onChange={(e) => setMobile1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={college_icon} alt="user" />
-										<input
-											type="text"
-											name="college"
-											placeholder="College Name"
-											required
-											value={college1}
-											onChange={(e) => setCollege1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={degree_icon} alt="user" />
-										<input
-											type="text"
-											name="degree"
-											placeholder="Degree"
-											required
-											value={degree1}
-											onChange={(e) => setDegree1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={YOS_icon} alt="user" />
-										<input
-											type="number"
-											name="year"
-											placeholder="Year of Study - 1/2/3..."
-											required
-											value={YOS1}
-											onChange={(e) => setYOS1(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={github_icon} alt="user" />
-										<input
-											type="text"
-											name="githubid"
-											placeholder="Github Username"
-											required
-											value={GitHubID1}
-											onChange={(e) => setGitHubID1(e.target.value)}
-										/>
-									</div>
-								</>
-								{/* <div className="register-form-details">Details of Member 2</div> */}
-								{/* 22222222222222222222222222222222222222222222222222222222222222222222222222222222222222 */}
-								{/* <>
-									<div className="register-form-icons">
-										<img src={user_icon} alt="user" />
-										<input
-											type="text"
-											name="firstname"
-											placeholder="First Name"
-											required
-											value={firstname2}
-											onChange={(e) => setFirstname2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={user_icon} alt="user" />
-										<input
-											type="text"
-											name="lastname"
-											placeholder="Last Name"
-											value={lastname2}
-											onChange={(e) => setLastname2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-gender">
-										<label htmlFor="gender">
-											<img src={gender_icon} alt="gender" />
-										</label>
-										<select
-											id="gender"
-											name="gender"
-											value={gender2}
-											onChange={(e) => setGender2(e.target.value)}
-										>
-											<option value="male">Male</option>
-											<option value="female">Female</option>
-											<option value="other">Other</option>
-										</select>
-									</div>
-									<div className="register-form-icons">
-										<img src={mail_icon} alt="user" />
-										<input
-											type="email"
-											name="email"
-											placeholder="Email Id"
-											required
-											value={mail2}
-											onChange={(e) => setMail2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={contact_icon} alt="user" />
-										<input
-											type="number"
-											name="phone"
-											placeholder="Contact Number"
-											required
-											value={mobile2}
-											onChange={(e) => setMobile2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={college_icon} alt="user" />
-										<input
-											type="text"
-											name="college"
-											placeholder="College Name"
-											required
-											value={college2}
-											onChange={(e) => setCollege2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={degree_icon} alt="user" />
-										<input
-											type="text"
-											name="degree"
-											placeholder="Degree"
-											required
-											value={degree2}
-											onChange={(e) => setDegree2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={YOS_icon} alt="user" />
-										<input
-											type="number"
-											name="year"
-											placeholder="Year of Study - 1/2/3..."
-											required
-											value={YOS2}
-											onChange={(e) => setYOS2(e.target.value)}
-										/>
-									</div>
-									<div className="register-form-icons">
-										<img src={github_icon} alt="user" />
-										<input
-											type="text"
-											name="githubid"
-											placeholder="Github Username"
-											required
-											value={GitHubID2}
-											onChange={(e) => setGitHubID2(e.target.value)}
-										/>
-									</div>
-								</> */}
-								{/* 333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333 */}
-								{numMembers >= 2 && (
-									<>
-										<div className="register-form-details">
-											Details of Member 2
-										</div>
-
-										<>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="firstname"
-													placeholder="First Name"
-													required
-													value={firstname2}
-													onChange={(e) => setFirstname2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="lastname"
-													placeholder="Last Name"
-													value={lastname2}
-													onChange={(e) => setLastname2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-gender">
-												<label htmlFor="gender">
-													<img src={gender_icon} alt="gender" />
-												</label>
-												<select
-													id="gender"
-													name="gender"
-													value={gender2}
-													onChange={(e) => setGender2(e.target.value)}
-												>
-													<option value="male">Male</option>
-													<option value="female">Female</option>
-													<option value="other">Other</option>
-												</select>
-											</div>
-											<div className="register-form-icons">
-												<img src={mail_icon} alt="user" />
-												<input
-													type="email"
-													name="email"
-													placeholder="Email Id"
-													required
-													value={mail2}
-													onChange={(e) => setMail2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={contact_icon} alt="user" />
-												<input
-													type="number"
-													name="phone"
-													placeholder="Contact Number"
-													required
-													value={mobile2}
-													onChange={(e) => setMobile2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={college_icon} alt="user" />
-												<input
-													type="text"
-													name="college"
-													placeholder="College Name"
-													required
-													value={college2}
-													onChange={(e) => setCollege2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={degree_icon} alt="user" />
-												<input
-													type="text"
-													name="degree"
-													placeholder="Degree"
-													required
-													value={degree2}
-													onChange={(e) => setDegree2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={YOS_icon} alt="user" />
-												<input
-													type="number"
-													name="year"
-													placeholder="Year of Study - 1/2/3..."
-													required
-													value={YOS2}
-													onChange={(e) => setYOS2(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={github_icon} alt="user" />
-												<input
-													type="text"
-													name="githubid"
-													placeholder="Github Username"
-													required
-													value={GitHubID2}
-													onChange={(e) => setGitHubID2(e.target.value)}
-												/>
-											</div>
-										</>
-									</>
-								)}
-								{/* 444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444 */}
-								{numMembers >= 3 && (
-									<>
-										<div className="register-form-details">
-											Details of Member 3
-										</div>
-
-										<>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="firstname"
-													placeholder="First Name"
-													required
-													value={firstname3}
-													onChange={(e) => setFirstname3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="lastname"
-													placeholder="Last Name"
-													value={lastname3}
-													onChange={(e) => setLastname3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-gender">
-												<label htmlFor="gender">
-													<img src={gender_icon} alt="gender" />
-												</label>
-												<select
-													id="gender"
-													name="gender"
-													value={gender3}
-													onChange={(e) => setGender3(e.target.value)}
-												>
-													<option value="male">Male</option>
-													<option value="female">Female</option>
-													<option value="other">Other</option>
-												</select>
-											</div>
-											<div className="register-form-icons">
-												<img src={mail_icon} alt="user" />
-												<input
-													type="email"
-													name="email"
-													placeholder="Email Id"
-													required
-													value={mail3}
-													onChange={(e) => setMail3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={contact_icon} alt="user" />
-												<input
-													type="number"
-													name="phone"
-													placeholder="Contact Number"
-													required
-													value={mobile3}
-													onChange={(e) => setMobile3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={college_icon} alt="user" />
-												<input
-													type="text"
-													name="college"
-													placeholder="College Name"
-													required
-													value={college3}
-													onChange={(e) => setCollege3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={degree_icon} alt="user" />
-												<input
-													type="text"
-													name="degree"
-													placeholder="Degree"
-													required
-													value={degree3}
-													onChange={(e) => setDegree3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={YOS_icon} alt="user" />
-												<input
-													type="number"
-													name="year"
-													placeholder="Year of Study - 1/2/3..."
-													required
-													value={YOS3}
-													onChange={(e) => setYOS3(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={github_icon} alt="user" />
-												<input
-													type="text"
-													name="githubid"
-													placeholder="Github Username"
-													required
-													value={GitHubID3}
-													onChange={(e) => setGitHubID3(e.target.value)}
-												/>
-											</div>
-										</>
-									</>
-								)}
-								{/* 555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555 */}
-								{numMembers === 5 && (
-									<>
-										<div className="register-form-details">
-											Details of Member 4
-										</div>
-
-										<>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="firstname"
-													placeholder="First Name"
-													required
-													value={firstname4}
-													onChange={(e) => setFirstname4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={user_icon} alt="user" />
-												<input
-													type="text"
-													name="lastname"
-													placeholder="Last Name"
-													value={lastname4}
-													onChange={(e) => setLastname4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-gender">
-												<label htmlFor="gender">
-													<img src={gender_icon} alt="gender" />
-												</label>
-												<select
-													id="gender"
-													name="gender"
-													value={gender4}
-													onChange={(e) => setGender4(e.target.value)}
-												>
-													<option value="male">Male</option>
-													<option value="female">Female</option>
-													<option value="other">Other</option>
-												</select>
-											</div>
-											<div className="register-form-icons">
-												<img src={mail_icon} alt="user" />
-												<input
-													type="email"
-													name="email"
-													placeholder="Email Id"
-													required
-													value={mail4}
-													onChange={(e) => setMail4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={contact_icon} alt="user" />
-												<input
-													type="number"
-													name="phone"
-													placeholder="Contact Number"
-													required
-													value={mobile4}
-													onChange={(e) => setMobile4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={college_icon} alt="user" />
-												<input
-													type="text"
-													name="college"
-													placeholder="College Name"
-													required
-													value={college4}
-													onChange={(e) => setCollege4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={degree_icon} alt="user" />
-												<input
-													type="text"
-													name="degree"
-													placeholder="Degree"
-													required
-													value={degree4}
-													onChange={(e) => setDegree4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={YOS_icon} alt="user" />
-												<input
-													type="number"
-													name="year"
-													placeholder="Year of Study - 1/2/3..."
-													required
-													value={YOS4}
-													onChange={(e) => setYOS4(e.target.value)}
-												/>
-											</div>
-											<div className="register-form-icons">
-												<img src={github_icon} alt="user" />
-												<input
-													type="text"
-													name="githubid"
-													placeholder="Github Username"
-													required
-													value={GitHubID4}
-													onChange={(e) => setGitHubID4(e.target.value)}
-												/>
-											</div>
-										</>
-									</>
-								)} 
-								<button className="register-form-submit" type="submit">
-									<p>Register</p>
-								</button>
+						{checkingTeam ? (
+							<div style={{ padding: "40px", textAlign: "center" }}>
+								<h2>Checking team status...</h2>
 							</div>
-						</form>
+						) : !registrationMode ? (
+							hasTeam ? (
+								<div style={{ textAlign: "center", padding: "40px 20px" }}>
+									<h2 style={{ marginBottom: "20px", color: "#fff" }}>You are already part of a team!</h2>
+									<p style={{ marginBottom: "30px", color: "#ccc" }}>
+										Visit the Manage Team dashboard to view your team details or make changes.
+									</p>
+									<button
+										className="register-form-submit"
+										type="button"
+										onClick={() => history.push("/manage-team")}
+										style={{ minWidth: "300px", margin: "0 auto" }}
+									>
+										<p>Manage Team</p>
+									</button>
+								</div>
+							) : (
+								<div>
+									<h1
+										style={{
+											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+											marginBottom: "25px",
+											textAlign: "center",
+										}}
+									>
+										Choose Registration Type
+									</h1>
+									<div style={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+										<button
+											className="register-form-submit"
+											type="button"
+											onClick={() => {
+												if (!isLoggedIn) {
+													setShowLoginPrompt(true);
+													return;
+												}
+												setRegistrationMode("leader");
+											}}
+											style={{ minWidth: "300px" }}
+										>
+											<p>Register as Team Leader</p>
+										</button>
+										<button
+											className="register-form-submit"
+											type="button"
+											onClick={() => setRegistrationMode("member")}
+											style={{ minWidth: "300px" }}
+										>
+											<p>Join a Team with Team Code</p>
+										</button>
+									</div>
+								</div>
+							)
+						) : registrationMode === "leader" ? (
+							<form onSubmit={handleTeamLeaderRegister}>
+								<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+									<h1
+										style={{
+											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+											marginBottom: "25px",
+										}}
+									>
+										Register as Team Leader
+									</h1>
+									<br />
+									{teamCodeDisplay ? (
+										<div style={{
+											background: "rgba(0, 255, 17, 0.1)",
+											border: "2px solid #00ff11",
+											borderRadius: "10px",
+											padding: "20px",
+											marginBottom: "30px",
+											textAlign: "center",
+											width: "100%",
+										}}>
+											<h2 style={{ color: "#00ff11", marginBottom: "10px" }}>
+												Team Created Successfully!
+											</h2>
+											<p style={{ color: "white", marginBottom: "15px" }}>
+												Your Team Code:
+											</p>
+											<div style={{
+												fontSize: "32px",
+												fontWeight: "bold",
+												color: "#00ff11",
+												letterSpacing: "5px",
+												marginBottom: "15px",
+												fontFamily: "monospace",
+											}}>
+												{teamCodeDisplay}
+											</div>
+											<p style={{ color: "white", fontSize: "14px" }}>
+												Share this code with your teammates so they can join your team.
+											</p>
+										</div>
+									) : (
+										<div>
+											<div className="register-form-details-special">
+												<div id="header">Team Name</div>
+												<div style={{ width: "10px" }}></div>
+												<input
+													type="text"
+													name="name"
+													placeholder="Team Name"
+													required
+													onChange={handleTeamName}
+													value={team}
+												/>
+											</div>
+
+											<div className="register-form-details">
+												Team Leader Details
+											</div>
+											<RegisterFormCard
+												firstname={firstname1}
+												setFirstname={setFirstname1}
+												lastname={lastname1}
+												setLastname={setLastname1}
+												gender={gender1}
+												setGender={setGender1}
+												mail={mail1}
+												setMail={setMail1}
+												mobile={mobile1}
+												setMobile={setMobile1}
+												college={college1}
+												setCollege={setCollege1}
+												degree={degree1}
+												setDegree={setDegree1}
+												YOS={YOS1}
+												setYOS={setYOS1}
+												GitHubID={GitHubID1}
+												setGitHubID={setGitHubID1}
+												disabled={true}
+											/>
+											<div style={{width: "100%", display: 'flex', justifyContent: 'center'}}>
+												<button className="register-form-submit" type="submit">
+													<p>Create Team</p>
+												</button>
+											</div>
+										</div>
+									)}
+									<button
+										className="register-form-submit"
+										type="button"
+										onClick={() => {
+											setRegistrationMode(null);
+											setTeamCodeDisplay("");
+											setTeam("");
+										}}
+										style={{ minWidth: "300px", maxWidth: "400px" }}
+									>
+										<p>Back to Selection</p>
+									</button>
+								</div>
+							</form>
+						) : (
+							<form onSubmit={handleJoinTeam}>
+								<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+									<h1
+										style={{
+											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+											marginBottom: "25px",
+										}}
+									>
+										Join a Team
+									</h1>
+									<br />
+									<div className="register-form-details-special">
+										<div id="header">Team Code</div>
+										<div style={{ width: "10px" }}></div>
+										<input
+											type="text"
+											name="teamCode"
+											placeholder="Enter Team Code"
+											required
+											onChange={handleTeamCodeChange}
+											value={teamCode}
+											maxLength={8}
+											style={{ textTransform: "uppercase", letterSpacing: "2px", fontFamily: "monospace" }}
+										/>
+									</div>
+
+									<div className="register-form-details">
+										Your Details
+									</div>
+									<RegisterFormCard
+										firstname={firstname1}
+										setFirstname={setFirstname1}
+										lastname={lastname1}
+										setLastname={setLastname1}
+										gender={gender1}
+										setGender={setGender1}
+										mail={mail1}
+										setMail={setMail1}
+										mobile={mobile1}
+										setMobile={setMobile1}
+										college={college1}
+										setCollege={setCollege1}
+										degree={degree1}
+										setDegree={setDegree1}
+										YOS={YOS1}
+										setYOS={setYOS1}
+										GitHubID={GitHubID1}
+										setGitHubID={setGitHubID1}
+										disabled={false}
+									/>
+									<div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+										<button className="register-form-submit" type="submit">
+										<p>Join Team</p>
+									</button>
+									</div>
+									<button
+										className="register-form-submit"
+										type="button"
+										onClick={() => {
+											setRegistrationMode(null);
+											setTeamCode("");
+										}}
+										style={{minWidth: "300px", maxWidth: '400px' }}
+									>
+										<p>Back to Selection</p>
+									</button>
+								</div>
+							</form>
+						)}
 					</div>
 				</Fade>
 			</div>
 			{particless}
+			<LoginPrompt 
+				open={showLoginPrompt} 
+				onClose={() => setShowLoginPrompt(false)}
+				message="Login to our website to register as a team leader"
+			/>
 		</>
 	);
 };

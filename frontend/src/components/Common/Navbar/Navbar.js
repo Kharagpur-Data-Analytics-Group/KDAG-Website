@@ -97,6 +97,11 @@ const Navbar = ({ noborder }) => {
             </Link>
           </div>
           <div className="kdag-nav-items">
+            {/* <div className="kdag-nav-item ml-sheet">
+              <NavLink activeStyle={active_style} to="/register-kdsh">
+                KDSH
+              </NavLink>
+            </div> */}
             <div className="kdag-nav-item">
               <NavLink activeStyle={active_style} to="/events">
                 Events
@@ -107,7 +112,7 @@ const Navbar = ({ noborder }) => {
                 Gallery
               </NavLink>
             </div>
-            <div className="kdag-nav-item ml-sheet">
+            <div className="kdag-nav-item">
               <NavLink activeStyle={active_style} to="/ml_sheet">
                 ML Sheet
               </NavLink>
@@ -144,7 +149,7 @@ const Navbar = ({ noborder }) => {
               <div className="kdag-nav-item">
                 <NavLink
                   activeStyle={active_style}
-                  to={`/user_profile_self/${userId}`}
+                  to={`/manage-team`}
                 >
                   <img src={profile_icon} alt="" />
                 </NavLink>
@@ -195,6 +200,14 @@ const Navbar = ({ noborder }) => {
 
                 {isMenuOpen && (
                   <ul>
+                    <li>
+                      <NavLink
+                        to="/register-kdsh"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        KDSH
+                      </NavLink>
+                    </li>
                     <li>
                       <NavLink
                         to="/events"
@@ -265,7 +278,7 @@ const Navbar = ({ noborder }) => {
                     {isLoggedIn && (
                       <li>
                         <NavLink
-                          to={`/user_profile_self/${userId}`}
+                          to="/manage-team"
                           onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                           {" "}

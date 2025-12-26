@@ -33,6 +33,7 @@ import RegisterPage from "../components/RegisterPage/RegisterPage.js";
 import Success from "../components/RegisterPage/Success.js";
 import Course from "../components/Resources_New/course.js";
 import Register from '../components/AuthenticationPages/Register.js';
+import ManageTeam from "../components/ManageTeam/ManageTeam.js";
 
 const AppRouter = () => {
 	return (
@@ -116,12 +117,15 @@ const AppRouter = () => {
 							<Route path="/community-guidelines">
 								<CommunityGuidelines />
 							</Route>
-							{/* <Route path="/register-kdsh">
+							<Route path="/register-kdsh">
 								<RegisterPage />
 							</Route>
 							<Route path="/register-success">
 								<Success />
-							</Route> */}
+							</Route>
+							<Route path="/manage-team">
+								<ManageTeam />
+							</Route>
 						</Switch>
 					</ScrollToTop>
 					<Footer />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Header from "./Header";
-import Fade from "react-reveal/Fade";
+import Fade from "../Common/Motion/Fade.js"
 import Particless from "../Common/Particles/Particless";
 import DiscussionCard from "./DiscussionCard";
 import icon_add from "./asset_addition_symbol.png";

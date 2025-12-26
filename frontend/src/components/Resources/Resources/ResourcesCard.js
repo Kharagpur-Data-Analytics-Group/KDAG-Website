@@ -1,6 +1,6 @@
 import React from "react";
 import "./ResourcesCard.css";
-import Fade from "react-reveal/Fade";
+import Fade from "../../Common/Motion/Fade.js"
 // import dataAnalysis from "./../../../assets/pics/dataanlysis_nyc.png";
 
 const ResourcesCard = ({ resource }) => {
