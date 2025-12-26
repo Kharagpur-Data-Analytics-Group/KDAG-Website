@@ -23,7 +23,8 @@
 }
 
 .success-container .register-header .success-register-kdsh-desc {
-	border: solid rgba(255, 255, 255, 0.178) 2px;
+	border: 1px solid rgba(59, 130, 246, 0.25);
+	color: #cbd5f5;
 	padding: 25px;
 	font-weight: 600;
 	text-align: justify;
@@ -33,10 +34,9 @@
 	line-height: 25px;
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
-	background: rgba(255, 255, 255, 0.045);
 	border-radius: 15px;
 	margin: 0 200px;
-	background-color: rgba(0, 0, 0, 0.434);
+	background: rgba(15, 23, 42, 0.75);
 }
 
 .success-container .register-header .success-register-kdsh-desc ul {

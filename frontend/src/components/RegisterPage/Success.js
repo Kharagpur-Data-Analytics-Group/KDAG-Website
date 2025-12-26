@@ -18,87 +18,89 @@ const Success = () => {
 	return (
 		<>
 			<div className="success-container">
-				<Fade top>
-					<div className="register-header">
-						<div className="spacer layer1"></div>
-						<div className="success-register-kdsh">
-							<img src={kdsh_2025} alt="KDSH2025" style={{ height: "90px" }} />
-						</div>
-						<div className="success-register-kdsh-desc">
-							<p>
-								Congratulations on successfully registering for{" "}
-								<strong>Kharagpur Data Science Hackathon 2025</strong>. For
-								timelines and other details related to the Hackathon Visit
-								Unstop.{" "}
-							</p>
-							<p>
-								Join the Whatsapp Group and Discord Channel for regular updates!
-							</p>
-							<p>
-								<a
-									href="https://chat.whatsapp.com/KtYlMh9h1Sw7QxLVRWvpSj"
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									<img src={whatsapp} alt="whatsapp" />
-								</a>
-
-								<a
-									href="https://discord.com/invite/S8rpuCTk"
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									<img src={discord} alt="discord" />
-								</a>
-							</p>
-
-							{/* <p>Follow us on the following Platforms to stay updated</p>
-
-							<ul className="kdsh2025_success">
-								<li>
-									<a
-										className="kdsh-link"
-										href="https://www.instagram.com/kdag.iitkgp/"
-										target="_blank"
-										rel="noreferrer noopener"
-									>
-										<img src={instagram} alt="instagram" />
-									</a>
-								</li>
-								<li>
-									<a
-										className="kdsh-link"
-										href="https://www.facebook.com/kgpdag/"
-										target="_blank"
-										rel="noreferrer noopener"
-									>
-										<img src={facebook} alt="facebook" />
-									</a>
-								</li>
-								<li>
-									<a
-										className="kdsh-link"
-										href="https://in.linkedin.com/company/kdag"
-										target="_blank"
-										rel="noreferrer noopener"
-									>
-										<img src={linkedin} alt="linkedin" />
-									</a>
-								</li>
-								<li>
-									<a
-										className="kdsh-link"
-										href="https://kdagiit.medium.com/"
-										target="_blank"
-										rel="noreferrer noopener"
-									>
-										<img src={medium} alt="medium" />
-									</a>
-								</li>
-							</ul> */}
-						</div>
+				<div className="register-header">
+					<div className="spacer layer1"></div>
+					<Fade top>
+					<div className="success-register-kdsh">
+						<img src={kdsh_2025} alt="KDSH2025" style={{ height: "100px" }} />
 					</div>
-				</Fade>
+					</Fade>
+					<Fade top>
+					<div className="success-register-kdsh-desc">
+						<p>
+							Congratulations on successfully registering for{" "}
+							<strong>Kharagpur Data Science Hackathon 2026</strong>. For
+							timelines and other details related to the Hackathon Visit
+							Unstop.{" "}
+						</p>
+						<p>
+							Join the Whatsapp Group and Discord Channel for regular updates!
+						</p>
+						<p>
+							<a
+								href="https://chat.whatsapp.com/BXA1gpP1GVm5vazs0WBHFA"
+								target="_blank"
+								rel="noreferrer noopener"
+							>
+								<img src={whatsapp} alt="whatsapp" />
+							</a>
+
+							<a
+								href="https://discord.gg/ukRrG7BCv"
+								target="_blank"
+								rel="noreferrer noopener"
+							>
+								<img src={discord} alt="discord" />
+							</a>
+						</p>
+
+						{/* <p>Follow us on the following Platforms to stay updated</p>
+
+						<ul className="kdsh2025_success">
+							<li>
+								<a
+									className="kdsh-link"
+									href="https://www.instagram.com/kdag.iitkgp/"
+									target="_blank"
+									rel="noreferrer noopener"
+								>
+									<img src={instagram} alt="instagram" />
+								</a>
+							</li>
+							<li>
+								<a
+									className="kdsh-link"
+									href="https://www.facebook.com/kgpdag/"
+									target="_blank"
+									rel="noreferrer noopener"
+								>
+									<img src={facebook} alt="facebook" />
+								</a>
+							</li>
+							<li>
+								<a
+									className="kdsh-link"
+									href="https://in.linkedin.com/company/kdag"
+									target="_blank"
+									rel="noreferrer noopener"
+								>
+									<img src={linkedin} alt="linkedin" />
+								</a>
+							</li>
+							<li>
+								<a
+									className="kdsh-link"
+									href="https://kdagiit.medium.com/"
+									target="_blank"
+									rel="noreferrer noopener"
+								>
+									<img src={medium} alt="medium" />
+								</a>
+							</li>
+						</ul> */}
+					</div>
+					</Fade>
+				</div>
 			</div>
 			{particless}
 		</>
