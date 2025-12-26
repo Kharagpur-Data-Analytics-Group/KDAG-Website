@@ -16,6 +16,17 @@ const ManageTeam = () => {
   const [editTeamName, setEditTeamName] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // New state for delete confirmation modal
+  const [deleteTargetTeam, setDeleteTargetTeam] = useState(null);
+  const [deleteConfirmationInput, setDeleteConfirmationInput] = useState("");
+  const [deleteError, setDeleteError] = useState("");
+
+  // New state for remove-member confirmation modal
+  const [removeTargetMember, setRemoveTargetMember] = useState(null); // { member, team }
+  const [removeConfirmationInput, setRemoveConfirmationInput] = useState("");
+  const [removeError, setRemoveError] = useState("");
+  const [isRemovingMember, setIsRemovingMember] = useState(false);
+  
   useEffect(() => {
     if (isLoggedIn) {
       fetchUserTeams();
@@ -80,8 +91,21 @@ const ManageTeam = () => {
     }
   };
 
-  const handleDeleteTeam = async (team) => {
-    if (!window.confirm(`Are you sure you want to delete the team "${team.teamName}"? This action cannot be undone.`)) {
+  // Updated: instead of immediate window.confirm, open modal to require typing team name
+  const handleDeleteTeam = (team) => {
+    setDeleteTargetTeam(team);
+    setDeleteConfirmationInput("");
+    setDeleteError("");
+  };
+
+  // Actual delete action after confirming input matches team name
+  const confirmDeleteTeam = async () => {
+    if (!deleteTargetTeam) return;
+
+    const expected = deleteTargetTeam.teamName;
+    if (deleteConfirmationInput !== expected) {
+      setDeleteError(`Type "${expected}" exactly to confirm deletion.`);
+      toast.error("Team name did not match. Deletion aborted.");
       return;
     }
 
@@ -97,7 +121,7 @@ const ManageTeam = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            teamCode: team.teamCode,
+            teamCode: deleteTargetTeam.teamCode,
           }),
         }
       );
@@ -110,9 +134,14 @@ const ManageTeam = () => {
       toast.success("Team deleted successfully");
       
       // Update local state
-      setTeams(teams.filter(t => t._id !== team._id));
+      setTeams(teams.filter(t => t._id !== deleteTargetTeam._id));
+      // Close modal
+      setDeleteTargetTeam(null);
+      setDeleteConfirmationInput("");
+      setDeleteError("");
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message || "Failed to delete team");
+      console.error("Delete error:", error);
     } finally {
       setIsDeleting(false);
     }
@@ -166,47 +195,82 @@ const ManageTeam = () => {
     }
   };
 
-  const removeMember = async (memberGithubId) => {
-  if (!window.confirm("Are you sure you want to remove this member?")) return;
+  // open remove-member modal (replace previous immediate confirm)
+  const openRemoveMemberModal = (member, team) => {
+    setRemoveTargetMember({ member, team });
+    setRemoveConfirmationInput("");
+    setRemoveError("");
+  };
 
-  try {
-    const token = localStorage.getItem("access_token");
-    if (!token) {
-      toast.error("You must be logged in");
+  // actual remove action after typing member name exactly
+  const confirmRemoveMember = async () => {
+    if (!removeTargetMember) return;
+
+    const { member, team } = removeTargetMember;
+    const expectedName =
+      member.firstname && member.lastname
+        ? `${member.firstname} ${member.lastname}`
+        : member.firstname || member.lastname || "Member";
+
+    if (removeConfirmationInput !== expectedName) {
+      setRemoveError(`Type "${expectedName}" exactly to confirm removal.`);
+      toast.error("Member name did not match. Removal aborted.");
       return;
     }
 
-    const team = teams[0]; // since only one team per leader
-
-    const res = await fetch(
-      `${process.env.REACT_APP_FETCH_URL}/kdsh/remove_member`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          GitHubID: memberGithubId,
-          teamCode: team.teamCode,
-        }),
+    setIsRemovingMember(true);
+    try {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        toast.error("You must be logged in");
+        return;
       }
-    );
 
-    const data = await res.json();
+      const res = await fetch(
+        `${process.env.REACT_APP_FETCH_URL}/kdsh/remove_member`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            GitHubID: member.GitHubID,
+            teamCode: team.teamCode,
+          }),
+        }
+      );
 
-    if (!res.ok) throw new Error(data.error || "Failed to remove member");
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to remove member");
 
-    toast.success("Member removed successfully");
+      toast.success("Member removed successfully");
 
-    // Refresh UI
-    fetchUserTeams();
+      // update local state to reflect removal without full refetch
+      setTeams((prev) =>
+        prev.map((t) =>
+          t._id === team._id
+            ? {
+                ...t,
+                members: (t.members || []).filter(
+                  (m) => m.GitHubID !== member.GitHubID
+                ),
+                numMembers: Math.max(0, (t.numMembers || 1) - 1),
+              }
+            : t
+        )
+      );
 
-  } catch (err) {
-    toast.error(err.message || "Something went wrong");
-  }
-};
-
+      setRemoveTargetMember(null);
+      setRemoveConfirmationInput("");
+      setRemoveError("");
+    } catch (err) {
+      toast.error(err.message || "Something went wrong");
+      console.error("Remove member error:", err);
+    } finally {
+      setIsRemovingMember(false);
+    }
+  };
 
   const editLeader = () => {
     toast.info("Edit team leader details coming soon!", {
@@ -295,13 +359,7 @@ const ManageTeam = () => {
                 onChange={(e) => setEditTeamName(e.target.value)}
                 className="mt-edit-input"
                 style={{
-                  padding: '8px 12px',
-                  borderRadius: '6px',
-                  border: '1px solid #333',
-                  background: '#1a1a1a',
-                  color: '#fff',
-                  fontSize: '1.2rem',
-                  flex: 1
+                  
                 }}
               />
               <button 
@@ -389,12 +447,12 @@ const ManageTeam = () => {
           </div>
 
           <div className="mt-section">
-            <div className="mt-section-header">
-              <span className="mt-section-title">Team Leader</span>
-              <button className="mt-edit-btn" onClick={editLeader}>
-                Edit Details
-              </button>
-            </div>
+              {/* <div className="mt-section-header">
+                <span className="mt-section-title">Team Leader</span>
+                <button className="mt-edit-btn" onClick={editLeader}>
+                  Edit Details
+                </button>
+              </div> */}
 
             <div className="mt-leader-block">
               <div className="mt-leader-head">
@@ -458,7 +516,7 @@ const ManageTeam = () => {
                   </div>
 
                   <div className="mt-member-info">
-					<div>
+                    <div>
                       <strong>Email:</strong>
                       <span>{member.mail || "Not specified"}</span>
                     </div>
@@ -481,8 +539,8 @@ const ManageTeam = () => {
                   </div>
 
                   <button
-                    className="mt-remove-btn"
-                    onClick={() => removeMember(member.GitHubID)}
+                    className={`mt-remove-btn ${editingTeamId === team._id ? "" : "hidden"}`}
+                    onClick={() => openRemoveMemberModal(member, team)}
                     aria-label={`Remove ${member.firstname || "member"}`}
                   >
                     Remove Member
@@ -498,6 +556,145 @@ const ManageTeam = () => {
           </div>
         </div>
       ))}
+
+      {/* Delete confirmation modal */}
+      {deleteTargetTeam && (
+        <div
+          className="mt-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              setDeleteTargetTeam(null);
+              setDeleteConfirmationInput("");
+              setDeleteError("");
+            }
+          }}
+        >
+          <div className="mt-modal" role="document" aria-labelledby="mt-modal-title">
+            <h3 id="mt-modal-title">Confirm Team Deletion</h3>
+            <p>
+              This action cannot be undone. To confirm, type{" "}
+              <strong>"{deleteTargetTeam.teamName}"</strong> in the box below
+              and press Delete.
+            </p>
+
+            <input
+              className="mt-modal-input"
+              type="text"
+              value={deleteConfirmationInput}
+              onChange={(e) => {
+                setDeleteConfirmationInput(e.target.value);
+                if (deleteError) setDeleteError("");
+              }}
+              placeholder={`Write "${deleteTargetTeam.teamName}" to delete Team`}
+              aria-label={`Type ${deleteTargetTeam.teamName} to confirm deletion`}
+            />
+            {deleteError && (
+              <div className="mt-modal-error">
+                {deleteError}
+              </div>
+            )}
+
+            <div className="mt-modal-actions">
+              <button
+                type="button"
+                className="mt-modal-btn cancel"
+                onClick={() => {
+                  setDeleteTargetTeam(null);
+                  setDeleteConfirmationInput("");
+                  setDeleteError("");
+                }}
+                disabled={isDeleting}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="mt-modal-btn delete"
+                onClick={confirmDeleteTeam}
+                disabled={isDeleting || deleteConfirmationInput !== deleteTargetTeam.teamName}
+                title={`Type "${deleteTargetTeam.teamName}" to enable deletion`}
+              >
+                {isDeleting ? "Deleting..." : "Delete Team"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Remove member confirmation modal */}
+      {removeTargetMember && (
+        <div
+          className="mt-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              setRemoveTargetMember(null);
+              setRemoveConfirmationInput("");
+              setRemoveError("");
+            }
+          }}
+        >
+          <div className="mt-modal" role="document" aria-labelledby="mt-remove-modal-title">
+            <h3 id="mt-remove-modal-title">Confirm Remove Member</h3>
+            <p>
+              This will remove the member from your team. To confirm, type{" "}
+              <strong>
+                "{removeTargetMember.member.firstname && removeTargetMember.member.lastname
+                  ? `${removeTargetMember.member.firstname} ${removeTargetMember.member.lastname}`
+                  : removeTargetMember.member.firstname || removeTargetMember.member.lastname || "Member"}
+              "</strong>{" "}
+              below and press Delete.
+            </p>
+
+            <input
+              className="mt-modal-input"
+              type="text"
+              value={removeConfirmationInput}
+              onChange={(e) => {
+                setRemoveConfirmationInput(e.target.value);
+                if (removeError) setRemoveError("");
+              }}
+              placeholder={`Write the member's name to confirm removal`}
+              aria-label={`Type member name to confirm removal`}
+            />
+            {removeError && <div className="mt-modal-error">{removeError}</div>}
+
+            <div className="mt-modal-actions">
+              <button
+                type="button"
+                className="mt-modal-btn cancel"
+                onClick={() => {
+                  setRemoveTargetMember(null);
+                  setRemoveConfirmationInput("");
+                  setRemoveError("");
+                }}
+                disabled={isRemovingMember}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="mt-modal-btn delete"
+                onClick={confirmRemoveMember}
+                disabled={
+                  isRemovingMember ||
+                  !removeTargetMember ||
+                  removeConfirmationInput !==
+                    (removeTargetMember.member.firstname && removeTargetMember.member.lastname
+                      ? `${removeTargetMember.member.firstname} ${removeTargetMember.member.lastname}`
+                      : removeTargetMember.member.firstname || removeTargetMember.member.lastname || "Member")
+                }
+                title={`Type member full name to enable deletion`}
+              >
+                {isRemovingMember ? "Removing..." : "Delete Member"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
     </>
   );

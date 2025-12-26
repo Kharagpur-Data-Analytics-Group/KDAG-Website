@@ -186,7 +186,7 @@ def check_starred_repositories(missing_repos_by_users):
         elif missing_repos == "error1":
             all_starred = False
             missing_repos_messages = [
-                "The server seems to be experiencing unexpected load. Please try again after some time. If the issue persists contact us at kdag.kgp@gmail.com"
+                "The server seems to be experiencing unexpected load. Please try again after some time. If the issue persists contact us at exec@kdagiitkgp.com"
             ]
         else:
             repo_messages = [f'GitHub user {github_id} has not starred the "']
