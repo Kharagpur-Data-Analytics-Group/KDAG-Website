@@ -188,15 +188,15 @@ const useFormStates = () => {
 	const [GitHubID3, setGitHubID3] = useState("");
 	const [GitHubID4, setGitHubID4] = useState("");
 	const [GitHubID5, setGitHubID5] = useState("");
-	 useEffect(() => {
+	useEffect(() => {
 		const user_info = JSON.parse(
-		  localStorage.getItem("register_user_info") || "{}"
+			localStorage.getItem("register_user_info") || "{}"
 		);
-	
+
 		if (user_info) {
-		  setMail1(user_info.email || "");
+			setMail1(user_info.email || "");
 		}
-	  }, [location]);
+	}, []);
 
 	return {
 		firstname1,
