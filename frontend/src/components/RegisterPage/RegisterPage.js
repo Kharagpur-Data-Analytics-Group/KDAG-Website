@@ -26,9 +26,9 @@ const RegisterPage = () => {
 	const [successPage, setSuccessPage] = useState(false);
 	const history = useHistory();
 	const [showHowTo, setShowHowTo] = useState(true);
-	const [registrationMode, setRegistrationMode] = useState(null); 
+	const [registrationMode, setRegistrationMode] = useState(null);
 	const [teamCode, setTeamCode] = useState("");
-	const [teamCodeDisplay, setTeamCodeDisplay] = useState(""); 
+	const [teamCodeDisplay, setTeamCodeDisplay] = useState("");
 	const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 	const [hasTeam, setHasTeam] = useState(false);
 	const [checkingTeam, setCheckingTeam] = useState(false);
@@ -141,6 +141,7 @@ const RegisterPage = () => {
 						autoClose: 10000,
 					});
 				}
+				checkUserTeam();
 			})
 			.catch((error) => {
 				console.error("Error during registration:", error);
@@ -350,26 +351,20 @@ const RegisterPage = () => {
 
 	const handleTeamName = (e) => {
 		const value = e.target.value;
-		const trimmed = value.trim();
-		if (trimmed === "") {
-			toast.error("Please enter a valid name", {
-				position: "top-center",
-				draggable: true,
-				theme: "dark",
-			});
-			return;
-		}
+
+		// Always allow typing / deleting
 		if (value.length > 35) {
-			toast.error("Please Choose a name not more than 35 characters", {
+			toast.error("Please choose a name not more than 35 characters", {
 				position: "top-center",
 				draggable: true,
 				theme: "dark",
 			});
 			return;
 		}
-		const validNameRegex = /^[a-zA-Z\s]*$/;
-		if (!validNameRegex.test(trimmed)) {
-			toast.error("Team name can only contain letters and spaces", {
+
+		const validNameRegex = /^[a-zA-Z0-9\s]*$/;
+		if (!validNameRegex.test(value)) {
+			toast.error("Team name can only contain letters, numbers and spaces", {
 				position: "top-center",
 				draggable: true,
 				theme: "dark",
@@ -379,6 +374,7 @@ const RegisterPage = () => {
 
 		setTeam(value);
 	};
+
 
 	const handleTeamCodeChange = (e) => {
 		const value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
@@ -592,7 +588,7 @@ const RegisterPage = () => {
 												setGitHubID={setGitHubID1}
 												disabled={true}
 											/>
-											<div style={{width: "100%", display: 'flex', justifyContent: 'center'}}>
+											<div style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
 												<button className="register-form-submit" type="submit">
 													<p>Create Team</p>
 												</button>
@@ -615,7 +611,7 @@ const RegisterPage = () => {
 							</form>
 						) : (
 							<form onSubmit={handleJoinTeam}>
-								<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+								<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 									<h1
 										style={{
 											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
@@ -664,10 +660,10 @@ const RegisterPage = () => {
 										setGitHubID={setGitHubID1}
 										disabled={false}
 									/>
-									<div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+									<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
 										<button className="register-form-submit" type="submit">
-										<p>Join Team</p>
-									</button>
+											<p>Join Team</p>
+										</button>
 									</div>
 									<button
 										className="register-form-submit"
@@ -676,7 +672,7 @@ const RegisterPage = () => {
 											setRegistrationMode(null);
 											setTeamCode("");
 										}}
-										style={{minWidth: "300px", maxWidth: '400px' }}
+										style={{ minWidth: "300px", maxWidth: '400px' }}
 									>
 										<p>Back to Selection</p>
 									</button>
@@ -687,8 +683,8 @@ const RegisterPage = () => {
 				</Fade>
 			</div>
 			{particless}
-			<LoginPrompt 
-				open={showLoginPrompt} 
+			<LoginPrompt
+				open={showLoginPrompt}
 				onClose={() => setShowLoginPrompt(false)}
 				message="Login to our website to register as a team leader"
 			/>

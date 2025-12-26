@@ -447,12 +447,12 @@ const ManageTeam = () => {
           </div>
 
           <div className="mt-section">
-            <div className="mt-section-header">
-              <span className="mt-section-title">Team Leader</span>
-              <button className="mt-edit-btn" onClick={editLeader}>
-                Edit Details
-              </button>
-            </div>
+              {/* <div className="mt-section-header">
+                <span className="mt-section-title">Team Leader</span>
+                <button className="mt-edit-btn" onClick={editLeader}>
+                  Edit Details
+                </button>
+              </div> */}
 
             <div className="mt-leader-block">
               <div className="mt-leader-head">
