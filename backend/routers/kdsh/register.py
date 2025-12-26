@@ -656,6 +656,7 @@ def remove_member():
 def edit_team_details():
     try:
         from app import mongo
+        import re
 
         identity = get_jwt_identity()
         user_email = _extract_email_from_identity(mongo, identity)
@@ -681,6 +682,9 @@ def edit_team_details():
             "members_github", "members_email", "numMembers", "_id"
         }
 
+        # Only allow a safe set of editable fields
+        allowed_fields = {"firstname", "lastname", "mobile", "college", "degree", "YOS", "teamName", "gender"}
+
         update_fields = {
             k: v for k, v in data.items()
             if k not in blocked_fields and k != "teamCode"
@@ -689,10 +693,65 @@ def edit_team_details():
         if not update_fields:
             return jsonify({"error": "No editable fields provided."}), 400
 
+        # Reject any fields outside allowed set
+        extra = set(update_fields.keys()) - allowed_fields
+        if extra:
+            return jsonify({"error": f"These fields cannot be edited: {', '.join(extra)}"}), 400
+
+        # Basic validations
+        if 'firstname' in update_fields:
+            if not str(update_fields['firstname']).strip():
+                return jsonify({"error": "Firstname cannot be empty."}), 400
+            update_fields['firstname'] = str(update_fields['firstname']).strip()
+
+        if 'lastname' in update_fields:
+            if not str(update_fields['lastname']).strip():
+                return jsonify({"error": "Lastname cannot be empty."}), 400
+            update_fields['lastname'] = str(update_fields['lastname']).strip()
+
+        if 'mobile' in update_fields:
+            mobile = str(update_fields['mobile']).strip()
+            if not re.match(r"^\d{10}$", mobile):
+                return jsonify({"error": "Invalid mobile number. Must be 10 digits."}), 400
+            update_fields['mobile'] = mobile
+
+        if 'YOS' in update_fields:
+            try:
+                yos = int(update_fields['YOS'])
+                if yos <= 0:
+                    raise ValueError
+                update_fields['YOS'] = yos
+            except Exception:
+                return jsonify({"error": "YOS must be a valid positive integer."}), 400
+
+        if 'teamName' in update_fields:
+            new_team_name = str(update_fields['teamName']).strip().lower()
+            # ensure uniqueness (exclude current team)
+            existing = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamName": new_team_name, "teamCode": {"$ne": team_code}})
+            if existing:
+                return jsonify({"error": "Team name already exists."}), 400
+            update_fields['teamName'] = new_team_name
+
+        # All validations passed; perform update on team doc
+        old_team_name = team.get("teamName")
         mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
             {"teamCode": team_code},
             {"$set": update_fields}
         )
+
+        # Propagate changes to participant documents to keep consistency
+        participants_col = mongo.cx["KDSH_2026"].kdsh2026_participants
+
+        # Update leader's personal fields in participants collection
+        leader_github = team.get("teamleader_github")
+        personal_keys = {"firstname", "lastname", "mobile", "college", "degree", "YOS", "gender"}
+        leader_update = {k: update_fields[k] for k in personal_keys if k in update_fields}
+        if leader_update and leader_github:
+            participants_col.update_one({"GitHubID": leader_github}, {"$set": leader_update})
+
+        # If teamName changed, update all participants having the old teamName
+        if "teamName" in update_fields and old_team_name:
+            participants_col.update_many({"teamName": old_team_name}, {"$set": {"teamName": update_fields["teamName"]}})
 
         return jsonify({"message": "Team details updated successfully."}), 200
 

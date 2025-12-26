@@ -97,11 +97,11 @@ const Navbar = ({ noborder }) => {
             </Link>
           </div>
           <div className="kdag-nav-items">
-            <div className="kdag-nav-item ml-sheet">
+            {/* <div className="kdag-nav-item ml-sheet">
               <NavLink activeStyle={active_style} to="/register-kdsh">
                 KDSH
               </NavLink>
-            </div>
+            </div> */}
             <div className="kdag-nav-item">
               <NavLink activeStyle={active_style} to="/events">
                 Events
