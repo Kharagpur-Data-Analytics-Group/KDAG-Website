@@ -590,6 +590,7 @@ const RegisterPage = () => {
 												setYOS={setYOS1}
 												GitHubID={GitHubID1}
 												setGitHubID={setGitHubID1}
+												disabled={true}
 											/>
 											<div style={{width: "100%", display: 'flex', justifyContent: 'center'}}>
 												<button className="register-form-submit" type="submit">
@@ -661,6 +662,7 @@ const RegisterPage = () => {
 										setYOS={setYOS1}
 										GitHubID={GitHubID1}
 										setGitHubID={setGitHubID1}
+										disabled={false}
 									/>
 									<div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
 										<button className="register-form-submit" type="submit">

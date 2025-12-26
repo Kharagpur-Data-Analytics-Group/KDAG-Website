@@ -7,7 +7,7 @@ import YOS_icon from "./../../assets/kdsh2025_YOS.png";
 import github_icon from "./../../assets/kdsh2025_github.png";
 import gender_icon from "./../../assets/kdsh2025_gender.png";
 
-const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gender, setGender, mail, setMail, mobile, setMobile, college, setCollege, degree, setDegree, YOS, setYOS, GitHubID, setGitHubID}) => {
+const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gender, setGender, mail, setMail, mobile, setMobile, college, setCollege, degree, setDegree, YOS, setYOS, GitHubID, setGitHubID, disabled}) => {
     return (
         <div style={{marginBottom: "20px", display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
             <div className="register-form-icons">
@@ -55,6 +55,7 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
                     placeholder="Email Id"
                     required
                     value={mail}
+                    disabled={disabled}
                     onChange={(e) => setMail(e.target.value)}
                 />
             </div>
