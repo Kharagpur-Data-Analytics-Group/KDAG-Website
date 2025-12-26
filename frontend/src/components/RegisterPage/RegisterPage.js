@@ -23,6 +23,7 @@ import "../Resources_New/LoginPrompt.css";
 const RegisterPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
 	const { isLoggedIn } = useContext(AuthContext);
+	const { userInfo } = useContext(AuthContext);
 	const [successPage, setSuccessPage] = useState(false);
 	const history = useHistory();
 	const [showHowTo, setShowHowTo] = useState(true);
@@ -115,8 +116,7 @@ const RegisterPage = () => {
 		};
 
 		const registerPromise = fetch(
-			// `${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
-			'http://localhost:5001/kdsh/check_register',
+			`${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
 			{
 				method: "POST",
 				headers: {
@@ -145,7 +145,7 @@ const RegisterPage = () => {
 			})
 			.catch((error) => {
 				console.error("Error during registration:", error);
-				const errorMessage = error.message || "😔 Registration failed, please try again later.";
+				const errorMessage = error.message || "Registration failed, please try again later.";
 				toast.error(errorMessage, {
 					position: "top-center",
 					draggable: true,
@@ -157,8 +157,8 @@ const RegisterPage = () => {
 			registerPromise,
 			{
 				pending:
-					"⏳ Creating your team...This may take several minutes, Please stay with us!!!",
-				error: "😔 Registration failed. Please try again LATER!!",
+					"Creating your team...This may take several minutes, Please stay with us!!!",
+				error: "Registration failed. Please try again later.",
 			},
 			{
 				position: "top-center",
@@ -197,8 +197,7 @@ const RegisterPage = () => {
 		};
 
 		const joinPromise = fetch(
-			// `${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
-			'http://localhost:5001/kdsh/join_team',
+			`${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
 			{
 				method: "POST",
 				headers: {
@@ -224,7 +223,7 @@ const RegisterPage = () => {
 			})
 			.catch((error) => {
 				console.error("Error during joining team:", error);
-				const errorMessage = error.message || "😔 Failed to join team, please try again later.";
+				const errorMessage = error.message || "Failed to join team, please try again later.";
 				toast.error(errorMessage, {
 					position: "top-center",
 					draggable: true,
@@ -249,103 +248,35 @@ const RegisterPage = () => {
 	const {
 		firstname1,
 		setFirstname1,
-		firstname2,
-		setFirstname2,
-		firstname3,
-		setFirstname3,
-		firstname4,
-		setFirstname4,
-		firstname5,
-		setFirstname5,
 
 		lastname1,
 		setLastname1,
-		lastname2,
-		setLastname2,
-		lastname3,
-		setLastname3,
-		lastname4,
-		setLastname4,
-		lastname5,
-		setLastname5,
 
 		gender1,
 		setGender1,
-		gender2,
-		setGender2,
-		gender3,
-		setGender3,
-		gender4,
-		setGender4,
-		gender5,
-		setGender5,
 
 		mail1,
 		setMail1,
-		mail2,
-		setMail2,
-		mail3,
-		setMail3,
-		mail4,
-		setMail4,
-		mail5,
-		setMail5,
 
 		mobile1,
 		setMobile1,
-		mobile2,
-		setMobile2,
-		mobile3,
-		setMobile3,
-		mobile4,
-		setMobile4,
-		mobile5,
-		setMobile5,
 
 		college1,
 		setCollege1,
-		college2,
-		setCollege2,
-		college3,
-		setCollege3,
-		college4,
-		setCollege4,
-		college5,
-		setCollege5,
 
 		degree1,
 		setDegree1,
-		degree2,
-		setDegree2,
-		degree3,
-		setDegree3,
-		degree4,
-		setDegree4,
-		degree5,
-		setDegree5,
 
 		YOS1,
 		setYOS1,
-		YOS2,
-		setYOS2,
-		YOS3,
-		setYOS3,
-		YOS4,
-		setYOS4,
-		YOS5,
-		setYOS5,
 
 		GitHubID1,
-		setGitHubID1,
-		GitHubID2,
-		setGitHubID2,
-		GitHubID3,
-		setGitHubID3,
-		GitHubID4,
-		setGitHubID4,
-		GitHubID5,
-		setGitHubID5,
+		setGitHubID1
 	} = useFormStates();
+
+	useEffect(() => {
+		setMail1(userInfo?.email);
+	}, [userInfo, mail1]);
 
 	const [team, setTeam] = useState("");
 
@@ -658,7 +589,7 @@ const RegisterPage = () => {
 										setYOS={setYOS1}
 										GitHubID={GitHubID1}
 										setGitHubID={setGitHubID1}
-										disabled={false}
+										disabled={true}
 									/>
 									<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
 										<button className="register-form-submit" type="submit">
