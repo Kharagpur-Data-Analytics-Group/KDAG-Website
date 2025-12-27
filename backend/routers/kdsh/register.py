@@ -901,3 +901,40 @@ def finalize_team():
     except Exception as e:
         print("finalize_team error:", e)
         return jsonify({"error": "Internal server error."}), 500
+
+@kdsh.route("/delete_team", methods=['DELETE'])
+@jwt_required()
+def delete_team():
+    try:
+        from app import mongo
+        identity = get_jwt_identity()
+        user_email = _extract_email_from_identity(mongo, identity)
+
+        if not user_email:
+            return jsonify({"error": "Unauthorized or invalid token."}), 401
+
+        data = request.get_json()
+        if not data or 'teamCode' not in data:
+            return jsonify({"error": "Team code is required."}), 400
+
+        team_code = data['teamCode'].strip().upper()
+        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+
+        if not team:
+            return jsonify({"error": "Team not found."}), 404
+
+        team_leader_email = (team.get("teamleader_email") or "").lower()
+        if team_leader_email != user_email:
+            return jsonify({"error": "Only team leader can delete the team."}), 403
+
+        gh_ids = [team.get("teamleader_github"), *team.get("members_github", [])]
+
+        mongo.cx["KDSH_2026"].kdsh2026_teams.delete_one({"teamCode": team_code})
+
+        mongo.cx["KDSH_2026"].kdsh2026_participants.delete_many(
+            {"GitHubID": {"$in": [g for g in gh_ids if g]}}
+        )
+        return jsonify({"message": "Team deleted successfully."}), 200
+    except Exception as e:
+        print("delete_team error:", e)
+        return jsonify({"error": "Internal server error."}), 500
