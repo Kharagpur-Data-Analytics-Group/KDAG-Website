@@ -618,7 +618,14 @@ const RegisterPage = () => {
 													<img src={discord} alt="discord" style={{ height: "50px", cursor: "pointer" }} />
 												</a>
 											</div>
-										</div>
+										<div className="important-note2" style={{ marginTop: "20px" }}>
+											<strong>Important Next Step:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
+											<a href="/manage-team" style={{ color: "#60a5fa", textDecoration: "underline" }}>
+												Manage Team page
+											</a>{" "}
+											to complete your registration. Your team will only appear on Unstop after finalization.
+										</div>										
+									</div>
 									) : (
 										<div>
 											<div className="register-form-details-special">

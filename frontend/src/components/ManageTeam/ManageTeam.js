@@ -674,7 +674,7 @@ const ManageTeam = () => {
               )}
             </div>
 
-            {!team.isLeader && (
+            {!team.isLeader && !team.is_team_finalized && (
               <div style={{ marginTop: "30px", display: "flex", justifyContent: "center" }}>
                 <button
                   className="mt-leave-btn"
