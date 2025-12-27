@@ -316,6 +316,13 @@ const RegisterPage = () => {
 		history.push("/");
 	};
 
+	const handleBackToSelection = () => {
+		setRegistrationMode(null);
+		setTeamCodeDisplay("");
+		setTeam("");
+		setTeamCode("");
+	};
+
 	return (
 		<>
 			<div className="register-container">
@@ -381,6 +388,16 @@ const RegisterPage = () => {
 				<Star />
 				<Fade left>
 					<div className="register-form">
+						{registrationMode && (
+							<button
+								className="register-back-button"
+								type="button"
+								onClick={handleBackToSelection}
+								aria-label="Back to selection"
+							>
+								←
+							</button>
+						)}
 						{checkingTeam ? (
 							<div style={{ padding: "40px", textAlign: "center" }}>
 								<h2>Checking team status...</h2>
@@ -526,18 +543,6 @@ const RegisterPage = () => {
 											</div>
 										</div>
 									)}
-									<button
-										className="register-form-submit"
-										type="button"
-										onClick={() => {
-											setRegistrationMode(null);
-											setTeamCodeDisplay("");
-											setTeam("");
-										}}
-										style={{ minWidth: "300px", maxWidth: "400px" }}
-									>
-										<p>Back to Selection</p>
-									</button>
 								</div>
 							</form>
 						) : (
@@ -596,17 +601,6 @@ const RegisterPage = () => {
 											<p>Join Team</p>
 										</button>
 									</div>
-									<button
-										className="register-form-submit"
-										type="button"
-										onClick={() => {
-											setRegistrationMode(null);
-											setTeamCode("");
-										}}
-										style={{ minWidth: "300px", maxWidth: '400px' }}
-									>
-										<p>Back to Selection</p>
-									</button>
 								</div>
 							</form>
 						)}
