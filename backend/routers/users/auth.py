@@ -152,7 +152,7 @@ def google_callback():
                         "google_access_token": access_token,
                         "is_admin": is_admin,
                     },
-                    expires_delta=timedelta(hours=1),
+                    expires_delta=timedelta(days=7),
                 )
                 users.update_one(
                     {"_id": ObjectId(uid)}, {"$set": {"refresh_token": refresh_token}}
@@ -238,7 +238,7 @@ def google_callback():
                         "google_access_token": access_token,
                         "is_admin": is_admin,
                     },
-                    expires_delta=timedelta(hours=1),
+                    expires_delta=timedelta(days=7),
                 )
                 users.update_one(
                     {"_id": ObjectId(uid)}, {"$set": {"refresh_token": refresh_token}}
@@ -615,7 +615,7 @@ def refresh_google_access_token():
                 "google_access_token": new_access_token,
                 "is_admin": current_user["is_admin"],
             },
-            expires_delta=timedelta(hours=1),
+            expires_delta=timedelta(days=7),
         )
 
         return (
