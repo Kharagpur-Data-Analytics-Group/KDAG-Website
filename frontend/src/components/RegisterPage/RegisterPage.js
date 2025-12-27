@@ -396,7 +396,7 @@ const RegisterPage = () => {
 										className="register-form-submit"
 										type="button"
 										onClick={() => history.push("/manage-team")}
-										style={{ minWidth: "300px", margin: "0 auto" }}
+										style={{ minWidth: "", margin: "0 auto" }}
 									>
 										<p>Manage Team</p>
 									</button>
