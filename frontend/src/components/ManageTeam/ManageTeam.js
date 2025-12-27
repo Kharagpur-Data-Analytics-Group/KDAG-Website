@@ -380,7 +380,7 @@ const ManageTeam = () => {
               </button>
             </div>
           ) : (
-            <div className="mt-title-container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="mt-title-container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '50px' }}>
               <div className="mt-title">{team.teamName}</div>
               <div className="mt-actions" style={{ display: 'flex', gap: '10px' }}>
                 <button 

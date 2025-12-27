@@ -42,7 +42,6 @@
   margin: 0 auto;
   color: var(--text-primary);
   position: relative;
-  z-index: 2;
 }
 
 .mt-header {
@@ -158,7 +157,6 @@
 .mt-title {
   font-size: 2.2rem;
   font-weight: 800;
-  margin-bottom: 28px;
   letter-spacing: -0.01em;
   background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
   -webkit-background-clip: text;
