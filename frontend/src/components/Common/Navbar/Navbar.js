@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Button } from "./Button";
 import "./Navbar.css";
-import logo from "./../../../assets/pics/KDAG-textnew.png";
+import logo from "./../../../assets/pics/KDAGLogoNew.png";
 import Dropdown from "./Dropdown";
 import { Link, NavLink } from "react-router-dom";
 import forum_img from "../../../assets/pics/forum.png";

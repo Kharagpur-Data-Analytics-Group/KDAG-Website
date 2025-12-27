@@ -525,6 +525,7 @@ const RegisterPage = () => {
 													{teamCodeDisplay}
 												</div>
 												<button
+													type="button"
 													onClick={copyTeamCodeToClipboard}
 													style={{
 														background: "rgba(0, 255, 17, 0.2)",
