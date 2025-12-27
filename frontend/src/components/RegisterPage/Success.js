@@ -21,38 +21,46 @@ const Success = () => {
 				<div className="register-header">
 					<div className="spacer layer1"></div>
 					<Fade top>
-					<div className="success-register-kdsh">
-						<img src={kdsh_2025} alt="KDSH2025" style={{ height: "100px" }} />
-					</div>
+						<div className="success-register-kdsh">
+							<img src={kdsh_2025} alt="KDSH2025" style={{ height: "100px" }} />
+						</div>
 					</Fade>
 					<Fade top>
-					<div className="success-register-kdsh-desc">
-						<p>
-							Congratulations on successfully registering for{" "}
-							<strong>Kharagpur Data Science Hackathon 2026</strong>. For
-							timelines and other details related to the Hackathon Visit
-							Unstop.{" "}
-						</p>
-						<p>
-							Join the Whatsapp Group and Discord Channel for regular updates!
-						</p>
-						<p>
-							<a
-								href="https://chat.whatsapp.com/BXA1gpP1GVm5vazs0WBHFA"
-								target="_blank"
-								rel="noreferrer noopener"
-							>
-								<img src={whatsapp} alt="whatsapp" />
-							</a>
+						<div className="success-register-kdsh-desc">
+							<p>
+								Congratulations on successfully registering for{" "}
+								<strong>Kharagpur Data Science Hackathon 2026</strong>. For
+								timelines and other details related to the Hackathon Visit
+								Unstop.{" "}
+							</p>
+							<p>
+								Join the Whatsapp Group and Discord Channel for regular updates!
+							</p>
+							<p>
+								<a
+									href="https://chat.whatsapp.com/BXA1gpP1GVm5vazs0WBHFA"
+									target="_blank"
+									rel="noreferrer noopener"
+								>
+									<img src={whatsapp} alt="whatsapp" />
+								</a>
 
-							<a
-								href="https://discord.gg/ukRrG7BCv"
-								target="_blank"
-								rel="noreferrer noopener"
-							>
-								<img src={discord} alt="discord" />
-							</a>
-						</p>
+								<a
+									href="https://discord.gg/fBfvXCTQF"
+									target="_blank"
+									rel="noreferrer noopener"
+								>
+									<img src={discord} alt="discord" />
+								</a>
+							</p>
+
+							<div className="important-note2" style={{ marginTop: "30px" }}>
+								<strong>Important for Team Leaders:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
+								<a href="/manage-team" style={{ color: "#60a5fa", textDecoration: "underline" }}>
+									Manage Team page
+								</a>{" "}
+								to complete your registration. Your team will only appear on Unstop after finalization.
+							</div>
 
 						{/* <p>Follow us on the following Platforms to stay updated</p>
 

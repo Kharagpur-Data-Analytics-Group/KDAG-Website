@@ -438,11 +438,11 @@ const RegisterPage = () => {
 										<p>Manage Team</p>
 									</button>
 									<div className="important-note2">
-										<strong>Reminder:</strong> After all members have joined, team leader must review and confirm your team details on the&nbsp;
+										<strong>Important:</strong> After all Members have joined, Team Leader must finalize the team on the&nbsp;
 										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
 											Manage Team  
 										</span>{" "}
-										 page to complete your registration.
+										 page. Your team will only appear on Unstop after finalization.
 									</div>
 								</div>
 
@@ -488,11 +488,11 @@ const RegisterPage = () => {
 										</button>
 									</div>
 									<div className="important-note2">
-										<strong>Note:</strong> After all members have joined, team leader must review and confirm your team details on the&nbsp;
+										<strong>Important:</strong> After all Team Members have joined, Team Leader must review and confirm your team details on the&nbsp;
 										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
 											Manage Team 
 										</span>{" "}
-										 page to complete your registration.
+												page to complete your registration. Your team will only appear on Unstop after finalization.
 									</div>
 								</div>
 							)
@@ -602,7 +602,7 @@ const RegisterPage = () => {
 													<img src={whatsapp} alt="whatsapp" style={{ height: "50px", cursor: "pointer" }} />
 												</a>
 												<a
-													href="https://discord.gg/ukRrG7BCv"
+													href="https://discord.gg/fBfvXCTQF"
 													target="_blank"
 													rel="noreferrer noopener"
 													style={{

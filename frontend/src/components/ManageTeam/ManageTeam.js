@@ -462,9 +462,9 @@ const ManageTeam = () => {
           <div className="mt-card" key={team._id}>
             <div className="important-note2">
               {team.is_team_finalized ? (
-                <strong>Your team has been finalized and it will reflect on Unstop within 24hrs.</strong>
+                <strong>Your team has been finalized and will reflect on Unstop within 24 hours.</strong>
               ) : (
-                <><strong>Reminder:</strong> After all members have joined, team leader must finalize your team registration to complete your participation.</>
+                <><strong>Important:</strong> After all members have joined, Team Leader must finalize the team. Your team will only be registered on Unstop after finalization.</>
               )}
             </div>
             {editingTeamId === team._id ? (
@@ -939,7 +939,7 @@ const ManageTeam = () => {
             <div className="mt-modal" role="document" aria-labelledby="mt-confirm-modal-title">
               <h3 id="mt-confirm-modal-title">Confirm Team Finalization</h3>
               <p>
-                <strong>Warning:</strong> This will lock your registration and this action can't be undone.
+                <strong>Warning:</strong> This will LOCK your registration and this action can't be undone. You cannot Add/Delete any Team Members after confirming.
               </p>
 
               <div className="mt-modal-actions">
