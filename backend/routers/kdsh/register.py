@@ -443,6 +443,9 @@ def join_team():
         if not team:
             return jsonify({"error": "Invalid team code."}), 400
 
+        if team["is_team_finalized"]:
+            return jsonify({"error": "Team is already finalized and cannot accept new members."}), 400
+
         if team["numMembers"] >= 4:
             return jsonify({"error": "Team is already full."}), 400
 
