@@ -316,6 +316,7 @@ def check_register():
             "members_github": [],
             "members_email": [],
             "numMembers": 1,
+            "is_team_finalized": False,
             "created_at": datetime.utcnow()
         })
 
@@ -608,6 +609,7 @@ def get_user_teams():
                 "leader": leader,
                 "members": members,
                 "isLeader": is_leader,
+                "is_team_finalized": t["is_team_finalized"]
             })
 
         return jsonify({"teams": enriched}), 200
@@ -864,9 +866,9 @@ def edit_team_details():
         return jsonify({"error": "Internal server error."}), 500
 
 
-@kdsh.route("/delete_team", methods=['DELETE'])
+@kdsh.route("/finalize_team", methods=['PATCH'])
 @jwt_required()
-def delete_team():
+def finalize_team():
     try:
         from app import mongo
 
@@ -887,17 +889,15 @@ def delete_team():
 
         team_leader_email = (team.get("teamleader_email") or "").lower()
         if team_leader_email != user_email:
-            return jsonify({"error": "Only team leader can delete the team."}), 403
+            return jsonify({"error": "Only team leader can finalize the team."}), 403
 
-        gh_ids = [team.get("teamleader_github"), *team.get("members_github", [])]
+        mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+    {"teamCode": team_code},
+    {"$set": {"is_team_finalized": True}}
+)
 
-        mongo.cx["KDSH_2026"].kdsh2026_teams.delete_one({"teamCode": team_code})
-        mongo.cx["KDSH_2026"].kdsh2026_participants.delete_many(
-            {"GitHubID": {"$in": [g for g in gh_ids if g]}}
-        )
-
-        return jsonify({"message": "Team deleted successfully."}), 200
+        return jsonify({"message": "Team finalized successfully."}), 200
 
     except Exception as e:
-        print("delete_team error:", e)
+        print("finalize_team error:", e)
         return jsonify({"error": "Internal server error."}), 500
