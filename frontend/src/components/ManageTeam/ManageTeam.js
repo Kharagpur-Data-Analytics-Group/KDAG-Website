@@ -464,7 +464,7 @@ const ManageTeam = () => {
               {team.is_team_finalized ? (
                 <strong>Your team has been finalized and it will reflect on Unstop within 24hrs.</strong>
               ) : (
-                <><strong>Reminder:</strong> After all members have joined your team, please finalize your team registration to complete your participation.</>
+                <><strong>Reminder:</strong> After all members have joined, team leader must finalize your team registration to complete your participation.</>
               )}
             </div>
             {editingTeamId === team._id ? (
@@ -712,7 +712,7 @@ const ManageTeam = () => {
                   style={{ minWidth: "", margin: "0 auto" }}
                   onClick={() => openConfirmTeamModal(team)}
                 >
-                  <p>Confirm Team</p>
+                  <p>Finalize Team</p>
                 </button>
               </div>
             )}

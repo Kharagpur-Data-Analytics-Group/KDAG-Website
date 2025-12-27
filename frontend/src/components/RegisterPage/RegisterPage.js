@@ -438,11 +438,11 @@ const RegisterPage = () => {
 										<p>Manage Team</p>
 									</button>
 									<div className="important-note2">
-										<strong>Reminder:</strong> After all members have joined your team, please review and confirm your team details on the&nbsp;
+										<strong>Reminder:</strong> After all members have joined, team leader must review and confirm your team details on the&nbsp;
 										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
-											Manage Team page 
+											Manage Team  
 										</span>{" "}
-										 to complete your registration.
+										 page to complete your registration.
 									</div>
 								</div>
 
@@ -488,11 +488,11 @@ const RegisterPage = () => {
 										</button>
 									</div>
 									<div className="important-note2">
-										<strong>Reminder:</strong> After all members have joined your team, please review and confirm your team details on the&nbsp;
+										<strong>Note:</strong> After all members have joined, team leader must review and confirm your team details on the&nbsp;
 										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
-											Manage Team page 
+											Manage Team 
 										</span>{" "}
-										 to complete your registration.
+										 page to complete your registration.
 									</div>
 								</div>
 							)
