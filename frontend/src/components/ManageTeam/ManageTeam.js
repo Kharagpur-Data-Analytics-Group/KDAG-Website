@@ -20,7 +20,7 @@ const ManageTeam = () => {
   const [deleteConfirmationInput, setDeleteConfirmationInput] = useState("");
   const [deleteError, setDeleteError] = useState("");
 
-  const [removeTargetMember, setRemoveTargetMember] = useState(null); 
+  const [removeTargetMember, setRemoveTargetMember] = useState(null);
   const [removeConfirmationInput, setRemoveConfirmationInput] = useState("");
   const [removeError, setRemoveError] = useState("");
   const [isRemovingMember, setIsRemovingMember] = useState(false);
@@ -29,7 +29,7 @@ const ManageTeam = () => {
   const [leaveConfirmationInput, setLeaveConfirmationInput] = useState("");
   const [leaveError, setLeaveError] = useState("");
   const [isLeavingTeam, setIsLeavingTeam] = useState(false);
-  
+
   useEffect(() => {
     if (isLoggedIn) {
       fetchUserTeams();
@@ -82,11 +82,11 @@ const ManageTeam = () => {
       }
 
       toast.success("Team name updated successfully");
-      
-      setTeams(teams.map(t => 
+
+      setTeams(teams.map(t =>
         t._id === team._id ? { ...t, teamName: editTeamName.trim() } : t
       ));
-      
+
       handleCancelEdit();
     } catch (error) {
       toast.error(error.message);
@@ -134,7 +134,7 @@ const ManageTeam = () => {
       }
 
       toast.success("Team deleted successfully");
-      
+
       // Update local state
       setTeams(teams.filter(t => t._id !== deleteTargetTeam._id));
       // Close modal
@@ -197,6 +197,42 @@ const ManageTeam = () => {
     }
   };
 
+  const handleConfirmTeam = async (team) => {
+    try {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        toast.error("You must be logged in");
+        return;
+      }
+
+      const res = await fetch(
+        `${process.env.REACT_APP_FETCH_URL}/kdsh/finalize_team`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            teamCode: team.teamCode,
+          }),
+        }
+      );
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to finalize team");
+      }
+
+      toast.success("Team finalized successfully");
+      // Refetch teams to update the finalized status
+      fetchUserTeams();
+    } catch (error) {
+      toast.error(error.message || "Failed to finalize team");
+      console.error("Finalize team error:", error);
+    }
+  };
+
   // open remove-member modal (replace previous immediate confirm)
   const openRemoveMemberModal = (member, team) => {
     setRemoveTargetMember({ member, team });
@@ -253,12 +289,12 @@ const ManageTeam = () => {
         prev.map((t) =>
           t._id === team._id
             ? {
-                ...t,
-                members: (t.members || []).filter(
-                  (m) => m.GitHubID !== member.GitHubID
-                ),
-                numMembers: Math.max(0, (t.numMembers || 1) - 1),
-              }
+              ...t,
+              members: (t.members || []).filter(
+                (m) => m.GitHubID !== member.GitHubID
+              ),
+              numMembers: Math.max(0, (t.numMembers || 1) - 1),
+            }
             : t
         )
       );
@@ -325,10 +361,10 @@ const ManageTeam = () => {
       }
 
       toast.success(data.message || "You have successfully left the team");
-      
+
       // Refresh teams list
       await fetchUserTeams();
-      
+
       // Close modal
       setLeaveTargetTeam(null);
       setLeaveConfirmationInput("");
@@ -406,114 +442,120 @@ const ManageTeam = () => {
 
   return (
     <>
-    <div className="mt-wrapper">
-      <Particless />
+      <div className="mt-wrapper">
+        <Particless />
 
-      <div className="mt-header">
-        <h1>{isTeamLeader ? "Manage Your Team" : "View Your Team"}</h1>
-        <p>{isTeamLeader ? "View and manage your hackathon registration" : "View your hackathon registration"}</p>
-      </div>
+        <div className="mt-header">
+          <h1>{isTeamLeader ? "Manage Your Team" : "View Your Team"}</h1>
+          <p>{isTeamLeader ? "View and manage your hackathon registration" : "View your hackathon registration"}</p>
+        </div>
 
-      {teams.map((team) => (
-        <div className="mt-card" key={team._id}>
-          {editingTeamId === team._id ? (
-            <div className="mt-edit-container" style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px' }}>
-              <input
-                type="text"
-                value={editTeamName}
-                onChange={(e) => setEditTeamName(e.target.value)}
-                className="mt-edit-input"
-                style={{
-                  
-                }}
-              />
-              <button 
-                onClick={() => handleSaveTeamName(team)}
-                className="mt-action-btn save"
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#4ade80' }}
-                title="Save"
-              >
-                <Save size={24} />
-              </button>
-              <button 
-                onClick={handleCancelEdit}
-                className="mt-action-btn cancel"
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#f87171' }}
-                title="Cancel"
-              >
-                <X size={24} />
-              </button>
-            </div>
-          ) : (
-            <div className="mt-title-container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '50px' }}>
-              <div className="mt-title">{team.teamName}</div>
-              {team.isLeader && (
-                <div className="mt-actions" style={{ display: 'flex', gap: '10px' }}>
-                  <button 
-                    onClick={() => handleEditClick(team)}
-                    className="mt-action-btn edit"
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#60a5fa' }}
-                    title="Edit Team Name"
-                  >
-                    <Edit2 size={20} />
-                  </button>
-                  <button 
-                    onClick={() => handleDeleteTeam(team)}
-                    className="mt-action-btn delete"
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#f87171' }}
-                    title="Delete Team"
-                    disabled={isDeleting}
-                  >
-                    <Trash2 size={20} />
-                  </button>
-                </div>
+        {teams.map((team) => (
+          <div className="mt-card" key={team._id}>
+            <div className="important-note2">
+              {team.is_team_finalized ? (
+                <strong>Your team has been finalized and it will reflect on Unstop within 24hrs.</strong>
+              ) : (
+                <><strong>Reminder:</strong> After all members have joined your team, please finalize your team registration to complete your participation.</>
               )}
             </div>
-          )}
+            {editingTeamId === team._id ? (
+              <div className="mt-edit-container" style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px' }}>
+                <input
+                  type="text"
+                  value={editTeamName}
+                  onChange={(e) => setEditTeamName(e.target.value)}
+                  className="mt-edit-input"
+                  style={{
 
-          <div className="mt-code-section">
-            <label className="mt-code-label">Team Code</label>
-            <div className="mt-code-box">
-              <div className="mt-code">{team.teamCode}</div>
-              <button
-                className={`mt-copy-btn ${
-                  copiedCode === team._id ? "copied" : ""
-                }`}
-                onClick={() => copyToClipboard(team.teamCode, team._id)}
-                aria-label="Copy team code"
-              >
-                {copiedCode === team._id ? (
-                  <>
-                    <Check size={16} />
-                    <span>Copied</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy size={16} />
-                    <span>Copy</span>
-                  </>
+                  }}
+                />
+                <button
+                  onClick={() => handleSaveTeamName(team)}
+                  className="mt-action-btn save"
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#4ade80' }}
+                  title="Save"
+                >
+                  <Save size={24} />
+                </button>
+                <button
+                  onClick={handleCancelEdit}
+                  className="mt-action-btn cancel"
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#f87171' }}
+                  title="Cancel"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+            ) : (
+              <div className="mt-title-container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '50px' }}>
+                <div className="mt-title">{team.teamName}</div>
+                {team.isLeader && !team.is_team_finalized && (
+                  <div className="mt-actions" style={{ display: 'flex', gap: '10px' }}>
+                    <button
+                      onClick={() => handleEditClick(team)}
+                      className="mt-action-btn edit"
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#60a5fa' }}
+                      title="Edit Team Name"
+                    >
+                      <Edit2 size={20} />
+                    </button>
+                    <button
+                      onClick={() => handleDeleteTeam(team)}
+                      className="mt-action-btn delete"
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#f87171' }}
+                      title="Delete Team"
+                      disabled={isDeleting}
+                    >
+                      <Trash2 size={20} />
+                    </button>
+                  </div>
                 )}
-              </button>
-            </div>
-          </div>
+              </div>
+            )}
 
-          <div className="mt-stats">
-            <div className="mt-stat-card">
-              <Users size={24} className="mt-stat-icon" />
-              <span className="mt-stat-label">Team Members</span>
-              <span className="mt-stat-value">{team.numMembers} / 4</span>
+            <div className="mt-code-section">
+              <label className="mt-code-label">Team Code</label>
+              <div className="mt-code-box">
+                <div className="mt-code">{team.teamCode}</div>
+                <button
+                  className={`mt-copy-btn ${copiedCode === team._id ? "copied" : ""
+                    }`}
+                  onClick={() => copyToClipboard(team.teamCode, team._id)}
+                  aria-label="Copy team code"
+                >
+                  {copiedCode === team._id ? (
+                    <>
+                      <Check size={16} />
+                      <span>Copied</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={16} />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
 
-            <div className="mt-stat-card">
-              <Calendar size={24} className="mt-stat-icon" />
-              <span className="mt-stat-label">Created On</span>
-              <span className="mt-stat-value">
-                {formatDate(team.created_at)}
-              </span>
-            </div>
-          </div>
+            <div className="mt-stats">
+              <div className="mt-stat-card">
+                <Users size={24} className="mt-stat-icon" />
+                <span className="mt-stat-label">Team Members</span>
+                <span className="mt-stat-value">{team.numMembers} / 4</span>
+              </div>
 
-          <div className="mt-section">
+              <div className="mt-stat-card">
+                <Calendar size={24} className="mt-stat-icon" />
+                <span className="mt-stat-label">Created On</span>
+                <span className="mt-stat-value">
+                  {formatDate(team.created_at)}
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-section">
               {/* <div className="mt-section-header">
                 <span className="mt-section-title">Team Leader</span>
                 <button className="mt-edit-btn" onClick={editLeader}>
@@ -521,346 +563,359 @@ const ManageTeam = () => {
                 </button>
               </div> */}
 
-            <div className="mt-leader-block">
-              <div className="mt-leader-head">
-                <div className="mt-leader-name">
-                  {team.leader?.firstname || ""}{" "}
-                  {team.leader?.lastname || ""}
-                </div>
-                <div className="mt-leader-username">
-                  @{team.leader?.GitHubID || team.teamleader_github}
-                </div>
-              </div>
-
-              <div className="mt-leader-info">
-                <div>
-                  <strong>Email:</strong>
-                  <span>{team.leader?.mail || team.teamleader_email}</span>
+              <div className="mt-leader-block">
+                <div className="mt-leader-head">
+                  <div className="mt-leader-name">
+                    {team.leader?.firstname || ""}{" "}
+                    {team.leader?.lastname || ""}
+                  </div>
+                  <div className="mt-leader-username">
+                    @{team.leader?.GitHubID || team.teamleader_github}
+                  </div>
                 </div>
 
-                <div>
-                  <strong>College:</strong>
-                  <span>{team.leader?.college || "Not specified"}</span>
-                </div>
+                <div className="mt-leader-info">
+                  <div>
+                    <strong>Email:</strong>
+                    <span>{team.leader?.mail || team.teamleader_email}</span>
+                  </div>
 
-                <div>
-                  <strong>Degree:</strong>
-                  <span>{team.leader?.degree || "Not specified"}</span>
-                </div>
+                  <div>
+                    <strong>College:</strong>
+                    <span>{team.leader?.college || "Not specified"}</span>
+                  </div>
 
-                <div>
-                  <strong>Year:</strong>
-                  <span>{team.leader?.YOS || "Not specified"}</span>
-                </div>
+                  <div>
+                    <strong>Degree:</strong>
+                    <span>{team.leader?.degree || "Not specified"}</span>
+                  </div>
 
-                <div>
-                  <strong>Phone:</strong>
-                  <span>{team.leader?.mobile || "Not specified"}</span>
+                  <div>
+                    <strong>Year:</strong>
+                    <span>{team.leader?.YOS || "Not specified"}</span>
+                  </div>
+
+                  <div>
+                    <strong>Phone:</strong>
+                    <span>{team.leader?.mobile || "Not specified"}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="mt-section">
-            <div className="mt-section-header">
-              <span className="mt-section-title">Team Members</span>
-            </div>
+            <div className="mt-section">
+              <div className="mt-section-header">
+                <span className="mt-section-title">Team Members</span>
+              </div>
 
-            {team.members && team.members.length > 0 ? (
-              team.members.map((member, idx) => (
-                <div className="mt-member-card" key={idx}>
-                  <div className="mt-member-head">
-                    <div className="mt-member-name">
-                      {member.firstname && member.lastname
-                        ? `${member.firstname} ${member.lastname}`
-                        : member.firstname ||
+              {team.members && team.members.length > 0 ? (
+                team.members.map((member, idx) => (
+                  <div className="mt-member-card" key={idx}>
+                    <div className="mt-member-head">
+                      <div className="mt-member-name">
+                        {member.firstname && member.lastname
+                          ? `${member.firstname} ${member.lastname}`
+                          : member.firstname ||
                           member.lastname ||
                           "Member"}
+                      </div>
+                      <div className="mt-member-username">
+                        @{member.GitHubID || "username"}
+                      </div>
                     </div>
-                    <div className="mt-member-username">
-                      @{member.GitHubID || "username"}
-                    </div>
-                  </div>
 
-                  <div className="mt-member-info">
-                    <div>
-                      <strong>Email:</strong>
-                      <span>{member.mail || "Not specified"}</span>
+                    <div className="mt-member-info">
+                      <div>
+                        <strong>Email:</strong>
+                        <span>{member.mail || "Not specified"}</span>
+                      </div>
+                      <div>
+                        <strong>College:</strong>
+                        <span>{member.college || "Not specified"}</span>
+                      </div>
+                      <div>
+                        <strong>Degree:</strong>
+                        <span>{member.degree || "Not specified"}</span>
+                      </div>
+                      <div>
+                        <strong>Year:</strong>
+                        <span>{member.YOS || "Not specified"}</span>
+                      </div>
+                      <div>
+                        <strong>Phone:</strong>
+                        <span>{member.mobile || "Not specified"}</span>
+                      </div>
                     </div>
-                    <div>
-                      <strong>College:</strong>
-                      <span>{member.college || "Not specified"}</span>
-                    </div>
-                    <div>
-                      <strong>Degree:</strong>
-                      <span>{member.degree || "Not specified"}</span>
-                    </div>
-                    <div>
-                      <strong>Year:</strong>
-                      <span>{member.YOS || "Not specified"}</span>
-                    </div>
-                    <div>
-                      <strong>Phone:</strong>
-                      <span>{member.mobile || "Not specified"}</span>
-                    </div>
-                  </div>
 
-                  {team.isLeader && (
-                    <button
-                      className="mt-remove-btn"
-                      onClick={() => openRemoveMemberModal(member, team)}
-                      aria-label={`Remove ${member.firstname || "member"}`}
-                    >
-                      Remove Member
-                    </button>
-                  )}
+                    {team.isLeader && !team.is_team_finalized && (
+                      <button
+                        className="mt-remove-btn"
+                        onClick={() => openRemoveMemberModal(member, team)}
+                        aria-label={`Remove ${member.firstname || "member"}`}
+                      >
+                        Remove Member
+                      </button>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <div className="mt-empty">
+                  No team members yet. Share your team code to invite
+                  members!
                 </div>
-              ))
-            ) : (
-              <div className="mt-empty">
-                No team members yet. Share your team code to invite
-                members!
-              </div>
-            )}
-          </div>
-
-          {!team.isLeader && (
-            <div style={{ marginTop: "30px", display: "flex", justifyContent: "center" }}>
-              <button
-                className="mt-leave-btn"
-                onClick={() => handleLeaveTeam(team)}
-                style={{
-                  background: "rgba(239, 68, 68, 0.1)",
-                  border: "1px solid rgba(239, 68, 68, 0.5)",
-                  color: "#ef4444",
-                  padding: "12px 24px",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  fontSize: "16px",
-                  fontWeight: "600",
-                  transition: "all 0.3s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.background = "rgba(239, 68, 68, 0.2)";
-                  e.target.style.borderColor = "rgba(239, 68, 68, 0.7)";
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.background = "rgba(239, 68, 68, 0.1)";
-                  e.target.style.borderColor = "rgba(239, 68, 68, 0.5)";
-                }}
-              >
-                Leave Team
-              </button>
+              )}
             </div>
-          )}
-        </div>
-      ))}
 
-      {/* Delete confirmation modal */}
-      {deleteTargetTeam && (
-        <div
-          className="mt-modal-overlay"
-          role="dialog"
-          aria-modal="true"
-          onKeyDown={(e) => {
-            if (e.key === "Escape") {
-              setDeleteTargetTeam(null);
-              setDeleteConfirmationInput("");
-              setDeleteError("");
-            }
-          }}
-        >
-          <div className="mt-modal" role="document" aria-labelledby="mt-modal-title">
-            <h3 id="mt-modal-title">Confirm Team Deletion</h3>
-            <p>
-              This action cannot be undone. To confirm, type{" "}
-              <strong>"{deleteTargetTeam.teamName}"</strong> in the box below
-              and press Delete.
-            </p>
-
-            <input
-              className="mt-modal-input"
-              type="text"
-              value={deleteConfirmationInput}
-              onChange={(e) => {
-                setDeleteConfirmationInput(e.target.value);
-                if (deleteError) setDeleteError("");
-              }}
-              placeholder={`Write "${deleteTargetTeam.teamName}" to delete Team`}
-              aria-label={`Type ${deleteTargetTeam.teamName} to confirm deletion`}
-            />
-            {deleteError && (
-              <div className="mt-modal-error">
-                {deleteError}
+            {!team.isLeader && (
+              <div style={{ marginTop: "30px", display: "flex", justifyContent: "center" }}>
+                <button
+                  className="mt-leave-btn"
+                  onClick={() => handleLeaveTeam(team)}
+                  style={{
+                    background: "rgba(239, 68, 68, 0.1)",
+                    border: "1px solid rgba(239, 68, 68, 0.5)",
+                    color: "#ef4444",
+                    padding: "12px 24px",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    transition: "all 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = "rgba(239, 68, 68, 0.2)";
+                    e.target.style.borderColor = "rgba(239, 68, 68, 0.7)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = "rgba(239, 68, 68, 0.1)";
+                    e.target.style.borderColor = "rgba(239, 68, 68, 0.5)";
+                  }}
+                >
+                  Leave Team
+                </button>
               </div>
             )}
 
-            <div className="mt-modal-actions">
-              <button
-                type="button"
-                className="mt-modal-btn cancel"
-                onClick={() => {
-                  setDeleteTargetTeam(null);
-                  setDeleteConfirmationInput("");
-                  setDeleteError("");
+            {!team.is_team_finalized && team.isLeader && (
+              <div style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
+                <button
+                  className="register-form-submit"
+                  type="button"
+                  style={{ minWidth: "", margin: "0 auto" }}
+                  onClick={() => handleConfirmTeam(team)}
+                >
+                  <p>Confirm Team</p>
+                </button>
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Delete confirmation modal */}
+        {deleteTargetTeam && (
+          <div
+            className="mt-modal-overlay"
+            role="dialog"
+            aria-modal="true"
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                setDeleteTargetTeam(null);
+                setDeleteConfirmationInput("");
+                setDeleteError("");
+              }
+            }}
+          >
+            <div className="mt-modal" role="document" aria-labelledby="mt-modal-title">
+              <h3 id="mt-modal-title">Confirm Team Deletion</h3>
+              <p>
+                This action cannot be undone. To confirm, type{" "}
+                <strong>"{deleteTargetTeam.teamName}"</strong> in the box below
+                and press Delete.
+              </p>
+
+              <input
+                className="mt-modal-input"
+                type="text"
+                value={deleteConfirmationInput}
+                onChange={(e) => {
+                  setDeleteConfirmationInput(e.target.value);
+                  if (deleteError) setDeleteError("");
                 }}
-                disabled={isDeleting}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className="mt-modal-btn delete"
-                onClick={confirmDeleteTeam}
-                disabled={isDeleting || deleteConfirmationInput !== deleteTargetTeam.teamName}
-                title={`Type "${deleteTargetTeam.teamName}" to enable deletion`}
-              >
-                {isDeleting ? "Deleting..." : "Delete Team"}
-              </button>
+                placeholder={`Write "${deleteTargetTeam.teamName}" to delete Team`}
+                aria-label={`Type ${deleteTargetTeam.teamName} to confirm deletion`}
+              />
+              {deleteError && (
+                <div className="mt-modal-error">
+                  {deleteError}
+                </div>
+              )}
+
+              <div className="mt-modal-actions">
+                <button
+                  type="button"
+                  className="mt-modal-btn cancel"
+                  onClick={() => {
+                    setDeleteTargetTeam(null);
+                    setDeleteConfirmationInput("");
+                    setDeleteError("");
+                  }}
+                  disabled={isDeleting}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="mt-modal-btn delete"
+                  onClick={confirmDeleteTeam}
+                  disabled={isDeleting || deleteConfirmationInput !== deleteTargetTeam.teamName}
+                  title={`Type "${deleteTargetTeam.teamName}" to enable deletion`}
+                >
+                  {isDeleting ? "Deleting..." : "Delete Team"}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Remove member confirmation modal */}
-      {removeTargetMember && (
-        <div
-          className="mt-modal-overlay"
-          role="dialog"
-          aria-modal="true"
-          onKeyDown={(e) => {
-            if (e.key === "Escape") {
-              setRemoveTargetMember(null);
-              setRemoveConfirmationInput("");
-              setRemoveError("");
-            }
-          }}
-        >
-          <div className="mt-modal" role="document" aria-labelledby="mt-remove-modal-title">
-            <h3 id="mt-remove-modal-title">Confirm Remove Member</h3>
-            <p>
-              This will remove the member from your team. To confirm, type{" "}
-              <strong>
-                "{removeTargetMember.member.firstname && removeTargetMember.member.lastname
-                  ? `${removeTargetMember.member.firstname} ${removeTargetMember.member.lastname}`
-                  : removeTargetMember.member.firstname || removeTargetMember.member.lastname || "Member"}
-              "</strong>{" "}
-              below and press Delete.
-            </p>
+        {/* Remove member confirmation modal */}
+        {removeTargetMember && (
+          <div
+            className="mt-modal-overlay"
+            role="dialog"
+            aria-modal="true"
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                setRemoveTargetMember(null);
+                setRemoveConfirmationInput("");
+                setRemoveError("");
+              }
+            }}
+          >
+            <div className="mt-modal" role="document" aria-labelledby="mt-remove-modal-title">
+              <h3 id="mt-remove-modal-title">Confirm Remove Member</h3>
+              <p>
+                This will remove the member from your team. To confirm, type{" "}
+                <strong>
+                  "{removeTargetMember.member.firstname && removeTargetMember.member.lastname
+                    ? `${removeTargetMember.member.firstname} ${removeTargetMember.member.lastname}`
+                    : removeTargetMember.member.firstname || removeTargetMember.member.lastname || "Member"}
+                  "</strong>{" "}
+                below and press Delete.
+              </p>
 
-            <input
-              className="mt-modal-input"
-              type="text"
-              value={removeConfirmationInput}
-              onChange={(e) => {
-                setRemoveConfirmationInput(e.target.value);
-                if (removeError) setRemoveError("");
-              }}
-              placeholder={`Write the member's name to confirm removal`}
-              aria-label={`Type member name to confirm removal`}
-            />
-            {removeError && <div className="mt-modal-error">{removeError}</div>}
-
-            <div className="mt-modal-actions">
-              <button
-                type="button"
-                className="mt-modal-btn cancel"
-                onClick={() => {
-                  setRemoveTargetMember(null);
-                  setRemoveConfirmationInput("");
-                  setRemoveError("");
+              <input
+                className="mt-modal-input"
+                type="text"
+                value={removeConfirmationInput}
+                onChange={(e) => {
+                  setRemoveConfirmationInput(e.target.value);
+                  if (removeError) setRemoveError("");
                 }}
-                disabled={isRemovingMember}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className="mt-modal-btn delete"
-                onClick={confirmRemoveMember}
-                disabled={
-                  isRemovingMember ||
-                  !removeTargetMember ||
-                  removeConfirmationInput !==
+                placeholder={`Write the member's name to confirm removal`}
+                aria-label={`Type member name to confirm removal`}
+              />
+              {removeError && <div className="mt-modal-error">{removeError}</div>}
+
+              <div className="mt-modal-actions">
+                <button
+                  type="button"
+                  className="mt-modal-btn cancel"
+                  onClick={() => {
+                    setRemoveTargetMember(null);
+                    setRemoveConfirmationInput("");
+                    setRemoveError("");
+                  }}
+                  disabled={isRemovingMember}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="mt-modal-btn delete"
+                  onClick={confirmRemoveMember}
+                  disabled={
+                    isRemovingMember ||
+                    !removeTargetMember ||
+                    removeConfirmationInput !==
                     (removeTargetMember.member.firstname && removeTargetMember.member.lastname
                       ? `${removeTargetMember.member.firstname} ${removeTargetMember.member.lastname}`
                       : removeTargetMember.member.firstname || removeTargetMember.member.lastname || "Member")
-                }
-                title={`Type member full name to enable deletion`}
-              >
-                {isRemovingMember ? "Removing..." : "Delete Member"}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Leave team confirmation modal */}
-      {leaveTargetTeam && (
-        <div
-          className="mt-modal-overlay"
-          role="dialog"
-          aria-modal="true"
-          onKeyDown={(e) => {
-            if (e.key === "Escape") {
-              setLeaveTargetTeam(null);
-              setLeaveConfirmationInput("");
-              setLeaveError("");
-            }
-          }}
-        >
-          <div className="mt-modal" role="document" aria-labelledby="mt-leave-modal-title">
-            <h3 id="mt-leave-modal-title">Confirm Leave Team</h3>
-            <p>
-              This action cannot be undone. You will be removed from the team and will need to join another team to participate. To confirm, type{" "}
-              <strong>"{leaveTargetTeam.teamName}"</strong> in the box below
-              and press Leave Team.
-            </p>
-
-            <input
-              className="mt-modal-input"
-              type="text"
-              value={leaveConfirmationInput}
-              onChange={(e) => {
-                setLeaveConfirmationInput(e.target.value);
-                if (leaveError) setLeaveError("");
-              }}
-              placeholder={`Write "${leaveTargetTeam.teamName}" to leave team`}
-              aria-label={`Type ${leaveTargetTeam.teamName} to confirm leaving team`}
-            />
-            {leaveError && (
-              <div className="mt-modal-error">
-                {leaveError}
+                  }
+                  title={`Type member full name to enable deletion`}
+                >
+                  {isRemovingMember ? "Removing..." : "Delete Member"}
+                </button>
               </div>
-            )}
-
-            <div className="mt-modal-actions">
-              <button
-                type="button"
-                className="mt-modal-btn cancel"
-                onClick={() => {
-                  setLeaveTargetTeam(null);
-                  setLeaveConfirmationInput("");
-                  setLeaveError("");
-                }}
-                disabled={isLeavingTeam}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className="mt-modal-btn delete"
-                onClick={confirmLeaveTeam}
-                disabled={isLeavingTeam || leaveConfirmationInput !== leaveTargetTeam.teamName}
-                title={`Type "${leaveTargetTeam.teamName}" to enable leaving team`}
-              >
-                {isLeavingTeam ? "Leaving..." : "Leave Team"}
-              </button>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+
+        {/* Leave team confirmation modal */}
+        {leaveTargetTeam && (
+          <div
+            className="mt-modal-overlay"
+            role="dialog"
+            aria-modal="true"
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                setLeaveTargetTeam(null);
+                setLeaveConfirmationInput("");
+                setLeaveError("");
+              }
+            }}
+          >
+            <div className="mt-modal" role="document" aria-labelledby="mt-leave-modal-title">
+              <h3 id="mt-leave-modal-title">Confirm Leave Team</h3>
+              <p>
+                This action cannot be undone. You will be removed from the team and will need to join another team to participate. To confirm, type{" "}
+                <strong>"{leaveTargetTeam.teamName}"</strong> in the box below
+                and press Leave Team.
+              </p>
+
+              <input
+                className="mt-modal-input"
+                type="text"
+                value={leaveConfirmationInput}
+                onChange={(e) => {
+                  setLeaveConfirmationInput(e.target.value);
+                  if (leaveError) setLeaveError("");
+                }}
+                placeholder={`Write "${leaveTargetTeam.teamName}" to leave team`}
+                aria-label={`Type ${leaveTargetTeam.teamName} to confirm leaving team`}
+              />
+              {leaveError && (
+                <div className="mt-modal-error">
+                  {leaveError}
+                </div>
+              )}
+
+              <div className="mt-modal-actions">
+                <button
+                  type="button"
+                  className="mt-modal-btn cancel"
+                  onClick={() => {
+                    setLeaveTargetTeam(null);
+                    setLeaveConfirmationInput("");
+                    setLeaveError("");
+                  }}
+                  disabled={isLeavingTeam}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="mt-modal-btn delete"
+                  onClick={confirmLeaveTeam}
+                  disabled={isLeavingTeam || leaveConfirmationInput !== leaveTargetTeam.teamName}
+                  title={`Type "${leaveTargetTeam.teamName}" to enable leaving team`}
+                >
+                  {isLeavingTeam ? "Leaving..." : "Leave Team"}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 };

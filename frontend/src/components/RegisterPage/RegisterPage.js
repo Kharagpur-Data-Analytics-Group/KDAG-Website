@@ -38,6 +38,7 @@ const RegisterPage = () => {
 	const [checkingTeam, setCheckingTeam] = useState(false);
 	const [copiedTeamCode, setCopiedTeamCode] = useState(false);
 
+
 	const handleShowHowTo = () => {
 		setShowHowTo(!showHowTo);
 	};
@@ -436,7 +437,15 @@ const RegisterPage = () => {
 									>
 										<p>Manage Team</p>
 									</button>
+									<div className="important-note2">
+										<strong>Reminder:</strong> After all members have joined your team, please review and confirm your team details on the&nbsp;
+										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
+											Manage Team page 
+										</span>{" "}
+										 to complete your registration.
+									</div>
 								</div>
+
 							) : (
 								<div>
 									<h1
@@ -478,6 +487,13 @@ const RegisterPage = () => {
 											<p>Join a Team with Team Code</p>
 										</button>
 									</div>
+									<div className="important-note2">
+										<strong>Reminder:</strong> After all members have joined your team, please review and confirm your team details on the&nbsp;
+										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
+											Manage Team page 
+										</span>{" "}
+										 to complete your registration.
+									</div>
 								</div>
 							)
 						) : registrationMode === "leader" ? (
@@ -508,23 +524,18 @@ const RegisterPage = () => {
 											<p style={{ color: "white", marginBottom: "15px" }}>
 												Your Team Code:
 											</p>
+											<div className="team-code-display">
 											<div style={{
-												display: "flex",
-												alignItems: "center",
-												justifyContent: "center",
-												gap: "15px",
+												fontSize: "32px",
+												fontWeight: "bold",
+												color: "#00ff11",
+												letterSpacing: "5px",
 												marginBottom: "15px",
+												fontFamily: "monospace",
 											}}>
-												<div style={{
-													fontSize: "32px",
-													fontWeight: "bold",
-													color: "#00ff11",
-													letterSpacing: "5px",
-													fontFamily: "monospace",
-												}}>
-													{teamCodeDisplay}
-												</div>
-												<button
+												{teamCodeDisplay}
+											</div>
+											<button
 													type="button"
 													onClick={copyTeamCodeToClipboard}
 													style={{
@@ -560,8 +571,9 @@ const RegisterPage = () => {
 														</>
 													)}
 												</button>
-											</div>
-											<p style={{ color: "white", fontSize: "14px", marginBottom: "20px" }}>
+												</div>
+											<p style={{ color: "white", fontSize: "14px" }}>
+											
 												Share this code with your teammates so they can join your team.
 											</p>
 											<p style={{ color: "white", fontSize: "16px", marginBottom: "15px" }}>
