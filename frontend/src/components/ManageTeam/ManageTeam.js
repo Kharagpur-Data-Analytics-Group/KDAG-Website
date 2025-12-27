@@ -16,16 +16,19 @@ const ManageTeam = () => {
   const [editTeamName, setEditTeamName] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // New state for delete confirmation modal
   const [deleteTargetTeam, setDeleteTargetTeam] = useState(null);
   const [deleteConfirmationInput, setDeleteConfirmationInput] = useState("");
   const [deleteError, setDeleteError] = useState("");
 
-  // New state for remove-member confirmation modal
-  const [removeTargetMember, setRemoveTargetMember] = useState(null); // { member, team }
+  const [removeTargetMember, setRemoveTargetMember] = useState(null); 
   const [removeConfirmationInput, setRemoveConfirmationInput] = useState("");
   const [removeError, setRemoveError] = useState("");
   const [isRemovingMember, setIsRemovingMember] = useState(false);
+
+  const [leaveTargetTeam, setLeaveTargetTeam] = useState(null);
+  const [leaveConfirmationInput, setLeaveConfirmationInput] = useState("");
+  const [leaveError, setLeaveError] = useState("");
+  const [isLeavingTeam, setIsLeavingTeam] = useState(false);
   
   useEffect(() => {
     if (isLoggedIn) {
@@ -80,7 +83,6 @@ const ManageTeam = () => {
 
       toast.success("Team name updated successfully");
       
-      // Update local state
       setTeams(teams.map(t => 
         t._id === team._id ? { ...t, teamName: editTeamName.trim() } : t
       ));
@@ -185,7 +187,7 @@ const ManageTeam = () => {
       await navigator.clipboard.writeText(text);
       setCopiedCode(teamId);
       toast.success("Team code copied to clipboard!", {
-        position: "bottom-right",
+        position: "top-center",
         autoClose: 2000,
       });
       setTimeout(() => setCopiedCode(null), 2000);
@@ -274,9 +276,69 @@ const ManageTeam = () => {
 
   const editLeader = () => {
     toast.info("Edit team leader details coming soon!", {
-      position: "bottom-right",
+      position: "top-center",
     });
     // Implement edit leader functionality
+  };
+
+  const handleLeaveTeam = (team) => {
+    setLeaveTargetTeam(team);
+    setLeaveConfirmationInput("");
+    setLeaveError("");
+  };
+
+  const confirmLeaveTeam = async () => {
+    if (!leaveTargetTeam) return;
+
+    const expected = leaveTargetTeam.teamName;
+    if (leaveConfirmationInput !== expected) {
+      setLeaveError(`Type "${expected}" exactly to confirm leaving the team.`);
+      toast.error("Team name did not match. Leaving team aborted.");
+      return;
+    }
+
+    setIsLeavingTeam(true);
+    try {
+      const token = localStorage.getItem("access_token");
+      if (!token) {
+        toast.error("You must be logged in");
+        return;
+      }
+
+      const res = await fetch(
+        `${process.env.REACT_APP_FETCH_URL}/kdsh/leave_team`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            teamCode: leaveTargetTeam.teamCode,
+          }),
+        }
+      );
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to leave team");
+      }
+
+      toast.success(data.message || "You have successfully left the team");
+      
+      // Refresh teams list
+      await fetchUserTeams();
+      
+      // Close modal
+      setLeaveTargetTeam(null);
+      setLeaveConfirmationInput("");
+      setLeaveError("");
+    } catch (error) {
+      toast.error(error.message || "Failed to leave team");
+      console.error("Leave team error:", error);
+    } finally {
+      setIsLeavingTeam(false);
+    }
   };
 
   const formatDate = (dateString) => {
@@ -332,12 +394,15 @@ const ManageTeam = () => {
             Create your team and start your hackathon journey today!
           </p>
           <a href="/register-kdsh" className="mt-primary-btn">
-            Register Your Team
+            Register for KDSH
           </a>
         </div>
       </div>
     );
   }
+
+  // Check if user is a team leader for any team
+  const isTeamLeader = teams.some(team => team.isLeader);
 
   return (
     <>
@@ -345,8 +410,8 @@ const ManageTeam = () => {
       <Particless />
 
       <div className="mt-header">
-        <h1>Manage Your Team</h1>
-        <p>View and manage your hackathon registration</p>
+        <h1>{isTeamLeader ? "Manage Your Team" : "View Your Team"}</h1>
+        <p>{isTeamLeader ? "View and manage your hackathon registration" : "View your hackathon registration"}</p>
       </div>
 
       {teams.map((team) => (
@@ -382,25 +447,27 @@ const ManageTeam = () => {
           ) : (
             <div className="mt-title-container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '50px' }}>
               <div className="mt-title">{team.teamName}</div>
-              <div className="mt-actions" style={{ display: 'flex', gap: '10px' }}>
-                <button 
-                  onClick={() => handleEditClick(team)}
-                  className="mt-action-btn edit"
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#60a5fa' }}
-                  title="Edit Team Name"
-                >
-                  <Edit2 size={20} />
-                </button>
-                <button 
-                  onClick={() => handleDeleteTeam(team)}
-                  className="mt-action-btn delete"
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#f87171' }}
-                  title="Delete Team"
-                  disabled={isDeleting}
-                >
-                  <Trash2 size={20} />
-                </button>
-              </div>
+              {team.isLeader && (
+                <div className="mt-actions" style={{ display: 'flex', gap: '10px' }}>
+                  <button 
+                    onClick={() => handleEditClick(team)}
+                    className="mt-action-btn edit"
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#60a5fa' }}
+                    title="Edit Team Name"
+                  >
+                    <Edit2 size={20} />
+                  </button>
+                  <button 
+                    onClick={() => handleDeleteTeam(team)}
+                    className="mt-action-btn delete"
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#f87171' }}
+                    title="Delete Team"
+                    disabled={isDeleting}
+                  >
+                    <Trash2 size={20} />
+                  </button>
+                </div>
+              )}
             </div>
           )}
 
@@ -538,13 +605,15 @@ const ManageTeam = () => {
                     </div>
                   </div>
 
-                  <button
-                    className={`mt-remove-btn ${editingTeamId === team._id ? "" : "hidden"}`}
-                    onClick={() => openRemoveMemberModal(member, team)}
-                    aria-label={`Remove ${member.firstname || "member"}`}
-                  >
-                    Remove Member
-                  </button>
+                  {team.isLeader && (
+                    <button
+                      className="mt-remove-btn"
+                      onClick={() => openRemoveMemberModal(member, team)}
+                      aria-label={`Remove ${member.firstname || "member"}`}
+                    >
+                      Remove Member
+                    </button>
+                  )}
                 </div>
               ))
             ) : (
@@ -554,6 +623,36 @@ const ManageTeam = () => {
               </div>
             )}
           </div>
+
+          {!team.isLeader && (
+            <div style={{ marginTop: "30px", display: "flex", justifyContent: "center" }}>
+              <button
+                className="mt-leave-btn"
+                onClick={() => handleLeaveTeam(team)}
+                style={{
+                  background: "rgba(239, 68, 68, 0.1)",
+                  border: "1px solid rgba(239, 68, 68, 0.5)",
+                  color: "#ef4444",
+                  padding: "12px 24px",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  transition: "all 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = "rgba(239, 68, 68, 0.2)";
+                  e.target.style.borderColor = "rgba(239, 68, 68, 0.7)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = "rgba(239, 68, 68, 0.1)";
+                  e.target.style.borderColor = "rgba(239, 68, 68, 0.5)";
+                }}
+              >
+                Leave Team
+              </button>
+            </div>
+          )}
         </div>
       ))}
 
@@ -690,6 +789,72 @@ const ManageTeam = () => {
                 title={`Type member full name to enable deletion`}
               >
                 {isRemovingMember ? "Removing..." : "Delete Member"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Leave team confirmation modal */}
+      {leaveTargetTeam && (
+        <div
+          className="mt-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              setLeaveTargetTeam(null);
+              setLeaveConfirmationInput("");
+              setLeaveError("");
+            }
+          }}
+        >
+          <div className="mt-modal" role="document" aria-labelledby="mt-leave-modal-title">
+            <h3 id="mt-leave-modal-title">Confirm Leave Team</h3>
+            <p>
+              This action cannot be undone. You will be removed from the team and will need to join another team to participate. To confirm, type{" "}
+              <strong>"{leaveTargetTeam.teamName}"</strong> in the box below
+              and press Leave Team.
+            </p>
+
+            <input
+              className="mt-modal-input"
+              type="text"
+              value={leaveConfirmationInput}
+              onChange={(e) => {
+                setLeaveConfirmationInput(e.target.value);
+                if (leaveError) setLeaveError("");
+              }}
+              placeholder={`Write "${leaveTargetTeam.teamName}" to leave team`}
+              aria-label={`Type ${leaveTargetTeam.teamName} to confirm leaving team`}
+            />
+            {leaveError && (
+              <div className="mt-modal-error">
+                {leaveError}
+              </div>
+            )}
+
+            <div className="mt-modal-actions">
+              <button
+                type="button"
+                className="mt-modal-btn cancel"
+                onClick={() => {
+                  setLeaveTargetTeam(null);
+                  setLeaveConfirmationInput("");
+                  setLeaveError("");
+                }}
+                disabled={isLeavingTeam}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="mt-modal-btn delete"
+                onClick={confirmLeaveTeam}
+                disabled={isLeavingTeam || leaveConfirmationInput !== leaveTargetTeam.teamName}
+                title={`Type "${leaveTargetTeam.teamName}" to enable leaving team`}
+              >
+                {isLeavingTeam ? "Leaving..." : "Leave Team"}
               </button>
             </div>
           </div>

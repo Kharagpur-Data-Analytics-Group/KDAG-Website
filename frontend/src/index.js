@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 ReactDOM.render(
 	<React.StrictMode>
 		<App />
-		<ToastContainer />
+		<ToastContainer position="top-center" />
 	</React.StrictMode>,
 	document.getElementById("root")
 );
