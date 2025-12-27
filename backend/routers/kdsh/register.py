@@ -537,20 +537,49 @@ def get_user_teams():
 
         email = user["email"].lower()
 
-        teams = list(
+        participants_col = mongo.cx["KDSH_2026"]["kdsh2026_participants"]
+        
+        # Find user's participant record to get their GitHub ID
+        user_participant = participants_col.find_one({"mail": email})
+        user_github_id = None
+        if user_participant:
+            user_github_id = user_participant.get("GitHubID")
+
+        # Find teams where user is leader (by email)
+        leader_teams = list(
             mongo.cx["KDSH_2026"]["kdsh2026_teams"].find(
                 {"teamleader_email": email}
             )
         )
 
-        if not teams:
-            return jsonify({"teams": []}), 200
+        # Find teams where user is a member (by GitHub ID)
+        member_teams = []
+        if user_github_id:
+            member_teams = list(
+                mongo.cx["KDSH_2026"]["kdsh2026_teams"].find(
+                    {"members_github": user_github_id}
+                )
+            )
 
-        participants_col = mongo.cx["KDSH_2026"]["kdsh2026_participants"]
+        # Combine teams and remove duplicates (in case user is both leader and member somehow)
+        all_teams = {}
+        for t in leader_teams:
+            all_teams[str(t["_id"])] = {"team": t, "isLeader": True}
+        
+        for t in member_teams:
+            team_id = str(t["_id"])
+            # Only add if not already added as leader team
+            if team_id not in all_teams:
+                all_teams[team_id] = {"team": t, "isLeader": False}
+
+        if not all_teams:
+            return jsonify({"teams": []}), 200
 
         enriched = []
 
-        for t in teams:
+        for team_id, team_data in all_teams.items():
+            t = team_data["team"]
+            is_leader = team_data["isLeader"]
 
             gh_ids = [t["teamleader_github"], *t["members_github"]]
 
@@ -578,6 +607,7 @@ def get_user_teams():
                 "numMembers": t["numMembers"],
                 "leader": leader,
                 "members": members,
+                "isLeader": is_leader,
             })
 
         return jsonify({"teams": enriched}), 200
@@ -648,6 +678,80 @@ def remove_member():
 
     except Exception as e:
         print("remove_member error:", e)
+        return jsonify({"error": "Internal server error"}), 500
+
+@kdsh.route("/leave_team", methods=["POST"])
+@jwt_required()
+def leave_team():
+    try:
+        from app import mongo
+        
+        identity = get_jwt_identity()
+        user_id = identity.get("user_id")
+
+        user = mongo.cx["KDAG-BACKEND"]["users"].find_one(
+            {"_id": ObjectId(user_id)}
+        )
+        if not user:
+            return jsonify({"error": "User not found"}), 404
+
+        user_email = user["email"].lower()
+
+        data = request.get_json()
+        if not data or "teamCode" not in data:
+            return jsonify({"error": "Team code is required"}), 400
+
+        team_code = data.get("teamCode").strip().upper()
+
+        team = mongo.cx["KDSH_2026"]["kdsh2026_teams"].find_one(
+            {"teamCode": team_code}
+        )
+
+        if not team:
+            return jsonify({"error": "Team not found"}), 404
+
+        # Check if user is the team leader
+        if team["teamleader_email"].lower() == user_email:
+            return jsonify({"error": "Team leader cannot leave the team. Please delete the team or transfer leadership first."}), 403
+
+        # Find user's participant record to get their GitHub ID
+        participants_col = mongo.cx["KDSH_2026"]["kdsh2026_participants"]
+        user_participant = participants_col.find_one({"mail": user_email})
+        
+        if not user_participant:
+            return jsonify({"error": "Participant record not found"}), 404
+
+        user_github_id = user_participant.get("GitHubID")
+        
+        if not user_github_id:
+            return jsonify({"error": "GitHub ID not found"}), 404
+
+        # Check if user is actually a member of this team
+        if user_github_id not in team.get("members_github", []):
+            return jsonify({"error": "You are not a member of this team"}), 403
+
+        # Remove user from team
+        mongo.cx["KDSH_2026"]["kdsh2026_teams"].update_one(
+            {"_id": team["_id"]},
+            {
+                "$pull": {
+                    "members_github": user_github_id,
+                    "members_email": user_email
+                },
+                "$inc": {"numMembers": -1},
+                "$set": {
+                    "is_active": team["numMembers"] - 1 >= 2
+                }
+            }
+        )
+
+        # Delete user's participant record
+        participants_col.delete_one({"GitHubID": user_github_id})
+
+        return jsonify({"message": "You have successfully left the team"}), 200
+
+    except Exception as e:
+        print("leave_team error:", e)
         return jsonify({"error": "Internal server error"}), 500
 
 

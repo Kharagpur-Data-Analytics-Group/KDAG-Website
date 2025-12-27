@@ -19,6 +19,9 @@ import Star from "./Star.js";
 import { AuthContext } from "../../context/AuthContext";
 import LoginPrompt from "../Resources_New/LoginPrompt";
 import "../Resources_New/LoginPrompt.css";
+import { Copy, Check } from "lucide-react";
+import whatsapp from "./../../assets/kdsh2025_whatsapp.png";
+import discord from "./../../assets/kdsh2025_discord.png";
 
 const RegisterPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
@@ -33,6 +36,7 @@ const RegisterPage = () => {
 	const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 	const [hasTeam, setHasTeam] = useState(false);
 	const [checkingTeam, setCheckingTeam] = useState(false);
+	const [copiedTeamCode, setCopiedTeamCode] = useState(false);
 
 	const handleShowHowTo = () => {
 		setShowHowTo(!showHowTo);
@@ -316,6 +320,21 @@ const RegisterPage = () => {
 		history.push("/");
 	};
 
+	const copyTeamCodeToClipboard = async () => {
+		try {
+			await navigator.clipboard.writeText(teamCodeDisplay);
+			setCopiedTeamCode(true);
+			toast.success("Team code copied to clipboard!", {
+				position: "top-center",
+				autoClose: 2000,
+			});
+			setTimeout(() => setCopiedTeamCode(false), 2000);
+		} catch (error) {
+			toast.error("Failed to copy code");
+			console.error("Copy error:", error);
+		}
+	};
+
 	const handleBackToSelection = () => {
 		setRegistrationMode(null);
 		setTeamCodeDisplay("");
@@ -447,7 +466,13 @@ const RegisterPage = () => {
 										<button
 											className="register-form-submit"
 											type="button"
-											onClick={() => setRegistrationMode("member")}
+											onClick={() => {
+												if (!isLoggedIn) {
+													setShowLoginPrompt(true);
+													return;
+												}
+												setRegistrationMode("member");
+											}}
 											style={{ minWidth: "300px" }}
 										>
 											<p>Join a Team with Team Code</p>
@@ -484,18 +509,103 @@ const RegisterPage = () => {
 												Your Team Code:
 											</p>
 											<div style={{
-												fontSize: "32px",
-												fontWeight: "bold",
-												color: "#00ff11",
-												letterSpacing: "5px",
+												display: "flex",
+												alignItems: "center",
+												justifyContent: "center",
+												gap: "15px",
 												marginBottom: "15px",
-												fontFamily: "monospace",
 											}}>
-												{teamCodeDisplay}
+												<div style={{
+													fontSize: "32px",
+													fontWeight: "bold",
+													color: "#00ff11",
+													letterSpacing: "5px",
+													fontFamily: "monospace",
+												}}>
+													{teamCodeDisplay}
+												</div>
+												<button
+													type="button"
+													onClick={copyTeamCodeToClipboard}
+													style={{
+														background: "rgba(0, 255, 17, 0.2)",
+														border: "1px solid #00ff11",
+														borderRadius: "8px",
+														padding: "8px 16px",
+														cursor: "pointer",
+														display: "flex",
+														alignItems: "center",
+														gap: "8px",
+														color: "#00ff11",
+														fontSize: "14px",
+														fontWeight: "600",
+														transition: "all 0.3s ease",
+													}}
+													onMouseEnter={(e) => {
+														e.target.style.background = "rgba(0, 255, 17, 0.3)";
+													}}
+													onMouseLeave={(e) => {
+														e.target.style.background = "rgba(0, 255, 17, 0.2)";
+													}}
+												>
+													{copiedTeamCode ? (
+														<>
+															<Check size={16} />
+															<span>Copied</span>
+														</>
+													) : (
+														<>
+															<Copy size={16} />
+															<span>Copy</span>
+														</>
+													)}
+												</button>
 											</div>
-											<p style={{ color: "white", fontSize: "14px" }}>
+											<p style={{ color: "white", fontSize: "14px", marginBottom: "20px" }}>
 												Share this code with your teammates so they can join your team.
 											</p>
+											<p style={{ color: "white", fontSize: "16px", marginBottom: "15px" }}>
+												Join the WhatsApp Group and Discord Channel for regular updates!
+											</p>
+											<div style={{
+												display: "flex",
+												justifyContent: "center",
+												gap: "20px",
+												marginTop: "15px",
+											}}>
+												<a
+													href="https://chat.whatsapp.com/BXA1gpP1GVm5vazs0WBHFA"
+													target="_blank"
+													rel="noreferrer noopener"
+													style={{
+														transition: "transform 0.3s ease",
+													}}
+													onMouseEnter={(e) => {
+														e.target.style.transform = "scale(1.1)";
+													}}
+													onMouseLeave={(e) => {
+														e.target.style.transform = "scale(1)";
+													}}
+												>
+													<img src={whatsapp} alt="whatsapp" style={{ height: "50px", cursor: "pointer" }} />
+												</a>
+												<a
+													href="https://discord.gg/ukRrG7BCv"
+													target="_blank"
+													rel="noreferrer noopener"
+													style={{
+														transition: "transform 0.3s ease",
+													}}
+													onMouseEnter={(e) => {
+														e.target.style.transform = "scale(1.1)";
+													}}
+													onMouseLeave={(e) => {
+														e.target.style.transform = "scale(1)";
+													}}
+												>
+													<img src={discord} alt="discord" style={{ height: "50px", cursor: "pointer" }} />
+												</a>
+											</div>
 										</div>
 									) : (
 										<div>
@@ -611,7 +721,7 @@ const RegisterPage = () => {
 			<LoginPrompt
 				open={showLoginPrompt}
 				onClose={() => setShowLoginPrompt(false)}
-				message="Login to our website to register as a team leader"
+				message="Login to our website to register"
 			/>
 		</>
 	);
