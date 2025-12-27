@@ -642,6 +642,22 @@
     padding: 8px 12px;
     font-size: 0.92rem;
   }
+  
+  .mt-member-info div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .mt-leader-info {
+    grid-template-columns: 1fr;
+  }
+
+  .mt-leader-info div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
 }
 
 @media (max-width: 768px) {

@@ -30,6 +30,8 @@ const ManageTeam = () => {
   const [leaveError, setLeaveError] = useState("");
   const [isLeavingTeam, setIsLeavingTeam] = useState(false);
 
+  const [confirmTargetTeam, setConfirmTargetTeam] = useState(null);
+
   useEffect(() => {
     if (isLoggedIn) {
       fetchUserTeams();
@@ -227,10 +229,16 @@ const ManageTeam = () => {
       toast.success("Team finalized successfully");
       // Refetch teams to update the finalized status
       fetchUserTeams();
+      // Close modal
+      setConfirmTargetTeam(null);
     } catch (error) {
       toast.error(error.message || "Failed to finalize team");
       console.error("Finalize team error:", error);
     }
+  };
+
+  const openConfirmTeamModal = (team) => {
+    setConfirmTargetTeam(team);
   };
 
   // open remove-member modal (replace previous immediate confirm)
@@ -456,7 +464,7 @@ const ManageTeam = () => {
               {team.is_team_finalized ? (
                 <strong>Your team has been finalized and it will reflect on Unstop within 24hrs.</strong>
               ) : (
-                <><strong>Reminder:</strong> After all members have joined your team, please finalize your team registration to complete your participation.</>
+                <><strong>Reminder:</strong> After all members have joined, team leader must finalize your team registration to complete your participation.</>
               )}
             </div>
             {editingTeamId === team._id ? (
@@ -702,9 +710,9 @@ const ManageTeam = () => {
                   className="register-form-submit"
                   type="button"
                   style={{ minWidth: "", margin: "0 auto" }}
-                  onClick={() => handleConfirmTeam(team)}
+                  onClick={() => openConfirmTeamModal(team)}
                 >
-                  <p>Confirm Team</p>
+                  <p>Finalize Team</p>
                 </button>
               </div>
             )}
@@ -910,6 +918,44 @@ const ManageTeam = () => {
                   title={`Type "${leaveTargetTeam.teamName}" to enable leaving team`}
                 >
                   {isLeavingTeam ? "Leaving..." : "Leave Team"}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Confirm team modal */}
+        {confirmTargetTeam && (
+          <div
+            className="mt-modal-overlay"
+            role="dialog"
+            aria-modal="true"
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                setConfirmTargetTeam(null);
+              }
+            }}
+          >
+            <div className="mt-modal" role="document" aria-labelledby="mt-confirm-modal-title">
+              <h3 id="mt-confirm-modal-title">Confirm Team Finalization</h3>
+              <p>
+                <strong>Warning:</strong> This will lock your registration and this action can't be undone.
+              </p>
+
+              <div className="mt-modal-actions">
+                <button
+                  type="button"
+                  className="mt-modal-btn cancel"
+                  onClick={() => setConfirmTargetTeam(null)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="mt-modal-btn confirm"
+                  onClick={() => handleConfirmTeam(confirmTargetTeam)}
+                >
+                  Confirm
                 </button>
               </div>
             </div>

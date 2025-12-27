@@ -658,19 +658,27 @@ def remove_member():
         if github_to_remove == team["teamleader_github"]:
             return jsonify({"error": "Leader cannot remove themselves"}), 400
 
-        if github_to_remove not in team["members_github"]:
+        if github_to_remove not in team.get("members_github", []):
             return jsonify({"error": "Member not found in team"}), 404
+
+        try:
+            idx = team["members_github"].index(github_to_remove)
+            email_to_remove = team["members_email"][idx]
+        except Exception:
+            return jsonify({"error": "Data mismatch: email not aligned with GitHub ID"}), 500
+
+        new_num_members = max(team["numMembers"] - 1, 0)
 
         mongo.cx["KDSH_2026"]["kdsh2026_teams"].update_one(
             {"_id": team["_id"]},
             {
                 "$pull": {
                     "members_github": github_to_remove,
-                    "members_email": {"$in": [github_to_remove]}
+                    "members_email": email_to_remove
                 },
-                "$inc": {"numMembers": -1},
                 "$set": {
-                    "is_active": team["numMembers"] - 1 >= 2
+                    "numMembers": new_num_members,
+                    "is_active": new_num_members >= 2
                 }
             }
         )
@@ -684,6 +692,7 @@ def remove_member():
     except Exception as e:
         print("remove_member error:", e)
         return jsonify({"error": "Internal server error"}), 500
+
 
 @kdsh.route("/leave_team", methods=["POST"])
 @jwt_required()
