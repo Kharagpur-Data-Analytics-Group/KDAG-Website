@@ -155,6 +155,16 @@
 	animation: shimmer 2.5s infinite;
 }
 
+.kdsh-unstop-link {
+	color: #FFD700 !important;
+	font-weight: bolder;
+}
+
+.kdsh-unstop-link:hover {
+	color: #FFD700 !important;
+	text-decoration: underline !important;
+}
+
 @keyframes shimmer {
 	0% {
 		left: -100%;
