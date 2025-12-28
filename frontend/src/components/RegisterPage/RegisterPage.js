@@ -364,7 +364,7 @@ const RegisterPage = () => {
 								For more details about KDSH 2026, visit our {" "}
 								<a
 									className="kdsh-unstop-link"
-									href="https://unstop.com/p/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
+									// href="https://unstop.com/p/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
 									target="_blank"
 									rel="noreferrer noopener"
 								>
