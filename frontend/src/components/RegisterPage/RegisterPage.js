@@ -380,7 +380,7 @@ const RegisterPage = () => {
 								<strong>Registration deadline: 2nd January 2026 11:59 PM</strong> <br/>
 							</p>
 
-							<p>
+							{/* <p>
 								For more details about KDSH 2026, visit our {" "}
 								<a
 									className="kdsh-unstop-link"
@@ -390,7 +390,7 @@ const RegisterPage = () => {
 								>
 									Unstop Page
 								</a>.
-							</p>
+							</p> */}
 
 							<p>
 								To participate, please fill in your details in the form provided
