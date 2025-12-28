@@ -12,7 +12,6 @@ const Logout = () => {
 	const handle_logout = async () => {
 		try {
 			localStorage.removeItem("access_token");
-			localStorage.removeItem("refresh_token");
 			setIsLoggedIn(false);
 			history.push("/");
 			window.location.reload();

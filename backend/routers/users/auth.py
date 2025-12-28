@@ -5,17 +5,13 @@ from dotenv import load_dotenv
 from flask import make_response
 from flask_jwt_extended import ( 
     create_access_token,
-    create_refresh_token,
     jwt_required,
-    get_jwt_header,
     get_jwt_identity,
     verify_jwt_in_request,
-    decode_token,
 )
 from bson import ObjectId 
 from datetime import timedelta
 import requests
-import bcrypt
 from pymongo import MongoClient
 import jwt
 import os
@@ -25,6 +21,8 @@ import copy
 load_dotenv()
 user_auth = Blueprint("user_auth", __name__)
 MONGO_URI=os.getenv("MONGO_URI")
+DB_NAME = "KDAG-BACKEND"
+JWT_EXPIRY_DAYS = int(os.getenv("JWT_EXPIRY_DAYS", "7")) 
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
@@ -44,7 +42,6 @@ def google_callback():
  
         data = request.get_json()
         code = data.get("code")
-        print("Received authorization code:", code)
 
         if not code:
             return jsonify({"error": "No authorization code provided"}), 400
@@ -72,8 +69,6 @@ def google_callback():
             )
 
         token_response_data = token_response.json()
-        access_token = token_response_data.get("access_token")
-        refresh_token = token_response_data.get("refresh_token")
         id_token_str = token_response_data.get("id_token")
         expires_in = token_response_data.get("expires_in")
 
@@ -82,7 +77,7 @@ def google_callback():
         else:
             print("Expiration time not provided in the token response.")
 
-        users = mongo.cx["KDAG-BACKEND"].users
+        users = mongo.cx[DB_NAME].users
         user_data = {}
         user_data["is_admin"] = False
         user_data["active"] = False
@@ -105,8 +100,13 @@ def google_callback():
                 family_name = id_info.get("family_name", "")
                 picture = id_info.get("picture", "")
                 
-                # Extract username from email (part before @)
-                username = email.split('@')[0] if email else ""
+                # Extract username from email with collision prevention
+                base_username = email.split('@')[0] if email else ""
+                username = base_username
+                counter = 1
+                while users.find_one({"username": username, "email": {"$ne": email}}):
+                    username = f"{base_username}{counter}"
+                    counter += 1
 
             except ValueError as e:
                 print("Error during token validation:", str(e))
@@ -128,7 +128,7 @@ def google_callback():
                 users.insert_one(user_data)
                 user = users.find_one({"email": email}) 
 
-                resources = mongo.cx["KDAG-BACKEND"].resources_page
+                resources = mongo.cx[DB_NAME].resources_page
                 default_sections = copy.deepcopy(SECTIONS_TEMPLATE) 
 
                 for section in default_sections:
@@ -146,16 +146,13 @@ def google_callback():
                 user = users.find_one({"email": email})
                 is_admin = user.get("is_admin")
                 uid = str(user.get("_id"))
+                # Create JWT with only necessary data
                 jwt_access_token = create_access_token(
                     identity={
                         "user_id": uid,
-                        "google_access_token": access_token,
                         "is_admin": is_admin,
                     },
-                    expires_delta=timedelta(days=7),
-                )
-                users.update_one(
-                    {"_id": ObjectId(uid)}, {"$set": {"refresh_token": refresh_token}}
+                    expires_delta=timedelta(days=JWT_EXPIRY_DAYS),
                 )
                 response = make_response(
                     jsonify(
@@ -184,7 +181,7 @@ def google_callback():
                 uid = str(user.get("_id"))
 
                 # --- Sync resources_page with latest SECTIONS_TEMPLATE ---
-                resources = mongo.cx["KDAG-BACKEND"].resources_page
+                resources = mongo.cx[DB_NAME].resources_page
                 existing_resource = resources.find_one({"user_id": uid})
 
                 if existing_resource:
@@ -232,16 +229,13 @@ def google_callback():
                     resources.insert_one({"user_id": uid, "sections": default_sections})
                 # ---------------------------------------------------------
 
+                # Create JWT with only necessary data
                 jwt_access_token = create_access_token(
                     identity={
                         "user_id": uid,
-                        "google_access_token": access_token,
                         "is_admin": is_admin,
                     },
-                    expires_delta=timedelta(days=7),
-                )
-                users.update_one(
-                    {"_id": ObjectId(uid)}, {"$set": {"refresh_token": refresh_token}}
+                    expires_delta=timedelta(days=JWT_EXPIRY_DAYS),
                 )
                 user_info = {
                     **id_info,
@@ -268,78 +262,53 @@ def google_callback():
     except Exception as e:
         print("Error in Google OAuth callback:", e)
         return (
-            jsonify({"error": f"An error occurred during the authentication process -- {e}"}),
+            jsonify({"error": "Authentication failed. Please try again."}),
             500,
         )
 
 
 @user_auth.route("/auth/google/status", methods=["GET"])
 def auth_status():
-    verify_jwt_in_request()
-    auth_header = request.headers.get("Authorization")
-    if not auth_header:
-        return jsonify({"loggedIn": False, "user": None}), 401
-
-    if not auth_header.startswith("Bearer "):
-        return jsonify({"loggedIn": False, "user": None}), 401
-
-    access_token = auth_header.split(" ")[1]
-
+    """
+    Check if user is logged in based on JWT token validity.
+    JWT is valid for 7 days, allowing persistent login without re-authentication.
+    """
     try:
-        decoded_token = decode_token(access_token)
-        google_access_token = decoded_token.get("sub", {}).get("google_access_token")
+        verify_jwt_in_request()
+        current_user = get_jwt_identity()
+        
+        # Get user info from JWT payload
+        user_id = current_user.get("user_id")
+        
+        if not user_id:
+            return jsonify({"loggedIn": False, "user": None, "error": "Invalid token payload"}), 401
 
-        if not google_access_token:
-            return (
-                jsonify(
-                    {
-                        "loggedIn": False,
-                        "user": None,
-                        "error": "No Google access token found in JWT",
-                    }
-                ),
-                401,
-            )
+        # Fetch user info from database
+        from app import mongo
+        users = mongo.cx[DB_NAME].users
+        user = users.find_one({"_id": ObjectId(user_id)})
+        
+        if not user:
+            return jsonify({"loggedIn": False, "user": None, "error": "User not found"}), 401
 
-        response = requests.get(
-            GOOGLE_TOKEN_INFO_URL_2, params={"access_token": google_access_token}
-        )
+        # Return user info (JWT itself validates the session)
+        user_info = {
+            "email": user.get("email"),
+            "name": f"{user.get('f_name', '')} {user.get('l_name', '')}".strip(),
+            "given_name": user.get("f_name", ""),
+            "family_name": user.get("l_name", ""),
+            "picture": user.get("picture", ""),
+        }
+        
+        return jsonify({"loggedIn": True, "user": user_info}), 200
 
-        if response.status_code != 200:
-            response_data = response.json()
-            if response_data.get("error_description") == "Invalid Value":
-                print("Access token expired")
-                return (
-                    jsonify(
-                        {
-                            "loggedIn": False,
-                            "user": None,
-                            "error": "Access token has expired",
-                        }
-                    ),
-                    401,
-                )
-            return (
-                jsonify(
-                    {
-                        "loggedIn": False,
-                        "user": None,
-                        "error": response_data.get(
-                            "error_description", "Invalid access token"
-                        ),
-                    }
-                ),
-                401,
-            )
-
-        user_info = response.json()
-        return jsonify({"loggedIn": True, "user": user_info})
-
+    except jwt.ExpiredSignatureError:
+        return jsonify({"loggedIn": False, "user": None, "error": "Token expired"}), 401
     except jwt.InvalidTokenError:
-        print(jwt.InvalidTokenError)
-        return jsonify({"message": "Invalid token"}), 401
+        return jsonify({"loggedIn": False, "user": None, "error": "Invalid token"}), 401
     except Exception as e:
-        return jsonify({"message": f"Error occurred: {str(e)}"}), 500
+        print(f"Error in auth_status: {str(e)}")
+        return jsonify({"loggedIn": False, "user": None, "error": "Authentication failed"}), 500
 
 
 @user_auth.route("/signup", methods=["POST"])
@@ -347,7 +316,7 @@ def user_signup():
     try:
         from app import mongo
 
-        users = mongo.cx["KDAG-BACKEND"].users
+        users = mongo.cx[DB_NAME].users
         data = request.get_json()
 
         uid = data.get("uid")
@@ -405,58 +374,12 @@ def user_signup():
 # /////////////////////////////////////////////////////////////////////////////////////////
 
 
-@user_auth.route("/login", methods=["POST"])
-def user_login():
-    try:
-        from app import mongo
-
-        data = request.get_json()
-        users = mongo.cx["KDAG-BACKEND"].users
-        user = users.find_one({"username": data["username"]})
-        if user and bcrypt.checkpw(
-            data["password"].encode("utf-8"), user["password"].encode("utf-8")
-        ):
-            if not user.get("active", False):
-                return (
-                    jsonify(
-                        {
-                            "message": "Account has not been activated. Please contact support."
-                        }
-                    ),
-                    403,
-                )
-            token_identity = {
-                "username": data["username"],
-                "user_id": str(user["_id"]) if user["_id"] else None,
-            }
-            if user.get("is_admin", False):
-                token_identity["is_admin"] = True
-
-            access_token = create_access_token(
-                identity=token_identity, expires_delta=False
-            )
-
-            return (
-                jsonify(
-                    {"message": "Logged in successfully", "access_token": access_token}
-                ),
-                200,
-            )
-
-        else:
-            return jsonify({"message": "Invalid credentials"}), 401
-
-    except Exception as error:
-        print(error)
-        return jsonify({"message": "Error in logging in"}), 500
-
-
 @user_auth.route("/profile/<string:uid>", methods=["GET"])
 def profile(uid):
     try:
         from app import mongo
 
-        users = mongo.cx["KDAG-BACKEND"].users
+        users = mongo.cx[DB_NAME].users
         user = users.find_one(ObjectId(uid))
         if not user:
             user_info = {
@@ -482,30 +405,20 @@ def profile(uid):
 @user_auth.route("/profile_self/<string:uid>", methods=["GET"])
 @jwt_required()
 def profile_self(uid):
+    """
+    Get user profile. JWT validation is sufficient for authentication.
+    """
     try:
         from app import mongo
 
-        auth_header = request.headers.get("Authorization")
-        if not auth_header:
-            return jsonify({"loggedIn": False, "user": None}), 401
+        current_user = get_jwt_identity()
+        
+        # Verify the requesting user matches the profile being accessed
+        token_user_id = current_user.get("user_id")
+        if token_user_id != uid:
+            return jsonify({"message": "Unauthorized access"}), 403
 
-        if not auth_header.startswith("Bearer "):
-            return jsonify({"loggedIn": False, "user": None}), 401
-
-        access_token = auth_header.split(" ")[1]
-        decoded_token = decode_token(access_token)
-        google_access_token = decoded_token.get("sub", {}).get("google_access_token")
-
-        token_info_response = requests.get(
-            GOOGLE_TOKEN_INFO_URL_2, params={"access_token": google_access_token}
-        )
-
-        token_info = token_info_response.json()
-
-        if "error" in token_info:
-            return jsonify({"message": "Invalid access token"}), 401
-
-        users = mongo.cx["KDAG-BACKEND"].users
+        users = mongo.cx[DB_NAME].users
         user = users.find_one(ObjectId(uid))
 
         if not user:
@@ -514,6 +427,10 @@ def profile_self(uid):
         user_info = {key: value for key, value in user.items() if key != "_id"}
 
         return jsonify(user_info), 200
+    except jwt.ExpiredSignatureError:
+        return jsonify({"message": "Token expired"}), 401
+    except jwt.InvalidTokenError:
+        return jsonify({"message": "Invalid token"}), 401
     except Exception as error:
         print("Error in getting profile ", error)
         return jsonify({"message": "Error in fetching profile"}), 500
@@ -525,7 +442,7 @@ def edit_profile(uid):
     try:
         from app import mongo
 
-        users = mongo.cx["KDAG-BACKEND"].users
+        users = mongo.cx[DB_NAME].users
         data = request.get_json()
         current_user = get_jwt_identity()
         if current_user["user_id"] != uid:
@@ -566,68 +483,3 @@ def edit_profile(uid):
     except Exception as error:
         print(error)
         return jsonify({"message": "Error in profile editing"}), 500
-
-
-@user_auth.route("/auth/google/refresh_google_access_token", methods=["POST"])
-@jwt_required()
-def refresh_google_access_token():
-    try:
-        from app import mongo
-
-        current_user = get_jwt_identity()
-        uid = current_user["user_id"]
-        google_access_token = current_user["google_access_token"]
-
-        token_info_response = requests.get(
-            GOOGLE_TOKEN_INFO_URL_2, params={"access_token": google_access_token}
-        )
-        token_info = token_info_response.json()
-
-        user = mongo.cx["KDAG-BACKEND"].users.find_one({"_id": ObjectId(uid)})
-        if not user or "refresh_token" not in user:
-            return (
-                jsonify({"message": "No refresh token found, please re-authenticate"}),
-                401,
-            )   
-
-        refresh_token = user["refresh_token"]
-
-        token_refresh_response = requests.post(
-            GOOGLE_TOKEN_URL,
-            data={
-                "client_id": GOOGLE_CLIENT_ID,
-                "client_secret": GOOGLE_CLIENT_SECRET,
-                "refresh_token": refresh_token,
-                "grant_type": "refresh_token",
-            },
-        )
-
-        token_data = token_refresh_response.json()
-
-        if "access_token" not in token_data:
-            return jsonify({"message": "Failed to refresh access token"}), 401
-
-        new_access_token = token_data["access_token"]
-
-        new_jwt_access_token = create_access_token(
-            identity={
-                "user_id": uid,
-                "google_access_token": new_access_token,
-                "is_admin": current_user["is_admin"],
-            },
-            expires_delta=timedelta(days=7),
-        )
-
-        return (
-            jsonify(
-                {
-                    "message": "Access token refreshed successfully",
-                    "access_token": new_jwt_access_token,
-                }
-            ),
-            200,
-        )
-
-    except Exception as error:
-        print("Error refreshing Google access token:", error)
-        return jsonify({"message": "Server error"}), 500
