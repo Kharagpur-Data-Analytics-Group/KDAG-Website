@@ -29,7 +29,8 @@ const Success = () => {
 						<div className="success-register-kdsh-desc">
 							<p>
 								Congratulations on successfully registering for{" "}
-								<strong>Kharagpur Data Science Hackathon 2026</strong>. For
+								<strong>Kharagpur Data Science Hackathon 2026</strong>. 
+								{/* For
 								timelines and other details related to the Hackathon Visit {" "}
 								<a
 									className="kdsh-unstop-link"
@@ -38,7 +39,7 @@ const Success = () => {
 									rel="noreferrer noopener"
 								>
 									Unstop Page
-								</a>.{" "}
+								</a>.{" "} */}
 							</p>
 							<p>
 								Join the Whatsapp Group and Discord Channel for regular updates!
