@@ -22,6 +22,7 @@ import "../Resources_New/LoginPrompt.css";
 import { Copy, Check } from "lucide-react";
 import whatsapp from "./../../assets/kdsh2025_whatsapp.png";
 import discord from "./../../assets/kdsh2025_discord.png";
+import banner from "./../../assets/banner.png";
 
 const RegisterPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
@@ -350,6 +351,9 @@ const RegisterPage = () => {
 					<div className="register-header">
 						<div className="spacer layer1"></div>
 						<div className="register-kdsh">KDSH 2026</div>
+						<div className="kdsh_banner">
+							<img src={banner} alt="KDSH Banner" />
+						</div>
 						<div className="register-kdsh-desc">
 							<p>
 								The 6th Edition of the{" "}
@@ -468,9 +472,9 @@ const RegisterPage = () => {
 									<div className="important-note2">
 										<strong>Important:</strong> After all Members have joined, Team Leader must finalize the team on the&nbsp;
 										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
-											Manage Team  
+											Manage Team
 										</span>{" "}
-										 page. Your team will only appear on Unstop after finalization.
+										page. Your team will only appear on Unstop after finalization.
 									</div>
 								</div>
 
@@ -518,9 +522,9 @@ const RegisterPage = () => {
 									<div className="important-note2">
 										<strong>Important:</strong> After all Team Members have joined, Team Leader must review and confirm your team details on the&nbsp;
 										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
-											Manage Team 
+											Manage Team
 										</span>{" "}
-												page to complete your registration. Your team will only appear on Unstop after finalization.
+										page to complete your registration. Your team will only appear on Unstop after finalization.
 									</div>
 								</div>
 							)
@@ -553,17 +557,17 @@ const RegisterPage = () => {
 												Your Team Code:
 											</p>
 											<div className="team-code-display">
-											<div style={{
-												fontSize: "32px",
-												fontWeight: "bold",
-												color: "#00ff11",
-												letterSpacing: "5px",
-												marginBottom: "15px",
-												fontFamily: "monospace",
-											}}>
-												{teamCodeDisplay}
-											</div>
-											<button
+												<div style={{
+													fontSize: "32px",
+													fontWeight: "bold",
+													color: "#00ff11",
+													letterSpacing: "5px",
+													marginBottom: "15px",
+													fontFamily: "monospace",
+												}}>
+													{teamCodeDisplay}
+												</div>
+												<button
 													type="button"
 													onClick={copyTeamCodeToClipboard}
 													style={{
@@ -599,9 +603,9 @@ const RegisterPage = () => {
 														</>
 													)}
 												</button>
-												</div>
+											</div>
 											<p style={{ color: "white", fontSize: "14px" }}>
-											
+
 												Share this code with your teammates so they can join your team.
 											</p>
 											<p style={{ color: "white", fontSize: "16px", marginBottom: "15px" }}>
@@ -646,14 +650,14 @@ const RegisterPage = () => {
 													<img src={discord} alt="discord" style={{ height: "50px", cursor: "pointer" }} />
 												</a>
 											</div>
-										<div className="important-note2" style={{ marginTop: "20px" }}>
-											<strong>Important Next Step:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
-											<a href="/manage-team" style={{ color: "#60a5fa", textDecoration: "underline" }}>
-												Manage Team page
-											</a>{" "}
-											to complete your registration. Your team will only appear on Unstop after finalization.
-										</div>										
-									</div>
+											<div className="important-note2" style={{ marginTop: "20px" }}>
+												<strong>Important Next Step:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
+												<a href="/manage-team" style={{ color: "#60a5fa", textDecoration: "underline" }}>
+													Manage Team page
+												</a>{" "}
+												to complete your registration. Your team will only appear on Unstop after finalization.
+											</div>
+										</div>
 									) : (
 										<div>
 											<div className="register-form-details-special">
