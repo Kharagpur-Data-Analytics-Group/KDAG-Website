@@ -652,9 +652,9 @@ const RegisterPage = () => {
 											</div>
 											<div className="important-note2" style={{ marginTop: "20px" }}>
 												<strong>Important Next Step:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
-												<a href="/manage-team" style={{ color: "#60a5fa", textDecoration: "underline" }}>
-													Manage Team page
-												</a>{" "}
+												<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
+													Manage Team
+												</span>{" "}
 												to complete your registration. Your team will only appear on Unstop after finalization.
 											</div>
 										</div>
