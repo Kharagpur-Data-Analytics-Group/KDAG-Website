@@ -366,7 +366,7 @@ const RegisterPage = () => {
 
 							<p>
 								Why participate? <br/>
-								<strong>Prizes Worth ₹4,00,0000. </strong><br/>
+								<strong>Prizes Worth ₹4,00,000. </strong><br/>
 								<ul>
 									<li><strong>Winner:</strong> ₹2,00,000</li>
 									<li><strong>Runner-up:</strong> ₹1,25,000</li>
