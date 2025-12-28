@@ -361,10 +361,26 @@ const RegisterPage = () => {
 							</p>
 
 							<p>
+								Why participate? <br/>
+								<strong>Prizes Worth ₹4,00,0000. </strong><br/>
+								<ul>
+									<li><strong>Winner:</strong> ₹2,00,000</li>
+									<li><strong>Runner-up:</strong> ₹1,25,000</li>
+									<li><strong>Second Runner-up:</strong> ₹75,000</li>
+								</ul>
+								Backed by industry leaders including Pathway (Title Sponser) and TrueFoundry (Tech Platform Sponser) <br/>
+								Exposure through national media partners and India's largest techno-management fest.
+							</p>
+
+							<p>
+								<strong>Registration deadline: 2nd January 2026 11:59 PM</strong> <br/>
+							</p>
+
+							<p>
 								For more details about KDSH 2026, visit our {" "}
 								<a
 									className="kdsh-unstop-link"
-									// href="https://unstop.com/p/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
+									href="https://unstop.com/p/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
 									target="_blank"
 									rel="noreferrer noopener"
 								>
