@@ -22,7 +22,7 @@ const Success = () => {
 					<div className="spacer layer1"></div>
 					<Fade top>
 						<div className="success-register-kdsh">
-							<img src={kdsh_2025} alt="KDSH2025" style={{ height: "100px" }} />
+							<img src={kdsh_2025} alt="KDSH2025" />
 						</div>
 					</Fade>
 					<Fade top>
@@ -30,8 +30,15 @@ const Success = () => {
 							<p>
 								Congratulations on successfully registering for{" "}
 								<strong>Kharagpur Data Science Hackathon 2026</strong>. For
-								timelines and other details related to the Hackathon Visit
-								Unstop.{" "}
+								timelines and other details related to the Hackathon Visit {" "}
+								<a
+									className="kdsh-unstop-link"
+									href="https://unstop.com/p/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
+									target="_blank"
+									rel="noreferrer noopener"
+								>
+									Unstop Page
+								</a>.{" "}
 							</p>
 							<p>
 								Join the Whatsapp Group and Discord Channel for regular updates!

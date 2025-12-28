@@ -22,6 +22,12 @@
 	text-wrap: nowrap;
 }
 
+.success-container .register-header .success-register-kdsh img {
+	height: 100px;
+	width: auto;
+	max-width: 100%;
+}
+
 .success-container .register-header .success-register-kdsh-desc {
 	border: 1px solid rgba(59, 130, 246, 0.25);
 	color: #cbd5f5;
@@ -84,6 +90,10 @@
 		padding: 5px 25px;
 	}
 
+	.success-container .register-header .success-register-kdsh img {
+		height: 90px;
+	}
+
 	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
@@ -98,6 +108,10 @@
 		left: 34%;
 		font-size: 45px;
 		padding: 5px 25px;
+	}
+
+	.success-container .register-header .success-register-kdsh img {
+		height: 80px;
 	}
 
 	.success-container .register-header .success-register-kdsh-desc {
@@ -116,6 +130,10 @@
 		padding: 5px 25px;
 	}
 
+	.success-container .register-header .success-register-kdsh img {
+		height: 70px;
+	}
+
 	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
@@ -132,6 +150,10 @@
 		padding: 5px 25px;
 	}
 
+	.success-container .register-header .success-register-kdsh img {
+		height: 65px;
+	}
+
 	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
@@ -146,6 +168,10 @@
 		left: 28%;
 		font-size: 45px;
 		padding: 5px 25px;
+	}
+
+	.success-container .register-header .success-register-kdsh img {
+		height: 60px;
 	}
 
 	.success-container .register-header .success-register-kdsh-desc {
@@ -165,6 +191,10 @@
 		padding: 5px 25px;
 	}
 
+	.success-container .register-header .success-register-kdsh img {
+		height: 55px;
+	}
+
 	.success-container .register-header .success-register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
@@ -181,6 +211,10 @@
 		font-size: 45px;
 		padding: 5px 25px;
 	}
+
+	.success-container .register-header .success-register-kdsh img {
+		height: 50px;
+	}
 }
 
 @media (max-width: 460px) {
@@ -189,6 +223,10 @@
 		left: 22%;
 		font-size: 35px;
 		padding: 5px 25px;
+	}
+
+	.success-container .register-header .success-register-kdsh img {
+		height: 45px;
 	}
 
 	.success-container .register-header .success-register-kdsh-desc {
@@ -206,6 +244,10 @@
 		left: 18%;
 		font-size: 35px;
 		padding: 5px 25px;
+	}
+
+	.success-container .register-header .success-register-kdsh img {
+		height: 40px;
 	}
 
 	.success-container .register-header .success-register-kdsh-desc {
