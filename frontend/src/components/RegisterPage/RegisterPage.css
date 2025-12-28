@@ -858,6 +858,7 @@ input[type="number"] {
 .kdsh_banner {
 	max-width: 900px;
 	margin: 10rem auto;
+	margin-bottom: 3rem;
 	margin-top: 0;
 	padding: 20px 0 10px 0;
 }
