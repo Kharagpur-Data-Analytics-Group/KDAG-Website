@@ -48,7 +48,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;
-	padding-top: 120px;
+	padding-top: 140px;
 	box-sizing: border-box;
 	overflow: hidden;
 }
@@ -84,6 +84,8 @@
 	max-width: 900px;
 	margin: 0 auto;
 	padding: 40px;
+	padding-top: 20px;
+	margin-bottom: 1rem;
 	font-size: 18px;
 	line-height: 1.7;
 	font-weight: 500;
@@ -187,6 +189,12 @@
 
 	.register-container .register-header .register-kdsh-desc ul {
 		justify-content: center;
+	}
+}
+
+@media (max-width: 600px) {
+	.register-container .register-header {
+		padding-top: 80px;
 	}
 }
 
@@ -844,5 +852,25 @@ input[type="number"] {
 @media (max-width: 768px) {
 	.team-code-display {
 		flex-direction: column;
+	}
+}
+
+.kdsh_banner {
+	max-width: 900px;
+	margin: 10rem auto;
+	margin-top: 0;
+	padding: 20px 0 10px 0;
+}
+
+.kdsh_banner img {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+	.kdsh_banner {
+		padding: 10px 0 5px 0;
 	}
 }
