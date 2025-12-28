@@ -1,17 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import Fade from "../../Common/Motion/Fade.js"
 import { AuthContext } from "../../../context/AuthContext";
+import { useHistory } from "react-router-dom";
 import logout_icon from "../../../assets/pics/logout.png";
 import "./Logout.css";
 
 const Logout = () => {
 	const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+	const history = useHistory();
 
 	const handle_logout = async () => {
 		try {
 			localStorage.removeItem("access_token");
 			localStorage.removeItem("refresh_token");
 			setIsLoggedIn(false);
+			history.push("/");
 			window.location.reload();
 		} catch (error) {
 			console.error("Error during logout:", error);
