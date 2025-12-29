@@ -38,6 +38,7 @@ const RegisterPage = () => {
 	const [hasTeam, setHasTeam] = useState(false);
 	const [checkingTeam, setCheckingTeam] = useState(false);
 	const [copiedTeamCode, setCopiedTeamCode] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 
 	const handleShowHowTo = () => {
@@ -89,6 +90,8 @@ const RegisterPage = () => {
 	const handleTeamLeaderRegister = (e) => {
 		e.preventDefault();
 
+		if (isSubmitting) return;
+
 		if (!isLoggedIn) {
 			setShowLoginPrompt(true);
 			return false;
@@ -106,6 +109,8 @@ const RegisterPage = () => {
 			});
 			return false;
 		}
+
+		setIsSubmitting(true);
 
 		const formData = {
 			isTeamLeader: true,
@@ -148,6 +153,7 @@ const RegisterPage = () => {
 					});
 				}
 				checkUserTeam();
+				setIsSubmitting(false);
 			})
 			.catch((error) => {
 				console.error("Error during registration:", error);
@@ -157,6 +163,7 @@ const RegisterPage = () => {
 					draggable: true,
 					autoClose: 15000,
 				});
+				setIsSubmitting(false);
 			});
 
 		toast.promise(
@@ -365,19 +372,19 @@ const RegisterPage = () => {
 							</p>
 
 							<p>
-								Why participate? <br/>
-								<strong>Prizes Worth ₹4,00,000. </strong><br/>
+								Why participate? <br />
+								<strong>Prizes Worth ₹4,00,000. </strong><br />
 								<ul>
 									<li><strong>Winner:</strong> ₹2,00,000</li>
 									<li><strong>Runner-up:</strong> ₹1,25,000</li>
 									<li><strong>Second Runner-up:</strong> ₹75,000</li>
 								</ul>
-								Backed by industry leaders including Pathway (Title Sponser) and TrueFoundry (Tech Platform Sponser) <br/>
+								Backed by industry leaders including Pathway (Title Sponser) and TrueFoundry (Tech Platform Sponser) <br />
 								Exposure through national media partners and India's largest techno-management fest.
 							</p>
 
 							<p>
-								<strong>Registration deadline: 2nd January 2026 11:59 PM</strong> <br/>
+								<strong>Registration deadline: 2nd January 2026 11:59 PM</strong> <br />
 							</p>
 
 							{/* <p>
@@ -698,8 +705,8 @@ const RegisterPage = () => {
 												disabled={true}
 											/>
 											<div style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
-												<button className="register-form-submit" type="submit">
-													<p>Create Team</p>
+												<button className="register-form-submit" type="submit" disabled={isSubmitting}>
+													<p>{isSubmitting ? "Creating..." : "Create Team"}</p>
 												</button>
 											</div>
 										</div>
