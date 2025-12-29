@@ -364,7 +364,7 @@ const RegisterPage = () => {
 								your skills, and become a trailblazer in the field.
 							</p>
 
-							<p>
+							{/* <p>
 								Why participate? <br/>
 								<strong>Prizes Worth ₹4,00,000. </strong><br/>
 								<ul>
@@ -374,13 +374,13 @@ const RegisterPage = () => {
 								</ul>
 								Backed by industry leaders including Pathway (Title Sponser) and TrueFoundry (Tech Platform Sponser) <br/>
 								Exposure through national media partners and India's largest techno-management fest.
-							</p>
-
-							<p>
-								<strong>Registration deadline: 2nd January 2026 11:59 PM</strong> <br/>
-							</p>
+							</p> */}
 
 							{/* <p>
+								<strong>Registration deadline: 2nd January 2026 11:59 PM</strong> <br/>
+							</p> */}
+
+							<p>
 								For more details about KDSH 2026, visit our {" "}
 								<a
 									className="kdsh-unstop-link"
@@ -390,7 +390,7 @@ const RegisterPage = () => {
 								>
 									Unstop Page
 								</a>.
-							</p> */}
+							</p> 
 
 							<p>
 								To participate, please fill in your details in the form provided
