@@ -270,6 +270,11 @@ def check_register():
         ):
             return jsonify({"error": "GitHub ID already registered."}), 400
 
+        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+            {"mobile": mobile}
+        ):
+            return jsonify({"error": "Phone number already registered."}), 400
+
         if mongo.cx["KDSH_2026"].kdsh2026_teams.find_one(
             {"teamName": team_name}
         ):
@@ -438,6 +443,11 @@ def join_team():
 
         if not team_code:
             return jsonify({"error": "Team code is required."}), 400
+
+        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+            {"mobile": mobile}
+        ):
+            return jsonify({"error": "Phone number already registered."}), 400
 
         team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
         if not team:
