@@ -856,22 +856,20 @@ input[type="number"] {
 }
 
 .kdsh_banner {
-	max-width: 900px;
-	margin: 10rem auto;
-	margin-bottom: 3rem;
-	margin-top: 0;
-	padding: 20px 0 10px 0;
+  max-width: 900px;
+  margin: 0 auto 3rem auto;
+  padding: 0;
 }
 
 .kdsh_banner img {
-	width: 100%;
-	height: auto;
-	display: block;
-	border-radius: 20px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
 }
 
 @media (max-width: 768px) {
-	.kdsh_banner {
-		padding: 10px 0 5px 0;
-	}
+  .kdsh_banner {
+    padding: 0 16px;   
+  }
 }

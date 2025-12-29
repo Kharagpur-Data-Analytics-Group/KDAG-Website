@@ -23,6 +23,7 @@ import { Copy, Check } from "lucide-react";
 import whatsapp from "./../../assets/kdsh2025_whatsapp.png";
 import discord from "./../../assets/kdsh2025_discord.png";
 import banner from "./../../assets/banner.png";
+import bannerSmall from "./../../assets/kdshbanner_small.png";
 
 const RegisterPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
@@ -38,6 +39,7 @@ const RegisterPage = () => {
 	const [hasTeam, setHasTeam] = useState(false);
 	const [checkingTeam, setCheckingTeam] = useState(false);
 	const [copiedTeamCode, setCopiedTeamCode] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 
 	const handleShowHowTo = () => {
@@ -89,6 +91,8 @@ const RegisterPage = () => {
 	const handleTeamLeaderRegister = (e) => {
 		e.preventDefault();
 
+		if (isSubmitting) return;
+
 		if (!isLoggedIn) {
 			setShowLoginPrompt(true);
 			return false;
@@ -106,6 +110,8 @@ const RegisterPage = () => {
 			});
 			return false;
 		}
+
+		setIsSubmitting(true);
 
 		const formData = {
 			isTeamLeader: true,
@@ -148,6 +154,7 @@ const RegisterPage = () => {
 					});
 				}
 				checkUserTeam();
+				setIsSubmitting(false);
 			})
 			.catch((error) => {
 				console.error("Error during registration:", error);
@@ -157,6 +164,7 @@ const RegisterPage = () => {
 					draggable: true,
 					autoClose: 15000,
 				});
+				setIsSubmitting(false);
 			});
 
 		toast.promise(
@@ -173,23 +181,27 @@ const RegisterPage = () => {
 		);
 	};
 
-	const handleJoinTeam = (e) => {
+	const handleJoinTeam = async (e) => {
 		e.preventDefault();
 
-		if (!teamCode || teamCode.trim() === "") {
+		if (isSubmitting) return;
+		setIsSubmitting(true);
+
+		try {
+			if (!teamCode || teamCode.trim() === "") {
 			toast.error("Please enter a team code", {
 				position: "top-center",
 				draggable: true,
 				theme: "dark",
 			});
-			return false;
-		}
+			return;
+			}
 
-		if (!handleSubmit(firstname1, mobile1, college1, YOS1, GitHubID1)) {
-			return false;
-		}
+			if (!handleSubmit(firstname1, mobile1, college1, YOS1, GitHubID1)) {
+			return;
+			}
 
-		const formData = {
+			const formData = {
 			firstname: firstname1,
 			lastname: lastname1,
 			gender: gender1,
@@ -200,55 +212,35 @@ const RegisterPage = () => {
 			YOS: Number(YOS1),
 			GitHubID: GitHubID1,
 			teamCode: teamCode.trim().toUpperCase(),
-		};
+			};
 
-		const joinPromise = fetch(
+			const response = await fetch(
 			`${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
 			{
 				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
+				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(formData),
 			}
-		)
-			.then(async (response) => {
-				const data = await response.json();
-				if (!response.ok) {
-					throw new Error(data.error || `Server error: ${response.status}`);
-				}
-				return data;
-			})
-			.then((data) => {
-				if (data.message) {
-					setSuccessPage(true);
-					toast.success(data.message, {
-						theme: "dark",
-					});
-				}
-			})
-			.catch((error) => {
-				console.error("Error during joining team:", error);
-				const errorMessage = error.message || "Failed to join team, please try again later.";
-				toast.error(errorMessage, {
-					position: "top-center",
-					draggable: true,
-					autoClose: 15000,
-				});
-			});
+			);
 
-		toast.promise(
-			joinPromise,
-			{
-				pending:
-					"Joining team...This may take several minutes, Please stay with us!!!",
-				error: "Failed to join team. Please try again LATER!!",
-			},
-			{
-				position: "top-center",
-				autoClose: 8000,
+			const data = await response.json();
+
+			if (!response.ok) {
+			throw new Error(data.error || "Failed to join team");
 			}
-		);
+
+			toast.success(data.message || "Joined team successfully", { theme: "dark" });
+			setSuccessPage(true);
+
+		} catch (error) {
+			console.error("Join error:", error);
+			toast.error(error.message || "Failed to join team", {
+			position: "top-center",
+			autoClose: 15000,
+			});
+		} finally {
+			setIsSubmitting(false);
+		}
 	};
 
 	const {
@@ -352,8 +344,21 @@ const RegisterPage = () => {
 						<div className="spacer layer1"></div>
 						<div className="register-kdsh">KDSH 2026</div>
 						<div className="kdsh_banner">
-							<img src={banner} alt="KDSH Banner" />
+							<picture>
+								
+								<source
+								media="(max-width: 767px)"
+								srcSet={bannerSmall}
+								/>
+
+								<img
+								src={banner}
+								alt="KDSH Banner"
+								style={{ width: "100%", height: "auto" }}
+								/>
+							</picture>
 						</div>
+
 						<div className="register-kdsh-desc">
 							<p>
 								The 6th Edition of the{" "}
@@ -372,7 +377,7 @@ const RegisterPage = () => {
 									<li><strong>Runner-up:</strong> ₹1,25,000</li>
 									<li><strong>Second Runner-up:</strong> ₹75,000</li>
 								</ul>
-								Backed by industry leaders including Pathway (Title Sponser) and TrueFoundry (Tech Platform Sponser) <br/>
+								Backed by industry leaders including Pathway (Title Sponser) and TrueFoundry (Tech Platform Sponser) <br />
 								Exposure through national media partners and India's largest techno-management fest.
 							</p> */}
 
@@ -562,7 +567,8 @@ const RegisterPage = () => {
 													fontWeight: "bold",
 													color: "#00ff11",
 													letterSpacing: "5px",
-													marginBottom: "15px",
+													marginBottom: "10px",
+													marginTop: "10px",
 													fontFamily: "monospace",
 												}}>
 													{teamCodeDisplay}
@@ -698,8 +704,8 @@ const RegisterPage = () => {
 												disabled={true}
 											/>
 											<div style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
-												<button className="register-form-submit" type="submit">
-													<p>Create Team</p>
+												<button className="register-form-submit" type="submit" disabled={isSubmitting}>
+													<p>{isSubmitting ? "Creating..." : "Create Team"}</p>
 												</button>
 											</div>
 										</div>
@@ -758,10 +764,10 @@ const RegisterPage = () => {
 										disabled={true}
 									/>
 									<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-										<button className="register-form-submit" type="submit">
-											<p>Join Team</p>
+										<button className="register-form-submit" type="submit" disabled={isSubmitting}>
+											<p>{isSubmitting ? "Joining..." : "Join Team"}</p>
 										</button>
-									</div>
+								</div>
 								</div>
 							</form>
 						)}
