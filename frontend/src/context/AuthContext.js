@@ -1,11 +1,8 @@
 import React, { createContext, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const location = useLocation();
   const [userInfo, setUserInfo] = useState(null);
 
   const checkAuthStatus = async () => {
@@ -50,6 +47,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Check auth status on initial app mount
+  useEffect(() => {
+    checkAuthStatus();
+  }, []);
 
   return (
     <AuthContext.Provider
