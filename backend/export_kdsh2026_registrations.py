@@ -116,6 +116,9 @@ def export_registrations_to_csv(output_filename="kdsh2026_registrations.csv"):
         
         csv_data.append(row)
     
+    # Sort by team_comb_id (teamCode)
+    csv_data.sort(key=lambda x: x["team_comb_id"])
+    
     # Write to CSV
     if csv_data:
         fieldnames = [
