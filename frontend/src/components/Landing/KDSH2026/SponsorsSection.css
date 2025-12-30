@@ -1,0 +1,355 @@
+
+.sponsors-section {
+  padding: 120px 20px 100px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient Glow Background */
+.sponsors-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 30%, rgba(220, 38, 38, 0.15), transparent 50%),
+    radial-gradient(circle at 85% 70%, rgba(239, 68, 68, 0.12), transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sponsors-container {
+  max-width: 1250px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   HEADINGS
+   ========================= */
+
+.sponsors-title {
+  text-align: center;
+  font-size: 3.4rem;
+  font-weight: 900;
+  color: #fafafa;
+  margin-bottom: 80px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+}
+
+.sponsors-title::after {
+  content: '';
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  width: 120px;
+  height: 4px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, #dc2626, transparent);
+  border-radius: 4px;
+}
+
+.sponsor-tier {
+  margin-bottom: 80px;
+}
+
+.tier-title {
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #f87171;
+  text-shadow: 0 0 18px rgba(220, 38, 38, 0.35);
+}
+
+/* =========================
+   CARD GRID
+   ========================= */
+
+.sponsor-cards {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 36px;
+}
+
+/* =========================
+   BASE CARD
+   ========================= */
+
+.sponsor-card {
+  background: radial-gradient(circle at 30% 20%, #181818, #0a0a0a);
+  border: 1.5px solid #2e2e2e;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  position: relative;
+}
+
+/* Highlight overlay */
+.sponsor-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.16), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sponsor-card:hover::before,
+.sponsor-card:focus-visible::before {
+  opacity: 1;
+}
+
+/* Motion */
+.sponsor-card.slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.sponsor-card.slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsor-card {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Hover & focus */
+.sponsor-card:hover,
+.sponsor-card:focus-visible {
+  transform: translateY(-14px) scale(1.02);
+  border-color: #dc2626;
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.75),
+    0 0 0 2px rgba(220, 38, 38, 0.6);
+  outline: none;
+}
+
+/* =========================
+   CARD WIDTH VARIANTS
+   ========================= */
+
+.sponsor-card.title-sponsor {
+  width: 380px;
+  border-color: #dc2626;
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.6),
+    0 0 14px rgba(220, 38, 38, 0.3);
+}
+
+.sponsor-card.platform-sponsor {
+  width: 340px;
+}
+
+.sponsor-card.media-sponsor {
+  width: 300px;
+}
+
+/* =========================
+   LOGO AREA
+   ========================= */
+
+.sponsor-logo-container {
+  flex: 1;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sponsor-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.28s ease;
+}
+
+.sponsor-card:hover .sponsor-logo {
+  transform: scale(1.06);
+}
+
+/* =========================
+   INFO AREA
+   ========================= */
+
+.sponsor-info {
+  padding: 22px 28px;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+  border-top: 1px solid #2e2e2e;
+  text-align: center;
+}
+
+.sponsor-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.sponsor-description {
+  font-size: 0.95rem;
+  color: #cfcfcf;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* =========================
+   THEME VARIANTS
+   ========================= */
+
+.sponsor-card.title-sponsor .sponsor-info {
+  border-top-color: #dc2626;
+}
+
+.sponsor-card.title-sponsor .sponsor-name {
+  color: #f87171;
+  font-size: 1.35rem;
+}
+
+.sponsor-card.platform-sponsor .sponsor-info {
+  border-top-color: #b91c1c;
+}
+
+.sponsor-card.platform-sponsor .sponsor-name {
+  color: #fb5f5f;
+}
+
+.sponsor-card.media-sponsor .sponsor-name {
+  color: #ff8b8b;
+}
+
+/* =========================
+   ANIMATIONS
+   ========================= */
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 992px) {
+  .sponsors-title {
+    font-size: 3rem;
+    margin-bottom: 65px;
+  }
+
+  .sponsor-card.title-sponsor {
+    width: 340px;
+  }
+
+  .sponsor-card.platform-sponsor {
+    width: 310px;
+  }
+
+  .sponsor-card.media-sponsor {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sponsors-section {
+    padding: 90px 16px 70px;
+  }
+
+  .sponsors-title {
+    font-size: 2.4rem;
+    letter-spacing: 2px;
+  }
+
+  .tier-title {
+    font-size: 1.35rem;
+  }
+
+  .sponsor-cards {
+    gap: 26px;
+  }
+
+  .sponsor-logo-container {
+    height: 170px;
+  }
+}
+
+@media (max-width: 520px) {
+  .sponsors-section {
+    padding: 70px 14px 60px;
+  }
+
+  .sponsors-title {
+    font-size: 2rem;
+  }
+
+  .sponsor-card.title-sponsor,
+  .sponsor-card.platform-sponsor,
+  .sponsor-card.media-sponsor {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .sponsor-logo-container {
+    height: 150px;
+  }
+
+  .sponsor-info {
+    padding: 16px 18px;
+  }
+
+  .sponsor-name {
+    font-size: 1.05rem;
+  }
+
+  .sponsor-description {
+    font-size: 0.85rem;
+  }
+}

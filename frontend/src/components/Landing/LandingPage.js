@@ -12,6 +12,7 @@ import kdag_about_us from "../../assets/KDAG_About_Us.png";
 import Poster from "../../assets/pics/events/KDAG ML Digest.jpg";
 import ThinkTank from "../../assets/ThinkTankImg.jpg";
 import { Typewriter } from "react-simple-typewriter";
+import SponsorsSection from "./KDSH2026/SponsorsSection.js";
 
 import Content from "./Content/Content.js";
 import Fade from "../Common/Motion/Fade.js"
@@ -47,6 +48,7 @@ const LandingPage = () => {
 
   return (
     <div className="Landing-Page-wrapper">
+      <SponsorsSection />
       {/* <Header />
         <a
         href="https://unstop.com/hackathon/kharagpur-data-science-hackathon-2022-indian-institute-of-technology-iit-kharagpur-542463"
@@ -62,7 +64,7 @@ const LandingPage = () => {
         loop
         ></video>
         </a> */}
-
+      
       <section className="banner">
         <div className="banner-main">
           <div className="banner-heading-flex-container">
