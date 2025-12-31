@@ -265,6 +265,9 @@ def check_register():
         if not team_name:
             return jsonify({"error": "Team name cannot be empty."}), 400
 
+        if not re.match(r"^[a-zA-Z0-9\s]+$", team_name):
+            return jsonify({"error": "Team name can only contain letters, numbers and spaces."}), 400
+
         if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
             {"GitHubID": github_id}
         ):
@@ -854,6 +857,11 @@ def edit_team_details():
 
         if 'teamName' in update_fields:
             new_team_name = str(update_fields['teamName']).strip().lower()
+
+            # Validate team name format
+            if not re.match(r"^[a-zA-Z0-9\s]+$", new_team_name):
+                return jsonify({"error": "Team name can only contain letters, numbers and spaces."}), 400
+            
             # ensure uniqueness (exclude current team)
             existing = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamName": new_team_name, "teamCode": {"$ne": team_code}})
             if existing:
