@@ -1,85 +1,180 @@
+.container-hehehe {
+  margin-top: 10rem;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 70px;
+}
+
+/* =========================
+   SECTION HEADING — REFINED
+   ========================= */
+
+.heading-hehehe {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+
+  opacity: 0;
+  transform: translateY(14px);
+  animation: headingFade 0.8s ease-out forwards;
+}
+
+/* Main Title — smaller + tighter */
+.heading-hehehe h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  margin: 0;
+  line-height: 1.08;
+  text-transform: uppercase;
+}
+
+/* Red text — premium gradient glow */
+.heading-hehehe .red {
+  background: linear-gradient(180deg, #ff5252, #c30000);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.heading-hehehe .white {
+  color: #ffffff;
+}
+
+.heading-hehehe #subheading {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 500;
+  color: #e5e5e5;
+  margin-top: 8px;
+  letter-spacing: 0.04em;
+}
+
+.heading-hehehe::after {
+  content: "";
+  width: 110px;
+  height: 3px;
+  margin: 14px auto 0;
+  display: block;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #ff2a2a, transparent);
+  box-shadow: 0 0 14px rgba(255, 0, 0, 0.45);
+  opacity: 0.85;
+}
+
+@keyframes headingFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 .marquee {
   width: 100%;
   overflow: hidden;
-  background: #0f0f0f;
-  padding: 20px 0;
+  background: rgba(20, 20, 20, 0.6);
+  padding: 22px 0;
+  margin-top: 50px;
   box-shadow:
-    0 0 5px rgba(255, 0, 0, 0.6),
-    0 0 15px rgba(255, 0, 0, 0.6),
-    0 0 30px rgba(255, 0, 0, 0.6);
+    0 0 6px rgba(255, 0, 0, 0.5),
+    0 0 18px rgba(255, 0, 0, 0.55),
+    0 0 28px rgba(255, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 0, 0, 0.4);
 }
 
 .marquee-track {
   display: flex;
   width: max-content;
   animation: scroll 20s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 .marquee-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 0 30px;
-  color: white;
-  font-size: 1rem;
+  gap: 14px;
+  padding: 0 44px;
+
+  text-decoration: none;
+  color: rgb(245, 245, 245);
   white-space: nowrap;
+
+  transition:
+    transform 0.22s ease,
+    opacity 0.22s ease;
 }
 
 .marquee-item img {
-  height: 150px;
+  height: 120px;
   width: auto;
+  object-fit: contain;
+  pointer-events: none;
 }
 
 .marquee-item span {
-  font-family: 'Oswald';
-  font-size: 20px;
-  font-weight: 900;
-}
-
-@keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.container-hehehe {
-  margin-top: 15rem;
-  background-color: #00000000;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 110px;
-}
-
-.heading-hehehe {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-
-}
-
-.heading-hehehe h1 {
-  font-family: 'Oswald';
-  font-size: 80px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  color: red;
-}
-
-.heading-hehehe .white {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
   color: white;
 }
 
-.heading-hehehe .red {
-  color: red;
+.marquee-item:hover {
+  transform: translateY(-6px) scale(1.03);
+  opacity: 0.9;
 }
 
-.heading-hehehe h1#subheading {
-  font-size: 27px;
-  font-weight: 450;
-  color: #ffffff;
+.marquee-item:focus-visible {
+  outline: 2px solid red;
+  border-radius: 6px;
+}
+
+@media (max-width: 900px) {
+  .marquee-item img {
+    height: 95px;
+  }
+}
+
+@media (max-width: 650px) {
+  .marquee-item {
+    padding: 0 26px;
+  }
+
+  .marquee-item img {
+    height: 80px;
+  }
+
+  .marquee-item span {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 450px) {
+  .marquee {
+    padding: 16px 0;
+  }
+
+  .marquee-item img {
+    height: 70px;
+  }
 }

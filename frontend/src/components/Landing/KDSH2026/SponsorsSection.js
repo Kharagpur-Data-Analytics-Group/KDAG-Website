@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import "./SponsorsSection.css";
 
 import pathwayLogo from "./../../../assets/Pathway.png";
@@ -6,16 +6,11 @@ import academicInsightsLogo from "./../../../assets/AcademicInsights.png";
 import youthIncLogo from "./../../../assets/YouthIncorporated.png";
 import trueFoundryLogo from "./../../../assets/TrueFoundry.png";
 
-
 const items = [
-  { img: pathwayLogo, text: "Title Sponsor" },
-  { img: trueFoundryLogo, text: "Tech Platform Sponsor" },
-  { img: academicInsightsLogo, text: "Media Partner" },
-  { img: youthIncLogo, text: "Youth Media Partner" },
-  { img: pathwayLogo, text: "Title Sponsor" },
-  { img: trueFoundryLogo, text: "Tech Platform Sponsor" },
-  { img: academicInsightsLogo, text: "Media Partner" },
-  { img: youthIncLogo, text: "Youth Media Partner" },
+  { img: pathwayLogo, text: "Title Sponsor", website: "https://pathway.com" },
+  { img: trueFoundryLogo, text: "Tech Platform Sponsor", website: "https://truefoundry.com" },
+  { img: academicInsightsLogo, text: "Media Partner", website: "https://theacademicinsights.com" },
+  { img: youthIncLogo, text: "Youth Media Partner", website: "https://youthincmag.com/" },
 ];
 
 const Marquee = () => {
@@ -23,29 +18,37 @@ const Marquee = () => {
     <div className="marquee">
       <div className="marquee-track">
         {[...items, ...items].map((item, i) => (
-          <div className="marquee-item" key={i}>
+          <a
+            className="marquee-item"
+            key={i}
+            href={item.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={item.text}
+          >
             <img src={item.img} alt={item.text} />
             <span>{item.text}</span>
-          </div>
+          </a>
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default function SponsorsSection() {
   return (
     <div className="container-hehehe">
       <div className="heading-hehehe">
         <h1>
-          KDSH <span className="white">2026</span>
+          <span className="red">Kharagpur Data <br/> Science Hackathon</span> <span className="white">2026</span>
         </h1>
-        <h1 id="subheading">Our <span className="red">Sponsors</span>:</h1>
       </div>
-      <Marquee/>
+
+      <Marquee />
     </div>
   );
 }
+
 
 
   const sponsors = {
