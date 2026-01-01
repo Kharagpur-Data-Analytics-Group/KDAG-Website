@@ -1,15 +1,17 @@
 import React from "react";
 import "./SponsorsSection.css";
 
-import pathwayLogo from "./../../../assets/Pathway.png";
-import academicInsightsLogo from "./../../../assets/AcademicInsights.png";
-import youthIncLogo from "./../../../assets/YouthIncorporated.png";
-import trueFoundryLogo from "./../../../assets/TrueFoundry.png";
+import pathwayLogo from "./../../../assets/KDSH2026_sponsor_logos/Pathway.png";
+import academicInsightsLogo from "./../../../assets/KDSH2026_sponsor_logos/AcademicInsights.png";
+import youthIncLogo from "./../../../assets/KDSH2026_sponsor_logos/YouthIncorporated.png";
+import trueFoundryLogo from "./../../../assets/KDSH2026_sponsor_logos/TrueFoundry.png";
+import tghLogo from "./../../../assets/KDSH2026_sponsor_logos/TGHLogo2.png";
 
 const items = [
   { img: pathwayLogo, text: "Title Sponsor", website: "https://pathway.com" },
   { img: trueFoundryLogo, text: "Tech Platform Sponsor", website: "https://truefoundry.com" },
   { img: academicInsightsLogo, text: "Media Partner", website: "https://theacademicinsights.com" },
+  { img: tghLogo, text: "Media Partner", website: "https://theglobalhues.com/"},
   { img: youthIncLogo, text: "Youth Media Partner", website: "https://youthincmag.com/" },
 ];
 
