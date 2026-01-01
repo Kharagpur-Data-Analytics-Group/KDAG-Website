@@ -119,7 +119,7 @@ def export_registrations_to_csv(output_filename="kdsh2026_registrations.csv"):
     # Sort by team_comb_id (teamCode)
     csv_data.sort(key=lambda x: x["team_comb_id"])
     
-    # Write to CSV
+    # Write to CSV(s) - split into chunks of 1000 rows
     if csv_data:
         fieldnames = [
             "team_comb_id", "team_name", "player_name", "email", "mobile",
@@ -127,14 +127,39 @@ def export_registrations_to_csv(output_filename="kdsh2026_registrations.csv"):
             "domain", "work_experience"
         ]
         
-        with open(output_filename, 'w', newline='', encoding='utf-8') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerows(csv_data)
+        max_rows_per_file = 1000
+        total_rows = len(csv_data)
+        num_files = (total_rows + max_rows_per_file - 1) // max_rows_per_file  # Ceiling division
+        
+        # Generate base filename without extension
+        base_name = output_filename.rsplit('.', 1)[0]
+        extension = output_filename.rsplit('.', 1)[1] if '.' in output_filename else 'csv'
+        
+        created_files = []
+        
+        for i in range(num_files):
+            start_idx = i * max_rows_per_file
+            end_idx = min((i + 1) * max_rows_per_file, total_rows)
+            chunk = csv_data[start_idx:end_idx]
+            
+            # Generate filename with part number if multiple files
+            if num_files > 1:
+                file_name = f"{base_name}_part{i+1}.{extension}"
+            else:
+                file_name = output_filename
+            
+            with open(file_name, 'w', newline='', encoding='utf-8') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(chunk)
+            
+            created_files.append((file_name, len(chunk)))
         
         print(f"\n✅ Export completed successfully!")
-        print(f"📁 File saved as: {output_filename}")
-        print(f"📊 Total rows exported: {len(csv_data)}")
+        print(f"📊 Total rows exported: {total_rows}")
+        print(f"📁 Created {num_files} file(s):")
+        for file_name, row_count in created_files:
+            print(f"   - {file_name} ({row_count} rows)")
     else:
         print("⚠️  No data found to export")
     
