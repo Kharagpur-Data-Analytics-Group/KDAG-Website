@@ -46,7 +46,7 @@ const Success = () => {
 							</p>
 							<p>
 								<a
-									href="https://chat.whatsapp.com/BXA1gpP1GVm5vazs0WBHFA"
+									href="https://chat.whatsapp.com/LguOtn8Dwyh19sajyCKNoQ"
 									target="_blank"
 									rel="noreferrer noopener"
 								>
