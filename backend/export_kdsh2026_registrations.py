@@ -119,7 +119,7 @@ def export_registrations_to_csv(output_filename="kdsh2026_registrations.csv"):
     # Sort by team_comb_id (teamCode)
     csv_data.sort(key=lambda x: x["team_comb_id"])
     
-    # Write to CSV
+    # Write to CSV(s) - split into chunks, keeping teams together
     if csv_data:
         fieldnames = [
             "team_comb_id", "team_name", "player_name", "email", "mobile",
@@ -127,14 +127,71 @@ def export_registrations_to_csv(output_filename="kdsh2026_registrations.csv"):
             "domain", "work_experience"
         ]
         
-        with open(output_filename, 'w', newline='', encoding='utf-8') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerows(csv_data)
+        max_rows_per_file = 1000
+        total_rows = len(csv_data)
+        
+        # Group rows by team_comb_id to keep teams together
+        from itertools import groupby
+        teams_grouped = [list(group) for key, group in groupby(csv_data, key=lambda x: x["team_comb_id"])]
+        
+        # Generate base filename without extension
+        base_name = output_filename.rsplit('.', 1)[0]
+        extension = output_filename.rsplit('.', 1)[1] if '.' in output_filename else 'csv'
+        
+        created_files = []
+        current_chunk = []
+        current_chunk_size = 0
+        file_number = 1
+        
+        for team_members in teams_grouped:
+            team_size = len(team_members)
+            
+            # Check if adding this team would exceed max_rows_per_file
+            # If yes, save current chunk (which will be < 1000) and start new chunk
+            # This ensures no CSV ever exceeds 1000 rows
+            if current_chunk and (current_chunk_size + team_size > max_rows_per_file):
+                # Save current chunk (will be less than 1000 rows)
+                if len(created_files) == 0 and total_rows <= max_rows_per_file:
+                    file_name = output_filename
+                else:
+                    file_name = f"{base_name}_part{file_number}.{extension}"
+                
+                with open(file_name, 'w', newline='', encoding='utf-8') as csvfile:
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                    writer.writeheader()
+                    writer.writerows(current_chunk)
+                
+                created_files.append((file_name, current_chunk_size))
+                file_number += 1
+                
+                # Start new chunk
+                current_chunk = []
+                current_chunk_size = 0
+            
+            # Add team to current chunk
+            current_chunk.extend(team_members)
+            current_chunk_size += team_size
+        
+        # Save the last chunk
+        if current_chunk:
+            if len(created_files) == 0:
+                # Only one file needed
+                file_name = output_filename
+            else:
+                file_name = f"{base_name}_part{file_number}.{extension}"
+            
+            with open(file_name, 'w', newline='', encoding='utf-8') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(current_chunk)
+            
+            created_files.append((file_name, current_chunk_size))
         
         print(f"\n✅ Export completed successfully!")
-        print(f"📁 File saved as: {output_filename}")
-        print(f"📊 Total rows exported: {len(csv_data)}")
+        print(f"📊 Total rows exported: {total_rows}")
+        print(f"📁 Created {len(created_files)} file(s):")
+        for file_name, row_count in created_files:
+            print(f"   - {file_name} ({row_count} rows)")
     else:
         print("⚠️  No data found to export")
     
