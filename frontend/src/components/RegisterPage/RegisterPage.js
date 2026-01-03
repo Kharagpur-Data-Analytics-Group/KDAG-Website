@@ -492,24 +492,20 @@ const RegisterPage = () => {
 											textAlign: "center",
 										}}
 									>
-										Choose Registration Type
+										Registrations have moved to unstop.
 									</h1>
 									<div style={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
-										<button
+										<a
 											className="register-form-submit"
 											type="button"
-											onClick={() => {
-												if (!isLoggedIn) {
-													setShowLoginPrompt(true);
-													return;
-												}
-												setRegistrationMode("leader");
-											}}
+											href="https://unstop.com/hackathons/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
+											target="_blank"
+											rel="noopener noreferrer"
 											style={{ minWidth: "300px" }}
 										>
-											<p>Register as Team Leader</p>
-										</button>
-										<button
+											<p>Register on unstop</p>
+										</a>
+										{/*<button
 											className="register-form-submit"
 											type="button"
 											onClick={() => {
@@ -522,15 +518,15 @@ const RegisterPage = () => {
 											style={{ minWidth: "300px" }}
 										>
 											<p>Join a Team with Team Code</p>
-										</button>
+										</button>*/}
 									</div>
-									<div className="important-note2">
+									{/*<div className="important-note2">
 										<strong>Important:</strong> After all Team Members have joined, Team Leader must review and confirm your team details on the&nbsp;
 										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
 											Manage Team
 										</span>{" "}
 										page to complete your registration. Your team will only appear on Unstop after finalization.
-									</div>
+									</div>*/}
 								</div>
 							)
 						) : registrationMode === "leader" ? (
