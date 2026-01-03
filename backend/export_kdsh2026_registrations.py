@@ -52,17 +52,13 @@ def export_registrations_to_csv(output_filename="kdsh2026_registrations.csv"):
     teams = list(teams_collection.find())
     print(f"Found {len(teams)} teams")
     
-    # Filter only finalized teams
-    finalized_teams = [team for team in teams if team.get("is_team_finalized", False)]
-    print(f"Found {len(finalized_teams)} finalized teams")
+    # Create team lookup by team leader's GitHub ID (for team leaders)
+    team_by_leader = {team["teamleader_github"].lower(): team for team in teams if team.get("teamleader_github")}
     
-    # Create team lookup by team leader's GitHub ID (for team leaders) - only finalized teams
-    team_by_leader = {team["teamleader_github"].lower(): team for team in finalized_teams if team.get("teamleader_github")}
-    
-    # Create team lookup by members' GitHub IDs (for team members) - only finalized teams
+    # Create team lookup by members' GitHub IDs (for team members)
     # Each member's GitHub ID maps to their team
     team_by_member = {}
-    for team in finalized_teams:
+    for team in teams:
         for member_github in team.get("members_github", []):
             team_by_member[member_github.lower()] = team
     
@@ -79,7 +75,7 @@ def export_registrations_to_csv(output_filename="kdsh2026_registrations.csv"):
         else:
             team_info = team_by_member.get(github_id, {})
         
-        # Skip participants whose teams are not finalized
+        # Skip participants without a team
         if not team_info:
             continue
         
