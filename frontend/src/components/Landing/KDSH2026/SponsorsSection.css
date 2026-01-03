@@ -4,12 +4,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 70px;
+  gap: 30px;
 }
-
-/* =========================
-   SECTION HEADING — REFINED
-   ========================= */
 
 .heading-hehehe {
   text-align: center;
@@ -23,7 +19,6 @@
   animation: headingFade 0.8s ease-out forwards;
 }
 
-/* Main Title — smaller + tighter */
 .heading-hehehe h1 {
   font-family: 'Oswald', sans-serif;
   font-size: clamp(2.2rem, 5.5vw, 4.5rem);
@@ -34,7 +29,6 @@
   text-transform: uppercase;
 }
 
-/* Red text — premium gradient glow */
 .heading-hehehe .red {
   background: linear-gradient(180deg, #ff5252, #c30000);
   -webkit-background-clip: text;
@@ -149,6 +143,53 @@
   border-radius: 6px;
 }
 
+.register-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 24px;
+  padding: 12px 22px;
+
+  max-width: 22rem;
+
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #ff1e1e, #cc0000);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  transition: 
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.25s ease,
+    border 0.25s ease;
+}
+
+.register-button:hover {
+  color: white !important;
+  background: linear-gradient(135deg, #ff3535, #e60000);
+  transform: scale(1.02);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.register-button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(255, 0, 0, 0.28);
+}
+
+.register-button:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 3px;
+}
+
+
 @media (max-width: 900px) {
   .marquee-item img {
     height: 95px;
@@ -166,6 +207,10 @@
 
   .marquee-item span {
     font-size: 16px;
+  }
+
+  .heading-hehehe h1 {
+    font-size: 40px !important;
   }
 }
 

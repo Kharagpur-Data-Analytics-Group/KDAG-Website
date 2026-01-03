@@ -98,7 +98,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <Message/>
+      {/*<Message/>*/}
 
       {/* New Intro Blog Section */}
       <section className="introblog-section">

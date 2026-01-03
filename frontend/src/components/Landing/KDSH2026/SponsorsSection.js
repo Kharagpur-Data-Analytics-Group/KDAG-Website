@@ -47,6 +47,13 @@ export default function SponsorsSection() {
       </div>
 
       <Marquee />
+      <a 
+        className="register-button" 
+        href="https://unstop.com/hackathons/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
+        target="_blank"
+      >
+        Register on unstop
+      </a>
     </div>
   );
 }

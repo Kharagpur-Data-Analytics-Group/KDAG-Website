@@ -33,7 +33,7 @@ import RegisterPage from "../components/RegisterPage/RegisterPage.js";
 import Success from "../components/RegisterPage/Success.js";
 import Course from "../components/Resources_New/course.js";
 import Register from '../components/AuthenticationPages/Register.js';
-import ManageTeam from "../components/ManageTeam/ManageTeam.js";
+import ManageTeam2 from "../components/ManageTeam/ManageTeam2.js";
 
 const AppRouter = () => {
 	return (
@@ -124,7 +124,7 @@ const AppRouter = () => {
 								<Success />
 							</Route>
 							<Route path="/manage-team">
-								<ManageTeam />
+								<ManageTeam2 />
 							</Route>
 						</Switch>
 					</ScrollToTop>
