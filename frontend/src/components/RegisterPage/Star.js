@@ -111,8 +111,8 @@ export default function GitHubStarGuide() {
             </div>
             </div>
 
-          {/* Important Note */}
-          <div className="important-note">
+          
+          {/* <div className="important-note">
             <div className="note-content">
               <AlertCircle className="note-icon" />
               <div>
@@ -123,10 +123,10 @@ export default function GitHubStarGuide() {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Step 5 */}
-          <div className="step-card">
+          {/*<div className="step-card">
             <div className="step-header">
               <div className="step-number">5</div>
               <div className="step-content">
@@ -143,7 +143,7 @@ export default function GitHubStarGuide() {
                 <img src={profile_menu} alt="Profile Menu" />
               
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
