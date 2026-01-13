@@ -968,3 +968,31 @@ def delete_team():
     except Exception as e:
         print("delete_team error:", e)
         return jsonify({"error": "Internal server error."}), 500
+    
+@kdsh.route("/verify_github_star", methods=["POST"])
+def verify_github_star():
+    try:
+        data = request.get_json()
+        github_id = data.get("github_id", "").strip().lower()
+
+        if not github_id:
+            return jsonify({"error": "GitHub ID required"}), 400
+
+        starred = get_starred_repositories(github_id)
+
+        if "starred_repositories" not in starred:
+            return jsonify({"error": "GitHub validation failed"}), 400
+
+        missing = check_required_repositories(starred)
+
+        if missing:
+            return jsonify({
+                "ok": False,
+                "missing": missing
+            }), 200
+
+        return jsonify({"ok": True}), 200
+
+    except Exception as e:
+        return jsonify({"error": "Server error"}), 500
+

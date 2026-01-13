@@ -1,34 +1,117 @@
-.certificate-search {
-  display: flex;
+.certificate-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
-.certificate-search form {
+.certificate-card {
+  background: linear-gradient(
+    180deg,
+    rgba(69, 68, 68, 0.9),
+    rgba(30, 30, 30, 0.7)
+  );
+
+  padding: 3.2rem 2.7rem;
+  border-radius: 22px;
+  width: 100%;
+  max-width: 420px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  text-align: center;
+}
+
+/* Title */
+.certificate-card h1 {
+  margin-bottom: 2.2rem;
+  color: white;
+  font-size: 2.1rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.1);
+}
+
+/* Form */
+.certificate-card form {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  gap: 1.6rem;
 }
 
-.certificate-search input {
-  margin: 1rem auto;
-  font-size: 1.5rem;
-  font-family: "Ubuntu", "Poppins", sans-serif;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 10px;
-}
-
-.certificate-search input[type="email"] {
-  border-width: 0;
-  border-color: white;
-}
-
-.certificate-search input[type="submit"] {
-  background-color: lightcoral;
-  display: inline-block;
+/* Inputs */
+.certificate-card input {
   width: 100%;
-  max-width: 15rem;
-  border-color: white;
-  border-width: 3px;
-  border-style: solid;
+  padding: 1.5rem 1.2rem;
+  font-size: 1.05rem;
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  transition:
+    border 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.certificate-card input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.certificate-card input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 80, 80, 0.6);
+  box-shadow:
+    0 0 0 3px rgba(255, 0, 0, 0.18),
+    0 10px 25px rgba(255, 0, 0, 0.15);
+}
+
+.register-button {
+  margin-top: 18px;
+  padding: 14px 28px;
+
+  width: 100%;
+  max-width: 22rem;
+
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #ff1e1e, #b00000);
+  border-radius: 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+
   cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.3s ease;
+}
+
+.register-button:hover {
+  background: linear-gradient(135deg, #ff2e2e, #e00000);
+  transform: translateY(-1px);
+}
+
+.register-button:active {
+  transform: translateY(0);
+  box-shadow:
+    0 10px 24px rgba(255, 0, 0, 0.4);
+}
+
+.register-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
