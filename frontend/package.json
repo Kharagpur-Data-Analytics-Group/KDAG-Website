@@ -16,6 +16,7 @@
     "axios": "^1.7.9",
     "embla-carousel-react": "^8.2.0",
     "framer-motion": "^12.23.26",
+    "jspdf": "^2.5.2",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.562.0",
     "plyr-react": "^5.1.2",

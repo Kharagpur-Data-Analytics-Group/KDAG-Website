@@ -1,8 +1,12 @@
+@import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+
 .certificate-page {
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 6rem 2rem 2rem;
+  box-sizing: border-box;
   position: relative;
   z-index: 1;
 }
@@ -14,7 +18,7 @@
     rgba(30, 30, 30, 0.7)
   );
 
-  padding: 3.2rem 2.7rem;
+  padding: 3.2rem 3rem;
   border-radius: 22px;
   width: 100%;
   max-width: 420px;
@@ -25,9 +29,16 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 
   text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Title */
+.certificate-card.expanded {
+  max-width: 1000px;
+  padding: 1.5rem;
+  background: rgba(30, 30, 30, 0.9);
+  backdrop-filter: blur(16px);
+}
+
 .certificate-card h1 {
   margin-bottom: 2.2rem;
   color: white;
@@ -114,4 +125,61 @@
 .register-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* Certificate Viewer Styles */
+.certificate-viewer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.certificate-frame {
+  position: relative;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #ffffff, #f0f0f0);
+  border-radius: 8px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.certificate-frame:hover {
+  transform: scale(1.01);
+}
+
+.certificate-frame img {
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 16rem);
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.certificate-viewer .register-button {
+  max-width: 300px;
+  margin-top: 0;
+  font-size: 1.1rem;
+  padding: 16px 32px;
+  box-shadow: 0 8px 20px rgba(255, 30, 30, 0.3);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .certificate-card.expanded {
+    padding: 1.5rem;
+  }
+  
+  .certificate-frame {
+    padding: 8px;
+  }
 }
