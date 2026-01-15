@@ -4,7 +4,7 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 6rem 2rem 2rem;
   box-sizing: border-box;
   position: relative;
@@ -91,7 +91,7 @@
   padding: 14px 28px;
 
   width: 100%;
-  max-width: 22rem;
+  max-width: 15rem;
 
   color: #ffffff !important;
   background: linear-gradient(135deg, #ff1e1e, #b00000);

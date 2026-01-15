@@ -34,8 +34,8 @@ const CertificateGeneration = () => {
       canvas.height = img.height;
       ctx.drawImage(img, 0, 0);
 
-      const fontSize = 58.4;
-      const fontSpec = `${fontSize}px "Glacial Indifference"`;
+      const fontSize = 60;
+      const fontSpec = `pb-4 bold ${fontSize}px "Glacial Indifference"`;
       try {
         await document.fonts.load(fontSpec);
       } catch (e) {
