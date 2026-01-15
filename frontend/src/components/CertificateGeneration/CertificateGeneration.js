@@ -35,7 +35,7 @@ const CertificateGeneration = () => {
       ctx.drawImage(img, 0, 0);
 
       const fontSize = 60;
-      const fontSpec = `pb-4 bold ${fontSize}px "Glacial Indifference"`;
+      const fontSpec = `bold ${fontSize}px "Glacial Indifference"`;
       try {
         await document.fonts.load(fontSpec);
       } catch (e) {
@@ -77,6 +77,9 @@ const CertificateGeneration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
+      return toast.error("Enter a valid email address");
+
     if (!githubId.trim()) return toast.error("Enter GitHub ID");
 
     setLoading(true);

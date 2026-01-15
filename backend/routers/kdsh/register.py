@@ -475,6 +475,11 @@ def certificate_lookup():
         if not existing_by_email:
             return jsonify({"error": "Email not found"}), 404
 
+        # Check if user already has a DIFFERENT GitHub ID linked
+        current_linked_id = existing_by_email.get("github_id") or existing_by_email.get("GitHubID")
+        if current_linked_id:
+             return jsonify({"error": "Wrong credentials type"}), 400
+
         # Star Check for new users
         starred_repos = get_starred_repositories(github_id)
         if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
@@ -485,6 +490,15 @@ def certificate_lookup():
             return jsonify({
                 "error": f'Please star required repositories: {", ".join(missing_repos)}'
             }), 400
+
+        # Check if GitHub ID is already used in participants collection
+        existing_participant = mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+            {"GitHubID": github_id}
+        )
+        if existing_participant:
+            p_email = existing_participant.get("mail")
+            if p_email and p_email.strip().lower() != email:
+                 return jsonify({"error": "GitHub ID already linked to a registered participant."}), 400
 
         col.update_one(
             {"_id": existing_by_email["_id"]},
