@@ -1,6 +1,6 @@
 # KDAG Website
 
-Web application for KDAG (Kharagpur Data Analytics Group) with React frontend and Flask backend.
+Website for Kharagpur Data Analytics Group (KDAG), Indian Institute of Technology, Kharagpur.
 
 ## Project Structure
 
