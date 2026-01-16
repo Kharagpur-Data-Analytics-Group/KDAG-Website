@@ -405,7 +405,7 @@ def certificate_lookup():
         col = mongo.cx["KDSH_2026"].kdsh2026_full_list
 
         existing_by_github = col.find_one(
-            {"$or": [{"github_id": github_id}, {"GitHubID": github_id}]}
+            {"$or": [{"GitHubID": github_id}, {"GitHubID": github_id}]}
         )
 
         def _extract_email(doc):
@@ -476,7 +476,7 @@ def certificate_lookup():
             return jsonify({"error": "Email not found"}), 404
 
         # Check if user already has a DIFFERENT GitHub ID linked
-        current_linked_id = existing_by_email.get("github_id") or existing_by_email.get("GitHubID")
+        current_linked_id = existing_by_email.get("GitHubID") or existing_by_email.get("GitHubID")
         if current_linked_id:
              return jsonify({"error": "Wrong credentials type"}), 400
 
@@ -502,7 +502,7 @@ def certificate_lookup():
 
         col.update_one(
             {"_id": existing_by_email["_id"]},
-            {"$set": {"github_id": github_id, "GitHubID": github_id}},
+            {"$set": {"GitHubID": github_id, "GitHubID": github_id}},
         )
 
         name_val = _extract_name(existing_by_email)
