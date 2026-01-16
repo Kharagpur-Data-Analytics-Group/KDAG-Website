@@ -7,6 +7,8 @@ import Particless from "../Common/Particles/Particless";
 import { jsPDF } from "jspdf";
 import certificateTemplate from "../../assets/KDSH2026_sponsor_logos/KDSH26_certificate.png";
 
+import CertificateStarGuide from "./CertificateStarGuide";
+
 const CertificateGeneration = () => {
   const [email, setEmail] = useState("");
   const [githubId, setGithubId] = useState("");
@@ -103,7 +105,7 @@ const CertificateGeneration = () => {
       const img = await drawCertificate(data.name);
       await generatePdfFromImage(img, data.name);
 
-      
+
     } catch (err) {
       toast.error(err.message || "Verification failed");
     } finally {
@@ -115,10 +117,11 @@ const CertificateGeneration = () => {
     <>
       <Navbar />
       <div className="certificate-page">
+        {!generatedPreview && <CertificateStarGuide />}
         <div className={`certificate-card ${generatedPreview ? "expanded" : ""}`}>
           {!generatedPreview ? (
             <>
-              <h1>Certificate Generator</h1>
+              <h1>Get Your Certificate</h1>
               <form className="certificate-form" onSubmit={handleSubmit}>
                 <input
                   placeholder="Registered Email"
@@ -133,7 +136,7 @@ const CertificateGeneration = () => {
                   required
                 />
                 <button disabled={loading} className="register-button">
-                  {loading ? "Verifying..." : "Generate Certificate"}
+                  {loading ? "Verifying..." : "Get Certificate"}
                 </button>
               </form>
             </>

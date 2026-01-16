@@ -3,8 +3,10 @@
 .certificate-page {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 3rem;
   padding: 6rem 2rem 2rem;
   box-sizing: border-box;
   position: relative;
@@ -12,21 +14,19 @@
 }
 
 .certificate-card {
-  background: linear-gradient(
-    180deg,
-    rgba(69, 68, 68, 0.9),
-    rgba(30, 30, 30, 0.7)
-  );
+  background: rgba(255, 255, 255, 0.08);
+  /* Match Welcome Card */
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(12px);
 
   padding: 3.2rem 3rem;
-  border-radius: 22px;
-  width: 100%;
-  max-width: 420px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 900px;
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.6),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  /* White border match */
+  box-shadow: none;
 
   text-align: center;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -52,25 +52,26 @@
 .certificate-card form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1.6rem;
 }
 
 /* Inputs */
 .certificate-card input {
-  width: 100%;
-  padding: 1.5rem 1.2rem;
+  width: 300px;
+  padding: 10px;
   font-size: 1.05rem;
-  border-radius: 12px;
+  border-radius: 0;
 
-  background: rgba(255, 255, 255, 0.05);
+  background: transparent;
   color: white;
 
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
   transition:
     border 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
+    box-shadow 0.25s ease;
 }
 
 .certificate-card input::placeholder {
@@ -79,11 +80,9 @@
 
 .certificate-card input:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 80, 80, 0.6);
-  box-shadow:
-    0 0 0 3px rgba(255, 0, 0, 0.18),
-    0 10px 25px rgba(255, 0, 0, 0.15);
+  background: transparent;
+  border-bottom: 1px solid #ff1e1e;
+  box-shadow: none;
 }
 
 .register-button {
@@ -143,7 +142,7 @@
   padding: 12px;
   background: linear-gradient(135deg, #ffffff, #f0f0f0);
   border-radius: 8px;
-  box-shadow: 
+  box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(255, 255, 255, 0.1);
   transition: transform 0.3s ease;
@@ -170,16 +169,88 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
   .certificate-card.expanded {
     padding: 1.5rem;
   }
-  
+
   .certificate-frame {
     padding: 8px;
+  }
+}
+
+@media (max-width: 515px) {
+  .certificate-card input {
+    width: 265px;
+  }
+}
+
+@media (max-width: 480px) {
+  .certificate-card input {
+    width: 240px;
+  }
+
+  .certificate-card {
+    width: 92%;
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .certificate-card input {
+    width: 210px;
+  }
+}
+
+@media (max-width: 400px) {
+  .certificate-card input {
+    width: 200px;
+  }
+}
+
+@media (max-width: 386px) {
+  .certificate-card input {
+    width: 190px;
+  }
+}
+
+@media (max-width: 375px) {
+  .certificate-card input {
+    width: 180px;
+  }
+}
+
+@media (max-width: 360px) {
+  .certificate-card input {
+    width: 170px;
+  }
+}
+
+@media (max-width: 350px) {
+  .certificate-card input {
+    width: 160px;
+  }
+}
+
+@media (max-width: 340px) {
+  .certificate-card input {
+    width: 150px;
+  }
+}
+
+@media (max-width: 325px) {
+  .certificate-card input {
+    width: 130px;
   }
 }

@@ -123,7 +123,7 @@ const events = [
         date: "20th Nov 2021 - 7th Dec 2021",
         link: "http://tinyurl.com/kdshreg",
         image: KDSH2021,
-        certificates: "/certificate-generation",
+        certificates: "/certificate",
     },
     {
         id: 13,

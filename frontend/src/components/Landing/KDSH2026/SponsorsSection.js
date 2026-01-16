@@ -50,7 +50,7 @@ export default function SponsorsSection() {
       <Marquee />
       <Link 
         className="register-button" 
-        to="/certificate-generation"
+        to="/certificate"
       >
         Get Certificate
       </Link>

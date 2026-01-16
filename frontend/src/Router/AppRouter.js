@@ -111,7 +111,7 @@ const AppRouter = () => {
 							<Route path="/privacy-policy">
 								<PrivacyPolicy />
 							</Route>
-							<Route path="/certificate-generation">
+							<Route path="/certificate">
 								<CertificateGeneration />
 							</Route>
 							<Route path="/community-guidelines">
