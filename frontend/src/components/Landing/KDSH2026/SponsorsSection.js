@@ -6,6 +6,7 @@ import academicInsightsLogo from "./../../../assets/KDSH2026_sponsor_logos/Acade
 import youthIncLogo from "./../../../assets/KDSH2026_sponsor_logos/YouthIncorporated.png";
 import trueFoundryLogo from "./../../../assets/KDSH2026_sponsor_logos/TrueFoundry.png";
 import tghLogo from "./../../../assets/KDSH2026_sponsor_logos/TGHLogo2.png";
+import { Link, NavLink } from "react-router-dom";
 
 const items = [
   { img: pathwayLogo, text: "Title Sponsor", website: "https://pathway.com" },
@@ -47,13 +48,12 @@ export default function SponsorsSection() {
       </div>
 
       <Marquee />
-      <a 
+      <Link 
         className="register-button" 
-        href="https://unstop.com/hackathons/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
-        target="_blank"
+        to="/certificate"
       >
-        Register on unstop
-      </a>
+        Get Certificate
+      </Link>
     </div>
   );
 }

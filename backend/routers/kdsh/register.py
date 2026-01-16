@@ -235,7 +235,6 @@ def check_register():
         if data["isTeamLeader"] is not True:
             return jsonify({"error": "Only team leaders can create a team."}), 400
 
-        # BASIC SANITIZATION
         firstname = data["firstname"].strip()
         lastname = data["lastname"].strip()
         email = data["mail"].strip().lower()
@@ -389,6 +388,131 @@ def check_team():
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
+
+
+@kdsh.route("/certificate_lookup", methods=["POST"])
+def certificate_lookup():
+    try:
+        from app import mongo
+
+        data = request.get_json() or {}
+        email = str(data.get("email", "")).strip().lower()
+        github_id = str(data.get("github_id", "")).strip().lower()
+
+        if not email or not github_id:
+            return jsonify({"error": "Email and GitHub ID are required."}), 400
+
+        col = mongo.cx["KDSH_2026"].kdsh2026_full_list
+
+        existing_by_github = col.find_one(
+            {"$or": [{"github_id": github_id}, {"GitHubID": github_id}]}
+        )
+
+        def _extract_email(doc):
+            candidates = [
+                doc.get("mail"),
+                doc.get("email"),
+                doc.get("candidate_email"),
+                doc.get("Candidate's Email"),
+                doc.get("Candidate's mail"),
+            ]
+            for v in candidates:
+                if isinstance(v, str) and v.strip():
+                    return v.strip().lower()
+            return None
+
+        def _extract_name(doc):
+            candidates = [
+                doc.get("Name"),
+                doc.get("Candidate's Name"),
+                " ".join(
+                    [
+                        str(doc.get("firstname", "")).strip(),
+                        str(doc.get("lastname", "")).strip(),
+                    ]
+                ).strip(),
+            ]
+            for v in candidates:
+                if isinstance(v, str) and v.strip():
+                    return v.strip()
+            return None
+
+        if existing_by_github:
+            doc_email = _extract_email(existing_by_github)
+            if not doc_email:
+                return jsonify({"error": "Record missing email."}), 400
+            if doc_email != email:
+                return jsonify({"error": "github id already used by someone else"}), 400
+            
+            # Star Check for existing users
+            starred_repos = get_starred_repositories(github_id)
+            if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
+                 return jsonify({"error": "GitHub validation failed. Please try again later."}), 400
+
+            missing_repos = check_required_repositories(starred_repos)
+            if missing_repos:
+                return jsonify({
+                    "error": f'Please star required repositories: {", ".join(missing_repos)}'
+                }), 400
+
+            name_val = _extract_name(existing_by_github)
+            if not name_val:
+                return jsonify({"error": "Participant name not available for this record."}), 400
+            return jsonify({"name": name_val, "status": "github_already_linked"}), 200
+
+        existing_by_email = col.find_one(
+            {
+                "$or": [
+                    {"mail": email},
+                    {"email": email},
+                    {"candidate_email": email},
+                    {"Candidate's Email": email},
+                    {"Candidate's mail": email},
+                ]
+            }
+        )
+
+        if not existing_by_email:
+            return jsonify({"error": "Email not found"}), 404
+
+        # Check if user already has a DIFFERENT GitHub ID linked
+        current_linked_id = existing_by_email.get("github_id") or existing_by_email.get("GitHubID")
+        if current_linked_id:
+             return jsonify({"error": "Wrong credentials type"}), 400
+
+        # Star Check for new users
+        starred_repos = get_starred_repositories(github_id)
+        if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
+             return jsonify({"error": "GitHub validation failed. Please try again later."}), 400
+
+        missing_repos = check_required_repositories(starred_repos)
+        if missing_repos:
+            return jsonify({
+                "error": f'Please star required repositories: {", ".join(missing_repos)}'
+            }), 400
+
+        # Check if GitHub ID is already used in participants collection
+        existing_participant = mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+            {"GitHubID": github_id}
+        )
+        if existing_participant:
+            p_email = existing_participant.get("mail")
+            if p_email and p_email.strip().lower() != email:
+                 return jsonify({"error": "GitHub ID already linked to a registered participant."}), 400
+
+        col.update_one(
+            {"_id": existing_by_email["_id"]},
+            {"$set": {"github_id": github_id, "GitHubID": github_id}},
+        )
+
+        name_val = _extract_name(existing_by_email)
+        if not name_val:
+            return jsonify({"error": "Participant name not available for this record."}), 400
+        return jsonify({"name": name_val, "status": "github_linked"}), 200
+
+    except Exception as e:
+        print("certificate_lookup error:", e)
+        return jsonify({"error": "Internal server error."}), 500
 
 @kdsh.route("/join_team", methods=["POST"])
 def join_team():
@@ -968,3 +1092,30 @@ def delete_team():
     except Exception as e:
         print("delete_team error:", e)
         return jsonify({"error": "Internal server error."}), 500
+    
+@kdsh.route("/verify_github_star", methods=["POST"])
+def verify_github_star():
+    try:
+        data = request.get_json()
+        github_id = data.get("github_id", "").strip().lower()
+
+        if not github_id:
+            return jsonify({"error": "GitHub ID required"}), 400
+
+        starred = get_starred_repositories(github_id)
+
+        if "starred_repositories" not in starred:
+            return jsonify({"error": "GitHub validation failed"}), 400
+
+        missing = check_required_repositories(starred)
+
+        if missing:
+            return jsonify({
+                "ok": False,
+                "missing": missing
+            }), 200
+
+        return jsonify({"ok": True}), 200
+
+    except Exception as e:
+        return jsonify({"error": "Server error"}), 500
