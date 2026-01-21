@@ -125,6 +125,11 @@ const Navbar = ({ noborder }) => {
               </NavLink>
             </div>
             <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/certificate">
+                Certificate
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
               <NavLink
                 onClick={closeMobileMenu}
                 activeStyle={active_style}
@@ -242,6 +247,14 @@ const Navbar = ({ noborder }) => {
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                       >
                         Blog
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/certificate"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Certificate
                       </NavLink>
                     </li>
                     <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
