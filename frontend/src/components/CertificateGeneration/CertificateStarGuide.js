@@ -5,6 +5,8 @@ import "./CertificateStarGuide.css";
 import repo1 from "./../../assets/llm_repo.png";
 import repo2 from "./../../assets/pathway_repo.png";
 import starred from "./../../assets/starred_repo.png";
+import profile_icon from "./../../assets/profile_icon.png";
+import profile_menu from "./../../assets/profile_menu.png";
 
 export default function CertificateStarGuide() {
     return (
@@ -113,6 +115,24 @@ export default function CertificateStarGuide() {
                         </div>
                         <div className="cert-image-wrapper">
                             <img src={starred} alt="Starred Icon" />
+                        </div>
+                    </div>
+                    <div className="step-card">
+                        <div className="step-header">
+                            <div className="step-number">5</div>
+                            <div className="step-content">
+                                <h3 className="step-title">Find Your GitHub Username</h3>
+                                <p className="step-description">
+                                    Click on your GitHub profile icon:
+                                </p>
+                            </div>
+                        </div>
+                        <div className="image-wrapper" style={{ marginBottom: "15px" }}>
+                            <img src={profile_icon} alt="Profile Icon" />
+                        </div>
+                        <div className="image-wrapper">
+                            <img src={profile_menu} alt="Profile Menu" />
+
                         </div>
                     </div>
                 </div>
