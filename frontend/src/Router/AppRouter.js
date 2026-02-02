@@ -34,6 +34,7 @@ import Success from "../components/RegisterPage/Success.js";
 import Course from "../components/Resources_New/course.js";
 import Register from '../components/AuthenticationPages/Register.js';
 import ManageTeam2 from "../components/ManageTeam/ManageTeam2.js";
+import NotFound from "../components/NotFound/NotFound.js";
 
 const AppRouter = () => {
 	return (
@@ -125,6 +126,9 @@ const AppRouter = () => {
 							</Route>
 							<Route path="/manage-team">
 								<ManageTeam2 />
+							</Route>
+							<Route path="*">
+								<NotFound />
 							</Route>
 						</Switch>
 					</ScrollToTop>
