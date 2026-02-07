@@ -397,16 +397,19 @@ def certificate_lookup():
 
         data = request.get_json() or {}
         email = str(data.get("email", "")).strip().lower()
-        github_id = str(data.get("github_id", "")).strip().lower()
+        # github_id = str(data.get("github_id", "")).strip().lower()
 
-        if not email or not github_id:
-            return jsonify({"error": "Email and GitHub ID are required."}), 400
+        # if not email or not github_id:
+        #     return jsonify({"error": "Email and GitHub ID are required."}), 400
+
+        if not email:
+            return jsonify({"error": "Email is required."}), 400
 
         col = mongo.cx["KDSH_2026"].kdsh2026_full_list
 
-        existing_by_github = col.find_one(
-            {"$or": [{"GitHubID": github_id}, {"GitHubID": github_id}]}
-        )
+        # existing_by_github = col.find_one(
+        #     {"$or": [{"GitHubID": github_id}, {"GitHubID": github_id}]}
+        # )
 
         def _extract_email(doc):
             candidates = [
@@ -437,28 +440,28 @@ def certificate_lookup():
                     return v.strip()
             return None
 
-        if existing_by_github:
-            doc_email = _extract_email(existing_by_github)
-            if not doc_email:
-                return jsonify({"error": "Record missing email."}), 400
-            if doc_email != email:
-                return jsonify({"error": "github id already used by someone else"}), 400
+        # if existing_by_github:
+        #     doc_email = _extract_email(existing_by_github)
+        #     if not doc_email:
+        #         return jsonify({"error": "Record missing email."}), 400
+        #     if doc_email != email:
+        #         return jsonify({"error": "github id already used by someone else"}), 400
             
-            # Star Check for existing users
-            starred_repos = get_starred_repositories(github_id)
-            if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
-                 return jsonify({"error": "GitHub validation failed. Please try again later."}), 400
+        #     # Star Check for existing users
+        #     starred_repos = get_starred_repositories(github_id)
+        #     if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
+        #          return jsonify({"error": "GitHub validation failed. Please try again later."}), 400
 
-            missing_repos = check_required_repositories(starred_repos)
-            if missing_repos:
-                return jsonify({
-                    "error": f'Please star required repositories: {", ".join(missing_repos)}'
-                }), 400
+        #     missing_repos = check_required_repositories(starred_repos)
+        #     if missing_repos:
+        #         return jsonify({
+        #             "error": f'Please star required repositories: {", ".join(missing_repos)}'
+        #         }), 400
 
-            name_val = _extract_name(existing_by_github)
-            if not name_val:
-                return jsonify({"error": "Participant name not available for this record."}), 400
-            return jsonify({"name": name_val, "status": "github_already_linked"}), 200
+        #     name_val = _extract_name(existing_by_github)
+        #     if not name_val:
+        #         return jsonify({"error": "Participant name not available for this record."}), 400
+        #     return jsonify({"name": name_val, "status": "github_already_linked"}), 200
 
         existing_by_email = col.find_one(
             {
@@ -475,35 +478,35 @@ def certificate_lookup():
         if not existing_by_email:
             return jsonify({"error": "Email not found"}), 404
 
-        # Check if user already has a DIFFERENT GitHub ID linked
-        current_linked_id = existing_by_email.get("GitHubID") or existing_by_email.get("GitHubID")
-        if current_linked_id:
-             return jsonify({"error": "Wrong credentials type"}), 400
+        # # Check if user already has a DIFFERENT GitHub ID linked
+        # current_linked_id = existing_by_email.get("GitHubID") or existing_by_email.get("GitHubID")
+        # if current_linked_id:
+        #      return jsonify({"error": "Wrong credentials type"}), 400
 
-        # Star Check for new users
-        starred_repos = get_starred_repositories(github_id)
-        if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
-             return jsonify({"error": "GitHub validation failed. Please try again later."}), 400
+        # # Star Check for new users
+        # starred_repos = get_starred_repositories(github_id)
+        # if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
+        #      return jsonify({"error": "GitHub validation failed. Please try again later."}), 400
 
-        missing_repos = check_required_repositories(starred_repos)
-        if missing_repos:
-            return jsonify({
-                "error": f'Please star required repositories: {", ".join(missing_repos)}'
-            }), 400
+        # missing_repos = check_required_repositories(starred_repos)
+        # if missing_repos:
+        #     return jsonify({
+        #         "error": f'Please star required repositories: {", ".join(missing_repos)}'
+        #     }), 400
 
-        # Check if GitHub ID is already used in participants collection
-        existing_participant = mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
-            {"GitHubID": github_id}
-        )
-        if existing_participant:
-            p_email = existing_participant.get("mail")
-            if p_email and p_email.strip().lower() != email:
-                 return jsonify({"error": "GitHub ID already linked to a registered participant."}), 400
+        # # Check if GitHub ID is already used in participants collection
+        # existing_participant = mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+        #     {"GitHubID": github_id}
+        # )
+        # if existing_participant:
+        #     p_email = existing_participant.get("mail")
+        #     if p_email and p_email.strip().lower() != email:
+        #          return jsonify({"error": "GitHub ID already linked to a registered participant."}), 400
 
-        col.update_one(
-            {"_id": existing_by_email["_id"]},
-            {"$set": {"GitHubID": github_id, "GitHubID": github_id}},
-        )
+        # col.update_one(
+        #     {"_id": existing_by_email["_id"]},
+        #     {"$set": {"GitHubID": github_id, "GitHubID": github_id}},
+        # )
 
         name_val = _extract_name(existing_by_email)
         if not name_val:
