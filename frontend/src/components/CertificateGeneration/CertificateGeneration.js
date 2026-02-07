@@ -11,7 +11,7 @@ import CertificateStarGuide from "./CertificateStarGuide";
 
 const CertificateGeneration = () => {
   const [email, setEmail] = useState("");
-  const [githubId, setGithubId] = useState("");
+  // const [githubId, setGithubId] = useState("");
   const [loading, setLoading] = useState(false);
   const [resolvedName, setResolvedName] = useState("");
   const [generatedPreview, setGeneratedPreview] = useState("");
@@ -82,7 +82,7 @@ const CertificateGeneration = () => {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
       return toast.error("Enter a valid email address");
 
-    if (!githubId.trim()) return toast.error("Enter GitHub ID");
+    // if (!githubId.trim()) return toast.error("Enter GitHub ID");
 
     setLoading(true);
     try {
@@ -93,7 +93,7 @@ const CertificateGeneration = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: email.trim(),
-            github_id: githubId.trim(),
+            // github_id: githubId.trim(),
           }),
         }
       );
@@ -129,12 +129,12 @@ const CertificateGeneration = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                 />
-                <input
+                {/* <input
                   placeholder="GitHub ID"
                   value={githubId}
                   onChange={(e) => setGithubId(e.target.value)}
                   required
-                />
+                /> */}
                 <button disabled={loading} className="register-button">
                   {loading ? "Verifying..." : "Get Certificate"}
                 </button>

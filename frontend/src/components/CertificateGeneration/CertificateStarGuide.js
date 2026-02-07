@@ -19,19 +19,20 @@ export default function CertificateStarGuide() {
                             Thank you for participating in KDSH 2026!
                         </div>
                         <div className="cert-subtitle" style={{ lineHeight: "1.6", maxWidth: "700px", margin: "0 auto" }}>
-                            Round 1 has ended. You can download your Certificate of Participation after starring the required repositories below.
+                            Round 1 has ended. You can download your Certificate of Participation by entering your registered email below.
                         </div>
                     </div>
                 </div>
 
-                <div className="cert-header">
+
+                {/* <div className="cert-header">
                     <h1 className="cert-main-subtitle">How to Star a Repository?</h1>
                     <p className="cert-subtitle">Follow these steps carefully</p>
-                </div>
+                </div> */}
 
                 <div className="cert-steps-container">
 
-                    <div className="cert-step-card">
+                    {/* <div className="cert-step-card">
                         <div className="cert-step-header">
                             <div className="cert-step-number">1</div>
                             <div className="cert-step-content">
@@ -50,10 +51,10 @@ export default function CertificateStarGuide() {
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* Step 2 */}
-                    <div className="cert-step-card">
+                    {/* <div className="cert-step-card">
                         <div className="cert-step-header">
                             <div className="cert-step-number">2</div>
                             <div className="cert-step-content">
@@ -75,10 +76,10 @@ export default function CertificateStarGuide() {
                         <div className="cert-image-wrapper">
                             <img src={repo1} alt="LLM Repo Star Button" />
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* Step 3 */}
-                    <div className="cert-step-card">
+                    {/* <div className="cert-step-card">
                         <div className="cert-step-header">
                             <div className="cert-step-number">3</div>
                             <div className="cert-step-content">
@@ -101,9 +102,9 @@ export default function CertificateStarGuide() {
                         <div className="cert-image-wrapper">
                             <img src={repo2} alt="Pathway Repo Star Button" />
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className="cert-step-card">
+                    {/* <div className="cert-step-card">
                         <div className="cert-step-header">
                             <div className="cert-step-number">4</div>
                             <div className="cert-step-content">
@@ -116,8 +117,8 @@ export default function CertificateStarGuide() {
                         <div className="cert-image-wrapper">
                             <img src={starred} alt="Starred Icon" />
                         </div>
-                    </div>
-                    <div className="step-card">
+                    </div> */}
+                    {/* <div className="step-card">
                         <div className="step-header">
                             <div className="step-number">5</div>
                             <div className="step-content">
@@ -134,9 +135,10 @@ export default function CertificateStarGuide() {
                             <img src={profile_menu} alt="Profile Menu" />
 
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
+
         </div>
     );
 }
