@@ -18,7 +18,7 @@ const TeamPage = () => {
 				<button className="floating-action-button">ALUMNI</button>
 			</a>
 			<Fade left>
-				<TeamPageHeading text="Heads" />
+				<TeamPageHeading text="Executive Heads" />
 			</Fade>
 			<div className="members-head-list">
 				{members?.map((member) => {
