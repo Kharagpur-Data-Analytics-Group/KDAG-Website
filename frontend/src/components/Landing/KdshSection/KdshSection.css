@@ -63,7 +63,7 @@
   flex: 1 1 250px;
   padding: 10px 20px;
   border-left: 4px solid #000000;
-  background-color: #110f0f;
+  background-color: #211d1d;
   font-size: 24px;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -71,9 +71,7 @@
 
 .kdsh-feature:hover {
   cursor: pointer;
-  background-color: rgba(104, 58, 58, 0.15);
-  box-shadow: 0 0 20px rgba(250, 57, 70, 1);
-  transform: translateY(-3px);
+  transform: scale(1.08);
 }
 
 .kdsh-bg {
@@ -104,16 +102,9 @@
 }
 
 .kdsh-stat-item:hover {
-  cursor: pointer;
-  background-color: rgba(104, 58, 58, 0.15);
-  box-shadow: 0 0 20px rgba(250, 57, 70, 1);
-  transform: translateY(-2px);
+  transform: scale(1.08);
   color: #ffffff;
 
-}
-
-.kdsh-stat-item:hover p {
-  color: #ffffff;
 }
 
 .kdsh-stat-item {
@@ -123,6 +114,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .kdsh-stat-item h2 {
