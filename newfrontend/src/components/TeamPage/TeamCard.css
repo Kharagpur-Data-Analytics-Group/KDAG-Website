@@ -267,11 +267,7 @@
 		box-shadow: 0 0 2px rgba(255, 255, 255, 0.35);
 	}
 
-	.member-card-head {
-		/* box-shadow: 0px 0px 0 1px rgb(255, 255, 255), 06px -06px 0 -1px black,
-		06px -06px yellow, 12px -12px 0 -1px rgb(0, 0, 0), 12px -12px 0 red,
-		18px -18px 0 -1px rgb(0, 0, 0), 18px -18px 0 blue; */
-	}
+	
 
 	.member-card:hover {
 		transform: scale(1.05);

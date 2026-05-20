@@ -24,7 +24,7 @@ import EditProfile from "../components/UserPages/EditProfile.js";
 import Logout from "../components/Common/Logout/Logout.js";
 import CreateComment from "../components/DiscussionForum/CreateComment.js";
 import GalleryPage from "../components/GalleryPage/GalleyPage.js";
-import ImageGrid from "../components/GalleryPage/ImageGrid/ImageGrid.js";
+import ImageGrid from "../components/GalleryPage/ImageGrid/ImageGrid.jsx";
 import GoogleCallback from "../components/AuthenticationPages/GoogleCallback.js";
 import { AuthProvider } from "../context/AuthContext.js";
 import CommunityGuidelines from "../components/DiscussionForum/CommunityGuidelines.js";

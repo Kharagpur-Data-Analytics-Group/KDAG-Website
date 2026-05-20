@@ -1,6 +1,6 @@
 import Particless from '../Common/Particles/Particless';
 import Carousel from './Carousel/Carousel';
-import Header from './Header/Header';
+import Header from './Header/Header.jsx';
 import './Carousel/css/embla.css';
 
 const OPTIONS = { loop: true, containScroll: false };
