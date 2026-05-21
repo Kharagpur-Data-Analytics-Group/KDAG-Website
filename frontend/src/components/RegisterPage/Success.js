@@ -2,7 +2,6 @@ import React from "react";
 import Fade from "../Common/Motion/Fade.js"
 import Particless from "../Common/Particles/Particless";
 import "react-toastify/dist/ReactToastify.css";
-import "./RegisterPage.css";
 import "./Success.css";
 import whatsapp from "./../../assets/kdsh2025_whatsapp.png";
 import discord from "./../../assets/kdsh2025_discord.png";

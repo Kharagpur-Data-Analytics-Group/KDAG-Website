@@ -5,16 +5,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { handleSubmit } from "./useFormStates";
 import useFormStates from "./useFormStates";
-import "./RegisterPage.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import RegisterFormCard from "./RegisterFormCard.js";
-import kdsh_2025 from "./../../assets/kdsh2025_logo.png";
-import show_icon from "./../../assets/show_icon.png";
-import repo1 from "./../../assets/llm_repo.png";
-import repo2 from "./../../assets/pathway_repo.png";
-import starred from "./../../assets/starred_repo.png";
-import profile_icon from "./../../assets/profile_icon.png";
-import profile_menu from "./../../assets/profile_menu.png";
 import Star from "./Star.js";
 import { AuthContext } from "../../context/AuthContext";
 import LoginPrompt from "../Resources_New/LoginPrompt";
@@ -281,7 +273,6 @@ const RegisterPage = () => {
 	const handleTeamName = (e) => {
 		const value = e.target.value;
 
-		// Always allow typing / deleting
 		if (value.length > 35) {
 			toast.error("Please choose a name not more than 35 characters", {
 				position: "top-center",
@@ -338,28 +329,19 @@ const RegisterPage = () => {
 
 	return (
 		<>
-			<div className="register-container">
+			<div className="relative w-full overflow-hidden flex flex-col items-center justify-start min-h-screen">
 				<Fade top>
-					<div className="register-header">
-						<div className="spacer layer1"></div>
-						<div className="register-kdsh">KDSH 2026</div>
-						<div className="kdsh_banner">
+					<div className="relative w-full flex flex-col items-center justify-start pt-[140px] md:pt-[100px] sm:pt-[80px] z-10 px-4">
+						<div className="absolute inset-0 bg-[url('../../assets/KDSH2025_cover.png')] bg-cover bg-center bg-no-repeat -z-10"></div>
+						<div className="text-[clamp(48px,6vw,72px)] font-black tracking-tighter text-white mb-8 text-center drop-shadow-2xl">KDSH 2026</div>
+						<div className="w-full max-w-[900px] mb-8">
 							<picture>
-								
-								<source
-								media="(max-width: 767px)"
-								srcSet={bannerSmall}
-								/>
-
-								<img
-								src={banner}
-								alt="KDSH Banner"
-								style={{ width: "100%", height: "auto" }}
-								/>
+								<source media="(max-width: 767px)" srcSet={bannerSmall} />
+								<img src={banner} alt="KDSH Banner" className="w-full h-auto rounded-xl shadow-lg" />
 							</picture>
 						</div>
 
-						<div className="register-kdsh-desc">
+						<div className="max-w-[900px] w-full mx-auto p-6 md:p-10 mb-4 text-base md:text-lg leading-relaxed font-medium text-white text-justify bg-white/10 backdrop-blur-md rounded-[20px] border border-white/20">
 							<p>
 								The 6th Edition of the{" "}
 								<strong>Kharagpur Data Science Hackathon</strong> (KDSH) is here
@@ -369,26 +351,10 @@ const RegisterPage = () => {
 								your skills, and become a trailblazer in the field.
 							</p>
 
-							{/* <p>
-								Why participate? <br/>
-								<strong>Prizes Worth ₹4,00,000. </strong><br/>
-								<ul>
-									<li><strong>Winner:</strong> ₹2,00,000</li>
-									<li><strong>Runner-up:</strong> ₹1,25,000</li>
-									<li><strong>Second Runner-up:</strong> ₹75,000</li>
-								</ul>
-								Backed by industry leaders including Pathway (Title Sponser) and TrueFoundry (Tech Platform Sponser) <br />
-								Exposure through national media partners and India's largest techno-management fest.
-							</p> */}
-
-							{/* <p>
-								<strong>Registration deadline: 2nd January 2026 11:59 PM</strong> <br/>
-							</p> */}
-
-							<p>
+							<p className="mt-4">
 								For more details about KDSH 2026, visit our {" "}
 								<a
-									className="kdsh-unstop-link"
+									className="text-[#FFD700] font-bold hover:underline"
 									href="https://unstop.com/p/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
 									target="_blank"
 									rel="noreferrer noopener"
@@ -397,43 +363,35 @@ const RegisterPage = () => {
 								</a>.
 							</p> 
 
-							<p>
+							<p className="mt-4">
 								To participate, please fill in your details in the form provided
 								below.
 							</p>
 
 							<p
-								style={{
-									color: "#FFD700",
-									borderTop: "solid 2px white",
-									paddingTop: "45px",
-								}}
+								className="mt-8 pt-8 border-t-2 border-white text-[#FFD700] font-bold"
 							>
-								<strong>
-									Before registering, kindly ensure all your team members have
-									starred the following GitHub repositories:
-								</strong>
+								Before registering, kindly ensure all your team members have
+								starred the following GitHub repositories:
 							</p>
 
-							<ul>
-								<li>
+							<ul className="mt-6 flex gap-4 justify-evenly flex-wrap list-none p-0">
+								<li className="relative px-12 py-3 rounded-xl font-bold text-base text-white cursor-pointer bg-white/10 border border-white/30 hover:scale-105 hover:border-white/60 transition-all overflow-hidden group">
 									<a
-										className="kdsh-link"
+										className="relative z-10"
 										href="https://github.com/pathwaycom/pathway"
 										target="_blank"
 										rel="noreferrer noopener"
-										style={{ cursor: "pointer" }}
 									>
 										Pathway
 									</a>
 								</li>
-								<li>
+								<li className="relative px-12 py-3 rounded-xl font-bold text-base text-white cursor-pointer bg-white/10 border border-white/30 hover:scale-105 hover:border-white/60 transition-all overflow-hidden group">
 									<a
-										className="kdsh-link"
+										className="relative z-10"
 										href="https://github.com/pathwaycom/llm-app"
 										target="_blank"
 										rel="noreferrer noopener"
-										style={{ cursor: "pointer" }}
 									>
 										LLM App
 									</a>
@@ -444,10 +402,10 @@ const RegisterPage = () => {
 				</Fade>
 				<Star />
 				<Fade left>
-					<div className="register-form">
+					<div className="border-2 border-white/5 border-t-[5px] border-t-[#1c1cf0] rounded-2xl bg-[#151515] max-w-[900px] w-[90%] md:w-4/5 p-6 mb-[300px] mt-[100px] md:mt-[150px] relative z-20 mx-auto">
 						{registrationMode && (
 							<button
-								className="register-back-button"
+								className="absolute top-4 left-4 z-10 bg-white/10 border border-white/30 rounded-full w-10 h-10 flex items-center justify-center text-white text-xl font-semibold cursor-pointer hover:bg-white/20 hover:border-white/50 transition-all hover:-translate-x-px active:-translate-x-1"
 								type="button"
 								onClick={handleBackToSelection}
 								aria-label="Back to selection"
@@ -456,27 +414,26 @@ const RegisterPage = () => {
 							</button>
 						)}
 						{checkingTeam ? (
-							<div style={{ padding: "40px", textAlign: "center" }}>
-								<h2>Checking team status...</h2>
+							<div className="p-10 text-center">
+								<h2 className="text-2xl text-white">Checking team status...</h2>
 							</div>
 						) : !registrationMode ? (
 							hasTeam ? (
-								<div style={{ textAlign: "center", padding: "40px 20px" }}>
-									<h2 style={{ marginBottom: "20px", color: "#fff" }}>You are already part of a team!</h2>
-									<p style={{ marginBottom: "30px", color: "#ccc" }}>
+								<div className="text-center p-10 py-10">
+									<h2 className="mb-5 text-white text-2xl font-bold">You are already part of a team!</h2>
+									<p className="mb-8 text-gray-300">
 										Visit the Manage Team dashboard to view your team details or make changes.
 									</p>
 									<button
-										className="register-form-submit"
+										className="bg-transparent border-none flex justify-center items-center w-full max-w-[300px] mx-auto group cursor-pointer"
 										type="button"
 										onClick={() => history.push("/manage-team")}
-										style={{ minWidth: "", margin: "0 auto" }}
 									>
-										<p>Manage Team</p>
+										<p className="text-center bg-gradient-to-r from-[#1c1cf0] via-[#3572c3] to-[#1c1cf0] bg-[length:300%_100%] w-full text-white p-3 rounded-full transition-all duration-300 group-hover:bg-[position:100%_0] group-hover:scale-105 m-0 font-semibold">Manage Team</p>
 									</button>
-									<div className="important-note2">
-										<strong>Important:</strong> After all Members have joined, Team Leader must finalize the team on the&nbsp;
-										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
+									<div className="mt-6 text-sm text-gray-300 bg-white/5 p-4 rounded-lg border border-white/10">
+										<strong className="text-white">Important:</strong> After all Members have joined, Team Leader must finalize the team on the&nbsp;
+										<span className="text-[#1c1cf0] cursor-pointer hover:underline font-semibold" onClick={() => history.push("/manage-team")}>
 											Manage Team
 										</span>{" "}
 										page. Your team will only appear on Unstop after finalization.
@@ -485,113 +442,44 @@ const RegisterPage = () => {
 
 							) : (
 								<div>
-									<h1
-										style={{
-											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
-											marginBottom: "25px",
-											textAlign: "center",
-										}}
-									>
+									<h1 className="text-2xl md:text-3xl font-bold text-center text-white mb-8 drop-shadow-[0_0_10px_#1c1cf0]">
 										Registrations have moved to unstop.
 									</h1>
-									<div style={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+									<div className="flex gap-5 items-center justify-center flex-wrap">
 										<a
-											className="register-form-submit"
+											className="bg-transparent border-none flex justify-center items-center w-full max-w-[300px] group cursor-pointer no-underline"
 											type="button"
 											href="https://unstop.com/hackathons/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
 											target="_blank"
 											rel="noopener noreferrer"
-											style={{ minWidth: "300px" }}
 										>
-											<p>Register on unstop</p>
+											<p className="text-center bg-gradient-to-r from-[#1c1cf0] via-[#3572c3] to-[#1c1cf0] bg-[length:300%_100%] w-full text-white p-3 rounded-full transition-all duration-300 group-hover:bg-[position:100%_0] group-hover:scale-105 m-0 font-semibold">Register on unstop</p>
 										</a>
-										{/*<button
-											className="register-form-submit"
-											type="button"
-											onClick={() => {
-												if (!isLoggedIn) {
-													setShowLoginPrompt(true);
-													return;
-												}
-												setRegistrationMode("member");
-											}}
-											style={{ minWidth: "300px" }}
-										>
-											<p>Join a Team with Team Code</p>
-										</button>*/}
 									</div>
-									{/*<div className="important-note2">
-										<strong>Important:</strong> After all Team Members have joined, Team Leader must review and confirm your team details on the&nbsp;
-										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
-											Manage Team
-										</span>{" "}
-										page to complete your registration. Your team will only appear on Unstop after finalization.
-									</div>*/}
 								</div>
 							)
 						) : registrationMode === "leader" ? (
 							<form onSubmit={handleTeamLeaderRegister}>
-								<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-									<h1
-										style={{
-											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
-											marginBottom: "25px",
-										}}
-									>
+								<div className="flex flex-col justify-center items-center">
+									<h1 className="text-2xl md:text-3xl font-bold text-center text-white mb-8 drop-shadow-[0_0_10px_#1c1cf0]">
 										Register as Team Leader
 									</h1>
-									<br />
 									{teamCodeDisplay ? (
-										<div style={{
-											background: "rgba(0, 255, 17, 0.1)",
-											border: "2px solid #00ff11",
-											borderRadius: "10px",
-											padding: "20px",
-											marginBottom: "30px",
-											textAlign: "center",
-											width: "100%",
-										}}>
-											<h2 style={{ color: "#00ff11", marginBottom: "10px" }}>
+										<div className="bg-[#00ff111a] border-2 border-[#00ff11] rounded-xl p-5 mb-8 text-center w-full">
+											<h2 className="text-[#00ff11] mb-2 font-bold text-xl">
 												Team Created Successfully!
 											</h2>
-											<p style={{ color: "white", marginBottom: "15px" }}>
+											<p className="text-white mb-4">
 												Your Team Code:
 											</p>
-											<div className="team-code-display">
-												<div style={{
-													fontSize: "32px",
-													fontWeight: "bold",
-													color: "#00ff11",
-													letterSpacing: "5px",
-													marginBottom: "10px",
-													marginTop: "10px",
-													fontFamily: "monospace",
-												}}>
+											<div className="flex flex-col items-center justify-center mb-4">
+												<div className="text-[32px] font-bold text-[#00ff11] tracking-[5px] mb-4 mt-2 font-mono">
 													{teamCodeDisplay}
 												</div>
 												<button
 													type="button"
 													onClick={copyTeamCodeToClipboard}
-													style={{
-														background: "rgba(0, 255, 17, 0.2)",
-														border: "1px solid #00ff11",
-														borderRadius: "8px",
-														padding: "8px 16px",
-														cursor: "pointer",
-														display: "flex",
-														alignItems: "center",
-														gap: "8px",
-														color: "#00ff11",
-														fontSize: "14px",
-														fontWeight: "600",
-														transition: "all 0.3s ease",
-													}}
-													onMouseEnter={(e) => {
-														e.target.style.background = "rgba(0, 255, 17, 0.3)";
-													}}
-													onMouseLeave={(e) => {
-														e.target.style.background = "rgba(0, 255, 17, 0.2)";
-													}}
+													className="bg-[#00ff1133] border border-[#00ff11] rounded-lg px-4 py-2 cursor-pointer flex items-center gap-2 text-[#00ff11] text-sm font-semibold transition-all hover:bg-[#00ff114d]"
 												>
 													{copiedTeamCode ? (
 														<>
@@ -606,66 +494,45 @@ const RegisterPage = () => {
 													)}
 												</button>
 											</div>
-											<p style={{ color: "white", fontSize: "14px" }}>
-
+											<p className="text-white text-sm mb-4">
 												Share this code with your teammates so they can join your team.
 											</p>
-											<p style={{ color: "white", fontSize: "16px", marginBottom: "15px" }}>
+											<p className="text-white text-base mb-4">
 												Join the WhatsApp Group and Discord Channel for regular updates!
 											</p>
-											<div style={{
-												display: "flex",
-												justifyContent: "center",
-												gap: "20px",
-												marginTop: "15px",
-											}}>
+											<div className="flex justify-center gap-5 mt-4">
 												<a
 													href="https://chat.whatsapp.com/LguOtn8Dwyh19sajyCKNoQ"
 													target="_blank"
 													rel="noreferrer noopener"
-													style={{
-														transition: "transform 0.3s ease",
-													}}
-													onMouseEnter={(e) => {
-														e.target.style.transform = "scale(1.1)";
-													}}
-													onMouseLeave={(e) => {
-														e.target.style.transform = "scale(1)";
-													}}
+													className="transition-transform hover:scale-110"
 												>
-													<img src={whatsapp} alt="whatsapp" style={{ height: "50px", cursor: "pointer" }} />
+													<img src={whatsapp} alt="whatsapp" className="h-[50px] cursor-pointer" />
 												</a>
 												<a
 													href="https://discord.gg/fBfvXCTQF"
 													target="_blank"
 													rel="noreferrer noopener"
-													style={{
-														transition: "transform 0.3s ease",
-													}}
-													onMouseEnter={(e) => {
-														e.target.style.transform = "scale(1.1)";
-													}}
-													onMouseLeave={(e) => {
-														e.target.style.transform = "scale(1)";
-													}}
+													className="transition-transform hover:scale-110"
 												>
-													<img src={discord} alt="discord" style={{ height: "50px", cursor: "pointer" }} />
+													<img src={discord} alt="discord" className="h-[50px] cursor-pointer" />
 												</a>
 											</div>
-											<div className="important-note2" style={{ marginTop: "20px" }}>
-												<strong>Important Next Step:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
-												<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
+											<div className="mt-5 text-sm text-gray-300 bg-black/20 p-4 rounded-lg border border-white/10 text-left">
+												<strong className="text-white">Important Next Step:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
+												<span className="text-[#1c1cf0] cursor-pointer hover:underline font-semibold" onClick={() => history.push("/manage-team")}>
 													Manage Team
 												</span>{" "}
 												to complete your registration. Your team will only appear on Unstop after finalization.
 											</div>
 										</div>
 									) : (
-										<div>
-											<div className="register-form-details-special">
-												<div id="header">Team Name</div>
-												<div style={{ width: "10px" }}></div>
+										<div className="w-full">
+											<div className="flex items-center text-white font-semibold relative mb-8 text-lg pl-0 md:pl-[90px]">
+												<div className="hidden md:block w-32">Team Name</div>
+												<div className="w-[10px] hidden md:block"></div>
 												<input
+													className="bg-transparent border-b border-white/20 text-white p-2 focus:outline-none focus:border-[#1c1cf0] transition-colors w-full max-w-[300px]"
 													type="text"
 													name="name"
 													placeholder="Team Name"
@@ -675,7 +542,7 @@ const RegisterPage = () => {
 												/>
 											</div>
 
-											<div className="register-form-details">
+											<div className="text-white font-semibold relative mb-2 text-lg pl-0 md:pl-[90px]">
 												Team Leader Details
 											</div>
 											<RegisterFormCard
@@ -699,9 +566,9 @@ const RegisterPage = () => {
 												setGitHubID={setGitHubID1}
 												disabled={true}
 											/>
-											<div style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
-												<button className="register-form-submit" type="submit" disabled={isSubmitting}>
-													<p>{isSubmitting ? "Creating..." : "Create Team"}</p>
+											<div className="w-full flex justify-center mt-6">
+												<button className="bg-transparent border-none flex justify-center items-center w-full max-w-[300px] group cursor-pointer" type="submit" disabled={isSubmitting}>
+													<p className="text-center bg-gradient-to-r from-[#1c1cf0] via-[#3572c3] to-[#1c1cf0] bg-[length:300%_100%] w-full text-white p-3 rounded-full transition-all duration-300 group-hover:bg-[position:100%_0] group-hover:scale-105 m-0 font-semibold">{isSubmitting ? "Creating..." : "Create Team"}</p>
 												</button>
 											</div>
 										</div>
@@ -710,20 +577,15 @@ const RegisterPage = () => {
 							</form>
 						) : (
 							<form onSubmit={handleJoinTeam}>
-								<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-									<h1
-										style={{
-											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
-											marginBottom: "25px",
-										}}
-									>
+								<div className="flex flex-col items-center">
+									<h1 className="text-2xl md:text-3xl font-bold text-center text-white mb-8 drop-shadow-[0_0_10px_#1c1cf0]">
 										Join a Team
 									</h1>
-									<br />
-									<div className="register-form-details-special">
-										<div id="header">Team Code</div>
-										<div style={{ width: "10px" }}></div>
+									<div className="flex items-center text-white font-semibold relative mb-8 text-lg pl-0 md:pl-[90px] w-full">
+										<div className="hidden md:block w-32">Team Code</div>
+										<div className="w-[10px] hidden md:block"></div>
 										<input
+											className="bg-transparent border-b border-white/20 text-white p-2 focus:outline-none focus:border-[#1c1cf0] transition-colors uppercase tracking-[2px] font-mono w-full max-w-[300px]"
 											type="text"
 											name="teamCode"
 											placeholder="Enter Team Code"
@@ -731,11 +593,10 @@ const RegisterPage = () => {
 											onChange={handleTeamCodeChange}
 											value={teamCode}
 											maxLength={8}
-											style={{ textTransform: "uppercase", letterSpacing: "2px", fontFamily: "monospace" }}
 										/>
 									</div>
 
-									<div className="register-form-details">
+									<div className="text-white font-semibold relative mb-2 text-lg pl-0 md:pl-[90px] w-full">
 										Your Details
 									</div>
 									<RegisterFormCard
@@ -759,9 +620,9 @@ const RegisterPage = () => {
 										setGitHubID={setGitHubID1}
 										disabled={true}
 									/>
-									<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-										<button className="register-form-submit" type="submit" disabled={isSubmitting}>
-											<p>{isSubmitting ? "Joining..." : "Join Team"}</p>
+									<div className="w-full flex justify-center mt-6">
+										<button className="bg-transparent border-none flex justify-center items-center w-full max-w-[300px] group cursor-pointer" type="submit" disabled={isSubmitting}>
+											<p className="text-center bg-gradient-to-r from-[#1c1cf0] via-[#3572c3] to-[#1c1cf0] bg-[length:300%_100%] w-full text-white p-3 rounded-full transition-all duration-300 group-hover:bg-[position:100%_0] group-hover:scale-105 m-0 font-semibold">{isSubmitting ? "Joining..." : "Join Team"}</p>
 										</button>
 								</div>
 								</div>
