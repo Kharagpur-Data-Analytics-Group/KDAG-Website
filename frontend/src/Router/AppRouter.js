@@ -16,7 +16,7 @@ import WinterWorkshop from "../components/WinterWorkshop/WinterWorkshop";
 import CertificateGeneration from "../components/CertificateGeneration/CertificateGeneration";
 import ForumPage from "../components/DiscussionForum/ForumPage.js";
 import DiscussionPage from "../components/DiscussionForum/DiscussionPage.js";
-import AuthPage from "../components/AuthenticationPages/AuthPage.js";
+import AuthPage from "../components/AuthenticationPages/AuthPage.jsx";
 import CreateDiscussion from "../components/DiscussionForum/CreateDiscussion.js";
 import UserProfileSelf from "../components/UserPages/UserProfileSelf.js";
 import UserProfilePublic from "../components/UserPages/UserProfilePublic.js";
