@@ -7,7 +7,7 @@ import Header from "./Header/Header.js";
 import "./course.css";
 
 function App() {
-  const BASE_URL = process.env.REACT_APP_FETCH_URL;
+  const BASE_URL = import.meta.env.VITE_REACT_APP_FETCH_URL;
 
   const [sections, setSections] = useState(initialSections);
   const [loading, setLoading] = useState(true);

@@ -1,10 +1,13 @@
 .success-container .register-header .spacer {
-	aspect-ratio: 1500/700;
-	width: 100%;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-	height: 100vh;
+    aspect-ratio: 1500/700;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    min-height: 130vh;
+    height: auto;
+    padding-bottom: 400px;
 }
 
 .success-container .register-header .layer1 {
@@ -82,6 +85,24 @@
 	height: 40px;
 	cursor: pointer;
 }	
+
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    display: flex;
+}
+
+.social-icons img {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
 
 @media (max-width: 1285px) {
 	.success-container .register-header .success-register-kdsh {

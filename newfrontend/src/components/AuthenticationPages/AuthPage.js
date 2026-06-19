@@ -43,8 +43,10 @@ const AuthPage = () => {
 		history.push("/ml_sheet");
 	}
 
-	const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-	const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
+	// ✅ FIXED: All three now use import.meta.env
+	const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+	const apiUrl = import.meta.env.VITE_API_URL;
+	const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
 
 	function handleGoogleAuth() {
 		const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&access_type=offline&scope=email%20profile%20openid&prompt=consent`;

@@ -44,23 +44,23 @@ const Success = () => {
 							<p>
 								Join the Whatsapp Group and Discord Channel for regular updates!
 							</p>
-							<p>
-								<a
-									href="https://chat.whatsapp.com/LguOtn8Dwyh19sajyCKNoQ"
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									<img src={whatsapp} alt="whatsapp" />
-								</a>
+							<div className="social-icons">
+							<a
+								href="https://chat.whatsapp.com/LguOtn8Dwyh19sajyCKNoQ"
+								target="_blank"
+								rel="noreferrer noopener"
+							>
+								<img src={whatsapp} alt="whatsapp" />
+							</a>
 
-								<a
-									href="https://discord.gg/fBfvXCTQF"
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									<img src={discord} alt="discord" />
-								</a>
-							</p>
+							<a
+								href="https://discord.gg/fBfvXCTQF"
+								target="_blank"
+								rel="noreferrer noopener"
+							>
+								<img src={discord} alt="discord" />
+							</a>
+							</div>
 
 							<div className="important-note2" style={{ marginTop: "30px" }}>
 								<strong>Important for Team Leaders:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
