@@ -30,7 +30,7 @@ import { AuthProvider } from "../context/AuthContext.js";
 import CommunityGuidelines from "../components/DiscussionForum/CommunityGuidelines.js";
 import PrivacyPolicy from "../components/Privacy Policies/PrivacyPolicy.jsx";
 import RegisterPage from "../components/RegisterPage/RegisterPage.jsx";
-import Success from "../components/RegisterPage/Success.js";
+import Success from "../components/RegisterPage/Success.jsx";
 import Course from "../components/Resources_New/course.js";
 import Register from '../components/AuthenticationPages/Register.js';
 import ManageTeam2 from "../components/ManageTeam/ManageTeam2.js";
