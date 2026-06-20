@@ -1,6 +1,6 @@
 import React from "react";
 import TeamCardAlumni2 from "./TeamCardAlumni2.jsx";
-import AlumniPageHeading from "./AlumniPageHeading";
+import AlumniPageHeading2 from "./AlumniPageHeader2";
 import members_2016 from "./AlumniStatic2016";
 import members_2017 from "./AlumniStatic2017";
 import members_2018 from "./AlumniStatic2018";
@@ -22,7 +22,7 @@ const AlumniPage2 = () => {
 			
 			<Header2/>
 			<Fade left>
-				<AlumniPageHeading text="Graduating Batch Of 2025" />
+				<AlumniPageHeading2 text="Graduating Batch Of 2025" />
 			</Fade>{" "}
 			<div className="flex w-92/100 max-w-248 m-auto flex-wrap justify-center rounded-[30px] overflow-hidden h-204 backdrop-blur-[6px] [&::-webkit-scrollbar]:w-0"
             style={{ paddingTop : '50px', paddingBottom : '65px'}}>
@@ -32,7 +32,7 @@ const AlumniPage2 = () => {
 			</div>
 
 			<Fade left>
-				<AlumniPageHeading text="Graduating Batch Of 2024" />
+				<AlumniPageHeading2 text="Graduating Batch Of 2024" />
 			</Fade>{" "}
 			<div className="flex w-92/100 max-w-248 m-auto flex-wrap justify-center rounded-[30px] overflow-hidden h-204 backdrop-blur-[6px] [&::-webkit-scrollbar]:w-0"
             style={{ paddingTop : '50px', paddingBottom : '65px'}}>
@@ -41,7 +41,7 @@ const AlumniPage2 = () => {
 				})}
 			</div>
 			<Fade left>
-				<AlumniPageHeading text="Graduating Batch Of 2023" />
+				<AlumniPageHeading2 text="Graduating Batch Of 2023" />
 			</Fade>{" "}
 			<div className="flex w-92/100 max-w-248 m-auto flex-wrap justify-center rounded-[30px] overflow-hidden h-204 backdrop-blur-[6px] [&::-webkit-scrollbar]:w-0"
             style={{ paddingTop : '50px', paddingBottom : '65px'}}>
@@ -50,7 +50,7 @@ const AlumniPage2 = () => {
 				})}
 			</div>
 			<Fade left>
-				<AlumniPageHeading text="Graduating Batch Of 2022" />
+				<AlumniPageHeading2 text="Graduating Batch Of 2022" />
 			</Fade>{" "}
 			<div className="flex w-92/100 max-w-248 m-auto flex-wrap justify-center rounded-[30px] overflow-hidden h-204 backdrop-blur-[6px] [&::-webkit-scrollbar]:w-0"
             style={{ paddingTop : '50px', paddingBottom : '65px'}}>
@@ -59,7 +59,7 @@ const AlumniPage2 = () => {
 				})}
 			</div>
 			<Fade left>
-				<AlumniPageHeading text="Graduating Batch Of 2021" />
+				<AlumniPageHeading2 text="Graduating Batch Of 2021" />
 			</Fade>{" "}
 			<div className="flex w-92/100 max-w-248 m-auto flex-wrap justify-center rounded-[30px] overflow-hidden h-204 backdrop-blur-[6px] [&::-webkit-scrollbar]:w-0"
             style={{ paddingTop : '50px', paddingBottom : '65px'}}>
@@ -68,7 +68,7 @@ const AlumniPage2 = () => {
 				})}
 			</div>
 			<Fade left>
-				<AlumniPageHeading text="Graduating Batch Of 2020" />
+				<AlumniPageHeading2 text="Graduating Batch Of 2020" />
 			</Fade>{" "}
 			<div className="flex w-92/100 max-w-248 m-auto flex-wrap justify-center rounded-[30px] overflow-hidden h-204 backdrop-blur-[6px] [&::-webkit-scrollbar]:w-0"
             style={{ paddingTop : '50px', paddingBottom : '65px'}}>
@@ -77,7 +77,7 @@ const AlumniPage2 = () => {
 				})}
 			</div>
 			<Fade left>
-				<AlumniPageHeading text="Graduating Batch Of 2019" />
+				<AlumniPageHeading2 text="Graduating Batch Of 2019" />
 			</Fade>{" "}
 			<div className="flex w-92/100 max-w-248 m-auto flex-wrap justify-center rounded-[30px] overflow-hidden h-204 backdrop-blur-[6px] [&::-webkit-scrollbar]:w-0"
             style={{ paddingTop : '50px', paddingBottom : '65px'}}>
@@ -86,7 +86,7 @@ const AlumniPage2 = () => {
 				})}
 			</div>
 			<Fade left>
-				<AlumniPageHeading text="Graduating Batch Of 2018" />
+				<AlumniPageHeading2 text="Graduating Batch Of 2018" />
 			</Fade>{" "}
 			<div className="flex w-92/100 max-w-248 m-auto flex-wrap justify-center rounded-[30px] overflow-hidden h-204 backdrop-blur-[6px] [&::-webkit-scrollbar]:w-0"
             style={{ paddingTop : '50px', paddingBottom : '65px'}}>
@@ -95,7 +95,7 @@ const AlumniPage2 = () => {
 				})}
 			</div>
 			<Fade left>
-				<AlumniPageHeading text="Graduating Batch Of 2017" />
+				<AlumniPageHeading2 text="Graduating Batch Of 2017" />
 			</Fade>{" "}
 			<div className="flex w-92/100 max-w-248 m-auto flex-wrap justify-center rounded-[30px] overflow-hidden h-204 backdrop-blur-[6px] [&::-webkit-scrollbar]:w-0"
             style={{ paddingTop : '50px', paddingBottom : '65px'}}>
@@ -104,7 +104,7 @@ const AlumniPage2 = () => {
 				})}
 			</div>
 			<Fade left>
-				<AlumniPageHeading text="Graduating Batch Of 2016" />
+				<AlumniPageHeading2 text="Graduating Batch Of 2016" />
 			</Fade>{" "}
 			<div className="flex w-92/100 max-w-248 m-auto flex-wrap justify-center rounded-[30px] overflow-hidden h-204 backdrop-blur-[6px] [&::-webkit-scrollbar]:w-0"
             style={{ paddingTop : '50px', paddingBottom : '65px'}}>
