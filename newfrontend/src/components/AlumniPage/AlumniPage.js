@@ -32,12 +32,6 @@ const AlumniPage = () => {
 				})}
 			</div>
 
-			<div className="alumni-members-list">
-				{members_2025?.map((member) => {
-					return <TeamCardAlumni2 key={member.id} member={member} />;
-				})}
-			</div>
-
 			<Fade left>
 				<AlumniPageHeading text="Graduating Batch Of 2024" />
 			</Fade>{" "}
