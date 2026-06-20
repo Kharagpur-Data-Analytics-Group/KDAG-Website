@@ -1,0 +1,309 @@
+import React, { useEffect, useState, useContext } from "react";
+import { Button } from "./Button";
+import "./Navbar.css";
+import logo from "./../../../assets/pics/KDAGLogoNew.png";
+import Dropdown from "./Dropdown";
+import { Link, NavLink } from "react-router-dom";
+import forum_img from "../../../assets/pics/forum.png";
+import register_img from "../../../assets/pics/register.png";
+import profile_icon from "../../../assets/pics/profile_icon.png";
+import { jwtDecode } from "jwt-decode";
+import { AuthContext } from "../../../context/AuthContext";
+import { useHistory } from "react-router-dom";
+
+const active_style = {
+  borderBottom: "2px solid rgba(255, 255, 255, 0.8)",
+  paddingBottom: "2px",
+  color: "rgba(255, 255, 255, 0.8)",
+};
+
+const Navbar = ({ noborder }) => {
+  const history = useHistory();
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const [userId, setUserId] = useState("empty");
+  const token = localStorage.getItem("access_token");
+
+  useEffect(() => {
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        if (decodedToken && decodedToken.sub && decodedToken.sub.user_id) {
+          setUserId(decodedToken.sub.user_id);
+        }
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (window.location.pathname.endsWith("index.html")) {
+      history.push("/");
+    }
+  }, [history]);
+
+  useEffect(() => {
+    const navColor = (e) => {
+      let nav = document.getElementsByClassName("kdag-nav")[0];
+      nav.classList.toggle("scrolled", window.scrollY > 0);
+    };
+    navColor();
+    document.addEventListener("scroll", navColor);
+    return () => {
+      document.removeEventListener("scroll", navColor);
+    };
+  }, []);
+
+  const [click, setClick] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const onMouseEnter = () => {
+    if (window.innerWidth < 960) {
+      setDropdown(false);
+    } else {
+      setDropdown(true);
+    }
+    console.log(dropdown);
+  };
+
+  const onMouseLeave = () => {
+    if (window.innerWidth < 960) {
+      setDropdown(false);
+    } else {
+      setDropdown(false);
+    }
+    console.log(dropdown);
+  };
+
+  return (
+    <div className="kdag-nav-container">
+      <div className="kdag-nav">
+        <div
+          className={`kdag-nav-contain ${
+            noborder ? "" : "kdag-nav-contain-border"
+          }`}
+        >
+          <div className="kdag-nav-logo">
+            <Link to="/">
+              <img src={logo} alt="LOGO" />
+            </Link>
+          </div>
+          <div className="kdag-nav-items">
+            {/*<div className="kdag-nav-item ml-sheet">
+              <NavLink activeStyle={active_style} to="/register-kdsh">
+                KDSH
+              </NavLink>
+            </div>*/}
+            <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/events">
+                Events
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/gallery">
+                Gallery
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/ml_sheet">
+                ML Sheet
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/resources">
+                Resources
+              </NavLink>
+            </div>
+
+            <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/blogs">
+                Blog
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
+              <NavLink activeStyle={active_style} to="/certificate">
+                Certificate
+              </NavLink>
+            </div>
+            <div className="kdag-nav-item">
+              <NavLink
+                onClick={closeMobileMenu}
+                activeStyle={active_style}
+                to="/team"
+              >
+                Team
+              </NavLink>
+            </div>
+
+            {!isLoggedIn && (
+              <div className="kdag-nav-item">
+                <NavLink activeStyle={active_style} to="/auth">
+                  <img src={register_img} alt="" />
+                </NavLink>
+              </div>
+            )}
+            {isLoggedIn && (
+              <div className="kdag-nav-item">
+                <NavLink
+                  activeStyle={active_style}
+                  to={`/manage-team`}
+                >
+                  <img src={profile_icon} alt="" />
+                </NavLink>
+              </div>
+            )}
+            {/* <div className="kdag-nav-item">
+              <Link to="#">Go Down</Link>
+            </div> */}
+          </div>
+          <nav className="kdag-nav-mobile drop">
+            <ul className="kdag-nav-mobile-ul cf ">
+              <li>
+                <svg
+                  class="dropdown hamburgermenu"
+                  width="76"
+                  height="51"
+                  viewBox="0 0 76 51"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                  <rect
+                    width="76"
+                    height="11.7049"
+                    rx="5.85246"
+                    fill="white"
+                    fill-opacity="0.3"
+                  />
+                  <rect
+                    y="39.2951"
+                    width="76"
+                    height="11.7049"
+                    rx="5.85246"
+                    fill="white"
+                    fill-opacity="0.3"
+                  />
+                  <rect
+                    y="19.2295"
+                    width="76"
+                    height="11.7049"
+                    rx="5.85246"
+                    fill="white"
+                    fill-opacity="0.3"
+                  />
+                </svg>
+
+                {/* <img class="dropdown hamburgermenu" src={ham} alt="menu" /> */}
+
+                {isMenuOpen && (
+                  <ul>
+                    {/*<li>
+                      <NavLink
+                        to="/register-kdsh"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        KDSH
+                      </NavLink>
+                    </li>*/}
+                    <li>
+                      <NavLink
+                        to="/events"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Events
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/gallery"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Gallery
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/ml_sheet"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        ML Sheet
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/resources"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Resources
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/blogs"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Blog
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/certificate"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Certificate
+                      </NavLink>
+                    </li>
+                    <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                      <NavLink
+                        to="/team"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Team
+                      </NavLink>
+                    </li>
+                    <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                      <NavLink
+                        to="/alumni"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
+                        Alumni
+                      </NavLink>
+                    </li>
+                    {!isLoggedIn && (
+                      <li>
+                        <NavLink
+                          to="/auth"
+                          onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        >
+                          {" "}
+                          <img src={register_img} alt="" />
+                        </NavLink>
+                      </li>
+                    )}
+                    {isLoggedIn && (
+                      <li>
+                        <NavLink
+                          to="/manage-team"
+                          onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        >
+                          {" "}
+                          <img src={profile_icon} alt="" />
+                        </NavLink>
+                      </li>
+                    )}
+                  </ul>
+                )}
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

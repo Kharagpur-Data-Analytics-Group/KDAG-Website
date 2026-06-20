@@ -1,0 +1,38 @@
+.PrivacyPolicyContainer {
+	color: black;
+	padding: 35px;
+	padding-top: 120px;
+    text-align: justify;
+    font-size: 20px;
+}
+
+.PrivacyPolicyContainer h1,
+.PrivacyPolicyContainer h2,
+.PrivacyPolicyContainer h3,
+.PrivacyPolicyContainer p,
+.PrivacyPolicyContainer ul,
+.PrivacyPolicyContainer li,
+.PrivacyPolicyContainer h4 {
+	color: black;
+}
+
+.navbarViewer{
+    height: 80px;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    color: black;
+    margin-bottom: 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.FooterViewer{
+    height: 320px;
+    background-color: rgb(0, 0, 0);
+    width: 130%;
+    color: black;
+    position: relative;
+    bottom: -370px;
+    left: -200px;
+}

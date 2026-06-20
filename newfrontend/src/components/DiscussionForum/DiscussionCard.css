@@ -1,0 +1,341 @@
+.discussion-card-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: solid #ffffff26 1px;
+	margin: 10px 50px;
+	padding: 10px;
+	border-radius: 50px;
+	margin-bottom: 50px;
+}
+
+.discussion-card-create-new {
+	display: flex;
+	justify-content: center;
+}
+
+.discussion-card-button-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	transition: all 0.8s;
+	border-radius: 50px;
+}
+
+.discussion-card-button-container button {
+	padding: 10px 20px;
+	border-radius: 60px;
+	font-weight: 600;
+	font-style: italic;
+	border: none;
+	background-image: linear-gradient(to right,
+			#ff8800,
+			#ffdaaa,
+			#30dd8a,
+			#269660);
+	background-size: 300% 100%;
+	transition: all 0.3s;
+}
+
+.discussion-card-button-container button:hover {
+	background-position: 100% 0;
+	text-shadow: 0 0 10px white;
+}
+
+.search-bar-container {
+	display: flex;
+	align-items: center;
+}
+
+.search-bar-input {
+	width: 225px;
+	border-radius: 50px 0 0 50px;
+	border: 0px solid #ccc;
+	background-color: #1f1f1f;
+	color: #fff;
+	outline: none;
+	padding: 10px 15px;
+	margin-right: -15px;
+}
+
+.search-bar-button {
+	padding: 8px 16px;
+	border-radius: 50px;
+	border: 1px solid #e69c00;
+	background-color: black;
+	color: #fff;
+	margin-left: 0;
+	font-weight: 700;
+	background-image: linear-gradient(to right,
+			black,
+			black,
+			#ff8800,
+			#ffdaaa);
+	background-size: 300% 100%;
+	transition: all 0.3s;
+	height: 40px;
+	cursor: none;
+}
+
+.search-bar-button:hover {
+	background-position: 100% 0;
+	text-shadow: 0 0 10px white;
+	color: #1f1f1f;
+	border: 1px solid black;
+	cursor: none;
+}
+
+.search-bar-input::placeholder {
+	color: #999;
+}
+
+.discussion-card-button-container button img {
+	height: 20px;
+	margin-right: 20px;
+}
+
+.discussion-card-container {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+}
+
+.discussion-card {
+	width: 75%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 8px;
+	justify-content: space-around;
+	border-radius: 10px;
+	border: solid rgba(255, 255, 255, 0.15) 1px;
+	box-shadow: 0px 0px 0 white;
+	transition: all 0.5s;
+}
+
+@media (max-width: 600px) {
+	.new-discussion-text {
+		display: none;
+	}
+
+	.discussion-card-button-container button {
+		width: 40px;
+		height: 40px;
+		border-radius: 50px;
+		padding: 0;
+	}
+
+	.discussion-card-button-container button img {
+		margin: 0;
+		height: 20px;
+		width: 20px;
+	}
+
+	.search-bar-input {
+		width: 200px;
+		font-size: 13px;
+	}
+
+	.search-bar-button {
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 450px) {
+
+	.search-bar-input {
+		width: 125px;
+	}
+
+}
+
+/* .discussion-card-image-container {
+	height: 110px;
+	padding: 15px;
+	background: rgba(255, 255, 255, 0.06);
+	backdrop-filter: blur(8px);
+	border-radius: 6px;
+	transition: all 0.5s;
+}
+.discussion-card-image-container img {
+	height: 75px;
+	border-radius: 50%;
+} */
+.item {
+	flex-grow: 1;
+}
+
+.item-fixed {
+	flex: 0 0 auto;
+	width: 100px;
+}
+
+.discussion-card-description {
+	height: 110px;
+	padding: 12px;
+	width: 720px;
+	background: rgba(255, 255, 255, 0.06);
+	border-radius: 6px;
+	font-style: italic;
+	transition: all 0.5s;
+	overflow: hidden;
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+}
+
+.discussion-card-description-heading {
+	color: white;
+	font-weight: 700;
+	font-size: 18px;
+	transition: all 0.5s;
+	margin-bottom: -6px;
+}
+
+.discussion-card-description-details {
+	font-weight: 500;
+	color: rgb(197, 197, 197);
+}
+
+.discussion-card-description-user {
+	color: aqua;
+	font-size: 15px;
+}
+
+.discussion-card-actions {
+	height: 110px;
+	background-color: white;
+	padding: 22px;
+	padding-top: 24px;
+	background: rgba(255, 255, 255, 0.06);
+	border-radius: 6px;
+	color: rgb(197, 197, 197);
+	line-height: 30px;
+	font-style: italic;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.5s;
+	margin-left: 5px;
+	overflow: hidden;
+	backdrop-filter: blur(8px);
+}
+
+.discussion-card-actions img {
+	height: 20px;
+	position: relative;
+	top: -2px;
+	margin-right: 10px;
+	filter: invert(78%) sepia(22%) saturate(6951%) hue-rotate(339deg) brightness(100%) contrast(103%);
+}
+
+.discussion-card-last-comment {
+	height: 110px;
+	width: 200px;
+	background: rgba(255, 255, 255, 0.06);
+	border-radius: 6px;
+	color: rgb(197, 197, 197);
+	font-style: italic;
+	white-space: nowrap;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-weight: 500;
+	transition: all 0.5s;
+	width: 200px;
+	margin-left: 5px;
+	overflow: hidden;
+	backdrop-filter: blur(8px);
+}
+
+.discussion-card-last-comment-user span {
+	font-weight: 600;
+	color: white;
+	transition: all 0.5s;
+}
+
+.discussion-card-last-comment-date span {
+	font-weight: 600;
+	color: rgb(255, 150, 38);
+}
+
+.discussion-card:hover .discussion-card-last-comment,
+.discussion-card:hover .discussion-card-actions,
+.discussion-card:hover .discussion-card-description,
+.discussion-card:hover .discussion-card-image-container {
+	background: white;
+}
+
+.discussion-card:hover .discussion-card-description .discussion-card-description-heading {
+	color: black;
+}
+
+.discussion-card:hover .discussion-card-description .discussion-card-description-details {
+	color: rgb(140, 140, 140);
+}
+
+.discussion-card:hover .discussion-card-last-comment {
+	color: rgb(140, 140, 140);
+}
+
+.discussion-card:hover .discussion-card-actions {
+	color: rgb(140, 140, 140);
+}
+
+.discussion-card:hover .discussion-card-last-comment .discussion-card-last-comment-user span {
+	color: black;
+}
+
+.discussion-card:hover {
+	box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.455);
+}
+
+@media (max-width: 500px) {
+	.discussion-card {
+		margin-bottom: -10px;
+	}
+
+	.discussion-card-description-details {
+		font-size: 12px;
+		text-align: justify;
+		line-height: 15px;
+	}
+
+	.discussion-card-description-heading {
+		margin-bottom: -8px;
+		line-height: 18px;
+		font-size: 16px;
+	}
+
+	.discussion-card-last-comment {
+		width: 100px;
+	}
+
+	.discussion-card-last-comment-user {
+		font-size: 13px;
+		text-wrap: wrap;
+		padding: 8px;
+	}
+
+	.discussion-card-last-comment-date {
+		font-size: 13px;
+		text-wrap: wrap;
+		padding: 8px;
+	}
+
+	.discussion-card-actions {
+		width: 50px;
+		padding: 8px;
+		text-wrap: nowrap;
+	}
+
+	.discussion-card {
+		width: 85%;
+	}
+
+	.discussion-card-actions-viewed img,
+	.discussion-card-actions-commented img {
+		margin-right: 3px;
+	}
+}

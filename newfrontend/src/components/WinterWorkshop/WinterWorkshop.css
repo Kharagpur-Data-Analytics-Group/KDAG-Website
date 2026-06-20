@@ -1,0 +1,29 @@
+.winter-workshop-category-tab {
+  /* background-color: #ddd; */
+  padding: 1rem;
+  box-shadow: 3px 3px 10px 1px #ddd;
+  border-radius: 10px;
+  width: 100%; 
+  text-align: center;
+}
+
+.winter-workshop-category-tabs .ant-tabs-tab-btn {
+  width: 100%;
+}
+
+.winter-workshop-category-tabs .ant-tabs-nav-list {
+  width: 100%;
+}
+
+.winter-workshop-category-tabs .ant-tabs-tab {
+  flex: 1 1 0px;
+}
+
+@media screen and (max-width: 800px) {
+  .winter-workshop-category-tab {
+    padding: none;
+    box-shadow: none;
+    border-radius: none;
+  }
+  
+}

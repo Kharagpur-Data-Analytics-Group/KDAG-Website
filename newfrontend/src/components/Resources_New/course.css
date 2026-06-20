@@ -1,0 +1,346 @@
+body {
+  font-family: "Inter", "JetBrains Mono", "Fira Code", sans-serif;
+  background-color: #0a0a0a;
+  color: #f8f8f8;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-section {
+  background: rgba(12, 0, 0, 0.85);
+  margin: 18px auto;
+  width: 92%;
+  max-width: 980px;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(255, 50, 50, 0.2), 0 0 28px rgba(255, 10, 10, 0.08);
+  border: 1.5px solid rgba(255, 64, 64, 0.25);
+  transition: box-shadow 0.3s ease;
+  opacity: 0.95;
+}
+.app-container {
+  margin-bottom: 100px;
+}
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  padding: 22px;
+  cursor: pointer;
+  border-radius: 16px;
+  border-bottom: 1px solid #ff1a1a44;
+  gap: 18px;
+}
+
+
+
+.dropdown-header:hover {
+  background: linear-gradient(90deg, #300008 0%, #4d000f 100%);
+  box-shadow: 0 0 10px #ff1a1a33;
+}
+
+.dropdown-title {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  font-size: 1.45rem;
+  color: #ff3333;
+  text-shadow: 0 0 12px rgba(255, 50, 50, 0.6);
+  vertical-align: middle;
+  margin-right: auto;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: visible;
+  max-width: calc(100% - 160px);
+}
+
+
+.dropdown-chevron {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0 2px;
+  height: 1.3em;
+  width: 1.3em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.dropdown-chevron polyline {
+  stroke: #ff4040;
+}
+
+td.center .bookmark-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+td.center.checkbox-cell {
+  padding-top: 18px;
+  padding-bottom: 10px;
+}
+
+
+.dropdown-chevron.open {
+  transform: rotate(90deg);
+}
+
+.dropdown-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 150px;
+}
+
+.progress-bar {
+  height: 8px;
+  flex: 1;
+  background: #1a0008;
+  border-radius: 6px;
+  border: 1px solid #ff4d4d44;
+  box-shadow: inset 0 0 12px #ff000044;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff1a1a, #ff3b3b, #ff5e5e);
+  border-radius: 6px 0 0 6px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 6px #ff4d4d88;
+}
+
+.progress-text {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.92rem;
+  color: #ff7b7b;
+  font-weight: bold;
+}
+
+.dropdown-content {
+  background: #0f0006;
+  transition: max-height 0.4s ease;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.content-inner {
+  padding: 22px;
+  overflow-x: auto;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.96rem;
+  color: #f3f3f3;
+  font-family: "Fira Code", monospace;
+  min-width: 640px;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #3a0a13;
+  vertical-align: middle;
+}
+
+.custom-table th {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.82rem;
+  color: #ff6666;
+  background: #1c0008;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+
+}
+
+.custom-table td {
+  font-family: "Inter", monospace;
+  font-weight: 500;
+  color: #f1f1f1;
+}
+
+.custom-table tbody tr:hover {
+  background-color: rgba(255, 30, 30, 0.05);
+}
+
+.custom-table td.center,
+.custom-table th.center-th {
+  text-align: center;
+}
+
+.center-icon {
+  text-align: center;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.center-icon > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #ff3333;
+  cursor: pointer;
+  filter: drop-shadow(0 0 2px #ff333377);
+}
+
+.custom-table a {
+  color: #ff4d4d;
+  font-weight: 600;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.custom-table a:hover {
+  color: #ff9c9c;
+}
+
+.bookmark-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  transition: filter 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bookmark-btn svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.bookmark-btn.active svg {
+  filter: drop-shadow(0 0 6px #ff4040aa);
+  stroke: #ff4d4d;
+  fill: #ff4d4d;
+}
+
+.bookmark-btn:focus {
+  outline: 2px solid #ff4040;
+}
+
+.difficulty-tag {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 999px;
+  text-align: center;
+  box-shadow: 0 1px 6px #ff1a1a55;
+}
+
+.difficulty-easy {
+  background: linear-gradient(145deg, #00ff99, #00cc77);
+  color: #0a0a0a;
+  box-shadow: 0 0 8px #00ff9966;
+}
+
+.difficulty-medium {
+  background: linear-gradient(145deg, #ffe066, #ffc400);
+  color: #0a0a0a;
+  box-shadow: 0 0 8px #ffc40066;
+}
+
+.difficulty-hard {
+  background: linear-gradient(145deg, #ff3b3b, #c30000);
+  color: #ffffff;
+  box-shadow: 0 0 8px #ff3b3b66;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.custom-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  width: 100vw;
+  background: transparent;
+  z-index: 1000;
+}
+
+.custom-loading-spinner {
+  width: 3.2rem;
+  height: 3.2rem;
+  border: 5px solid #ff4040;
+  border-top: 5px solid #1a0008;
+  border-radius: 50%;
+  animation: custom-spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 18px #ff404055;
+}
+
+@keyframes custom-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.custom-loading-text {
+  color: #ff4040;
+  font-size: 1.5rem;
+  font-family: "JetBrains Mono", monospace;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 12px #ff404055;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .dropdown-title {
+    font-size: 1.9rem;
+  }
+
+  .dropdown-header {
+    width: 100%;
+  }
+
+  .dropdown-section {
+    margin: 5px;
+    width: 97%;
+  }
+
+  .progress-text {
+    font-size: 0.8rem;
+  }
+
+  .custom-table {
+    font-size: 0.85rem;
+    min-width: 100%;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 8px 6px;
+    font-size: 0.85rem;
+  }
+
+  .bookmark-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .content-inner {
+    padding: 10px;
+    overflow-x: auto;
+  }
+}

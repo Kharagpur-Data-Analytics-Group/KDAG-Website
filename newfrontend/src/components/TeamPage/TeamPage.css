@@ -1,0 +1,243 @@
+.members-head-list {
+  display: flex;
+  width: 90%;
+  max-width: 60rem;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.members-head-list-bottom {
+  margin-bottom: 5rem;
+}
+
+/* .members-head-list {
+	display: flex;
+	flex-direction: row;
+	max-width: 65rem;	
+	margin: auto;
+	justify-content: left;
+	overflow-x: scroll;
+	height: 450px;
+	padding-left: 40px;
+	padding-right: 20px;
+} */
+
+/* .members-head-list-bottom {
+	margin-bottom: 5rem;
+} */
+
+/* .members-head-list::after {
+	content: "";
+	position: absolute;
+	top: 610px;
+	right: 245px;
+	width: 100px; 
+	height: 52%;
+	background: linear-gradient(
+		to right,
+		rgba(255, 255, 255, 0),
+		rgba(0, 0, 0, 1)
+	);
+	pointer-events: none;
+} */
+
+/* .members-head-list::before{
+    content: "";
+	position: absolute;
+	top: 610px;
+	left: 245px;
+	width: 100px; 
+	height: 53%;
+	background: linear-gradient(
+		to left,
+		rgba(255, 255, 255, 0),
+        rgb(0, 0, 0)
+	);
+	pointer-events: none;
+    z-index: 300;
+} */
+
+.members-head-list-SM {
+  /* display: flex;
+	flex-direction: row;
+	max-width: 65rem;
+	margin: auto;
+	justify-content: left;
+	overflow-x: scroll;
+	height: 450px;
+	padding-left: 40px;
+	padding-right: 20px; */
+
+  display: flex;
+  width: 90%;
+  max-width: 60rem;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* .members-head-list-SM::after{
+    content: "";
+	position: absolute;
+	top: 1165px;
+	right: 245px;
+	width: 100px; 
+	height: 53%;
+	background: linear-gradient(
+		to right,
+		rgba(255, 255, 255, 0),
+		rgba(0, 0, 0, 1)
+	);
+	pointer-events: none;
+}
+
+.members-head-list-SM::before{
+    content: "";
+	position: absolute;
+	top: 1165px;
+	left: 245px;
+	width: 100px; 
+	height: 53%;
+	background: linear-gradient(
+		to left,
+		rgba(255, 255, 255, 0),
+        rgb(0, 0, 0)
+	);
+	pointer-events: none;
+    z-index: 300;
+} */
+
+.members-head-list-Alum {
+  display: flex;
+  flex-direction: row;
+  max-width: 65rem;
+  margin: auto;
+  justify-content: left;
+  overflow-x: scroll;
+  height: 450px;
+  padding-left: 40px;
+  padding-right: 20px;
+}
+
+.members-head-list-Alum::-webkit-scrollbar {
+  width: 0px;
+}
+
+.members-head-list-Alum::after {
+  content: '';
+  position: absolute;
+  top: 3540px;
+  right: 245px;
+  width: 100px;
+  height: 60%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(0, 0, 0, 1)
+  );
+  pointer-events: none;
+}
+
+.members-head-list-Alum::before {
+  content: '';
+  position: absolute;
+  top: 3540px;
+  left: 245px;
+  width: 100px;
+  height: 60%;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(0, 0, 0));
+  pointer-events: none;
+  z-index: 300;
+}
+
+.floating-action-button {
+  position: fixed;
+  bottom: 20px;
+  z-index: 100;
+  right: 20px;
+  background: transparent;
+  backdrop-filter: blur(3px);
+  border-radius: 100px;
+  border: solid red 2px;
+  padding: 8px 20px;
+  font-size: 18px;
+  font-weight: 500;
+  text-shadow: 0 0 10px black;
+  color: white;
+  transition: all 0.2s;
+}
+
+.floating-action-button:hover {
+  box-shadow: 0 0 10px rgb(255, 0, 0);
+}
+
+@media screen and (max-width: 1000px) {
+  .members-head-list {
+    display: flex;
+    width: 100%;
+    max-width: 60rem;
+    margin: auto;
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: center;
+  }
+
+  .members-head-list-bottom {
+    margin-bottom: 5rem;
+  }
+
+  .members-head-list::after {
+    opacity: 0;
+  }
+
+  .members-head-list::before {
+    opacity: 0;
+  }
+
+  .members-head-list-SM::before {
+    opacity: 0;
+  }
+
+  .members-head-list-SM {
+    display: flex;
+    width: 100%;
+    max-width: 60rem;
+    margin: auto;
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: center;
+  }
+
+  .members-head-list-Alum {
+    display: flex;
+    flex-direction: row;
+    max-width: 65rem;
+    margin: auto;
+    justify-content: left;
+    overflow-x: scroll;
+    height: 450px;
+    padding-left: 40px;
+    padding-right: 20px;
+  }
+
+  .members-head-list-SM::after {
+    opacity: 0;
+  }
+
+  .members-head-list-Alum::before {
+    opacity: 1;
+    top: 2922px;
+    left: 0px;
+    width: 50px;
+    height: 50%;
+  }
+
+  .members-head-list-Alum::after {
+    opacity: 1;
+    top: 2922px;
+    right: 0px;
+    width: 50px;
+    height: 50%;
+  }
+}

@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500");
+
+html {
+  font-size: 100%;
+}
+
+:root {
+  --black: #000000;
+  --gray: #4a4a4a;
+  --lightgray: #f4f4f4;
+  --blue: #407bff;
+  --white: #ffffff;
+}
+
+.winter-workshop-tab-title {
+  align-items: center;
+  display: flex;
+  height: 3rem;
+  min-width: 7rem;
+  padding: 0 0px;
+  position: relative;
+}
+
+.winter-workshop-title {
+  letter-spacing: 0;
+  margin-left: 1.25rem;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+}
+
+.winter-workshop-blue-box {
+  height: 3rem;
+  width: 1.5rem;
+  background-color: var(--blue);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+@media only screen and (max-device-width: 480px) {
+}

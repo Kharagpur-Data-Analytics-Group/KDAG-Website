@@ -1,0 +1,86 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@tailwindcss/postcss": "^4.1.10",
+    "@tailwindcss/vite": "^4.1.10",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "antd": "^4.17.3",
+    "axios": "^1.7.9",
+    "embla-carousel-react": "^8.2.0",
+    "framer-motion": "^12.23.26",
+    "jspdf": "^2.5.2",
+    "jwt-decode": "^4.0.0",
+    "lucide-react": "^0.562.0",
+    "plyr-react": "^5.1.2",
+    "postcss": "^8.5.6",
+    "react": "^18.2.0",
+    "react-countup": "^6.4.0",
+    "react-dom": "^18.2.0",
+    "react-owl-carousel": "^2.3.3",
+    "react-player": "^2.11.0",
+    "react-router-dom": "^5.3.4",
+    "react-scripts": "5.0.1",
+    "react-simple-typewriter": "^5.0.1",
+    "react-toastify": "^8.2.0",
+    "react-tsparticles": "^2.5.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.4",
+    "styled-components": "^6.1.8",
+    "tailwindcss": "^4.1.10",
+    "tsparticles": "^2.5.3",
+    "typewriter-effect": "^2.20.1",
+    "video.js": "^7.20.3",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "serve -s dist -l 3000",
+    "serve:prod": "serve -s dist -l 3000 --single",
+    "test": "react-scripts test",
+    "test:watch": "react-scripts test --watchAll",
+    "test:coverage": "react-scripts test --coverage",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage": "",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@vitejs/plugin-react": "^5.1.4",
+    "cross-env": "^7.0.3",
+    "gh-pages": "^6.3.0",
+    "serve": "^14.2.1",
+    "vite": "^7.3.3"
+  }
+}

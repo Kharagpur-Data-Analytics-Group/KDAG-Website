@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cert-star-container {
+    color: #e5e7eb;
+    padding: 20px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    width: 80%;
+    max-width: 900px;
+}
+
+.cert-content-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.cert-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.cert-main-title {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #f87171, #fca5a5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.cert-subtitle {
+    color: #94a3b8;
+    font-size: 16px;
+}
+
+.cert-steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.cert-step-card {
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    /* Blue border */
+    border-radius: 18px;
+    padding: 24px;
+    backdrop-filter: blur(14px);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.cert-step-header {
+    display: flex;
+    gap: 16px;
+}
+
+.cert-step-number {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    /* Blue gradient */
+    color: #020617;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.cert-step-content {
+    flex: 1;
+}
+
+.cert-step-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #f8fafc;
+}
+
+.cert-step-description {
+    color: #cbd5f5;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.cert-link {
+    color: #38bdf8;
+    /* Blue link */
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.cert-link:hover {
+    color: #7dd3fc;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+}
+
+.cert-link-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.cert-image-wrapper {
+    margin-top: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.cert-image-wrapper img {
+    width: 100%;
+    display: block;
+}
+
+.cert-welcome-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #ffffff;
+}
+
+.cert-main-subtitle {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #38bdf8, #2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+    .cert-main-title {
+        font-size: 24px;
+    }
+}
