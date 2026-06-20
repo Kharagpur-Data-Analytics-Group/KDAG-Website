@@ -1,7 +1,6 @@
 import React from "react";
-import "./AlumniPageHeading.css";
 
-const AlumniPageHeading2 = ({ text }) => {
+const AlumniPageHeading = ({ text }) => {
 	return (
 		<div className="w-9/10 max-w-7xl flex items-center">
 			<div className="flex justify-end">
@@ -68,4 +67,4 @@ const AlumniPageHeading2 = ({ text }) => {
 	);
 };
 
-export default AlumniPageHeading2;
+export default AlumniPageHeading;

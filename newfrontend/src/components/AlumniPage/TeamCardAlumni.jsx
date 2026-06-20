@@ -1,7 +1,7 @@
 import React from 'react'
 import Fade from "../Common/Motion/Fade.js";
 
-const TeamCardAlumni2 = ({ member }) => {
+const TeamCardAlumni = ({ member }) => {
   return (
     <>
         <div className='w-1/2 max-w-60' 
@@ -22,7 +22,7 @@ const TeamCardAlumni2 = ({ member }) => {
 						<p className='group-hover:!text-[#fb8787]'>{member?.name || "Name of Member"}</p>
 					</div>
 
-					<div class="opacity-0 absolute text-center group-hover:opacity-100 group-hover:bottom-7.5">
+					<div class="opacity-0  text-center group-hover:opacity-100 group-hover:bottom-7.5">
 						<p className='group-hover:!text-[#fb8787]'>{member?.workplace || ""}</p>
 					</div>
 
@@ -67,4 +67,4 @@ const TeamCardAlumni2 = ({ member }) => {
   )
 }
 
-export default TeamCardAlumni2
+export default TeamCardAlumni

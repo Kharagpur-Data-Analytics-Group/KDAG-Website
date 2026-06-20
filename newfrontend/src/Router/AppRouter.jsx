@@ -9,7 +9,6 @@ import BlogPage from "../components/Blog/BlogPage";
 import ResourcesPage from "../components/Resources/ResourcesPage";
 import EventsPage from "../components/Events/EventsPage";
 import TeamPage from "../components/TeamPage/TeamPage";
-import AlumniPage from "../components/AlumniPage/AlumniPage";
 import ScrollToTop from "../components/Common/ScrollToTop/ScrollToTop.js";
 import Footer from "../components/Common/Footer/Footer";
 import WinterWorkshop from "../components/WinterWorkshop/WinterWorkshop";
@@ -35,7 +34,7 @@ import Course from "../components/Resources_New/course.js";
 import Register from '../components/AuthenticationPages/Register.js';
 import ManageTeam2 from "../components/ManageTeam/ManageTeam2.js";
 import NotFound from "../components/NotFound/NotFound.js";
-import AlumniPage2 from "../components/AlumniPage/AlumniPage2.jsx";
+import AlumniPage from "../components/AlumniPage/AlumniPage.jsx";
 
 const AppRouter = () => {
 	return (
@@ -81,7 +80,7 @@ const AppRouter = () => {
 								<Register />
 							</Route>
 							<Route path="/alumni">
-								<AlumniPage2 />
+								<AlumniPage />
 							</Route>
 							<Route path="/forum">
 								<ForumPage />

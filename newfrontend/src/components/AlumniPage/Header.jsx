@@ -1,6 +1,6 @@
 import Reac, { useState, useEffect } from 'react';
 
-const Header2 = () => {
+const Header = () => {
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -34,4 +34,4 @@ const Header2 = () => {
   );
 };
 
-export default Header2
+export default Header
