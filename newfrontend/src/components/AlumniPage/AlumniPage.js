@@ -1,5 +1,6 @@
 import React from "react";
 import TeamCardAlum from "./TeamCardAlumni";
+import TeamCardAlumni2 from "./TeamCardAlumni2.jsx";
 import AlumniPageHeading from "./AlumniPageHeading";
 import members_2016 from "./AlumniStatic2016";
 import members_2017 from "./AlumniStatic2017";
@@ -30,6 +31,13 @@ const AlumniPage = () => {
 					return <TeamCardAlum key={member.id} member={member} />;
 				})}
 			</div>
+
+			<div className="alumni-members-list">
+				{members_2025?.map((member) => {
+					return <TeamCardAlumni2 key={member.id} member={member} />;
+				})}
+			</div>
+
 			<Fade left>
 				<AlumniPageHeading text="Graduating Batch Of 2024" />
 			</Fade>{" "}
