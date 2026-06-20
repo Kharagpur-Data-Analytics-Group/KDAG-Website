@@ -22,7 +22,7 @@ const TeamCardAlumni2 = ({ member }) => {
 						<p className='group-hover:!text-[#fb8787]'>{member?.name || "Name of Member"}</p>
 					</div>
 
-					<div class="opacity-0  text-center group-hover:opacity-100 group-hover:bottom-7.5">
+					<div class="opacity-0 absolute text-center group-hover:opacity-100 group-hover:bottom-7.5">
 						<p className='group-hover:!text-[#fb8787]'>{member?.workplace || ""}</p>
 					</div>
 

@@ -35,6 +35,7 @@ import Course from "../components/Resources_New/course.js";
 import Register from '../components/AuthenticationPages/Register.js';
 import ManageTeam2 from "../components/ManageTeam/ManageTeam2.js";
 import NotFound from "../components/NotFound/NotFound.js";
+import AlumniPage2 from "../components/AlumniPage/AlumniPage2.jsx";
 
 const AppRouter = () => {
 	return (
@@ -80,7 +81,7 @@ const AppRouter = () => {
 								<Register />
 							</Route>
 							<Route path="/alumni">
-								<AlumniPage />
+								<AlumniPage2 />
 							</Route>
 							<Route path="/forum">
 								<ForumPage />
