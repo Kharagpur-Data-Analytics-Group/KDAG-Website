@@ -419,12 +419,12 @@ const RegisterPage = () => {
 								<li>
 									<a
 										className="kdsh-link"
-										href="https://github.com/shauryaraj-kgp/Maze_Solver"
+										href="https://github.com/pathwaycom/arc-task-gen"
 										target="_blank"
 										rel="noreferrer noopener"
 										style={{ cursor: "pointer" }}
 									>
-										Pathway
+										ARC-TASK-GEN
 									</a>
 								</li>
 								{/* <li>

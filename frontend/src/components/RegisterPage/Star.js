@@ -2,7 +2,7 @@ import React from "react";
 import { Star, ExternalLink, AlertCircle } from "lucide-react";
 import "./Star.css";
 
-import repo1 from "./../../assets/llm_repo.png";
+import repo1 from "./../../assets/arc_task_repo.png";
 import repo2 from "./../../assets/pathway_repo.png";
 import starred from "./../../assets/starred_repo.png";
 import profile_icon from "./../../assets/profile_icon.png";
@@ -52,7 +52,7 @@ export default function GitHubStarGuide() {
                 <p className="step-description">
                   Open{" "}
                   <a
-                    href="https://github.com/shauryaraj-kgp/Maze_Solver"
+                    href="https://github.com/pathwaycom/arc-task-gen"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="link"
@@ -64,7 +64,7 @@ export default function GitHubStarGuide() {
               </div>
             </div>
             <div className="image-wrapper">
-                <img src={repo1} alt="LLM Repo Star Button" />
+                <img src={repo1} alt="Arc Task Repo Star Button" />
             </div>
             
           </div>
