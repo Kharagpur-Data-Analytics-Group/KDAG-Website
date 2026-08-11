@@ -136,7 +136,7 @@ def get_starred_repositories(github_id):
 
 
 def check_required_repositories(starred_repos):
-    required_repos = ["Maze_Solver"]
+    required_repos = ["arc-task-gen"]
     starred_repo_names = [
         repo["name"] for repo in starred_repos["starred_repositories"]
     ]

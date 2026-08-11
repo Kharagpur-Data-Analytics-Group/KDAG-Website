@@ -93,11 +93,11 @@ const Navbar = ({ noborder }) => {
             </Link>
           </div>
           <div className="kdag-nav-items">
-            <div className="kdag-nav-item ml-sheet">
+            {/* <div className="kdag-nav-item ml-sheet">
               <NavLink activeStyle={active_style} to="/register-hackathon">
                 Hackathon
               </NavLink>
-            </div>
+            </div> */}
             <div className="kdag-nav-item">
               <NavLink activeStyle={active_style} to="/events">
                 Events
@@ -201,14 +201,14 @@ const Navbar = ({ noborder }) => {
 
                 {isMenuOpen && (
                   <ul>
-                    <li>
+                    {/* <li>
                       <NavLink
                         to="/register-hackathon"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                       >
-                        KDSH
+                        Hackathon
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                       <NavLink
                         to="/events"
