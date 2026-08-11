@@ -419,7 +419,7 @@ const RegisterPage = () => {
 								<li>
 									<a
 										className="kdsh-link"
-										href="https://github.com/pathwaycom/pathway"
+										href="https://github.com/shauryaraj-kgp/Maze_Solver"
 										target="_blank"
 										rel="noreferrer noopener"
 										style={{ cursor: "pointer" }}
@@ -427,7 +427,7 @@ const RegisterPage = () => {
 										Pathway
 									</a>
 								</li>
-								<li>
+								{/* <li>
 									<a
 										className="kdsh-link"
 										href="https://github.com/pathwaycom/llm-app"
@@ -437,7 +437,7 @@ const RegisterPage = () => {
 									>
 										LLM App
 									</a>
-								</li>
+								</li> */}
 							</ul>
 						</div>
 					</div>

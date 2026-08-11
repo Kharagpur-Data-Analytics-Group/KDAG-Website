@@ -437,8 +437,8 @@ const ManageTeam = () => {
           <p className="mt-subtitle">
             Create your team and start your hackathon journey today!
           </p>
-          <a href="/register-kdsh" className="mt-primary-btn">
-            Register for KDSH
+          <a href="/register-hackathon" className="mt-primary-btn">
+            Register for Hackathon
           </a>
         </div>
       </div>

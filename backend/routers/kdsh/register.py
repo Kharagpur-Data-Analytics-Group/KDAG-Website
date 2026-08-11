@@ -136,7 +136,7 @@ def get_starred_repositories(github_id):
 
 
 def check_required_repositories(starred_repos):
-    required_repos = ["pathway", "llm-app"]
+    required_repos = ["Maze_Solver"]
     starred_repo_names = [
         repo["name"] for repo in starred_repos["starred_repositories"]
     ]
@@ -267,17 +267,17 @@ def check_register():
         if not re.match(r"^[a-zA-Z0-9\s]+$", team_name):
             return jsonify({"error": "Team name can only contain letters, numbers and spaces."}), 400
 
-        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+        if mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
             {"GitHubID": github_id}
         ):
             return jsonify({"error": "GitHub ID already registered."}), 400
 
-        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+        if mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
             {"mobile": mobile}
         ):
             return jsonify({"error": "Phone number already registered."}), 400
 
-        if mongo.cx["KDSH_2026"].kdsh2026_teams.find_one(
+        if mongo.cx["PATHWAY_2026"].path2026_teams.find_one(
             {"teamName": team_name}
         ):
             return jsonify({"error": "Team name already exists."}), 400
@@ -295,12 +295,12 @@ def check_register():
 
         while True:
             team_code = generate_team_code()
-            if not mongo.cx["KDSH_2026"].kdsh2026_teams.find_one(
+            if not mongo.cx["PATHWAY_2026"].path2026_teams.find_one(
                 {"teamCode": team_code}
             ):
                 break
 
-        mongo.cx["KDSH_2026"].kdsh2026_participants.insert_one({
+        mongo.cx["PATHWAY_2026"].path2026_participants.insert_one({
             "isTeamLeader": True,
             "firstname": firstname,
             "lastname": lastname,
@@ -315,7 +315,7 @@ def check_register():
             "registered_at": datetime.utcnow()
         })
 
-        mongo.cx["KDSH_2026"].kdsh2026_teams.insert_one({
+        mongo.cx["PATHWAY_2026"].path2026_teams.insert_one({
             "teamName": team_name,
             "teamCode": team_code,
             "teamleader_github": github_id,
@@ -353,7 +353,7 @@ def check_participants():
             user = user.strip().lower()  
         if not user:
             return jsonify({"error": "GitHub ID is required."}), 400
-        existing_user = mongo.cx['KDSH_2026'].kdsh2026_participants.find_one({"GitHubID": user})
+        existing_user = mongo.cx['PATHWAY_2026'].path2026_participants.find_one({"GitHubID": user})
         if existing_user:
             serialized_user = serialize_document(existing_user)
             return jsonify({"message": f"{user} already exists in the database", "user": serialized_user}), 200
@@ -378,7 +378,7 @@ def check_team():
             team_name = team_name.strip().lower() 
         if not team_name:
             return jsonify({"error": "Team name is required."}), 400
-        existing_team = mongo.cx['KDSH_2026'].kdsh2026_teams.find_one({"teamName": team_name})
+        existing_team = mongo.cx['PATHWAY_2026'].path2026_teams.find_one({"teamName": team_name})
         if existing_team:
             serialized_team = serialize_document(existing_team)
             return jsonify({"message": f"{team_name} already EXISTS.", "team": serialized_team}), 200
@@ -405,7 +405,7 @@ def certificate_lookup():
         if not email:
             return jsonify({"error": "Email is required."}), 400
 
-        col = mongo.cx["KDSH_2026"].kdsh2026_full_list
+        col = mongo.cx["PATHWAY_2026"].path2026_full_list
 
         # existing_by_github = col.find_one(
         #     {"$or": [{"GitHubID": github_id}, {"GitHubID": github_id}]}
@@ -495,7 +495,7 @@ def certificate_lookup():
         #     }), 400
 
         # # Check if GitHub ID is already used in participants collection
-        # existing_participant = mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+        # existing_participant = mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
         #     {"GitHubID": github_id}
         # )
         # if existing_participant:
@@ -574,12 +574,12 @@ def join_team():
         if not team_code:
             return jsonify({"error": "Team code is required."}), 400
 
-        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+        if mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
             {"mobile": mobile}
         ):
             return jsonify({"error": "Phone number already registered."}), 400
 
-        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        team = mongo.cx["PATHWAY_2026"].path2026_teams.find_one({"teamCode": team_code})
         if not team:
             return jsonify({"error": "Invalid team code."}), 400
 
@@ -589,7 +589,7 @@ def join_team():
         if team["numMembers"] >= 4:
             return jsonify({"error": "Team is already full."}), 400
 
-        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+        if mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
             {"GitHubID": github_id}
         ):
             return jsonify({"error": "GitHub ID already registered."}), 400
@@ -607,7 +607,7 @@ def join_team():
                 "error": f'Please star required repositories: {", ".join(missing_repos)}'
             }), 400
 
-        update_result = mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+        update_result = mongo.cx["PATHWAY_2026"].path2026_teams.update_one(
             {
                 "_id": team["_id"],
                 "numMembers": {"$lt": 4},
@@ -625,7 +625,7 @@ def join_team():
         if update_result.modified_count == 0:
             return jsonify({"error": "Failed to join team. Try again."}), 400
 
-        mongo.cx["KDSH_2026"].kdsh2026_participants.insert_one({
+        mongo.cx["PATHWAY_2026"].path2026_participants.insert_one({
             "isTeamLeader": False,
             "firstname": firstname,
             "lastname": lastname,
@@ -640,7 +640,7 @@ def join_team():
             "joined_at": datetime.utcnow()
         })
 
-        mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+        mongo.cx["PATHWAY_2026"].path2026_teams.update_one(
             {
                 "_id": team["_id"],
                 "numMembers": {"$gte": 2}
@@ -681,7 +681,7 @@ def get_user_teams():
 
         email = user["email"].lower()
 
-        participants_col = mongo.cx["KDSH_2026"]["kdsh2026_participants"]
+        participants_col = mongo.cx["PATHWAY_2026"]["path2026_participants"]
         
         # Find user's participant record to get their GitHub ID
         user_participant = participants_col.find_one({"mail": email})
@@ -691,7 +691,7 @@ def get_user_teams():
 
         # Find teams where user is leader (by email)
         leader_teams = list(
-            mongo.cx["KDSH_2026"]["kdsh2026_teams"].find(
+            mongo.cx["PATHWAY_2026"]["path2026_teams"].find(
                 {"teamleader_email": email}
             )
         )
@@ -700,7 +700,7 @@ def get_user_teams():
         member_teams = []
         if user_github_id:
             member_teams = list(
-                mongo.cx["KDSH_2026"]["kdsh2026_teams"].find(
+                mongo.cx["PATHWAY_2026"]["path2026_teams"].find(
                     {"members_github": user_github_id}
                 )
             )
@@ -785,7 +785,7 @@ def remove_member():
 
         leader_email = user["email"].lower()
 
-        team = mongo.cx["KDSH_2026"]["kdsh2026_teams"].find_one(
+        team = mongo.cx["PATHWAY_2026"]["path2026_teams"].find_one(
             {"teamCode": team_code}
         )
 
@@ -809,7 +809,7 @@ def remove_member():
 
         new_num_members = max(team["numMembers"] - 1, 0)
 
-        mongo.cx["KDSH_2026"]["kdsh2026_teams"].update_one(
+        mongo.cx["PATHWAY_2026"]["path2026_teams"].update_one(
             {"_id": team["_id"]},
             {
                 "$pull": {
@@ -823,7 +823,7 @@ def remove_member():
             }
         )
 
-        mongo.cx["KDSH_2026"]["kdsh2026_participants"].delete_one(
+        mongo.cx["PATHWAY_2026"]["path2026_participants"].delete_one(
             {"GitHubID": github_to_remove}
         )
 
@@ -857,7 +857,7 @@ def leave_team():
 
         team_code = data.get("teamCode").strip().upper()
 
-        team = mongo.cx["KDSH_2026"]["kdsh2026_teams"].find_one(
+        team = mongo.cx["PATHWAY_2026"]["path2026_teams"].find_one(
             {"teamCode": team_code}
         )
 
@@ -869,7 +869,7 @@ def leave_team():
             return jsonify({"error": "Team leader cannot leave the team. Please delete the team or transfer leadership first."}), 403
 
         # Find user's participant record to get their GitHub ID
-        participants_col = mongo.cx["KDSH_2026"]["kdsh2026_participants"]
+        participants_col = mongo.cx["PATHWAY_2026"]["path2026_participants"]
         user_participant = participants_col.find_one({"mail": user_email})
         
         if not user_participant:
@@ -885,7 +885,7 @@ def leave_team():
             return jsonify({"error": "You are not a member of this team"}), 403
 
         # Remove user from team
-        mongo.cx["KDSH_2026"]["kdsh2026_teams"].update_one(
+        mongo.cx["PATHWAY_2026"]["path2026_teams"].update_one(
             {"_id": team["_id"]},
             {
                 "$pull": {
@@ -927,7 +927,7 @@ def edit_team_details():
 
         team_code = data['teamCode'].strip().upper()
 
-        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        team = mongo.cx["PATHWAY_2026"].path2026_teams.find_one({"teamCode": team_code})
         if not team:
             return jsonify({"error": "Team not found."}), 404
 
@@ -990,20 +990,20 @@ def edit_team_details():
                 return jsonify({"error": "Team name can only contain letters, numbers and spaces."}), 400
             
             # ensure uniqueness (exclude current team)
-            existing = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamName": new_team_name, "teamCode": {"$ne": team_code}})
+            existing = mongo.cx["PATHWAY_2026"].path2026_teams.find_one({"teamName": new_team_name, "teamCode": {"$ne": team_code}})
             if existing:
                 return jsonify({"error": "Team name already exists."}), 400
             update_fields['teamName'] = new_team_name
 
         # All validations passed; perform update on team doc
         old_team_name = team.get("teamName")
-        mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+        mongo.cx["PATHWAY_2026"].path2026_teams.update_one(
             {"teamCode": team_code},
             {"$set": update_fields}
         )
 
         # Propagate changes to participant documents to keep consistency
-        participants_col = mongo.cx["KDSH_2026"].kdsh2026_participants
+        participants_col = mongo.cx["PATHWAY_2026"].path2026_participants
 
         # Update leader's personal fields in participants collection
         leader_github = team.get("teamleader_github")
@@ -1040,7 +1040,7 @@ def finalize_team():
 
         team_code = data['teamCode'].strip().upper()
 
-        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        team = mongo.cx["PATHWAY_2026"].path2026_teams.find_one({"teamCode": team_code})
         if not team:
             return jsonify({"error": "Team not found."}), 404
 
@@ -1048,7 +1048,7 @@ def finalize_team():
         if team_leader_email != user_email:
             return jsonify({"error": "Only team leader can finalize the team."}), 403
 
-        mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+        mongo.cx["PATHWAY_2026"].path2026_teams.update_one(
     {"teamCode": team_code},
     {"$set": {"is_team_finalized": True}}
 )
@@ -1075,7 +1075,7 @@ def delete_team():
             return jsonify({"error": "Team code is required."}), 400
 
         team_code = data['teamCode'].strip().upper()
-        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        team = mongo.cx["PATHWAY_2026"].path2026_teams.find_one({"teamCode": team_code})
 
         if not team:
             return jsonify({"error": "Team not found."}), 404
@@ -1086,9 +1086,9 @@ def delete_team():
 
         gh_ids = [team.get("teamleader_github"), *team.get("members_github", [])]
 
-        mongo.cx["KDSH_2026"].kdsh2026_teams.delete_one({"teamCode": team_code})
+        mongo.cx["PATHWAY_2026"].path2026_teams.delete_one({"teamCode": team_code})
 
-        mongo.cx["KDSH_2026"].kdsh2026_participants.delete_many(
+        mongo.cx["PATHWAY_2026"].path2026_participants.delete_many(
             {"GitHubID": {"$in": [g for g in gh_ids if g]}}
         )
         return jsonify({"message": "Team deleted successfully."}), 200

@@ -48,16 +48,16 @@ export default function GitHubStarGuide() {
             <div className="step-header">
               <div className="step-number">2</div>
               <div className="step-content">
-                <h3 className="step-title">Star Repository 1</h3>
+                <h3 className="step-title">Star Repository</h3>
                 <p className="step-description">
                   Open{" "}
                   <a
-                    href="https://github.com/pathwaycom/llm-app"
+                    href="https://github.com/shauryaraj-kgp/Maze_Solver"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="link"
                   >
-                    Repository 1 <ExternalLink className="link-icon" />
+                    Repository<ExternalLink className="link-icon" />
                   </a>{" "}
                   and click the <strong>Star</strong> button.
                 </p>
@@ -70,7 +70,7 @@ export default function GitHubStarGuide() {
           </div>
 
           {/* Step 3 */}
-          <div className="step-card">
+          {/* <div className="step-card">
             <div className="step-header">
               <div className="step-number">3</div>
               <div className="step-content">
@@ -94,12 +94,12 @@ export default function GitHubStarGuide() {
                 <img src={repo2} alt="Pathway Repo Star Button" />
             </div>
             
-          </div>
+          </div> */}
 
           {/* Step 4 */}
           <div className="step-card">
             <div className="step-header">
-                <div className="step-number">4</div>
+                <div className="step-number">3</div>
                 <div className="step-content">
                 <h3 className="step-title">Verify the Star</h3>
                 <p className="step-description">
@@ -115,7 +115,7 @@ export default function GitHubStarGuide() {
           {/* Step 5 */}
           <div className="step-card">
            <div className="step-header">
-             <div className="step-number">5</div>
+             <div className="step-number">4</div>
              <div className="step-content">
                <h3 className="step-title">Find Your GitHub Username</h3>
                <p className="step-description">
