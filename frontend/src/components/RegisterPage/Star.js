@@ -96,7 +96,8 @@ export default function GitHubStarGuide() {
             
           </div>
 
-        <div className="step-card">
+          {/* Step 4 */}
+          <div className="step-card">
             <div className="step-header">
                 <div className="step-number">4</div>
                 <div className="step-content">
@@ -109,10 +110,30 @@ export default function GitHubStarGuide() {
             <div className="image-wrapper">
                 <img src={starred} alt="Starred Icon" />
             </div>
-            </div>
+          </div>
 
-          
-          {/* <div className="important-note">
+          {/* Step 5 */}
+          <div className="step-card">
+           <div className="step-header">
+             <div className="step-number">5</div>
+             <div className="step-content">
+               <h3 className="step-title">Find Your GitHub Username</h3>
+               <p className="step-description">
+                 Click on your GitHub profile icon:
+               </p>
+             </div>
+           </div>
+             <div className="image-wrapper" style={{marginBottom: "15px"}}>
+               <img src={profile_icon} alt="Profile Icon"/>
+             </div>
+             <div className="image-wrapper">
+               <img src={profile_menu} alt="Profile Menu" />
+           </div>
+          </div>
+
+
+          {/* Important Note */}
+          <div className="important-note">
             <div className="note-content">
               <AlertCircle className="note-icon" />
               <div>
@@ -123,27 +144,7 @@ export default function GitHubStarGuide() {
                 </p>
               </div>
             </div>
-          </div> */}
-
-          {/* Step 5 */}
-          {/*<div className="step-card">
-            <div className="step-header">
-              <div className="step-number">5</div>
-              <div className="step-content">
-                <h3 className="step-title">Find Your GitHub Username</h3>
-                <p className="step-description">
-                  Click on your GitHub profile icon:
-                </p>
-              </div>
-            </div>
-              <div className="image-wrapper" style={{marginBottom: "15px"}}>
-                <img src={profile_icon} alt="Profile Icon"/>
-              </div>
-              <div className="image-wrapper">
-                <img src={profile_menu} alt="Profile Menu" />
-              
-            </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

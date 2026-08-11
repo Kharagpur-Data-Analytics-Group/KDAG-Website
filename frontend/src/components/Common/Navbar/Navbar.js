@@ -93,11 +93,11 @@ const Navbar = ({ noborder }) => {
             </Link>
           </div>
           <div className="kdag-nav-items">
-            {/*<div className="kdag-nav-item ml-sheet">
-              <NavLink activeStyle={active_style} to="/register-kdsh">
-                KDSH
+            <div className="kdag-nav-item ml-sheet">
+              <NavLink activeStyle={active_style} to="/register-hackathon">
+                Hackathon
               </NavLink>
-            </div>*/}
+            </div>
             <div className="kdag-nav-item">
               <NavLink activeStyle={active_style} to="/events">
                 Events
@@ -124,11 +124,11 @@ const Navbar = ({ noborder }) => {
                 Blog
               </NavLink>
             </div>
-            <div className="kdag-nav-item">
+            {/* <div className="kdag-nav-item">
               <NavLink activeStyle={active_style} to="/certificate">
                 Certificate
               </NavLink>
-            </div>
+            </div> */}
             <div className="kdag-nav-item">
               <NavLink
                 onClick={closeMobileMenu}
@@ -201,14 +201,14 @@ const Navbar = ({ noborder }) => {
 
                 {isMenuOpen && (
                   <ul>
-                    {/*<li>
+                    <li>
                       <NavLink
-                        to="/register-kdsh"
+                        to="/register-hackathon"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                       >
                         KDSH
                       </NavLink>
-                    </li>*/}
+                    </li>
                     <li>
                       <NavLink
                         to="/events"
@@ -249,14 +249,14 @@ const Navbar = ({ noborder }) => {
                         Blog
                       </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                       <NavLink
                         to="/certificate"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                       >
                         Certificate
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                       <NavLink
                         to="/team"
