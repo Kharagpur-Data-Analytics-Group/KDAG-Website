@@ -148,12 +148,10 @@
 	left: -100%;
 	width: 60%;
 	height: 100%;
-	background: linear-gradient(
-		120deg,
-		transparent,
-		rgba(255, 255, 255, 0.35),
-		transparent
-	);
+	background: linear-gradient(120deg,
+			transparent,
+			rgba(255, 255, 255, 0.35),
+			transparent);
 	animation: shimmer 2.5s infinite;
 }
 
@@ -171,6 +169,7 @@
 	0% {
 		left: -100%;
 	}
+
 	100% {
 		left: 200%;
 	}
@@ -209,8 +208,8 @@
 	padding: 25px;
 	width: 80%;
 	/* left: 10%; */
-	margin-bottom: 300px;
-	margin-top: 150px;
+	margin-bottom: 150px;
+	margin-top: 75px;
 	position: relative;
 }
 
@@ -235,7 +234,7 @@
 }
 
 .register-form-icons input:focus {
-  	box-shadow: none;
+	box-shadow: none;
 	outline: none;
 }
 
@@ -258,6 +257,7 @@
 	margin-bottom: 10px;
 	margin-top: 5px;
 }
+
 .register-form-gender label {
 	margin-right: 6px;
 	margin-left: 7px;
@@ -274,6 +274,7 @@
 	border-radius: 0px;
 	border: 0px;
 }
+
 .register-form-gender select option {
 	color: #333;
 }
@@ -298,12 +299,12 @@
 	padding-left: 90px;
 }
 
-.register-form-details-special input {	
+.register-form-details-special input {
 	border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
 }
 
 .register-form-details-special input:focus {
-  	box-shadow: none;
+	box-shadow: none;
 	outline: none;
 	border-bottom: 1px #1c1cf0 solid;
 	transition: border-bottom-color 0.25s ease;
@@ -335,13 +336,11 @@ input[type="number"] {
 
 .register-form-submit p {
 	text-align: center;
-	background-image: linear-gradient(
-		to right,
-		#1c1cf0,
-		#3572c3,
-		#3572c3,
-		#1c1cf0
-	);
+	background-image: linear-gradient(to right,
+			#1c1cf0,
+			#3572c3,
+			#3572c3,
+			#1c1cf0);
 	padding: 10px;
 	background-size: 300% 100%;
 	width: 100%;
@@ -396,8 +395,9 @@ input[type="number"] {
 		top: 100px;
 		margin: 0px 100px;
 	}
+
 	.register-form {
-		margin-top: 250px;
+		margin-top: 150px;
 	}
 }
 
@@ -417,7 +417,7 @@ input[type="number"] {
 	}
 
 	.register-form {
-		margin-top: 250px;
+		margin-top: 150px;
 	}
 }
 
@@ -426,6 +426,7 @@ input[type="number"] {
 		top: 100px;
 		margin: 0px 100px;
 	}
+
 	.kdsh2025_star_content {
 		padding: 20px;
 	}
@@ -434,8 +435,9 @@ input[type="number"] {
 	.kdsh2025_star_content .step_two {
 		font-size: 16px;
 	}
+
 	.register-form {
-		margin-top: 200px;
+		margin-top: 150px;
 	}
 }
 
@@ -453,8 +455,9 @@ input[type="number"] {
 		top: 240px;
 		margin: 0 90px;
 	}
+
 	.register-form {
-		margin-top: 200px;
+		margin-top: 150px;
 	}
 }
 
@@ -462,12 +465,14 @@ input[type="number"] {
 	.register-form-details-special #header {
 		display: none;
 	}
+
 	.kdsh2025_star_outer {
 		top: 100px;
 		margin: 0px 100px;
 	}
+
 	.register-form {
-		margin-top: 200px;
+		margin-top: 150px;
 	}
 }
 
@@ -485,9 +490,11 @@ input[type="number"] {
 		top: 250px;
 		margin: 0 90px;
 	}
+
 	.register-form {
-		margin-top: 200px;
+		margin-top: 150px;
 	}
+
 	/* />>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 	/*.kdsh2025_star_content .step_one,
 	.kdsh2025_star_content .step_two {
@@ -506,12 +513,15 @@ input[type="number"] {
 	.register-form-details {
 		padding-left: 60px;
 	}
+
 	.register-form-details-special {
 		padding-left: 70px;
 	}
+
 	.register-form-submit {
 		min-width: 350px;
 	}
+
 	.register-container .register-header .register-kdsh {
 		top: 95px;
 		left: 22%;
@@ -526,6 +536,7 @@ input[type="number"] {
 		margin: 0 50px;
 		font-size: 18px;
 	}
+
 	.kdsh2025_star_outer {
 		top: 100px;
 		margin: 0px 50px;
@@ -543,8 +554,9 @@ input[type="number"] {
 		top: 100px;
 		margin: 0px 50px;
 	}
+
 	.register-form {
-		margin-top: 200px;
+		margin-top: 150px;
 	}
 }
 
@@ -552,19 +564,22 @@ input[type="number"] {
 	.register-form-details-special {
 		padding-left: 40px;
 	}
+
 	.register-form-details {
 		padding-left: 30px;
 	}
+
 	.register-form-submit {
 		min-width: 320px;
 	}
+
 	.register-container .register-header .register-kdsh {
 		top: 85px;
 		left: 14%;
 		font-size: 45px;
 		padding: 5px 25px;
 	}
-	
+
 	.register-container .register-header .register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
@@ -572,6 +587,7 @@ input[type="number"] {
 		margin: 0 40px;
 		font-size: 16px;
 	}
+
 	.kdsh2025_star_outer {
 		margin: 0px 35px;
 	}
@@ -581,16 +597,19 @@ input[type="number"] {
 	.register-form-details-special {
 		padding-left: 30px;
 	}
+
 	.register-form-details {
 		padding-left: 20px;
 	}
+
 	.register-form-submit {
 		min-width: 280px;
 	}
+
 	.register-form-gender select {
 		width: 265px;
 	}
-	
+
 	.register-form input {
 		width: 265px;
 	}
@@ -603,7 +622,7 @@ input[type="number"] {
 		font-size: 45px;
 		padding: 5px 25px;
 	}
-	
+
 	.register-container .register-header .register-kdsh-desc {
 		padding: 20px;
 		font-weight: 600;
@@ -611,7 +630,7 @@ input[type="number"] {
 		margin: 0 40px;
 		font-size: 16px;
 	}
-	
+
 	.register-container .register-header .register-kdsh img {
 		height: 100px;
 	}
@@ -621,15 +640,19 @@ input[type="number"] {
 	.register-form-details-special {
 		padding-left: 30px;
 	}
+
 	.register-form-details {
 		padding-left: 10px;
 	}
+
 	.register-form-submit {
 		min-width: 100%;
 	}
+
 	.register-form input {
 		width: 240px;
 	}
+
 	.register-form-gender select {
 		width: 240px;
 	}
@@ -639,6 +662,7 @@ input[type="number"] {
 	.register-form-details {
 		padding-left: 20px;
 	}
+
 	.register-container .register-header .register-kdsh {
 		top: 80px;
 		left: 10%;
@@ -667,6 +691,7 @@ input[type="number"] {
 	.register-form input {
 		width: 210px;
 	}
+
 	.register-form-gender select {
 		width: 210px;
 	}
@@ -677,26 +702,33 @@ input[type="number"] {
 		top: 100px;
 		margin: 0px 35px;
 	}
+
 	.register-form {
-		margin-top: 200px;
+		margin-top: 150px;
 	}
 }
+
 @media (max-width: 400px) {
 	.register-form-details-special {
 		padding-left: 10px;
 	}
+
 	.register-form-details {
 		padding-left: 5px;
 	}
+
 	.register-form-submit {
 		min-width: 100%;
 	}
+
 	.register-form input {
 		width: 200px;
 	}
+
 	.register-form-gender select {
 		width: 202px;
 	}
+
 	.kdsh2025_star_outer {
 		margin: 0px 25px;
 	}
@@ -717,8 +749,9 @@ input[type="number"] {
 		margin: 0 20px;
 		font-size: 16px;
 	}
+
 	.register-form {
-		margin-top: 200px;
+		margin-top: 150px;
 	}
 }
 
@@ -726,6 +759,7 @@ input[type="number"] {
 	.register-form input {
 		width: 190px;
 	}
+
 	.register-form-gender select {
 		width: 192px;
 	}
@@ -735,12 +769,15 @@ input[type="number"] {
 	.register-form input {
 		width: 180px;
 	}
+
 	.register-form-gender select {
 		width: 182px;
 	}
+
 	.register-form-details-special {
 		padding-left: 15px;
 	}
+
 	.register-form-submit {
 		min-width: 100%;
 	}
@@ -750,6 +787,7 @@ input[type="number"] {
 	.register-form input {
 		width: 170px;
 	}
+
 	.register-form-gender select {
 		width: 172px;
 	}
@@ -759,6 +797,7 @@ input[type="number"] {
 	.register-form input {
 		width: 160px;
 	}
+
 	.register-form-gender select {
 		width: 162px;
 	}
@@ -768,6 +807,7 @@ input[type="number"] {
 	.register-form input {
 		width: 150px;
 	}
+
 	.register-form-gender select {
 		width: 152px;
 	}
@@ -777,66 +817,68 @@ input[type="number"] {
 	.register-form input {
 		width: 130px;
 	}
+
 	.register-form-gender select {
 		width: 132px;
 	}
+
 	.register-form-submit {
 		min-width: 100%;
 	}
 }
 
 .important-note2 {
-  margin-top: 24px;
-  padding: 14px 18px;
-  text-align: center;
-  line-height: 1.55;
-  color: #e6ecff;
-  font-size: 20px;
-  border-radius: 12px;
-  border: 1px solid rgba(120, 160, 255, 0.25);
-  max-width: 820px;
-  margin-left: auto;
-  margin-right: auto;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+	margin-top: 24px;
+	padding: 14px 18px;
+	text-align: center;
+	line-height: 1.55;
+	color: #e6ecff;
+	font-size: 20px;
+	border-radius: 12px;
+	border: 1px solid rgba(120, 160, 255, 0.25);
+	max-width: 820px;
+	margin-left: auto;
+	margin-right: auto;
+	transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .important-note2 strong {
-  color: #8fb3ff;
-  font-weight: 800;
-  font-size: 17px;
+	color: #8fb3ff;
+	font-weight: 800;
+	font-size: 17px;
 }
 
 .important-note2-link {
-  color: #8fb3ff;
-  cursor: pointer;
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color 0.25s ease, text-shadow 0.25s ease;
+	color: #8fb3ff;
+	cursor: pointer;
+	font-weight: 700;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	transition: color 0.25s ease, text-shadow 0.25s ease;
 }
 
 
 /* ---------- Responsive ---------- */
 
 @media (max-width: 820px) {
-  .important-note2 {
-    font-size: 14px;
-    padding: 12px 14px;
-    max-width: 92%;
-  }
+	.important-note2 {
+		font-size: 14px;
+		padding: 12px 14px;
+		max-width: 92%;
+	}
 }
 
 @media (max-width: 520px) {
-  .important-note2 {
-    font-size: 13.5px;
-    line-height: 1.45;
-    padding: 10px 12px;
-    border-radius: 10px;
-  }
+	.important-note2 {
+		font-size: 13.5px;
+		line-height: 1.45;
+		padding: 10px 12px;
+		border-radius: 10px;
+	}
 
-  .important-note2-link {
-    display: inline-block; 
-  }
+	.important-note2-link {
+		display: inline-block;
+	}
 }
 
 
@@ -856,20 +898,20 @@ input[type="number"] {
 }
 
 .kdsh_banner {
-  max-width: 900px;
-  margin: 0 auto 3rem auto;
-  padding: 0;
+	max-width: 900px;
+	margin: 0 auto 3rem auto;
+	padding: 0;
 }
 
 .kdsh_banner img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 20px;
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 20px;
 }
 
 @media (max-width: 768px) {
-  .kdsh_banner {
-    padding: 0 16px;   
-  }
+	.kdsh_banner {
+		padding: 0 16px;
+	}
 }

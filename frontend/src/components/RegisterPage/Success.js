@@ -10,7 +10,7 @@ import instagram from "./../../assets/kdsh2025_instagram.png";
 import facebook from "./../../assets/kdsh2025_facebook.png";
 import medium from "./../../assets/kdsh2025_medium.png";
 import linkedin from "./../../assets/kdsh2025_linkedin.png";
-import kdsh_2025 from "./../../assets/kdsh2025_logo.png";
+import banner_logo from "./../../assets/DataForge_big.png";
 
 const Success = () => {
 	const particless = React.useMemo(() => <Particless />, []);
@@ -22,19 +22,19 @@ const Success = () => {
 					<div className="spacer layer1"></div>
 					<Fade top>
 						<div className="success-register-kdsh">
-							<img src={kdsh_2025} alt="KDSH2025" />
+							<img src={banner_logo} alt="KDSH2025" />
 						</div>
 					</Fade>
 					<Fade top>
 						<div className="success-register-kdsh-desc">
 							<p>
 								Congratulations on successfully registering for{" "}
-								<strong>Kharagpur Data Science Hackathon 2026</strong>. 
+								<strong>DataForge 2026</strong>. 
 								For
 								timelines and other details related to the Hackathon Visit {" "}
 								<a
 									className="kdsh-unstop-link"
-									href="https://unstop.com/p/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
+									href="https://unstop.com/p/dataforge-2026-iit-kharagpur-1739346"
 									target="_blank"
 									rel="noreferrer noopener"
 								>
@@ -42,24 +42,24 @@ const Success = () => {
 								</a>.{" "}
 							</p>
 							<p>
-								Join the Whatsapp Group and Discord Channel for regular updates!
+								Join the Whatsapp Group for regular updates!
 							</p>
 							<p>
 								<a
-									href="https://chat.whatsapp.com/LguOtn8Dwyh19sajyCKNoQ"
+									href="https://chat.whatsapp.com/HOcAy0mnwcRJ7qPlRmPDuK?s=cl&p=i&mlu=4&amv=0"
 									target="_blank"
 									rel="noreferrer noopener"
 								>
 									<img src={whatsapp} alt="whatsapp" />
 								</a>
 
-								<a
+								{/* <a
 									href="https://discord.gg/fBfvXCTQF"
 									target="_blank"
 									rel="noreferrer noopener"
 								>
 									<img src={discord} alt="discord" />
-								</a>
+								</a> */}
 							</p>
 
 							<div className="important-note2" style={{ marginTop: "30px" }}>

@@ -22,8 +22,8 @@ import "../Resources_New/LoginPrompt.css";
 import { Copy, Check } from "lucide-react";
 import whatsapp from "./../../assets/kdsh2025_whatsapp.png";
 import discord from "./../../assets/kdsh2025_discord.png";
-import banner from "./../../assets/banner.png";
-import bannerSmall from "./../../assets/kdshbanner_small.png";
+import banner from "./../../assets/DataForge_big.png";
+import bannerSmall from "./../../assets/DataForge_small.png";
 
 const RegisterPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
@@ -342,7 +342,7 @@ const RegisterPage = () => {
 				<Fade top>
 					<div className="register-header">
 						<div className="spacer layer1"></div>
-						<div className="register-kdsh">KDSH 2026</div>
+						<div className="register-kdsh">DataForge 2026</div>
 						<div className="kdsh_banner">
 							<picture>
 								
@@ -353,7 +353,7 @@ const RegisterPage = () => {
 
 								<img
 								src={banner}
-								alt="KDSH Banner"
+								alt="DaraForge Banner"
 								style={{ width: "100%", height: "auto" }}
 								/>
 							</picture>
@@ -361,12 +361,15 @@ const RegisterPage = () => {
 
 						<div className="register-kdsh-desc">
 							<p>
-								The 6th Edition of the{" "}
-								<strong>Kharagpur Data Science Hackathon</strong> (KDSH) is here
-								to redefine excellence in data science. Dive into machine
-								learning, solve real-world challenges, and showcase your
-								innovative solutions. Connect with industry leaders, sharpen
-								your skills, and become a trailblazer in the field.
+								<strong>Kharagpur Data Science Hackathon (KDAG)</strong>, IIT Kharagpur, presents {" "}
+								<strong>DataForge 2026</strong>, a data science and analytics hackathon, sponsored by 
+								Pathway, designed to challenge participants with real-world data science and machine
+								learning problems.
+							</p>
+
+							<p>
+								Compete for a {" "}<strong>₹1.5L+ prize pool</strong> in cash prizes and exciting 
+								goodies from Pathway!
 							</p>
 
 							{/* <p>
@@ -381,15 +384,15 @@ const RegisterPage = () => {
 								Exposure through national media partners and India's largest techno-management fest.
 							</p> */}
 
-							{/* <p>
-								<strong>Registration deadline: 2nd January 2026 11:59 PM</strong> <br/>
-							</p> */}
+							<p>
+								<strong>Registration deadline: 24th August 2026 11:59 PM</strong> 
+							</p>
 
 							<p>
 								For more details about KDSH 2026, visit our {" "}
 								<a
 									className="kdsh-unstop-link"
-									href="https://unstop.com/p/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
+									href="https://unstop.com/p/dataforge-2026-iit-kharagpur-1739346"
 									target="_blank"
 									rel="noreferrer noopener"
 								>
@@ -615,7 +618,7 @@ const RegisterPage = () => {
 												Share this code with your teammates so they can join your team.
 											</p>
 											<p style={{ color: "white", fontSize: "16px", marginBottom: "15px" }}>
-												Join the WhatsApp Group and Discord Channel for regular updates!
+												Join the WhatsApp Group for regular updates!
 											</p>
 											<div style={{
 												display: "flex",
@@ -624,7 +627,7 @@ const RegisterPage = () => {
 												marginTop: "15px",
 											}}>
 												<a
-													href="https://chat.whatsapp.com/LguOtn8Dwyh19sajyCKNoQ"
+													href="https://chat.whatsapp.com/HOcAy0mnwcRJ7qPlRmPDuK?s=cl&p=i&mlu=4&amv=0"
 													target="_blank"
 													rel="noreferrer noopener"
 													style={{
@@ -639,7 +642,7 @@ const RegisterPage = () => {
 												>
 													<img src={whatsapp} alt="whatsapp" style={{ height: "50px", cursor: "pointer" }} />
 												</a>
-												<a
+												{/* <a
 													href="https://discord.gg/fBfvXCTQF"
 													target="_blank"
 													rel="noreferrer noopener"
@@ -654,7 +657,7 @@ const RegisterPage = () => {
 													}}
 												>
 													<img src={discord} alt="discord" style={{ height: "50px", cursor: "pointer" }} />
-												</a>
+												</a> */}
 											</div>
 											<div className="important-note2" style={{ marginTop: "20px" }}>
 												<strong>Important Next Step:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
