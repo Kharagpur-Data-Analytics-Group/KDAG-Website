@@ -464,7 +464,7 @@ const ManageTeam = () => {
               {team.is_team_finalized ? (
                 <strong>Your team has been finalized and will reflect on Unstop within 24 hours.</strong>
               ) : (
-                <><strong>Important:</strong> After all members have joined, Team Leader must finalize the team. Your team will only be registered on Unstop after finalization.</>
+                <><strong>Important:</strong> After all members have joined, Team Leader must finalize the team. Your team will only be reflected on Unstop after finalization.</>
               )}
             </div>
             {editingTeamId === team._id ? (
@@ -940,6 +940,9 @@ const ManageTeam = () => {
               <h3 id="mt-confirm-modal-title">Confirm Team Finalization</h3>
               <p>
                 <strong>Warning:</strong> This will LOCK your registration and this action can't be undone. You cannot Add/Delete any Team Members after confirming.
+              </p>
+              <p>
+                Only press {" "}<strong>CONFIRM</strong> when you DO NOT want to Add/Remove any member from your team.
               </p>
 
               <div className="mt-modal-actions">

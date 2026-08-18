@@ -4,12 +4,6 @@ import Particless from "../Common/Particles/Particless";
 import "react-toastify/dist/ReactToastify.css";
 import "./RegisterPage.css";
 import "./Success.css";
-import whatsapp from "./../../assets/kdsh2025_whatsapp.png";
-import discord from "./../../assets/kdsh2025_discord.png";
-import instagram from "./../../assets/kdsh2025_instagram.png";
-import facebook from "./../../assets/kdsh2025_facebook.png";
-import medium from "./../../assets/kdsh2025_medium.png";
-import linkedin from "./../../assets/kdsh2025_linkedin.png";
 import banner_logo from "./../../assets/DataForge_big.png";
 
 const Success = () => {
@@ -29,7 +23,7 @@ const Success = () => {
 						<div className="success-register-kdsh-desc">
 							<p>
 								Congratulations on successfully registering for{" "}
-								<strong>DataForge 2026</strong>. 
+								<strong>DataForge 2026</strong>.
 								For
 								timelines and other details related to the Hackathon Visit {" "}
 								<a
@@ -42,79 +36,30 @@ const Success = () => {
 								</a>.{" "}
 							</p>
 							<p>
-								Join the Whatsapp Group for regular updates!
-							</p>
-							<p>
+								Join the{" "}
 								<a
+									className="kdsh-unstop-link"
 									href="https://chat.whatsapp.com/HOcAy0mnwcRJ7qPlRmPDuK?s=cl&p=i&mlu=4&amv=0"
 									target="_blank"
 									rel="noreferrer noopener"
 								>
-									<img src={whatsapp} alt="whatsapp" />
+									Whatsapp Group
 								</a>
-
-								{/* <a
-									href="https://discord.gg/fBfvXCTQF"
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									<img src={discord} alt="discord" />
-								</a> */}
+								{" "}for regular updates!
 							</p>
 
 							<div className="important-note2" style={{ marginTop: "30px" }}>
 								<strong>Important for Team Leaders:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
-								<a href="/manage-team" style={{ color: "#60a5fa", textDecoration: "underline" }}>
+								<a
+									href="/manage-team"
+									className="important-note2-link"
+									style={{ color: "#8fb3ff", textDecoration: "underline", textUnderlineOffset: "3px" }}
+								>
 									Manage Team page
 								</a>{" "}
 								to complete your registration. Your team will only appear on Unstop after finalization.
 							</div>
-
-						{/* <p>Follow us on the following Platforms to stay updated</p>
-
-						<ul className="kdsh2025_success">
-							<li>
-								<a
-									className="kdsh-link"
-									href="https://www.instagram.com/kdag.iitkgp/"
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									<img src={instagram} alt="instagram" />
-								</a>
-							</li>
-							<li>
-								<a
-									className="kdsh-link"
-									href="https://www.facebook.com/kgpdag/"
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									<img src={facebook} alt="facebook" />
-								</a>
-							</li>
-							<li>
-								<a
-									className="kdsh-link"
-									href="https://in.linkedin.com/company/kdag"
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									<img src={linkedin} alt="linkedin" />
-								</a>
-							</li>
-							<li>
-								<a
-									className="kdsh-link"
-									href="https://kdagiit.medium.com/"
-									target="_blank"
-									rel="noreferrer noopener"
-								>
-									<img src={medium} alt="medium" />
-								</a>
-							</li>
-						</ul> */}
-					</div>
+						</div>
 					</Fade>
 				</div>
 			</div>
