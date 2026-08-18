@@ -361,7 +361,7 @@ const RegisterPage = () => {
 
 						<div className="register-kdsh-desc">
 							<p>
-								<strong>Kharagpur Data Science Hackathon (KDAG)</strong>, IIT Kharagpur, presents {" "}
+								<strong>Kharagpur Data Analytics Group (KDAG)</strong>, IIT Kharagpur, presents {" "}
 								<strong>DataForge 2026</strong>, a data science and analytics hackathon, sponsored by 
 								Pathway, designed to challenge participants with real-world data science and machine
 								learning problems.
@@ -389,7 +389,7 @@ const RegisterPage = () => {
 							</p>
 
 							<p>
-								For more details about KDSH 2026, visit our {" "}
+								For more details about DataForge 2026, visit our {" "}
 								<a
 									className="kdsh-unstop-link"
 									href="https://unstop.com/p/dataforge-2026-iit-kharagpur-1739346"
