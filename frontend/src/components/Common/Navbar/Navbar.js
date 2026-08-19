@@ -83,9 +83,8 @@ const Navbar = ({ noborder }) => {
     <div className="kdag-nav-container">
       <div className="kdag-nav">
         <div
-          className={`kdag-nav-contain ${
-            noborder ? "" : "kdag-nav-contain-border"
-          }`}
+          className={`kdag-nav-contain ${noborder ? "" : "kdag-nav-contain-border"
+            }`}
         >
           <div className="kdag-nav-logo">
             <Link to="/">
@@ -93,11 +92,11 @@ const Navbar = ({ noborder }) => {
             </Link>
           </div>
           <div className="kdag-nav-items">
-            <div className="kdag-nav-item ml-sheet">
+            {/* <div className="kdag-nav-item">
               <NavLink activeStyle={active_style} to="/register-hackathon">
                 DataForge
               </NavLink>
-            </div>
+            </div> */}
             <div className="kdag-nav-item">
               <NavLink activeStyle={active_style} to="/events">
                 Events
@@ -108,7 +107,7 @@ const Navbar = ({ noborder }) => {
                 Gallery
               </NavLink>
             </div>
-            <div className="kdag-nav-item">
+            <div className="kdag-nav-item ml-sheet">
               <NavLink activeStyle={active_style} to="/ml_sheet">
                 ML Sheet
               </NavLink>
@@ -201,14 +200,14 @@ const Navbar = ({ noborder }) => {
 
                 {isMenuOpen && (
                   <ul>
-                    <li>
+                    {/* <li>
                       <NavLink
                         to="/register-hackathon"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                       >
                         DataForge
                       </NavLink>
-                    </li>
+                    </li> */}
                     <li>
                       <NavLink
                         to="/events"
@@ -225,7 +224,7 @@ const Navbar = ({ noborder }) => {
                         Gallery
                       </NavLink>
                     </li>
-                    <li>
+                    <li className="ml-sheet">
                       <NavLink
                         to="/ml_sheet"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
