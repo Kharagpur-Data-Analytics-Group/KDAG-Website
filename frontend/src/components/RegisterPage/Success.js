@@ -39,7 +39,7 @@ const Success = () => {
 								Join the{" "}
 								<a
 									className="kdsh-unstop-link"
-									href="https://chat.whatsapp.com/HOcAy0mnwcRJ7qPlRmPDuK?s=cl&p=i&mlu=4&amv=0"
+									href="https://chat.whatsapp.com/LRbaZj19Sr8DpfHQkMPJhr"
 									target="_blank"
 									rel="noreferrer noopener"
 								>

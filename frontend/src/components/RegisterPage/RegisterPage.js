@@ -363,13 +363,13 @@ const RegisterPage = () => {
 							<p>
 								<strong>Kharagpur Data Analytics Group (KDAG)</strong>, IIT Kharagpur, presents {" "}
 								<strong>DataForge 2026</strong>, a data science and analytics hackathon, sponsored by 
-								Pathway, designed to challenge participants with real-world data science and machine
+								Pathway and Rime, designed to challenge participants with real-world data science and machine
 								learning problems.
 							</p>
 
 							<p>
-								Compete for a {" "}<strong>₹1.5L+ prize pool</strong> in cash prizes and exciting 
-								goodies from Pathway!
+								Compete for a {" "}<strong>₹3L+ prize pool</strong> in cash prizes and exciting 
+								goodies!
 							</p>
 
 							{/* <p>
@@ -385,7 +385,7 @@ const RegisterPage = () => {
 							</p> */}
 
 							<p>
-								<strong>Registration deadline: 24th August 2026 11:59 PM</strong> 
+								<strong>Registration deadline: 28th August 2026 11:59 PM</strong> 
 							</p>
 
 							<p>
@@ -627,7 +627,7 @@ const RegisterPage = () => {
 												marginTop: "15px",
 											}}>
 												<a
-													href="https://chat.whatsapp.com/HOcAy0mnwcRJ7qPlRmPDuK?s=cl&p=i&mlu=4&amv=0"
+													href="https://chat.whatsapp.com/LRbaZj19Sr8DpfHQkMPJhr"
 													target="_blank"
 													rel="noreferrer noopener"
 													style={{
