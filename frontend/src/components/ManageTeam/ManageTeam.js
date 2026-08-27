@@ -462,7 +462,7 @@ const ManageTeam = () => {
           <div className="mt-card" key={team._id}>
             <div className="important-note2">
               {team.is_team_finalized ? (
-                <strong>Your team has been finalized and will reflect on Unstop within 24 hours.</strong>
+                <strong>You are registered and your team has been finalized. It will be reflected on Unstop at the end of registrations.</strong>
               ) : (
                 <><strong>Important:</strong> After all members have joined, Team Leader must finalize the team. Your team will only be reflected on Unstop after finalization.</>
               )}
