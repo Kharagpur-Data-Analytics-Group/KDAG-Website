@@ -627,7 +627,7 @@ const RegisterPage = () => {
 												marginTop: "15px",
 											}}>
 												<a
-													href="https://chat.whatsapp.com/LRbaZj19Sr8DpfHQkMPJhr"
+													href="https://chat.whatsapp.com/BZZm1oRtnQ4FK1MYZbFNcQ"
 													target="_blank"
 													rel="noreferrer noopener"
 													style={{
