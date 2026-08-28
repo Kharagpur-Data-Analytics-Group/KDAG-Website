@@ -385,7 +385,7 @@ const RegisterPage = () => {
 							</p> */}
 
 							<p>
-								<strong>Registration deadline: 28th August 2026 11:59 PM</strong> 
+								<strong>Registration deadline: 30th August 2026 11:59 PM</strong> 
 							</p>
 
 							<p>
