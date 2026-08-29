@@ -665,12 +665,19 @@ def get_user_teams():
             )
         )
 
-        # Find teams where user is a member (by GitHub ID)
+        # Find teams where user is a member (by GitHub ID if available, else by email)
         member_teams = []
         if user_github_id:
             member_teams = list(
                 mongo.cx["PATHWAY_2026"]["path2026_teams"].find(
                     {"members_github": user_github_id}
+                )
+            )
+        else:
+            # If no GitHub ID, search by email instead
+            member_teams = list(
+                mongo.cx["PATHWAY_2026"]["path2026_teams"].find(
+                    {"members_email": email}
                 )
             )
 
@@ -694,22 +701,23 @@ def get_user_teams():
             t = team_data["team"]
             is_leader = team_data["isLeader"]
 
-            gh_ids = [t["teamleader_github"], *t["members_github"]]
+            # Collect all emails (leader + members) for this team
+            all_emails = [t["teamleader_email"], *t["members_email"]]
 
             people = list(
                 participants_col.find(
-                    {"GitHubID": {"$in": gh_ids}},
+                    {"mail": {"$in": all_emails}},
                     {"_id": 0} 
                 )
             )
 
             leader = next(
-                (p for p in people if p["GitHubID"] == t["teamleader_github"]),
+                (p for p in people if p["mail"] == t["teamleader_email"]),
                 None,
             )
 
             members = [
-                p for p in people if p["GitHubID"] in t["members_github"]
+                p for p in people if p["mail"] in t["members_email"]
             ]
 
             enriched.append({
@@ -737,11 +745,13 @@ def remove_member():
         from app import mongo
         data = request.get_json()
 
-        github_to_remove = data.get("GitHubID")
+        email_to_remove = data.get("email")
         team_code = data.get("teamCode")
 
-        if not github_to_remove or not team_code:
-            return jsonify({"error": "GitHubID and teamCode are required"}), 400
+        if not email_to_remove or not team_code:
+            return jsonify({"error": "Email and teamCode are required"}), 400
+
+        email_to_remove = email_to_remove.strip().lower()
 
         identity = get_jwt_identity()
         user_id = identity.get("user_id")
@@ -764,17 +774,18 @@ def remove_member():
         if team["teamleader_email"].lower() != leader_email:
             return jsonify({"error": "Only the team leader can remove members"}), 403
 
-        if github_to_remove == team["teamleader_github"]:
+        if email_to_remove == team["teamleader_email"].lower():
             return jsonify({"error": "Leader cannot remove themselves"}), 400
 
-        if github_to_remove not in team.get("members_github", []):
+        if email_to_remove not in [e.lower() for e in team.get("members_email", [])]:
             return jsonify({"error": "Member not found in team"}), 404
 
         try:
-            idx = team["members_github"].index(github_to_remove)
-            email_to_remove = team["members_email"][idx]
+            idx = [e.lower() for e in team["members_email"]].index(email_to_remove)
+            members_github_list = team.get("members_github", [])
+            github_id_to_remove = members_github_list[idx] if idx < len(members_github_list) else None
         except Exception:
-            return jsonify({"error": "Data mismatch: email not aligned with GitHub ID"}), 500
+            return jsonify({"error": "Member not found in team"}), 404
 
         new_num_members = max(team["numMembers"] - 1, 0)
 
@@ -782,8 +793,8 @@ def remove_member():
             {"_id": team["_id"]},
             {
                 "$pull": {
-                    "members_github": github_to_remove,
-                    "members_email": email_to_remove
+                    "members_github": github_id_to_remove if github_id_to_remove else "",
+                    "members_email": team["members_email"][idx]
                 },
                 "$set": {
                     "numMembers": new_num_members,
@@ -793,7 +804,7 @@ def remove_member():
         )
 
         mongo.cx["PATHWAY_2026"]["path2026_participants"].delete_one(
-            {"GitHubID": github_to_remove}
+            {"mail": email_to_remove}
         )
 
         return jsonify({"message": "Member removed successfully"}), 200
@@ -837,28 +848,31 @@ def leave_team():
         if team["teamleader_email"].lower() == user_email:
             return jsonify({"error": "Team leader cannot leave the team. Please delete the team or transfer leadership first."}), 403
 
-        # Find user's participant record to get their GitHub ID
+        # Find user's participant record
         participants_col = mongo.cx["PATHWAY_2026"]["path2026_participants"]
         user_participant = participants_col.find_one({"mail": user_email})
         
         if not user_participant:
             return jsonify({"error": "Participant record not found"}), 404
 
-        user_github_id = user_participant.get("GitHubID")
-        
-        if not user_github_id:
-            return jsonify({"error": "GitHub ID not found"}), 404
-
-        # Check if user is actually a member of this team
-        if user_github_id not in team.get("members_github", []):
+        # Check if user is actually a member of this team (by email)
+        if user_email not in [e.lower() for e in team.get("members_email", [])]:
             return jsonify({"error": "You are not a member of this team"}), 403
+
+        # Find the member's GitHub ID (if any) to remove from arrays
+        try:
+            idx = [e.lower() for e in team["members_email"]].index(user_email)
+            members_github_list = team.get("members_github", [])
+            user_github_id = members_github_list[idx] if idx < len(members_github_list) else ""
+        except Exception:
+            user_github_id = ""
 
         # Remove user from team
         mongo.cx["PATHWAY_2026"]["path2026_teams"].update_one(
             {"_id": team["_id"]},
             {
                 "$pull": {
-                    "members_github": user_github_id,
+                    "members_github": user_github_id if user_github_id else "",
                     "members_email": user_email
                 },
                 "$inc": {"numMembers": -1},
@@ -868,8 +882,8 @@ def leave_team():
             }
         )
 
-        # Delete user's participant record
-        participants_col.delete_one({"GitHubID": user_github_id})
+        # Delete user's participant record by email (not GitHub ID)
+        participants_col.delete_one({"mail": user_email})
 
         return jsonify({"message": "You have successfully left the team"}), 200
 
@@ -1053,12 +1067,14 @@ def delete_team():
         if team_leader_email != user_email:
             return jsonify({"error": "Only team leader can delete the team."}), 403
 
-        gh_ids = [team.get("teamleader_github"), *team.get("members_github", [])]
+        # Collect all emails (leader + members) for deletion
+        all_emails = [team.get("teamleader_email"), *team.get("members_email", [])]
 
         mongo.cx["PATHWAY_2026"].path2026_teams.delete_one({"teamCode": team_code})
 
+        # Delete all participants by email (not GitHub ID, since GitHub is optional)
         mongo.cx["PATHWAY_2026"].path2026_participants.delete_many(
-            {"GitHubID": {"$in": [g for g in gh_ids if g]}}
+            {"mail": {"$in": [e.lower() for e in all_emails if e]}}
         )
         return jsonify({"message": "Team deleted successfully."}), 200
     except Exception as e:
