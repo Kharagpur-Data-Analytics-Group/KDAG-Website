@@ -197,6 +197,39 @@
 	}
 }
 
+.register-star-guide-wrap {
+	max-width: 900px;
+	width: 80%;
+	margin: 0 auto 150px;
+}
+
+.register-star-toggle {
+	width: 100%;
+	padding: 18px 22px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 14px;
+	background: rgba(24, 24, 24, 0.9);
+	color: #fff;
+	font-size: 1.1rem;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+.register-star-toggle:hover {
+	border-color: rgba(255, 255, 255, 0.4);
+	transform: translateY(-1px);
+}
+
+.register-star-toggle-icon {
+	font-size: 1.5rem;
+	line-height: 1;
+	color: #ffd700;
+}
+
 .register-form {
 	border: solid rgba(255, 255, 255, 0.05) 2px;
 	border-top: 5px solid #1c1cf0;

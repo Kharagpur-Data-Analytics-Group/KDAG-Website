@@ -42,164 +42,165 @@ def _extract_email_from_identity(mongo, identity):
         return identity.lower()
     return None
 
-async def fetch_page(session, url, headers):
-    """Fetch a single page of starred repositories."""
-    try:
-        async with session.get(url, headers=headers) as response:
-            if response.status == 404:
-                print(f"Error -- 404 -- {url}")
-                return {"error": "GitHub user not found."}
-            elif response.status == 403:
-                print("rate exceeded")
-                return {"error1": "Rate limit exceeded. Please try again later."}
-            elif response.status == 200:
-                print(f"200 -- Fetched {url}")
-                return await response.json()
-            else:
-                return {"error": f"GitHub API responded with status {response.status}"}
-    except Exception as e:
-        return {"error": f"Request failed for {url}: {str(e)}"}
-
-
-def get_last_page_number(link_header):
-    """Extract the last page number from the 'Link' header."""
-    if not link_header:
-        return 1  # If no pagination, there's only one page
-    for link in link_header.split(","):
-        if 'rel="last"' in link:
-            last_url = link.split(";")[0].strip().strip("<>")
-            return int(last_url.split("page=")[-1].split("&")[0])
-    return 1
-
-
-async def get_starred_repositories_async(github_id):
-    github_id = github_id.strip().lower()  
-    base_url = f"https://api.github.com/users/{github_id}/starred?per_page=100"
-    all_starred_repositories = []
-
-    access_token = os.getenv("GITHUB_TOKEN")
-    if not access_token:
-        return {"error": "GitHub token is missing."}
-
-    headers = {
-        "Authorization": f"token {access_token}",
-        "Accept": "application/vnd.github+json",
-    }
-
-    async with aiohttp.ClientSession() as session:
-        async with session.get(base_url, headers=headers) as response:
-            if response.status == 404:
-                print("error -- 404 -- ", github_id)
-                return {"error": "GitHub user not found."}
-
-            elif response.status == 403:
-                try:
-                    print(await response.json())
-                except Exception:
-                    pass
-                print("403 -- ")
-                return {"error1": "Rate limit exceeded. Please try again later."}
-
-            elif response.status == 200:
-                print("200 -- proceeding with getting the rest of the urls")
-                response_ = await response.json()
-                all_starred_repositories.extend(response_)
-                remaining = response.headers.get("X-RateLimit-Remaining")
-                limit = response.headers.get("X-RateLimit-Limit")
-                print("remaining : ", remaining)
-                print("limit : ", limit)
-
-                link_header = response.headers.get("Link", "")
-                last_page = get_last_page_number(link_header)
-                print(f"Total pages: {last_page}")
-
-                if last_page > 9:
-                    return {"error1": "Rate limit exceeded. Please try again later."}
-
-                urls = [f"{base_url}&page={page}" for page in range(2, last_page + 1)]
-                print(f"Fetching URLs: {urls}")
-
-                tasks = [fetch_page(session, url, headers) for url in urls]
-                results = await asyncio.gather(*tasks, return_exceptions=True)
-
-                for result in results:
-                    if isinstance(result, list):
-                        all_starred_repositories.extend(result)
-    return {"starred_repositories": all_starred_repositories}
-
-
-def get_starred_repositories(github_id):
-    """Wrapper function to run the async function."""
-    github_id = github_id.strip().lower() 
-    print(github_id)
-    return asyncio.run(get_starred_repositories_async(github_id))
-
-
-def check_required_repositories(starred_repos):
-    required_repos = ["arc-task-gen"]
-    starred_repo_names = [
-        repo["name"] for repo in starred_repos["starred_repositories"]
-    ]
-    missing_repos = [repo for repo in required_repos if repo not in starred_repo_names]
-    return missing_repos
-
-
-def check_repositories(gitHub_users):
-    gitHub_users = [u.strip().lower() for u in gitHub_users]  
-    missing_repos_by_user = {}
-
-    for github_id in gitHub_users:
-        try:
-            print("starting get_starred_repositories")
-            starred_repos = get_starred_repositories(github_id)
-            if "error" in starred_repos:
-                missing_repos_by_user[github_id] = "error"
-                continue
-
-            if "error1" in starred_repos:
-                missing_repos_by_user[github_id] = "error1"
-                return missing_repos_by_user
-
-            missing_repos = check_required_repositories(starred_repos)
-
-            if not missing_repos:
-                missing_repos_by_user[github_id] = "success"
-            else:
-                missing_repos_by_user[github_id] = missing_repos
-        except Exception as e:
-            print("check_repo : ", e)
-            missing_repos_by_user[github_id] = "error"
-
-    return missing_repos_by_user
-
-def check_starred_repositories(missing_repos_by_users):
-    all_starred = True
-    missing_repos_messages = []
-    for github_id, missing_repos in missing_repos_by_users.items():
-        if missing_repos == "success":
-            continue
-        elif missing_repos == "error":
-            all_starred = False
-            missing_repos_messages.append(
-                f""" You have entered incorrect GitHub Id --- {github_id} .Please check and enter the correct GitHub ID"""
-            )
-        elif missing_repos == "error1":
-            all_starred = False
-            missing_repos_messages = [
-                "The server seems to be experiencing unexpected load. Please try again after some time. If the issue persists contact us at exec@kdagiitkgp.com"
-            ]
-        else:
-            repo_messages = [f'GitHub user {github_id} has not starred the "']
-            repo_messages.append('", "'.join(missing_repos))
-            repo_messages.append('" repository(s).')
-            all_starred = False
-            missing_repos_messages.append("".join(repo_messages))
-    if all_starred:
-        print("All users have starred the required repositories.")
-        return "success"
-    else:
-        message = " ".join(missing_repos_messages)
-        return message
+# Legacy GitHub repository-star validation code retained for rollback.
+#
+# async def fetch_page(session, url, headers):
+#     """Fetch a single page of starred repositories."""
+#     try:
+#         async with session.get(url, headers=headers) as response:
+#             if response.status == 404:
+#                 print(f"Error -- 404 -- {url}")
+#                 return {"error": "GitHub user not found."}
+#             elif response.status == 403:
+#                 print("rate exceeded")
+#                 return {"error1": "Rate limit exceeded. Please try again later."}
+#             elif response.status == 200:
+#                 print(f"200 -- Fetched {url}")
+#                 return await response.json()
+#             else:
+#                 return {"error": f"GitHub API responded with status {response.status}"}
+#     except Exception as e:
+#         return {"error": f"Request failed for {url}: {str(e)}"}
+#
+#
+# def get_last_page_number(link_header):
+#     """Extract the last page number from the 'Link' header."""
+#     if not link_header:
+#         return 1
+#     for link in link_header.split(","):
+#         if 'rel="last"' in link:
+#             last_url = link.split(";")[0].strip().strip("<>")
+#             return int(last_url.split("page=")[-1].split("&")[0])
+#     return 1
+#
+#
+# async def get_starred_repositories_async(github_id):
+#     github_id = github_id.strip().lower()
+#     base_url = f"https://api.github.com/users/{github_id}/starred?per_page=100"
+#     all_starred_repositories = []
+#
+#     access_token = os.getenv("GITHUB_TOKEN")
+#     if not access_token:
+#         return {"error": "GitHub token is missing."}
+#
+#     headers = {
+#         "Authorization": f"token {access_token}",
+#         "Accept": "application/vnd.github+json",
+#     }
+#
+#     async with aiohttp.ClientSession() as session:
+#         async with session.get(base_url, headers=headers) as response:
+#             if response.status == 404:
+#                 print("error -- 404 -- ", github_id)
+#                 return {"error": "GitHub user not found."}
+#             elif response.status == 403:
+#                 try:
+#                     print(await response.json())
+#                 except Exception:
+#                     pass
+#                 print("403 -- ")
+#                 return {"error1": "Rate limit exceeded. Please try again later."}
+#             elif response.status == 200:
+#                 print("200 -- proceeding with getting the rest of the urls")
+#                 response_ = await response.json()
+#                 all_starred_repositories.extend(response_)
+#                 remaining = response.headers.get("X-RateLimit-Remaining")
+#                 limit = response.headers.get("X-RateLimit-Limit")
+#                 print("remaining : ", remaining)
+#                 print("limit : ", limit)
+#
+#                 link_header = response.headers.get("Link", "")
+#                 last_page = get_last_page_number(link_header)
+#                 print(f"Total pages: {last_page}")
+#
+#                 if last_page > 9:
+#                     return {"error1": "Rate limit exceeded. Please try again later."}
+#
+#                 urls = [f"{base_url}&page={page}" for page in range(2, last_page + 1)]
+#                 print(f"Fetching URLs: {urls}")
+#
+#                 tasks = [fetch_page(session, url, headers) for url in urls]
+#                 results = await asyncio.gather(*tasks, return_exceptions=True)
+#
+#                 for result in results:
+#                     if isinstance(result, list):
+#                         all_starred_repositories.extend(result)
+#     return {"starred_repositories": all_starred_repositories}
+#
+#
+# def get_starred_repositories(github_id):
+#     """Wrapper function to run the async function."""
+#     github_id = github_id.strip().lower()
+#     print(github_id)
+#     return asyncio.run(get_starred_repositories_async(github_id))
+#
+#
+# def check_required_repositories(starred_repos):
+#     required_repos = ["arc-task-gen"]
+#     starred_repo_names = [
+#         repo["name"] for repo in starred_repos["starred_repositories"]
+#     ]
+#     missing_repos = [repo for repo in required_repos if repo not in starred_repo_names]
+#     return missing_repos
+#
+#
+# def check_repositories(gitHub_users):
+#     gitHub_users = [u.strip().lower() for u in gitHub_users]
+#     missing_repos_by_user = {}
+#
+#     for github_id in gitHub_users:
+#         try:
+#             print("starting get_starred_repositories")
+#             starred_repos = get_starred_repositories(github_id)
+#             if "error" in starred_repos:
+#                 missing_repos_by_user[github_id] = "error"
+#                 continue
+#
+#             if "error1" in starred_repos:
+#                 missing_repos_by_user[github_id] = "error1"
+#                 return missing_repos_by_user
+#
+#             missing_repos = check_required_repositories(starred_repos)
+#
+#             if not missing_repos:
+#                 missing_repos_by_user[github_id] = "success"
+#             else:
+#                 missing_repos_by_user[github_id] = missing_repos
+#         except Exception as e:
+#             print("check_repo : ", e)
+#             missing_repos_by_user[github_id] = "error"
+#
+#     return missing_repos_by_user
+#
+#
+# def check_starred_repositories(missing_repos_by_users):
+#     all_starred = True
+#     missing_repos_messages = []
+#     for github_id, missing_repos in missing_repos_by_users.items():
+#         if missing_repos == "success":
+#             continue
+#         elif missing_repos == "error":
+#             all_starred = False
+#             missing_repos_messages.append(
+#                 f""" You have entered incorrect GitHub Id --- {github_id} .Please check and enter the correct GitHub ID"""
+#             )
+#         elif missing_repos == "error1":
+#             all_starred = False
+#             missing_repos_messages = [
+#                 "The server seems to be experiencing unexpected load. Please try again after some time. If the issue persists contact us at exec@kdagiitkgp.com"
+#             ]
+#         else:
+#             repo_messages = [f'GitHub user {github_id} has not starred the "']
+#             repo_messages.append('", "'.join(missing_repos))
+#             repo_messages.append('" repository(s).')
+#             all_starred = False
+#             missing_repos_messages.append("".join(repo_messages))
+#     if all_starred:
+#         print("All users have starred the required repositories.")
+#         return "success"
+#     else:
+#         message = " ".join(missing_repos_messages)
+#         return message
 
 
 @kdsh.route("/check_register", methods=["POST"])
@@ -223,7 +224,6 @@ def check_register():
             "college",
             "degree",
             "YOS",
-            "GitHubID",
             "teamName",
         ]
 
@@ -239,7 +239,7 @@ def check_register():
         lastname = data["lastname"].strip()
         email = data["mail"].strip().lower()
         mobile = str(data["mobile"]).strip()
-        github_id = data["GitHubID"].strip().lower()    
+        github_id = str(data.get("GitHubID", "")).strip().lower()
         team_name = data["teamName"].strip().lower()
 
         if not firstname or not lastname:
@@ -258,16 +258,13 @@ def check_register():
         except:
             return jsonify({"error": "YOS must be a valid positive integer."}), 400
 
-        if not github_id:
-            return jsonify({"error": "GitHubID is required."}), 400
-
         if not team_name:
             return jsonify({"error": "Team name cannot be empty."}), 400
 
         if not re.match(r"^[a-zA-Z0-9\s]+$", team_name):
             return jsonify({"error": "Team name can only contain letters, numbers and spaces."}), 400
 
-        if mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
+        if github_id and mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
             {"GitHubID": github_id}
         ):
             return jsonify({"error": "GitHub ID already registered."}), 400
@@ -281,17 +278,6 @@ def check_register():
             {"teamName": team_name}
         ):
             return jsonify({"error": "Team name already exists."}), 400
-
-        starred_repos = get_starred_repositories(github_id)
-
-        if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
-            return jsonify({"error": "GitHub validation failed. Try again later."}), 400
-
-        missing_repos = check_required_repositories(starred_repos)
-        if missing_repos:
-            return jsonify({
-                "error": f'Please star required repositories: {", ".join(missing_repos)}'
-            }), 400
 
         while True:
             team_code = generate_team_code()
@@ -537,7 +523,6 @@ def join_team():
             "college",
             "degree",
             "YOS",
-            "GitHubID",
             "teamCode",
         ]
 
@@ -549,7 +534,7 @@ def join_team():
         lastname = str(data["lastname"]).strip()
         email = str(data["mail"]).strip().lower()
         mobile = str(data["mobile"]).strip()
-        github_id = str(data["GitHubID"]).strip().lower()
+        github_id = str(data.get("GitHubID", "")).strip().lower()
         team_code = str(data["teamCode"]).strip().upper()
 
         if not firstname or not lastname:
@@ -567,9 +552,6 @@ def join_team():
                 raise ValueError
         except:
             return jsonify({"error": "YOS must be a valid positive integer."}), 400
-
-        if not github_id:
-            return jsonify({"error": "GitHubID is required."}), 400
 
         if not team_code:
             return jsonify({"error": "Team code is required."}), 400
@@ -589,23 +571,10 @@ def join_team():
         if team["numMembers"] >= 4:
             return jsonify({"error": "Team is already full."}), 400
 
-        if mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
+        if github_id and mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
             {"GitHubID": github_id}
         ):
             return jsonify({"error": "GitHub ID already registered."}), 400
-
-        starred_repos = get_starred_repositories(github_id)
-
-        if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
-            return jsonify({
-                "error": "GitHub validation failed. Please try again later."
-            }), 400
-
-        missing_repos = check_required_repositories(starred_repos)
-        if missing_repos:
-            return jsonify({
-                "error": f'Please star required repositories: {", ".join(missing_repos)}'
-            }), 400
 
         update_result = mongo.cx["PATHWAY_2026"].path2026_teams.update_one(
             {
@@ -1096,29 +1065,31 @@ def delete_team():
         print("delete_team error:", e)
         return jsonify({"error": "Internal server error."}), 500
     
-@kdsh.route("/verify_github_star", methods=["POST"])
-def verify_github_star():
-    try:
-        data = request.get_json()
-        github_id = data.get("github_id", "").strip().lower()
-
-        if not github_id:
-            return jsonify({"error": "GitHub ID required"}), 400
-
-        starred = get_starred_repositories(github_id)
-
-        if "starred_repositories" not in starred:
-            return jsonify({"error": "GitHub validation failed"}), 400
-
-        missing = check_required_repositories(starred)
-
-        if missing:
-            return jsonify({
-                "ok": False,
-                "missing": missing
-            }), 200
-
-        return jsonify({"ok": True}), 200
-
-    except Exception as e:
-        return jsonify({"error": "Server error"}), 500
+# Legacy GitHub star verification endpoint retained for rollback.
+#
+# @kdsh.route("/verify_github_star", methods=["POST"])
+# def verify_github_star():
+#     try:
+#         data = request.get_json()
+#         github_id = data.get("github_id", "").strip().lower()
+#
+#         if not github_id:
+#             return jsonify({"error": "GitHub ID required"}), 400
+#
+#         starred = get_starred_repositories(github_id)
+#
+#         if "starred_repositories" not in starred:
+#             return jsonify({"error": "GitHub validation failed"}), 400
+#
+#         missing = check_required_repositories(starred)
+#
+#         if missing:
+#             return jsonify({
+#                 "ok": False,
+#                 "missing": missing
+#             }), 200
+#
+#         return jsonify({"ok": True}), 200
+#
+#     except Exception as e:
+#         return jsonify({"error": "Server error"}), 500

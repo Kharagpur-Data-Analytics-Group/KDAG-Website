@@ -139,8 +139,8 @@ export default function GitHubStarGuide() {
               <div>
                 <h4 className="note-title">Important</h4>
                 <p className="note-description">
-                  Use the same GitHub username in the registration form that you
-                  used to star the repositories.
+                  GitHub stars are optional for registration. If you do add a
+                  GitHub username, use the exact username from your GitHub profile.
                 </p>
               </div>
             </div>

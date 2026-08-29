@@ -31,7 +31,7 @@ const RegisterPage = () => {
 	const { userInfo } = useContext(AuthContext);
 	const [successPage, setSuccessPage] = useState(false);
 	const history = useHistory();
-	const [showHowTo, setShowHowTo] = useState(true);
+	const [showHowTo, setShowHowTo] = useState(false);
 	const [registrationMode, setRegistrationMode] = useState(null);
 	const [teamCode, setTeamCode] = useState("");
 	const [teamCodeDisplay, setTeamCodeDisplay] = useState("");
@@ -413,8 +413,10 @@ const RegisterPage = () => {
 								}}
 							>
 								<strong>
-									Before registering, kindly ensure all your team members have
-									starred the following GitHub repositories:
+									Do check out and star Pathway's new repository! It's about a 
+									a reasoning model that combines in-context learning through 
+									evolving recurrent memory with iterative reasoning in a structured, 
+									continuous latent space.
 								</strong>
 							</p>
 
@@ -430,22 +432,11 @@ const RegisterPage = () => {
 										ARC-TASK-GEN
 									</a>
 								</li>
-								{/* <li>
-									<a
-										className="kdsh-link"
-										href="https://github.com/pathwaycom/llm-app"
-										target="_blank"
-										rel="noreferrer noopener"
-										style={{ cursor: "pointer" }}
-									>
-										LLM App
-									</a>
-								</li> */}
 							</ul>
 						</div>
 					</div>
 				</Fade>
-				<Star />
+				{/* <Star /> */}
 				<Fade left>
 					<div className="register-form">
 						{registrationMode && (
@@ -776,6 +767,17 @@ const RegisterPage = () => {
 						)}
 					</div>
 				</Fade>
+				<div className="register-star-guide-wrap">
+					<button
+						type="button"
+						className="register-star-toggle"
+						onClick={handleShowHowTo}
+					>
+						<span>How to star a repository</span>
+						<span className="register-star-toggle-icon">{showHowTo ? "▾" : "▸"}</span>
+					</button>
+					{showHowTo && <Star />}
+				</div>
 			</div>
 			{particless}
 			<LoginPrompt
