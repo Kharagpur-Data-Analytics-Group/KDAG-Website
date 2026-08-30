@@ -181,29 +181,29 @@ const RegisterPage = () => {
 
 		try {
 			if (!teamCode || teamCode.trim() === "") {
-			toast.error("Please enter a team code", {
-				position: "top-center",
-				draggable: true,
-				theme: "dark",
-			});
-			return;
+				toast.error("Please enter a team code", {
+					position: "top-center",
+					draggable: true,
+					theme: "dark",
+				});
+				return;
 			}
 
 			if (!handleSubmit(firstname1, mobile1, college1, YOS1, GitHubID1)) {
-			return;
+				return;
 			}
 
 			const formData = {
-			firstname: firstname1,
-			lastname: lastname1,
-			gender: gender1,
-			mail: mail1,
-			mobile: mobile1,
-			college: college1,
-			degree: degree1,
-			YOS: Number(YOS1),
-			GitHubID: GitHubID1,
-			teamCode: teamCode.trim().toUpperCase(),
+				firstname: firstname1,
+				lastname: lastname1,
+				gender: gender1,
+				mail: mail1,
+				mobile: mobile1,
+				college: college1,
+				degree: degree1,
+				YOS: Number(YOS1),
+				GitHubID: GitHubID1,
+				teamCode: teamCode.trim().toUpperCase(),
 			};
 
 			toast.info("Joining team...", {
@@ -213,12 +213,12 @@ const RegisterPage = () => {
 			});
 
 			const response = await fetch(
-			`${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
-			{
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(formData),
-			}
+				`${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(formData),
+				}
 			);
 
 			const data = await response.json();
@@ -234,8 +234,8 @@ const RegisterPage = () => {
 		} catch (error) {
 			console.error("Join error:", error);
 			toast.error(error.message || "Failed to join team", {
-			position: "top-center",
-			autoClose: 15000,
+				position: "top-center",
+				autoClose: 15000,
 			});
 		} finally {
 			setIsSubmitting(false);
@@ -344,16 +344,16 @@ const RegisterPage = () => {
 						<div className="register-kdsh">DataForge 2026</div>
 						<div className="kdsh_banner">
 							<picture>
-								
+
 								<source
-								media="(max-width: 767px)"
-								srcSet={bannerSmall}
+									media="(max-width: 767px)"
+									srcSet={bannerSmall}
 								/>
 
 								<img
-								src={banner}
-								alt="DaraForge Banner"
-								style={{ width: "100%", height: "auto" }}
+									src={banner}
+									alt="DaraForge Banner"
+									style={{ width: "100%", height: "auto" }}
 								/>
 							</picture>
 						</div>
@@ -361,13 +361,13 @@ const RegisterPage = () => {
 						<div className="register-kdsh-desc">
 							<p>
 								<strong>Kharagpur Data Analytics Group (KDAG)</strong>, IIT Kharagpur, presents {" "}
-								<strong>DataForge 2026</strong>, a data science and analytics hackathon, sponsored by 
+								<strong>DataForge 2026</strong>, a data science and analytics hackathon, sponsored by
 								Pathway and Rime, designed to challenge participants with real-world data science and machine
 								learning problems.
 							</p>
 
 							<p>
-								Compete for a {" "}<strong>₹3L+ prize pool</strong> in cash prizes and exciting 
+								Compete for a {" "}<strong>₹3L+ prize pool</strong> in cash prizes and exciting
 								goodies!
 							</p>
 
@@ -384,7 +384,7 @@ const RegisterPage = () => {
 							</p> */}
 
 							<p>
-								<strong>Registration deadline: 30th August 2026 11:59 PM</strong> 
+								<strong>Registration deadline: 30th August 2026 11:59 PM</strong>
 							</p>
 
 							<p>
@@ -397,7 +397,7 @@ const RegisterPage = () => {
 								>
 									Unstop Page
 								</a>.
-							</p> 
+							</p>
 
 							<p>
 								To participate, please fill in your details in the form provided
@@ -412,9 +412,9 @@ const RegisterPage = () => {
 								}}
 							>
 								<strong>
-									Do check out and star Pathway's new repository! It's about a 
-									a reasoning model that combines in-context learning through 
-									evolving recurrent memory with iterative reasoning in a structured, 
+									Do check out and star Pathway's new repository! It's about a
+									a reasoning model that combines in-context learning through
+									evolving recurrent memory with iterative reasoning in a structured,
 									continuous latent space.
 								</strong>
 							</p>
@@ -760,7 +760,7 @@ const RegisterPage = () => {
 										<button className="register-form-submit" type="submit" disabled={isSubmitting}>
 											<p>{isSubmitting ? "Joining..." : "Join Team"}</p>
 										</button>
-								</div>
+									</div>
 								</div>
 							</form>
 						)}
