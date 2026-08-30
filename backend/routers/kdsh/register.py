@@ -571,28 +571,42 @@ def join_team():
         if team["numMembers"] >= 4:
             return jsonify({"error": "Team is already full."}), 400
 
+        if email.lower() in [e.lower() for e in team.get("members_email", [])]:
+            return jsonify({"error": "This email is already part of this team."}), 400
+
+        if mongo.cx["PATHWAY_2026"].path2026_participants.find_one({"mail": email}):
+            return jsonify({"error": "This email is already registered for another participant."}), 400
+
         if github_id and mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
             {"GitHubID": github_id}
         ):
             return jsonify({"error": "GitHub ID already registered."}), 400
 
+        if github_id and github_id in team.get("members_github", []):
+            return jsonify({"error": "This GitHub ID is already in the team."}), 400
+
+        update_filter = {
+            "_id": team["_id"],
+            "numMembers": {"$lt": 4},
+            "members_email": {"$ne": email}
+        }
+        if github_id:
+            update_filter["members_github"] = {"$ne": github_id}
+
+        update_ops = {
+            "$push": {"members_email": email},
+            "$inc": {"numMembers": 1}
+        }
+        if github_id:
+            update_ops["$push"]["members_github"] = github_id
+
         update_result = mongo.cx["PATHWAY_2026"].path2026_teams.update_one(
-            {
-                "_id": team["_id"],
-                "numMembers": {"$lt": 4},
-                "members_github": {"$ne": github_id}
-            },
-            {
-                "$push": {
-                    "members_github": github_id,
-                    "members_email": email
-                },
-                "$inc": {"numMembers": 1}
-            }
+            update_filter,
+            update_ops
         )
 
         if update_result.modified_count == 0:
-            return jsonify({"error": "Failed to join team. Try again."}), 400
+            return jsonify({"error": "This person is already part of the team or the team was just updated. Please refresh and try again."}), 400
 
         mongo.cx["PATHWAY_2026"].path2026_participants.insert_one({
             "isTeamLeader": False,

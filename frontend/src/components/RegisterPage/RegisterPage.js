@@ -127,7 +127,13 @@ const RegisterPage = () => {
 			teamName: team,
 		};
 
-		const registerPromise = fetch(
+		toast.info("Creating your team... This may take a few moments.", {
+			position: "top-center",
+			autoClose: 5000,
+			theme: "dark",
+		});
+
+		fetch(
 			`${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
 			{
 				method: "POST",
@@ -140,7 +146,6 @@ const RegisterPage = () => {
 			.then(async (response) => {
 				const data = await response.json();
 				if (!response.ok) {
-					// Handle error responses
 					throw new Error(data.error || `Server error: ${response.status}`);
 				}
 				return data;
@@ -166,19 +171,6 @@ const RegisterPage = () => {
 				});
 				setIsSubmitting(false);
 			});
-
-		toast.promise(
-			registerPromise,
-			{
-				pending:
-					"Creating your team...This may take several minutes, Please stay with us!!!",
-				error: "Registration failed. Please try again later.",
-			},
-			{
-				position: "top-center",
-				autoClose: 8000,
-			}
-		);
 	};
 
 	const handleJoinTeam = async (e) => {
@@ -214,6 +206,12 @@ const RegisterPage = () => {
 			teamCode: teamCode.trim().toUpperCase(),
 			};
 
+			toast.info("Joining team...", {
+				position: "top-center",
+				autoClose: 5000,
+				theme: "dark",
+			});
+
 			const response = await fetch(
 			`${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
 			{
@@ -226,10 +224,11 @@ const RegisterPage = () => {
 			const data = await response.json();
 
 			if (!response.ok) {
-			throw new Error(data.error || "Failed to join team");
+				throw new Error(data.error || "Failed to join team");
 			}
 
 			toast.success(data.message || "Joined team successfully", { theme: "dark" });
+			await checkUserTeam();
 			setSuccessPage(true);
 
 		} catch (error) {
