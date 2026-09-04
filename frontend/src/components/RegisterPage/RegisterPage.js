@@ -438,201 +438,219 @@ const RegisterPage = () => {
 				{/* <Star /> */}
 				<Fade left>
 					<div className="register-form">
-						{registrationMode && (
-							<button
-								className="register-back-button"
-								type="button"
-								onClick={handleBackToSelection}
-								aria-label="Back to selection"
+						<div style={{ textAlign: "center", padding: "40px 20px" }}>
+							<h2 style={{ marginBottom: "20px", color: "#fff" }}>
+								Registrations have moved to Unstop
+							</h2>
+							<p style={{ marginBottom: "25px", color: "#ccc" }}>
+								Registrations for DataForge 2026 are now closed on our website.
+							</p>
+							<a
+								className="kdsh-unstop-link"
+								href="https://unstop.com/p/dataforge-2026-iit-kharagpur-1739346"
+								target="_blank"
+								rel="noreferrer noopener"
 							>
-								←
-							</button>
-						)}
-						{checkingTeam ? (
-							<div style={{ padding: "40px", textAlign: "center" }}>
-								<h2>Checking team status...</h2>
-							</div>
-						) : !registrationMode ? (
-							hasTeam ? (
-								<div style={{ textAlign: "center", padding: "40px 20px" }}>
-									<h2 style={{ marginBottom: "20px", color: "#fff" }}>You are already part of a team!</h2>
-									<p style={{ marginBottom: "30px", color: "#ccc" }}>
-										Visit the Manage Team dashboard to view your team details or make changes.
-									</p>
-									<button
-										className="register-form-submit"
-										type="button"
-										onClick={() => history.push("/manage-team")}
-										style={{ minWidth: "", margin: "0 auto" }}
-									>
-										<p>Manage Team</p>
-									</button>
-									<div className="important-note2">
-										<strong>Important:</strong> After all Members have joined, Team Leader must finalize the team on the&nbsp;
-										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
-											Manage Team
-										</span>{" "}
-										page. Your team will only appear on Unstop after finalization.
-									</div>
+								Continue to Unstop
+							</a>
+						</div>
+						{/* Registration flow temporarily disabled; retained below for future reuse. */}
+						{false && <>
+							{registrationMode && (
+								<button
+									className="register-back-button"
+									type="button"
+									onClick={handleBackToSelection}
+									aria-label="Back to selection"
+								>
+									←
+								</button>
+							)}
+							{checkingTeam ? (
+								<div style={{ padding: "40px", textAlign: "center" }}>
+									<h2>Checking team status...</h2>
 								</div>
-
-							) : (
-								<div>
-									<h1
-										style={{
-											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
-											marginBottom: "25px",
-											textAlign: "center",
-										}}
-									>
-										Choose Registration Type
-									</h1>
-									<div style={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+							) : !registrationMode ? (
+								hasTeam ? (
+									<div style={{ textAlign: "center", padding: "40px 20px" }}>
+										<h2 style={{ marginBottom: "20px", color: "#fff" }}>You are already part of a team!</h2>
+										<p style={{ marginBottom: "30px", color: "#ccc" }}>
+											Visit the Manage Team dashboard to view your team details or make changes.
+										</p>
 										<button
 											className="register-form-submit"
 											type="button"
-											onClick={() => {
-												if (!isLoggedIn) {
-													setShowLoginPrompt(true);
-													return;
-												}
-												setRegistrationMode("leader");
-											}}
-											style={{ minWidth: "300px" }}
+											onClick={() => history.push("/manage-team")}
+											style={{ minWidth: "", margin: "0 auto" }}
 										>
-											<p>Register as Team Leader</p>
+											<p>Manage Team</p>
 										</button>
-										<button
-											className="register-form-submit"
-											type="button"
-											onClick={() => {
-												if (!isLoggedIn) {
-													setShowLoginPrompt(true);
-													return;
-												}
-												setRegistrationMode("member");
-											}}
-											style={{ minWidth: "300px" }}
-										>
-											<p>Join a Team with Team Code</p>
-										</button>
+										<div className="important-note2">
+											<strong>Important:</strong> After all Members have joined, Team Leader must finalize the team on the&nbsp;
+											<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
+												Manage Team
+											</span>{" "}
+											page. Your team will only appear on Unstop after finalization.
+										</div>
 									</div>
-									<div className="important-note2">
-										<strong>Important:</strong> After all Team Members have joined, Team Leader must review and confirm your team details on the&nbsp;
-										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
-											Manage Team
-										</span>{" "}
-										page to complete your registration. Your team will only appear on Unstop after finalization.
-									</div>
-								</div>
-							)
-						) : registrationMode === "leader" ? (
-							<form onSubmit={handleTeamLeaderRegister}>
-								<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-									<h1
-										style={{
-											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
-											marginBottom: "25px",
-										}}
-									>
-										Register as Team Leader
-									</h1>
-									<br />
-									{teamCodeDisplay ? (
-										<div style={{
-											background: "rgba(0, 255, 17, 0.1)",
-											border: "2px solid #00ff11",
-											borderRadius: "10px",
-											padding: "20px",
-											marginBottom: "30px",
-											textAlign: "center",
-											width: "100%",
-										}}>
-											<h2 style={{ color: "#00ff11", marginBottom: "10px" }}>
-												Team Created Successfully!
-											</h2>
-											<p style={{ color: "white", marginBottom: "15px" }}>
-												Your Team Code:
-											</p>
-											<div className="team-code-display">
-												<div style={{
-													fontSize: "32px",
-													fontWeight: "bold",
-													color: "#00ff11",
-													letterSpacing: "5px",
-													marginBottom: "10px",
-													marginTop: "10px",
-													fontFamily: "monospace",
-												}}>
-													{teamCodeDisplay}
-												</div>
-												<button
-													type="button"
-													onClick={copyTeamCodeToClipboard}
-													style={{
-														background: "rgba(0, 255, 17, 0.2)",
-														border: "1px solid #00ff11",
-														borderRadius: "8px",
-														padding: "8px 16px",
-														cursor: "pointer",
-														display: "flex",
-														alignItems: "center",
-														gap: "8px",
-														color: "#00ff11",
-														fontSize: "14px",
-														fontWeight: "600",
-														transition: "all 0.3s ease",
-													}}
-													onMouseEnter={(e) => {
-														e.target.style.background = "rgba(0, 255, 17, 0.3)";
-													}}
-													onMouseLeave={(e) => {
-														e.target.style.background = "rgba(0, 255, 17, 0.2)";
-													}}
-												>
-													{copiedTeamCode ? (
-														<>
-															<Check size={16} />
-															<span>Copied</span>
-														</>
-													) : (
-														<>
-															<Copy size={16} />
-															<span>Copy</span>
-														</>
-													)}
-												</button>
-											</div>
-											<p style={{ color: "white", fontSize: "14px" }}>
 
-												Share this code with your teammates so they can join your team.
-											</p>
-											<p style={{ color: "white", fontSize: "16px", marginBottom: "15px" }}>
-												Join the WhatsApp Group for regular updates!
-											</p>
+								) : (
+									<div>
+										<h1
+											style={{
+												textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+												marginBottom: "25px",
+												textAlign: "center",
+											}}
+										>
+											Choose Registration Type
+										</h1>
+										<div style={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+											<button
+												className="register-form-submit"
+												type="button"
+												onClick={() => {
+													if (!isLoggedIn) {
+														setShowLoginPrompt(true);
+														return;
+													}
+													setRegistrationMode("leader");
+												}}
+												style={{ minWidth: "300px" }}
+											>
+												<p>Register as Team Leader</p>
+											</button>
+											<button
+												className="register-form-submit"
+												type="button"
+												onClick={() => {
+													if (!isLoggedIn) {
+														setShowLoginPrompt(true);
+														return;
+													}
+													setRegistrationMode("member");
+												}}
+												style={{ minWidth: "300px" }}
+											>
+												<p>Join a Team with Team Code</p>
+											</button>
+										</div>
+										<div className="important-note2">
+											<strong>Important:</strong> After all Team Members have joined, Team Leader must review and confirm your team details on the&nbsp;
+											<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
+												Manage Team
+											</span>{" "}
+											page to complete your registration. Your team will only appear on Unstop after finalization.
+										</div>
+									</div>
+								)
+							) : registrationMode === "leader" ? (
+								<form onSubmit={handleTeamLeaderRegister}>
+									<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+										<h1
+											style={{
+												textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+												marginBottom: "25px",
+											}}
+										>
+											Register as Team Leader
+										</h1>
+										<br />
+										{teamCodeDisplay ? (
 											<div style={{
-												display: "flex",
-												justifyContent: "center",
-												gap: "20px",
-												marginTop: "15px",
+												background: "rgba(0, 255, 17, 0.1)",
+												border: "2px solid #00ff11",
+												borderRadius: "10px",
+												padding: "20px",
+												marginBottom: "30px",
+												textAlign: "center",
+												width: "100%",
 											}}>
-												<a
-													href="https://chat.whatsapp.com/BZZm1oRtnQ4FK1MYZbFNcQ"
-													target="_blank"
-													rel="noreferrer noopener"
-													style={{
-														transition: "transform 0.3s ease",
-													}}
-													onMouseEnter={(e) => {
-														e.target.style.transform = "scale(1.1)";
-													}}
-													onMouseLeave={(e) => {
-														e.target.style.transform = "scale(1)";
-													}}
-												>
-													<img src={whatsapp} alt="whatsapp" style={{ height: "50px", cursor: "pointer" }} />
-												</a>
-												{/* <a
+												<h2 style={{ color: "#00ff11", marginBottom: "10px" }}>
+													Team Created Successfully!
+												</h2>
+												<p style={{ color: "white", marginBottom: "15px" }}>
+													Your Team Code:
+												</p>
+												<div className="team-code-display">
+													<div style={{
+														fontSize: "32px",
+														fontWeight: "bold",
+														color: "#00ff11",
+														letterSpacing: "5px",
+														marginBottom: "10px",
+														marginTop: "10px",
+														fontFamily: "monospace",
+													}}>
+														{teamCodeDisplay}
+													</div>
+													<button
+														type="button"
+														onClick={copyTeamCodeToClipboard}
+														style={{
+															background: "rgba(0, 255, 17, 0.2)",
+															border: "1px solid #00ff11",
+															borderRadius: "8px",
+															padding: "8px 16px",
+															cursor: "pointer",
+															display: "flex",
+															alignItems: "center",
+															gap: "8px",
+															color: "#00ff11",
+															fontSize: "14px",
+															fontWeight: "600",
+															transition: "all 0.3s ease",
+														}}
+														onMouseEnter={(e) => {
+															e.target.style.background = "rgba(0, 255, 17, 0.3)";
+														}}
+														onMouseLeave={(e) => {
+															e.target.style.background = "rgba(0, 255, 17, 0.2)";
+														}}
+													>
+														{copiedTeamCode ? (
+															<>
+																<Check size={16} />
+																<span>Copied</span>
+															</>
+														) : (
+															<>
+																<Copy size={16} />
+																<span>Copy</span>
+															</>
+														)}
+													</button>
+												</div>
+												<p style={{ color: "white", fontSize: "14px" }}>
+
+													Share this code with your teammates so they can join your team.
+												</p>
+												<p style={{ color: "white", fontSize: "16px", marginBottom: "15px" }}>
+													Join the WhatsApp Group for regular updates!
+												</p>
+												<div style={{
+													display: "flex",
+													justifyContent: "center",
+													gap: "20px",
+													marginTop: "15px",
+												}}>
+													<a
+														href="https://chat.whatsapp.com/BZZm1oRtnQ4FK1MYZbFNcQ"
+														target="_blank"
+														rel="noreferrer noopener"
+														style={{
+															transition: "transform 0.3s ease",
+														}}
+														onMouseEnter={(e) => {
+															e.target.style.transform = "scale(1.1)";
+														}}
+														onMouseLeave={(e) => {
+															e.target.style.transform = "scale(1)";
+														}}
+													>
+														<img src={whatsapp} alt="whatsapp" style={{ height: "50px", cursor: "pointer" }} />
+													</a>
+													{/* <a
 													href="https://discord.gg/fBfvXCTQF"
 													target="_blank"
 													rel="noreferrer noopener"
@@ -648,122 +666,123 @@ const RegisterPage = () => {
 												>
 													<img src={discord} alt="discord" style={{ height: "50px", cursor: "pointer" }} />
 												</a> */}
+												</div>
+												<div className="important-note2" style={{ marginTop: "20px" }}>
+													<strong>Important Next Step:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
+													<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
+														Manage Team
+													</span>{" "}
+													to complete your registration. Your team will only appear on Unstop after finalization.
+												</div>
 											</div>
-											<div className="important-note2" style={{ marginTop: "20px" }}>
-												<strong>Important Next Step:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
-												<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
-													Manage Team
-												</span>{" "}
-												to complete your registration. Your team will only appear on Unstop after finalization.
-											</div>
-										</div>
-									) : (
-										<div>
-											<div className="register-form-details-special">
-												<div id="header">Team Name</div>
-												<div style={{ width: "10px" }}></div>
-												<input
-													type="text"
-													name="name"
-													placeholder="Team Name"
-													required
-													onChange={handleTeamName}
-													value={team}
+										) : (
+											<div>
+												<div className="register-form-details-special">
+													<div id="header">Team Name</div>
+													<div style={{ width: "10px" }}></div>
+													<input
+														type="text"
+														name="name"
+														placeholder="Team Name"
+														required
+														onChange={handleTeamName}
+														value={team}
+													/>
+												</div>
+
+												<div className="register-form-details">
+													Team Leader Details
+												</div>
+												<RegisterFormCard
+													firstname={firstname1}
+													setFirstname={setFirstname1}
+													lastname={lastname1}
+													setLastname={setLastname1}
+													gender={gender1}
+													setGender={setGender1}
+													mail={mail1}
+													setMail={setMail1}
+													mobile={mobile1}
+													setMobile={setMobile1}
+													college={college1}
+													setCollege={setCollege1}
+													degree={degree1}
+													setDegree={setDegree1}
+													YOS={YOS1}
+													setYOS={setYOS1}
+													GitHubID={GitHubID1}
+													setGitHubID={setGitHubID1}
+													disabled={true}
 												/>
+												<div style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
+													<button className="register-form-submit" type="submit" disabled={isSubmitting}>
+														<p>{isSubmitting ? "Creating..." : "Create Team"}</p>
+													</button>
+												</div>
 											</div>
-
-											<div className="register-form-details">
-												Team Leader Details
-											</div>
-											<RegisterFormCard
-												firstname={firstname1}
-												setFirstname={setFirstname1}
-												lastname={lastname1}
-												setLastname={setLastname1}
-												gender={gender1}
-												setGender={setGender1}
-												mail={mail1}
-												setMail={setMail1}
-												mobile={mobile1}
-												setMobile={setMobile1}
-												college={college1}
-												setCollege={setCollege1}
-												degree={degree1}
-												setDegree={setDegree1}
-												YOS={YOS1}
-												setYOS={setYOS1}
-												GitHubID={GitHubID1}
-												setGitHubID={setGitHubID1}
-												disabled={true}
+										)}
+									</div>
+								</form>
+							) : (
+								<form onSubmit={handleJoinTeam}>
+									<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+										<h1
+											style={{
+												textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+												marginBottom: "25px",
+											}}
+										>
+											Join a Team
+										</h1>
+										<br />
+										<div className="register-form-details-special">
+											<div id="header">Team Code</div>
+											<div style={{ width: "10px" }}></div>
+											<input
+												type="text"
+												name="teamCode"
+												placeholder="Enter Team Code"
+												required
+												onChange={handleTeamCodeChange}
+												value={teamCode}
+												maxLength={8}
+												style={{ textTransform: "uppercase", letterSpacing: "2px", fontFamily: "monospace" }}
 											/>
-											<div style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
-												<button className="register-form-submit" type="submit" disabled={isSubmitting}>
-													<p>{isSubmitting ? "Creating..." : "Create Team"}</p>
-												</button>
-											</div>
 										</div>
-									)}
-								</div>
-							</form>
-						) : (
-							<form onSubmit={handleJoinTeam}>
-								<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-									<h1
-										style={{
-											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
-											marginBottom: "25px",
-										}}
-									>
-										Join a Team
-									</h1>
-									<br />
-									<div className="register-form-details-special">
-										<div id="header">Team Code</div>
-										<div style={{ width: "10px" }}></div>
-										<input
-											type="text"
-											name="teamCode"
-											placeholder="Enter Team Code"
-											required
-											onChange={handleTeamCodeChange}
-											value={teamCode}
-											maxLength={8}
-											style={{ textTransform: "uppercase", letterSpacing: "2px", fontFamily: "monospace" }}
-										/>
-									</div>
 
-									<div className="register-form-details">
-										Your Details
+										<div className="register-form-details">
+											Your Details
+										</div>
+										<RegisterFormCard
+											firstname={firstname1}
+											setFirstname={setFirstname1}
+											lastname={lastname1}
+											setLastname={setLastname1}
+											gender={gender1}
+											setGender={setGender1}
+											mail={mail1}
+											setMail={setMail1}
+											mobile={mobile1}
+											setMobile={setMobile1}
+											college={college1}
+											setCollege={setCollege1}
+											degree={degree1}
+											setDegree={setDegree1}
+											YOS={YOS1}
+											setYOS={setYOS1}
+											GitHubID={GitHubID1}
+											setGitHubID={setGitHubID1}
+											disabled={true}
+										/>
+										<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+											<button className="register-form-submit" type="submit" disabled={isSubmitting}>
+												<p>{isSubmitting ? "Joining..." : "Join Team"}</p>
+											</button>
+										</div>
 									</div>
-									<RegisterFormCard
-										firstname={firstname1}
-										setFirstname={setFirstname1}
-										lastname={lastname1}
-										setLastname={setLastname1}
-										gender={gender1}
-										setGender={setGender1}
-										mail={mail1}
-										setMail={setMail1}
-										mobile={mobile1}
-										setMobile={setMobile1}
-										college={college1}
-										setCollege={setCollege1}
-										degree={degree1}
-										setDegree={setDegree1}
-										YOS={YOS1}
-										setYOS={setYOS1}
-										GitHubID={GitHubID1}
-										setGitHubID={setGitHubID1}
-										disabled={true}
-									/>
-									<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-										<button className="register-form-submit" type="submit" disabled={isSubmitting}>
-											<p>{isSubmitting ? "Joining..." : "Join Team"}</p>
-										</button>
-									</div>
-								</div>
-							</form>
-						)}
+								</form>
+							)}
+						</>}
 					</div>
 				</Fade>
 				<div className="register-star-guide-wrap">
