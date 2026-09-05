@@ -1,0 +1,79 @@
+.content {
+  /* position: absolute;
+  left: 50%;
+  top: 50%; */
+  /* -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+}
+
+.search {
+  /* border: 4px solid #1b1a1a; */
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.search input[type="email"] {
+  border: 5px solid rgb(240, 49, 24);
+  width: 120%;
+  border-radius: 5px;
+
+  padding: 10px 10px;
+}
+
+.search input[type="email"]:focus {
+  outline: 0;
+}
+
+.search input[type="submit"] {
+  border: 0px;
+  background: none;
+  background-color: #cf5c3f;
+  color: #fff;
+
+  padding: 10px;
+  margin-left: 50%;
+  margin-top: 10%;
+  align-self: center;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 620px) and (max-width: 1400px) {
+  .search {
+    width: 95%;
+    margin: 0 auto;
+  }
+  .content {
+    top: 50%;
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 620px) {
+  .content {
+    top: 51%;
+  }
+  .search input[type="email"] {
+    padding: 4px 2px;
+  }
+  .search input[type="submit"] {
+    padding: 5px;
+  }
+}
+@media only screen and (min-width: 497px) and (max-width: 600px) {
+  .content {
+    top: 37%;
+  }
+  .search input[type="submit"] {
+    margin-left: 40%;
+  }
+}
+@media only screen and (min-width: 200px) and (max-width: 496px) {
+  .content {
+    top: 42%;
+  }
+  .search input[type="email"] {
+    padding: 4px 2px;
+  }
+  .search input[type="submit"] {
+    padding: 0px;
+    margin-left: 40%;
+  }
+}

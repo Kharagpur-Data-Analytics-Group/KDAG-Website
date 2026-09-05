@@ -1,0 +1,38 @@
+.contacts-card {
+  background-color: white;
+  border-radius: 3rem;
+  width: 21rem;
+  padding: 1rem;
+  margin: 2rem;
+}
+
+.contacts-card-photo {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 1rem auto;
+}
+
+.contacts-card-photo img {
+  width: 150px;
+  height: auto;
+}
+
+.contacts-card-name {
+  color: #172755;
+  font-size: 2rem;
+  margin: 1rem;
+  font-weight: bold;
+}
+
+.contacts-card-button {
+  padding: 1rem 5rem;
+  border-radius: 100px;
+  background-color: #dc2626;
+  margin: 1rem auto;
+  display: inline-block;
+  font-size: 1.1rem;
+  color: white;
+}

@@ -1,0 +1,7 @@
+.resources-list-cards {
+  display: flex;
+  padding: 3rem;
+  padding-top: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}

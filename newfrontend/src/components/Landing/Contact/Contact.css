@@ -1,0 +1,47 @@
+.stripe-alt {
+  position: absolute;
+  width: 200%;
+  height: 20rem;
+  z-index: 1;
+  background-color: #172755;
+  top: -100px;
+  transform: translate(-25%) rotate(-6deg);
+  border-top: 1rem solid #dc2626;
+}
+
+.contacts-container {
+  position: relative;
+  z-index: 15;
+  text-align: center;
+}
+
+.contacts-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.contacts-text {
+  width: 50rem;
+  margin: auto;
+  color: #8794ba;
+  font-size: 1.2rem;
+  font-family: Merriweather, "Times New Roman", serif;
+}
+
+.contacts-card {
+  background-color: white;
+  border-radius: 3rem;
+  width: 21rem;
+  padding: 1rem;
+  margin: 2rem;
+}
+
+.contacts-cards {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  margin: 3rem auto;
+  flex-wrap: wrap;
+}

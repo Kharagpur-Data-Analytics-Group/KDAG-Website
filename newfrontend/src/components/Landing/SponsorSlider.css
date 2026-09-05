@@ -1,0 +1,141 @@
+.kdsh2025_slider_outer {
+	border: none;
+}
+
+.kdsh2025_header {
+	color: whitesmoke;
+	font-weight: 800;
+	margin-bottom: 25px;
+	font-size: 25px;
+	text-align: center;
+	text-shadow: 0 0 50px red, 0 0 100px blue;
+	padding: 10px 15px;
+	margin: 0 20% 2% 20%;
+	border: solid 2px rgba(255, 255, 255, 0.758);
+	border-radius: 50px;
+}
+
+.kdsh2025-title-sponsor {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 200px;
+	flex-direction: row;
+	padding-right: 200px;
+	background-image: url("./../../assets/pathway_asset.svg");
+	margin-bottom: 50px;
+}
+
+.kdsh2025_title_sponsor_intro {
+	font-size: 50px;
+	font-weight: 900;
+	padding-left: 200px;
+	color: white;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.kdsh2025_sponsors {
+	height: 250px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.kdsh2025_sponsors img {
+	height: 245px;
+	border-radius: 15px;
+}
+
+.kdsh2025-sponsor-slider {
+	box-sizing: border-box;
+	width: 100%;
+	height: 300px;
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	user-select: none;
+	position: relative;
+	z-index: 30;
+	gap: 2rem;
+	padding-top: 15px;
+	background-image: url("./../../assets/kdsh2025_polygon_scatter.svg");
+	/* border: red 2px solid; */
+}
+
+.kdsh2025-sponsor-slider ul {
+	min-width: 100%;
+	list-style: none;
+	display: flex;
+	gap: 5rem;
+	flex-shrink: 0;
+	transition: all 0.5s;
+	animation: scroll 35s linear infinite;
+	margin-right: 4rem;
+}
+
+.kdsh2025-sponsor-slider ul li {
+	min-width: 10px;
+}
+
+.kdsh2025-sponsor-slider ul li img {
+	height: 295px;
+	border-radius: 15px;
+	/* box-shadow: 0 0 10px rgba(0, 255, 255, 0.286); */
+	/* min-width: 295px; */
+}
+
+.kdsh2025-sponsor-slider:hover ul {
+	animation-play-state: paused;
+	color: white;
+}
+
+@keyframes scroll {
+	to {
+		transform: translateX(calc(-100% - 22px));
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.kdsh2025_header {
+		font-weight: 800;
+		font-size: 16px;
+		padding: 5px 5px;
+		margin: 0 20% 2% 20%;
+		border: solid 2px rgba(255, 255, 255, 0.758);
+		border-radius: 0px;
+		margin-top: 75px;
+	}
+
+	.kdsh2025-title-sponsor {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: auto;
+		flex-direction: column;
+		padding-right: 0px;
+		margin-bottom: 50px;
+	}
+	.kdsh2025_title_sponsor_intro {
+		font-size: 25px;
+		text-wrap: nowrap;
+		font-weight: 900;
+		padding-left: 0px;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.kdsh2025-title-sponsor img {
+		height: 150px;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.kdsh2025-sponsor-slider ul {
+		gap: 3rem;
+		font-size: 1.1rem;
+		margin-right: 2rem;
+	}
+}

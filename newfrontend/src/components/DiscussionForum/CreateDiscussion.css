@@ -1,0 +1,155 @@
+.create-discussion-container {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.discussion-circle{
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border: solid rgb(139, 218, 255) 4px;
+    border-radius: 50%;
+    top: 110px;
+    border-style: dotted;
+}
+/* 
+.discussion-ball{
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    background: rgb(0, 0, 0);
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    margin: auto;
+    animation: circle 20s linear infinite;box-shadow: 0 0 25px rgb(255, 186, 126);
+} */
+
+/* @keyframes circle{
+    0%{
+        transform: rotate(0deg)translate(-298px)rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg)translate(-298px)rotate(-360deg);
+    }
+} */
+
+.create-discussion-form-container {
+	margin-top: 100px;
+	background-color: rgba(255, 255, 255, 0.06);
+	border-radius: 15px;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+	overflow: hidden;
+	width: 500px;
+	height: 520px;
+	padding: 25px;
+	backdrop-filter: blur(12px);
+}
+.create-discussion-form-container form {
+	background-color: rgba(255, 255, 255, 0);
+	padding: 0 40px;
+	height: 100%;
+}
+.create-discussion-form-container h1 {
+	color: rgb(255, 255, 255);
+	font-size: 25px;
+	font-weight: 900;
+}
+
+.create-discussion-form-container form input {
+	background-color: rgb(255, 255, 255, 0.04);
+	border: none;
+	border-radius: 500px;
+	margin: 25px 0 6px 0;
+	padding: 10px 15px;
+	font-size: 14px;
+	font-weight: 600;
+	width: 100%;
+	outline: none;
+	color: rgb(255, 255, 255);
+}
+.create-discussion-form-container form textarea {
+	background-color: rgb(255, 255, 255, 0.04);
+	border: none;
+	border-radius: 25px;
+	margin: 6px 0;
+	padding: 10px 15px;
+	font-size: 14px;
+	font-weight: 600;
+	width: 100%;
+    min-height: 250px;
+	max-height: 250px;
+	resize: none;
+	outline: none;
+	color: rgb(255, 255, 255);
+	transition: all 0.5s;
+}
+
+.create-discussion-form-container form input[type="text"]:focus {
+	box-shadow: 0 0 5px rgba(255, 255, 255, 0.76);
+}
+
+.create-discussion-form-container form textarea[type="text"]:focus {
+	box-shadow: 0 0 5px rgba(255, 255, 255, 0.76);
+}
+
+.create-discussion-form-container .discussion-content input {
+	height: 100px;
+	border-radius: 20px;
+}
+
+.create-discussion-form-container button[type="submit"] {
+	color: #ffffff;
+	font-size: 15px;
+	padding: 7px 45px;
+	border: 1px solid transparent;
+	border-radius: 500px;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+	margin-top: 25px;
+	cursor:none;
+	background-image: linear-gradient(
+		to right,
+		#4e3eff,
+		#40dfe4,
+		#30dd8a,
+		#269660
+	);
+	background-size: 300% 100%;
+	transition: all 0.3s;
+	width: 100%;
+}
+
+.create-discussion-form-container button[type="submit"]:hover {
+	background-position: 100% 0;
+	text-shadow: 0 0 10px white;
+}
+
+@media (max-width: 420px) {
+	.create-discussion-form-container {
+		width: 330px;
+		height: 520px;
+        display: flex;
+        align-items: center;
+	}
+    .create-discussion-form-container form  {
+        margin-left: 15px;
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .create-discussion-form-container form input {
+        margin: 25px 0 6px 0;
+        padding: 10px 15px;
+        width: 250px;
+    }
+    .create-discussion-form-container form textarea {
+        width: 250px;
+    }
+}
