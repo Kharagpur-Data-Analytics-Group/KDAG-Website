@@ -107,7 +107,7 @@ const DropdownSection = ({
           <div className="h-[8px] flex-1 bg-black rounded-[8px] border-[1px] border-[#ff4d4d33] shadow-[inset_0_0_4px_#ff4d4d22] overflow-hidden"
           >
             <div
-              className="h-full bg-[linear-gradient(90deg, #ff1a1a, #ff3b3b, #ff5e5e)] rounded-[6px_0_0_6px] shadow-[0_0_6px_#ff4d4d88] transition-[width] duration-400 ease-in-out"
+              className="h-full bg-[#F2074C] rounded-[6px] shadow-[0_0_6px_#ff4d4d88] transition-[width] duration-400 ease-in-out "
               style={{ width: `${progressPercent}%` }}
             />
           </div>

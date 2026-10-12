@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Fade from "../Common/Motion/fade.jsx"
+import Fade from "../Common/Motion/Fade.jsx"
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import DiscussionComment from "./DiscussionComment";
 import icon_commented from "./asset_comment.png";

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import Fade from "../Common/Motion/fade.jsx"
+import Fade from "../Common/Motion/Fade.jsx"
 import { useHistory } from "react-router-dom";
 import Particless from "../Common/Particles/Particless";
 import google_logo from "../../assets/pics/google_logo.png";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import Fade from "../Common/Motion/fade.jsx"
+import Fade from "../Common/Motion/Fade.jsx"
 import Particless from "../Common/Particles/Particless";
 import DiscussionCard from "./DiscussionCard";
 import icon_add from "./asset_addition_symbol.png";

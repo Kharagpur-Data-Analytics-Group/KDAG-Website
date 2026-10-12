@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import Fade from "../../Common/Motion/fade.jsx"
+import Fade from "../../Common/Motion/Fade.jsx"
 import { AuthContext } from "../../../context/AuthContext";
 import { useHistory } from "react-router-dom";
 import logout_icon from "../../../assets/pics/logout.png";

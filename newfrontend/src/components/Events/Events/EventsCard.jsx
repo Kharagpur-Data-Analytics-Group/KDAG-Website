@@ -1,5 +1,5 @@
 import React from "react";
-import Fade from "../../Common/Motion/fade.jsx"
+import Fade from "../../Common/Motion/Fade.jsx"
 import { Link } from "react-router-dom";
 
 const EventsCard = ({ event }) => {

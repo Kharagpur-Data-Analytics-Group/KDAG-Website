@@ -17,7 +17,7 @@ const ContentContainer = styled.div`
 
 const WinterWorkshop = () => {
   return (
-    <div>
+    <div className="bg-white">
       <Navbar noborder />
       <Header />
       <ContentContainer>

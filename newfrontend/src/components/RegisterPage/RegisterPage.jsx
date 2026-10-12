@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import Fade from "../Common/Motion/fade.jsx";
+import Fade from "../Common/Motion/Fade.jsx";
 import Particless from "../Common/Particles/Particless";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

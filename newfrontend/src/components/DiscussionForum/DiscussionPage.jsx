@@ -1,7 +1,7 @@
 import Particless from "../Common/Particles/Particless";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import Fade from "../Common/Motion/fade.jsx";
+import Fade from "../Common/Motion/Fade.jsx";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import profileImage from "./profile.jpeg";

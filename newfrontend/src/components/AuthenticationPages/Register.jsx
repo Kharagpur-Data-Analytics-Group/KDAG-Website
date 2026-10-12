@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Particless from "../Common/Particles/Particless";
-import Fade from "../Common/Motion/fade.jsx";
+import Fade from "../Common/Motion/Fade.jsx";
 
 const Register = () => {
   const location = useLocation();

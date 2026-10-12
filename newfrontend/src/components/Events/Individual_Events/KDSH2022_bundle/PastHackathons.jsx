@@ -1,5 +1,5 @@
 import React from "react";
-import Fade from "../../../Common/Motion/fade.jsx"
+import Fade from "../../../Common/Motion/Fade"
 import KDSH2021 from "../../../../assets/pics/HACKPoster.png";
 import KDSH2020 from "../../../../assets/pics/events/KDSH2020.jpg";
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
-import Fade from "../Common/Motion/Fade.js";
+import Fade from "../Common/Motion/Fade.jsx";
 import Particless from "../Common/Particles/Particless";
 import Content from "./Content/Content.jsx";
 

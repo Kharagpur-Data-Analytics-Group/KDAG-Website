@@ -6,7 +6,7 @@ import members from "./MembersStatic";
 import advisors from "./AdvisorsStatic";
 import seniorAdvisors from "./Senior-AdvisorsStatic";
 import Header from "./Header.jsx";
-import Fade from "../Common/Motion/fade.jsx";
+import Fade from "../Common/Motion/Fade.jsx";
 import Particless from "../Common/Particles/Particless";
 
 const TeamPage = () => {

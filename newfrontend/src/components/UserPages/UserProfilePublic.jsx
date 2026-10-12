@@ -12,7 +12,7 @@ import name2 from "../../assets/pics/name2.png";
 import email2 from "../../assets/pics/email2.png";
 import college2 from "../../assets/pics/college2.png";
 import user_profile from "../../assets/pics/user_profile.png";
-import Fade from "../Common/Motion/fade.jsx"
+import Fade from "../Common/Motion/Fade.jsx"
 
 const UserProfilePublic = () => {
 	const { user_id } = useParams();

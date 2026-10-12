@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Fade from "../../Common/Motion/Fade.js";
+import Fade from "../../Common/Motion/Fade.jsx";
 
 import blogPic from "../../../assets/pics/Blogs.png";
 import eventsPic from "../../../assets/pics/Events.png";
@@ -29,7 +29,7 @@ const Content = () => (
     <style>{contentStyles}</style>
     <div className="content-container">
       <Link to="/blogs" className="content-pair-link">
-        <div className="content-pair">
+        <div className="content-pair ">
           <Fade left>
             <ContentText
               word="BLOG"
@@ -117,7 +117,7 @@ const contentStyles = `
 
 .content-pair {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   margin: 2rem 0;
   gap: 2.5rem;
   transition: transform 1s ease;
@@ -128,7 +128,6 @@ const contentStyles = `
 }
 
 .content-pair-text {
-  flex: 1;
   padding: 2rem;
   border-radius: 15px;
   backdrop-filter: blur(12px);
@@ -195,7 +194,8 @@ const contentStyles = `
 }
 
 .content-pair-graphics {
-  flex: 1;
+  width: 400px;
+  height: auto;
   padding: 0px;
 }
 
