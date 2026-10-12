@@ -1,7 +1,15 @@
-import React from "react";
+import {useState, useEffect} from "react";
 import Particless from "../Common/Particles/Particless";
-import { useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
+
+const loaderStyle = {
+  animation: "spin 1s linear infinite",
+  border: "8px solid #ffffff1a",
+  borderLeftColor: "#fff",
+  borderRadius: "50%",
+  height: "10rem",
+  width: "10rem",
+};
 
 const GoogleAuthCallback = () => {
   const location = useLocation();
@@ -47,12 +55,42 @@ const GoogleAuthCallback = () => {
       });
   }, [location, history]);
   return (
-    <div className="loader-container">
-      <div className={`loader ${isVisible ? "" : "loader-hidden"}`}></div>
-      <div className="loader-text">
-        {isVisible
-          ? "Wait we are signing you in..."
-          : "Network response was not ok"}
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        height: "100%",
+        opacity: 1,
+        transform: "none",
+      }}
+    >
+      <div
+        className="loader-container"
+        style={{
+          alignItems: "center",
+          backgroundColor: "initial",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          minHeight: "100vh",
+          paddingBottom: "120px",
+        }}
+      >
+        <div
+          className={`loader ${isVisible ? "" : "loader-hidden"}`}
+          style={{ ...loaderStyle, display: isVisible ? "flex" : "none" }}
+        ></div>
+        <div
+          className="loader-text"
+          style={{
+            color: "#fff",
+            fontSize: "1.5rem",
+            marginTop: "20px",
+            textAlign: "center",
+          }}
+        >
+          {isVisible ? "Wait we are signing you in..." : "Network response was not ok"}
+        </div>
       </div>
       <Particless />
     </div>
