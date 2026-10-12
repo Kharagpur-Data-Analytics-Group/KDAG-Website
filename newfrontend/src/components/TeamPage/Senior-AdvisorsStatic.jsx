@@ -1,47 +1,46 @@
 const members = [
 	
 	{
-		image: "images/Advisors_2024_Photos/Nisarg.jpeg",
-		name: "Nisarg Bhavsar",
-		email: "nisargbhavsar25@gmail.com",
-		facebook: "https://www.facebook.com/nisarg.bhavsar.9678",
+		image: "images/Heads_2024_Photos/Siddharth.jpeg",
+		name: "Siddharth Jain",
+		email: "sid73372211@icloud.com",
+		facebook: "",
 		twitter: "www.twitter.com",
-		linkedin: "https://www.linkedin.com/in/nisarg-bhavsar/",
+		linkedin: "https://www.linkedin.com/in/siddharth-jain-4a0a0724b",
+	},
+	{
+		image: "images/Heads_2024_Photos/Nyasa.jpeg",
+		name: "Nyasa",
+		email: "nyasajha@gmail.com",
+		facebook: "https://www.facebook.com/profile.php?id=61555053890291&mibextid=ZbWKwL",
+		linkedin: "https://www.linkedin.com/in/nyasa-5ab168287",
 	},
 
 	{
-		name: "Aumogh Sengupta",
-		image: "images/Advisors_2024_Photos/Aumogh.jpeg",
-		email: "aumogh24@gmail.com",
-		facebook: "https://www.facebook.com/aumogh.sengupta",
+		image: "images/Heads_2024_Photos/Devodita.jpeg",
+		name: "Devodita Chakravarty",
+		email: "devoditac@kgpian.iitkgp.ac.in",
+		facebook: "https://www.facebook.com/profile.php?id=100087751952869&mibextid=ZbWKwL",
 		twitter: "www.twitter.com",
-		linkedin: "https://www.linkedin.com/in/aumogh-sengupta-1659b7225/",
+		linkedin: "https://www.linkedin.com/in/devodita",
 	},
 
 	{
-		name: "Bishanka Seal",
-		image: "images/Advisors_2024_Photos/Bishanka.jpeg",
-		email: "bishankaseal@gmail.com",
-		facebook: "https://www.facebook.com/bishanka.seal",
+		name: "Rwik Dey",
+		image: "images/Heads_2024_Photos/Rwik.jpg",
+		email: "rwikdey@gmail.com",
+		facebook: "https://www.facebook.com/profile.php?id=100087640278350&mibextid=ZbWKwL",
 		twitter: "www.twitter.com",
-		linkedin: "https://www.linkedin.com/in/bishanka-s-6201b1204/",
+		linkedin: "https://www.linkedin.com/in/rwik-dey-840b70254",
 	},
 
 	{
-		name: "Manas Jha",
-		image: "images/Advisors_2024_Photos/Manas.jpeg",
-		email: "jhamanas6676@gmail.com",
-		facebook: "https://www.facebook.com/profile.php?id=100074617685790",
-		linkedin: "https://www.linkedin.com/in/manas-jha-901416225/",
-	},
-
-	{
-		name: "Abhinav Thakur",
-		image: "images/Advisors_2024_Photos/Abhinav.jpeg",
-		email: "05abhinavthakur@gmail.com",
-		facebook: "https://www.facebook.com/profile.php?id=100008590905292",
+		name: "Srinjoy Das",
+		image: "images/Heads_2024_Photos/Srinjoy.jpeg",
+		email: "srinjoydas566@gmail.com",
+		facebook: "https://www.facebook.com/srinjoy.das.12?mibextid=ZbWKwL",
 		twitter: "www.twitter.com",
-		linkedin: "https://www.linkedin.com/in/abhinavthakur05/",
+		linkedin: "https://www.linkedin.com/in/srinjoy-das-174648202",
 	},
 
 ];

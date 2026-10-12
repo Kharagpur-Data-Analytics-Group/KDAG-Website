@@ -4,7 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import KDSH2022 from "../components/Events/Individual_Events/KDSH2022_bundle/KDSH2022.jsx";
 import Navbar from "../components/Common/Navbar/Navbar.jsx";
 // import MousePointer from "../components/Common/MousePointer/MousePointer";
-import LandingPage from "../components/Landing/LandingPage";
+// Site-wide rules that used to come from the landing CSS; must stay at this
+// position so the cascade order for every other page is unchanged.
+import "../legacy-globals.css";
+import LandingPage from "../components/Landing/LandingPage.jsx";
 import BlogPage from "../components/Blog/BlogPage";
 import ResourcesPage from "../components/Resources/ResourcesPage";
 import EventsPage from "../components/Events/EventsPage";
