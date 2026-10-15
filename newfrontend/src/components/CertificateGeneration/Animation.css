@@ -1,0 +1,86 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .certificate-card.expanded {
+    padding: 1.5rem;
+  }
+
+  .certificate-frame {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 515px) {
+  .certificate-card input {
+    width: 265px;
+  }
+}
+
+@media (max-width: 480px) {
+  .certificate-card input {
+    width: 240px;
+  }
+
+  .certificate-card {
+    width: 92%;
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .certificate-card input {
+    width: 210px;
+  }
+}
+
+@media (max-width: 400px) {
+  .certificate-card input {
+    width: 200px;
+  }
+}
+
+@media (max-width: 386px) {
+  .certificate-card input {
+    width: 190px;
+  }
+}
+
+@media (max-width: 375px) {
+  .certificate-card input {
+    width: 180px;
+  }
+}
+
+@media (max-width: 360px) {
+  .certificate-card input {
+    width: 170px;
+  }
+}
+
+@media (max-width: 350px) {
+  .certificate-card input {
+    width: 160px;
+  }
+}
+
+@media (max-width: 340px) {
+  .certificate-card input {
+    width: 150px;
+  }
+}
+
+@media (max-width: 325px) {
+  .certificate-card input {
+    width: 130px;
+  }
+}

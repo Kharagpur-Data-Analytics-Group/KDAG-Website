@@ -1,0 +1,127 @@
+import React, { useMemo } from "react";
+import { Link } from "react-router-dom";
+import styled, { keyframes } from "styled-components";
+import Navbar from "../Common/Navbar/Navbar";
+import Particless from "../Common/Particles/Particless";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const NotFoundPage = styled.div`
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+
+  .not-found-container {
+    max-width: 600px;
+    background: rgba(30, 30, 30, 0.9);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  }
+
+  .not-found-title {
+    font-size: 8rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1;
+    background: linear-gradient(135deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+  }
+
+  .not-found-subtitle {
+    font-size: 2rem;
+    margin: 1rem 0;
+    font-weight: 400;
+    color: #ddd;
+  }
+
+  .not-found-text {
+    font-size: 1.1rem;
+    color: #bbb;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .not-found-button {
+    display: inline-block;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(135deg, #ff1e1e, #b00000);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 20px rgba(176, 0, 0, 0.3);
+  }
+
+  .not-found-button:hover {
+    background: linear-gradient(135deg, #ff2e2e, #e00000);
+    transform: translateY(-2px);
+    color: #fff;
+  }
+
+  .not-found-button:active {
+    transform: translateY(1px);
+  }
+
+  @media (max-width: 768px) {
+    .not-found-title {
+      font-size: 6rem;
+    }
+    
+    .not-found-subtitle {
+      font-size: 1.5rem;
+    }
+    
+    .not-found-container {
+      padding: 2rem;
+    }
+  }
+`;
+
+const NotFound = () => {
+  const particles = useMemo(() => <Particless />, []);
+
+  return (
+    <>
+      <Navbar />
+      <NotFoundPage>
+        <div className="not-found-container">
+          <h1 className="not-found-title">404</h1>
+          <h2 className="not-found-subtitle">Page Not Found</h2>
+          <p className="not-found-text">
+            The page you are looking for might have been removed, had its name
+            changed, or is temporarily unavailable.
+          </p>
+          <Link to="/" className="not-found-button">
+            Go to Homepage
+          </Link>
+        </div>
+      </NotFoundPage>
+      {particles}
+    </>
+  );
+};
+
+export default NotFound;

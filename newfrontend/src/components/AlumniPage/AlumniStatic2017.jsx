@@ -1,0 +1,121 @@
+const members_2017 = [
+	{
+		name: "Sourav Mohanty",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Sourav Mohanty.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/sourrvvvyyy/",
+		work_experience:
+			"Senior Data Scientist, Progress logo | Data Scientist, Progress",
+		workplace: "Zeni",
+	},
+	{
+		name: "Ashris Choudhury",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Ashris Choudhury.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/ashris/",
+		work_experience: "Software Engineer, HeadsUp | Software Engineer, BharatPe",
+		workplace: "Quilt",
+	},
+	{
+		name: "Yashwant Kumar",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Yashwant Kumar.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/yashwant-kumar-55484163/",
+		work_experience:
+			"Associate, Morgan Stanley | Senior Analyst, Deutsche Bank and Citi",
+		workplace: "SGCIB",
+	},
+	{
+		name: "Kamlesh Kumar Yadav",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Kamlesh Kumar Yadav.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/kamaleshyadav/",
+		work_experience: "Analyst, HSBC",
+		workplace: "JPMorgan Chase & Co.",
+	},
+	{
+		name: "Naman Mitruka",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Naman Mitruka.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/namanmitruka/",
+		work_experience: "Associate, Goldman Sachs",
+		workplace: "Vested Finance",
+	},
+	{
+		name: "Chinmay Gandhi",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Chinmay Gandhi.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/gandhichinmay/",
+		work_experience: "Senior Associate, JP Morgan | Assistant Manager, ITC",
+		workplace: "Patrianna",
+	},
+	{
+		name: "Rathang Joshi",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Rathang Joshi.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/rathang-joshi-02a72891/",
+		work_experience: "Software Developer, Walmart",
+		workplace: "APT Portfolio Private Limited",
+	},
+	{
+		name: "Ishmeet Singh",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Ishmeet Singh.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/ishmeetsingh800/",
+		work_experience:
+			"System Design Engineer, Texas Instrument | Product Manager, Info Edge India Ltd",
+		workplace: "Media.net",
+	},
+	{
+		name: "Rishabh Bhandari",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Rishabh Bhandari.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/rishabh-bhandari/",
+		work_experience:
+			"Resident AI Expert, CI Metrics | Data Scientist, WorldQuant | Associate Data Scientist, Gartner",
+		workplace: "Graviton AI",
+	},
+	{
+		name: "Tanujay Saha",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Tanujay Saha.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/tanujay-saha-b9547799/",
+		work_experience: "NA, PhD",
+		workplace: "Astera Institute",
+	},
+	{
+		name: "Yamini Goyal",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Yamini Goyal.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/yamini-goyal-38156848/",
+		work_experience: "Senior Member, Mentor Graphics",
+		workplace: "Amazon",
+	},
+	{
+		name: "Hemant Sardana",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Hemant Singh Sardana.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/hemant-singh-sardana-783ab583/",
+		work_experience:
+			"Data Analyst, Indus Valley Partners | Lead Data Scientist, Indusland Bank",
+		workplace: "EXL",
+	},
+	{
+		name: "Subham Kedia",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Subham Kedia.jpeg",
+		facebook: "",
+		linkedin: "https://www.linkedin.com/in/subhamkedia27/",
+		work_experience: "Senior Analyst, McKinsey and Company",
+		workplace: "Zacua Ventures",
+	},
+	{
+		name: "Abhinav Garg",
+		image: "images/Alumni_All_Images/Graduating Batch of 2017/Abhinav Garg.jpeg",
+		facebook: "",
+		linkedin: "https://linkedin.com/in/agarg41/",
+		work_experience: "Risk Analyst, Credictuisse",
+		workplace: "Tesla",
+	},
+];
+
+export default members_2017;
