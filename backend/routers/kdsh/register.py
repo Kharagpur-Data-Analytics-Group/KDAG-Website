@@ -42,164 +42,165 @@ def _extract_email_from_identity(mongo, identity):
         return identity.lower()
     return None
 
-async def fetch_page(session, url, headers):
-    """Fetch a single page of starred repositories."""
-    try:
-        async with session.get(url, headers=headers) as response:
-            if response.status == 404:
-                print(f"Error -- 404 -- {url}")
-                return {"error": "GitHub user not found."}
-            elif response.status == 403:
-                print("rate exceeded")
-                return {"error1": "Rate limit exceeded. Please try again later."}
-            elif response.status == 200:
-                print(f"200 -- Fetched {url}")
-                return await response.json()
-            else:
-                return {"error": f"GitHub API responded with status {response.status}"}
-    except Exception as e:
-        return {"error": f"Request failed for {url}: {str(e)}"}
-
-
-def get_last_page_number(link_header):
-    """Extract the last page number from the 'Link' header."""
-    if not link_header:
-        return 1  # If no pagination, there's only one page
-    for link in link_header.split(","):
-        if 'rel="last"' in link:
-            last_url = link.split(";")[0].strip().strip("<>")
-            return int(last_url.split("page=")[-1].split("&")[0])
-    return 1
-
-
-async def get_starred_repositories_async(github_id):
-    github_id = github_id.strip().lower()  
-    base_url = f"https://api.github.com/users/{github_id}/starred?per_page=100"
-    all_starred_repositories = []
-
-    access_token = os.getenv("GITHUB_TOKEN")
-    if not access_token:
-        return {"error": "GitHub token is missing."}
-
-    headers = {
-        "Authorization": f"token {access_token}",
-        "Accept": "application/vnd.github+json",
-    }
-
-    async with aiohttp.ClientSession() as session:
-        async with session.get(base_url, headers=headers) as response:
-            if response.status == 404:
-                print("error -- 404 -- ", github_id)
-                return {"error": "GitHub user not found."}
-
-            elif response.status == 403:
-                try:
-                    print(await response.json())
-                except Exception:
-                    pass
-                print("403 -- ")
-                return {"error1": "Rate limit exceeded. Please try again later."}
-
-            elif response.status == 200:
-                print("200 -- proceeding with getting the rest of the urls")
-                response_ = await response.json()
-                all_starred_repositories.extend(response_)
-                remaining = response.headers.get("X-RateLimit-Remaining")
-                limit = response.headers.get("X-RateLimit-Limit")
-                print("remaining : ", remaining)
-                print("limit : ", limit)
-
-                link_header = response.headers.get("Link", "")
-                last_page = get_last_page_number(link_header)
-                print(f"Total pages: {last_page}")
-
-                if last_page > 9:
-                    return {"error1": "Rate limit exceeded. Please try again later."}
-
-                urls = [f"{base_url}&page={page}" for page in range(2, last_page + 1)]
-                print(f"Fetching URLs: {urls}")
-
-                tasks = [fetch_page(session, url, headers) for url in urls]
-                results = await asyncio.gather(*tasks, return_exceptions=True)
-
-                for result in results:
-                    if isinstance(result, list):
-                        all_starred_repositories.extend(result)
-    return {"starred_repositories": all_starred_repositories}
-
-
-def get_starred_repositories(github_id):
-    """Wrapper function to run the async function."""
-    github_id = github_id.strip().lower() 
-    print(github_id)
-    return asyncio.run(get_starred_repositories_async(github_id))
-
-
-def check_required_repositories(starred_repos):
-    required_repos = ["pathway", "llm-app"]
-    starred_repo_names = [
-        repo["name"] for repo in starred_repos["starred_repositories"]
-    ]
-    missing_repos = [repo for repo in required_repos if repo not in starred_repo_names]
-    return missing_repos
-
-
-def check_repositories(gitHub_users):
-    gitHub_users = [u.strip().lower() for u in gitHub_users]  
-    missing_repos_by_user = {}
-
-    for github_id in gitHub_users:
-        try:
-            print("starting get_starred_repositories")
-            starred_repos = get_starred_repositories(github_id)
-            if "error" in starred_repos:
-                missing_repos_by_user[github_id] = "error"
-                continue
-
-            if "error1" in starred_repos:
-                missing_repos_by_user[github_id] = "error1"
-                return missing_repos_by_user
-
-            missing_repos = check_required_repositories(starred_repos)
-
-            if not missing_repos:
-                missing_repos_by_user[github_id] = "success"
-            else:
-                missing_repos_by_user[github_id] = missing_repos
-        except Exception as e:
-            print("check_repo : ", e)
-            missing_repos_by_user[github_id] = "error"
-
-    return missing_repos_by_user
-
-def check_starred_repositories(missing_repos_by_users):
-    all_starred = True
-    missing_repos_messages = []
-    for github_id, missing_repos in missing_repos_by_users.items():
-        if missing_repos == "success":
-            continue
-        elif missing_repos == "error":
-            all_starred = False
-            missing_repos_messages.append(
-                f""" You have entered incorrect GitHub Id --- {github_id} .Please check and enter the correct GitHub ID"""
-            )
-        elif missing_repos == "error1":
-            all_starred = False
-            missing_repos_messages = [
-                "The server seems to be experiencing unexpected load. Please try again after some time. If the issue persists contact us at exec@kdagiitkgp.com"
-            ]
-        else:
-            repo_messages = [f'GitHub user {github_id} has not starred the "']
-            repo_messages.append('", "'.join(missing_repos))
-            repo_messages.append('" repository(s).')
-            all_starred = False
-            missing_repos_messages.append("".join(repo_messages))
-    if all_starred:
-        print("All users have starred the required repositories.")
-        return "success"
-    else:
-        message = " ".join(missing_repos_messages)
-        return message
+# Legacy GitHub repository-star validation code retained for rollback.
+#
+# async def fetch_page(session, url, headers):
+#     """Fetch a single page of starred repositories."""
+#     try:
+#         async with session.get(url, headers=headers) as response:
+#             if response.status == 404:
+#                 print(f"Error -- 404 -- {url}")
+#                 return {"error": "GitHub user not found."}
+#             elif response.status == 403:
+#                 print("rate exceeded")
+#                 return {"error1": "Rate limit exceeded. Please try again later."}
+#             elif response.status == 200:
+#                 print(f"200 -- Fetched {url}")
+#                 return await response.json()
+#             else:
+#                 return {"error": f"GitHub API responded with status {response.status}"}
+#     except Exception as e:
+#         return {"error": f"Request failed for {url}: {str(e)}"}
+#
+#
+# def get_last_page_number(link_header):
+#     """Extract the last page number from the 'Link' header."""
+#     if not link_header:
+#         return 1
+#     for link in link_header.split(","):
+#         if 'rel="last"' in link:
+#             last_url = link.split(";")[0].strip().strip("<>")
+#             return int(last_url.split("page=")[-1].split("&")[0])
+#     return 1
+#
+#
+# async def get_starred_repositories_async(github_id):
+#     github_id = github_id.strip().lower()
+#     base_url = f"https://api.github.com/users/{github_id}/starred?per_page=100"
+#     all_starred_repositories = []
+#
+#     access_token = os.getenv("GITHUB_TOKEN")
+#     if not access_token:
+#         return {"error": "GitHub token is missing."}
+#
+#     headers = {
+#         "Authorization": f"token {access_token}",
+#         "Accept": "application/vnd.github+json",
+#     }
+#
+#     async with aiohttp.ClientSession() as session:
+#         async with session.get(base_url, headers=headers) as response:
+#             if response.status == 404:
+#                 print("error -- 404 -- ", github_id)
+#                 return {"error": "GitHub user not found."}
+#             elif response.status == 403:
+#                 try:
+#                     print(await response.json())
+#                 except Exception:
+#                     pass
+#                 print("403 -- ")
+#                 return {"error1": "Rate limit exceeded. Please try again later."}
+#             elif response.status == 200:
+#                 print("200 -- proceeding with getting the rest of the urls")
+#                 response_ = await response.json()
+#                 all_starred_repositories.extend(response_)
+#                 remaining = response.headers.get("X-RateLimit-Remaining")
+#                 limit = response.headers.get("X-RateLimit-Limit")
+#                 print("remaining : ", remaining)
+#                 print("limit : ", limit)
+#
+#                 link_header = response.headers.get("Link", "")
+#                 last_page = get_last_page_number(link_header)
+#                 print(f"Total pages: {last_page}")
+#
+#                 if last_page > 9:
+#                     return {"error1": "Rate limit exceeded. Please try again later."}
+#
+#                 urls = [f"{base_url}&page={page}" for page in range(2, last_page + 1)]
+#                 print(f"Fetching URLs: {urls}")
+#
+#                 tasks = [fetch_page(session, url, headers) for url in urls]
+#                 results = await asyncio.gather(*tasks, return_exceptions=True)
+#
+#                 for result in results:
+#                     if isinstance(result, list):
+#                         all_starred_repositories.extend(result)
+#     return {"starred_repositories": all_starred_repositories}
+#
+#
+# def get_starred_repositories(github_id):
+#     """Wrapper function to run the async function."""
+#     github_id = github_id.strip().lower()
+#     print(github_id)
+#     return asyncio.run(get_starred_repositories_async(github_id))
+#
+#
+# def check_required_repositories(starred_repos):
+#     required_repos = ["arc-task-gen"]
+#     starred_repo_names = [
+#         repo["name"] for repo in starred_repos["starred_repositories"]
+#     ]
+#     missing_repos = [repo for repo in required_repos if repo not in starred_repo_names]
+#     return missing_repos
+#
+#
+# def check_repositories(gitHub_users):
+#     gitHub_users = [u.strip().lower() for u in gitHub_users]
+#     missing_repos_by_user = {}
+#
+#     for github_id in gitHub_users:
+#         try:
+#             print("starting get_starred_repositories")
+#             starred_repos = get_starred_repositories(github_id)
+#             if "error" in starred_repos:
+#                 missing_repos_by_user[github_id] = "error"
+#                 continue
+#
+#             if "error1" in starred_repos:
+#                 missing_repos_by_user[github_id] = "error1"
+#                 return missing_repos_by_user
+#
+#             missing_repos = check_required_repositories(starred_repos)
+#
+#             if not missing_repos:
+#                 missing_repos_by_user[github_id] = "success"
+#             else:
+#                 missing_repos_by_user[github_id] = missing_repos
+#         except Exception as e:
+#             print("check_repo : ", e)
+#             missing_repos_by_user[github_id] = "error"
+#
+#     return missing_repos_by_user
+#
+#
+# def check_starred_repositories(missing_repos_by_users):
+#     all_starred = True
+#     missing_repos_messages = []
+#     for github_id, missing_repos in missing_repos_by_users.items():
+#         if missing_repos == "success":
+#             continue
+#         elif missing_repos == "error":
+#             all_starred = False
+#             missing_repos_messages.append(
+#                 f""" You have entered incorrect GitHub Id --- {github_id} .Please check and enter the correct GitHub ID"""
+#             )
+#         elif missing_repos == "error1":
+#             all_starred = False
+#             missing_repos_messages = [
+#                 "The server seems to be experiencing unexpected load. Please try again after some time. If the issue persists contact us at exec@kdagiitkgp.com"
+#             ]
+#         else:
+#             repo_messages = [f'GitHub user {github_id} has not starred the "']
+#             repo_messages.append('", "'.join(missing_repos))
+#             repo_messages.append('" repository(s).')
+#             all_starred = False
+#             missing_repos_messages.append("".join(repo_messages))
+#     if all_starred:
+#         print("All users have starred the required repositories.")
+#         return "success"
+#     else:
+#         message = " ".join(missing_repos_messages)
+#         return message
 
 
 @kdsh.route("/check_register", methods=["POST"])
@@ -223,7 +224,6 @@ def check_register():
             "college",
             "degree",
             "YOS",
-            "GitHubID",
             "teamName",
         ]
 
@@ -239,7 +239,7 @@ def check_register():
         lastname = data["lastname"].strip()
         email = data["mail"].strip().lower()
         mobile = str(data["mobile"]).strip()
-        github_id = data["GitHubID"].strip().lower()    
+        github_id = str(data.get("GitHubID", "")).strip().lower()
         team_name = data["teamName"].strip().lower()
 
         if not firstname or not lastname:
@@ -258,49 +258,35 @@ def check_register():
         except:
             return jsonify({"error": "YOS must be a valid positive integer."}), 400
 
-        if not github_id:
-            return jsonify({"error": "GitHubID is required."}), 400
-
         if not team_name:
             return jsonify({"error": "Team name cannot be empty."}), 400
 
         if not re.match(r"^[a-zA-Z0-9\s]+$", team_name):
             return jsonify({"error": "Team name can only contain letters, numbers and spaces."}), 400
 
-        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+        if github_id and mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
             {"GitHubID": github_id}
         ):
             return jsonify({"error": "GitHub ID already registered."}), 400
 
-        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+        if mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
             {"mobile": mobile}
         ):
             return jsonify({"error": "Phone number already registered."}), 400
 
-        if mongo.cx["KDSH_2026"].kdsh2026_teams.find_one(
+        if mongo.cx["PATHWAY_2026"].path2026_teams.find_one(
             {"teamName": team_name}
         ):
             return jsonify({"error": "Team name already exists."}), 400
 
-        starred_repos = get_starred_repositories(github_id)
-
-        if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
-            return jsonify({"error": "GitHub validation failed. Try again later."}), 400
-
-        missing_repos = check_required_repositories(starred_repos)
-        if missing_repos:
-            return jsonify({
-                "error": f'Please star required repositories: {", ".join(missing_repos)}'
-            }), 400
-
         while True:
             team_code = generate_team_code()
-            if not mongo.cx["KDSH_2026"].kdsh2026_teams.find_one(
+            if not mongo.cx["PATHWAY_2026"].path2026_teams.find_one(
                 {"teamCode": team_code}
             ):
                 break
 
-        mongo.cx["KDSH_2026"].kdsh2026_participants.insert_one({
+        mongo.cx["PATHWAY_2026"].path2026_participants.insert_one({
             "isTeamLeader": True,
             "firstname": firstname,
             "lastname": lastname,
@@ -315,7 +301,7 @@ def check_register():
             "registered_at": datetime.utcnow()
         })
 
-        mongo.cx["KDSH_2026"].kdsh2026_teams.insert_one({
+        mongo.cx["PATHWAY_2026"].path2026_teams.insert_one({
             "teamName": team_name,
             "teamCode": team_code,
             "teamleader_github": github_id,
@@ -353,7 +339,7 @@ def check_participants():
             user = user.strip().lower()  
         if not user:
             return jsonify({"error": "GitHub ID is required."}), 400
-        existing_user = mongo.cx['KDSH_2026'].kdsh2026_participants.find_one({"GitHubID": user})
+        existing_user = mongo.cx['PATHWAY_2026'].path2026_participants.find_one({"GitHubID": user})
         if existing_user:
             serialized_user = serialize_document(existing_user)
             return jsonify({"message": f"{user} already exists in the database", "user": serialized_user}), 200
@@ -378,7 +364,7 @@ def check_team():
             team_name = team_name.strip().lower() 
         if not team_name:
             return jsonify({"error": "Team name is required."}), 400
-        existing_team = mongo.cx['KDSH_2026'].kdsh2026_teams.find_one({"teamName": team_name})
+        existing_team = mongo.cx['PATHWAY_2026'].path2026_teams.find_one({"teamName": team_name})
         if existing_team:
             serialized_team = serialize_document(existing_team)
             return jsonify({"message": f"{team_name} already EXISTS.", "team": serialized_team}), 200
@@ -405,7 +391,7 @@ def certificate_lookup():
         if not email:
             return jsonify({"error": "Email is required."}), 400
 
-        col = mongo.cx["KDSH_2026"].kdsh2026_full_list
+        col = mongo.cx["PATHWAY_2026"].path2026_full_list
 
         # existing_by_github = col.find_one(
         #     {"$or": [{"GitHubID": github_id}, {"GitHubID": github_id}]}
@@ -495,7 +481,7 @@ def certificate_lookup():
         #     }), 400
 
         # # Check if GitHub ID is already used in participants collection
-        # existing_participant = mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+        # existing_participant = mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
         #     {"GitHubID": github_id}
         # )
         # if existing_participant:
@@ -537,7 +523,6 @@ def join_team():
             "college",
             "degree",
             "YOS",
-            "GitHubID",
             "teamCode",
         ]
 
@@ -549,7 +534,7 @@ def join_team():
         lastname = str(data["lastname"]).strip()
         email = str(data["mail"]).strip().lower()
         mobile = str(data["mobile"]).strip()
-        github_id = str(data["GitHubID"]).strip().lower()
+        github_id = str(data.get("GitHubID", "")).strip().lower()
         team_code = str(data["teamCode"]).strip().upper()
 
         if not firstname or not lastname:
@@ -568,18 +553,15 @@ def join_team():
         except:
             return jsonify({"error": "YOS must be a valid positive integer."}), 400
 
-        if not github_id:
-            return jsonify({"error": "GitHubID is required."}), 400
-
         if not team_code:
             return jsonify({"error": "Team code is required."}), 400
 
-        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+        if mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
             {"mobile": mobile}
         ):
             return jsonify({"error": "Phone number already registered."}), 400
 
-        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        team = mongo.cx["PATHWAY_2026"].path2026_teams.find_one({"teamCode": team_code})
         if not team:
             return jsonify({"error": "Invalid team code."}), 400
 
@@ -589,43 +571,44 @@ def join_team():
         if team["numMembers"] >= 4:
             return jsonify({"error": "Team is already full."}), 400
 
-        if mongo.cx["KDSH_2026"].kdsh2026_participants.find_one(
+        if email.lower() in [e.lower() for e in team.get("members_email", [])]:
+            return jsonify({"error": "This email is already part of this team."}), 400
+
+        if mongo.cx["PATHWAY_2026"].path2026_participants.find_one({"mail": email}):
+            return jsonify({"error": "This email is already registered for another participant."}), 400
+
+        if github_id and mongo.cx["PATHWAY_2026"].path2026_participants.find_one(
             {"GitHubID": github_id}
         ):
             return jsonify({"error": "GitHub ID already registered."}), 400
 
-        starred_repos = get_starred_repositories(github_id)
+        if github_id and github_id in team.get("members_github", []):
+            return jsonify({"error": "This GitHub ID is already in the team."}), 400
 
-        if not isinstance(starred_repos, dict) or "starred_repositories" not in starred_repos:
-            return jsonify({
-                "error": "GitHub validation failed. Please try again later."
-            }), 400
+        update_filter = {
+            "_id": team["_id"],
+            "numMembers": {"$lt": 4},
+            "members_email": {"$ne": email}
+        }
+        if github_id:
+            update_filter["members_github"] = {"$ne": github_id}
 
-        missing_repos = check_required_repositories(starred_repos)
-        if missing_repos:
-            return jsonify({
-                "error": f'Please star required repositories: {", ".join(missing_repos)}'
-            }), 400
+        update_ops = {
+            "$push": {"members_email": email},
+            "$inc": {"numMembers": 1}
+        }
+        if github_id:
+            update_ops["$push"]["members_github"] = github_id
 
-        update_result = mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
-            {
-                "_id": team["_id"],
-                "numMembers": {"$lt": 4},
-                "members_github": {"$ne": github_id}
-            },
-            {
-                "$push": {
-                    "members_github": github_id,
-                    "members_email": email
-                },
-                "$inc": {"numMembers": 1}
-            }
+        update_result = mongo.cx["PATHWAY_2026"].path2026_teams.update_one(
+            update_filter,
+            update_ops
         )
 
         if update_result.modified_count == 0:
-            return jsonify({"error": "Failed to join team. Try again."}), 400
+            return jsonify({"error": "This person is already part of the team or the team was just updated. Please refresh and try again."}), 400
 
-        mongo.cx["KDSH_2026"].kdsh2026_participants.insert_one({
+        mongo.cx["PATHWAY_2026"].path2026_participants.insert_one({
             "isTeamLeader": False,
             "firstname": firstname,
             "lastname": lastname,
@@ -640,7 +623,7 @@ def join_team():
             "joined_at": datetime.utcnow()
         })
 
-        mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+        mongo.cx["PATHWAY_2026"].path2026_teams.update_one(
             {
                 "_id": team["_id"],
                 "numMembers": {"$gte": 2}
@@ -681,7 +664,7 @@ def get_user_teams():
 
         email = user["email"].lower()
 
-        participants_col = mongo.cx["KDSH_2026"]["kdsh2026_participants"]
+        participants_col = mongo.cx["PATHWAY_2026"]["path2026_participants"]
         
         # Find user's participant record to get their GitHub ID
         user_participant = participants_col.find_one({"mail": email})
@@ -691,17 +674,24 @@ def get_user_teams():
 
         # Find teams where user is leader (by email)
         leader_teams = list(
-            mongo.cx["KDSH_2026"]["kdsh2026_teams"].find(
+            mongo.cx["PATHWAY_2026"]["path2026_teams"].find(
                 {"teamleader_email": email}
             )
         )
 
-        # Find teams where user is a member (by GitHub ID)
+        # Find teams where user is a member (by GitHub ID if available, else by email)
         member_teams = []
         if user_github_id:
             member_teams = list(
-                mongo.cx["KDSH_2026"]["kdsh2026_teams"].find(
+                mongo.cx["PATHWAY_2026"]["path2026_teams"].find(
                     {"members_github": user_github_id}
+                )
+            )
+        else:
+            # If no GitHub ID, search by email instead
+            member_teams = list(
+                mongo.cx["PATHWAY_2026"]["path2026_teams"].find(
+                    {"members_email": email}
                 )
             )
 
@@ -725,22 +715,23 @@ def get_user_teams():
             t = team_data["team"]
             is_leader = team_data["isLeader"]
 
-            gh_ids = [t["teamleader_github"], *t["members_github"]]
+            # Collect all emails (leader + members) for this team
+            all_emails = [t["teamleader_email"], *t["members_email"]]
 
             people = list(
                 participants_col.find(
-                    {"GitHubID": {"$in": gh_ids}},
+                    {"mail": {"$in": all_emails}},
                     {"_id": 0} 
                 )
             )
 
             leader = next(
-                (p for p in people if p["GitHubID"] == t["teamleader_github"]),
+                (p for p in people if p["mail"] == t["teamleader_email"]),
                 None,
             )
 
             members = [
-                p for p in people if p["GitHubID"] in t["members_github"]
+                p for p in people if p["mail"] in t["members_email"]
             ]
 
             enriched.append({
@@ -768,11 +759,13 @@ def remove_member():
         from app import mongo
         data = request.get_json()
 
-        github_to_remove = data.get("GitHubID")
+        email_to_remove = data.get("email")
         team_code = data.get("teamCode")
 
-        if not github_to_remove or not team_code:
-            return jsonify({"error": "GitHubID and teamCode are required"}), 400
+        if not email_to_remove or not team_code:
+            return jsonify({"error": "Email and teamCode are required"}), 400
+
+        email_to_remove = email_to_remove.strip().lower()
 
         identity = get_jwt_identity()
         user_id = identity.get("user_id")
@@ -785,7 +778,7 @@ def remove_member():
 
         leader_email = user["email"].lower()
 
-        team = mongo.cx["KDSH_2026"]["kdsh2026_teams"].find_one(
+        team = mongo.cx["PATHWAY_2026"]["path2026_teams"].find_one(
             {"teamCode": team_code}
         )
 
@@ -795,26 +788,27 @@ def remove_member():
         if team["teamleader_email"].lower() != leader_email:
             return jsonify({"error": "Only the team leader can remove members"}), 403
 
-        if github_to_remove == team["teamleader_github"]:
+        if email_to_remove == team["teamleader_email"].lower():
             return jsonify({"error": "Leader cannot remove themselves"}), 400
 
-        if github_to_remove not in team.get("members_github", []):
+        if email_to_remove not in [e.lower() for e in team.get("members_email", [])]:
             return jsonify({"error": "Member not found in team"}), 404
 
         try:
-            idx = team["members_github"].index(github_to_remove)
-            email_to_remove = team["members_email"][idx]
+            idx = [e.lower() for e in team["members_email"]].index(email_to_remove)
+            members_github_list = team.get("members_github", [])
+            github_id_to_remove = members_github_list[idx] if idx < len(members_github_list) else None
         except Exception:
-            return jsonify({"error": "Data mismatch: email not aligned with GitHub ID"}), 500
+            return jsonify({"error": "Member not found in team"}), 404
 
         new_num_members = max(team["numMembers"] - 1, 0)
 
-        mongo.cx["KDSH_2026"]["kdsh2026_teams"].update_one(
+        mongo.cx["PATHWAY_2026"]["path2026_teams"].update_one(
             {"_id": team["_id"]},
             {
                 "$pull": {
-                    "members_github": github_to_remove,
-                    "members_email": email_to_remove
+                    "members_github": github_id_to_remove if github_id_to_remove else "",
+                    "members_email": team["members_email"][idx]
                 },
                 "$set": {
                     "numMembers": new_num_members,
@@ -823,8 +817,8 @@ def remove_member():
             }
         )
 
-        mongo.cx["KDSH_2026"]["kdsh2026_participants"].delete_one(
-            {"GitHubID": github_to_remove}
+        mongo.cx["PATHWAY_2026"]["path2026_participants"].delete_one(
+            {"mail": email_to_remove}
         )
 
         return jsonify({"message": "Member removed successfully"}), 200
@@ -857,7 +851,7 @@ def leave_team():
 
         team_code = data.get("teamCode").strip().upper()
 
-        team = mongo.cx["KDSH_2026"]["kdsh2026_teams"].find_one(
+        team = mongo.cx["PATHWAY_2026"]["path2026_teams"].find_one(
             {"teamCode": team_code}
         )
 
@@ -868,28 +862,31 @@ def leave_team():
         if team["teamleader_email"].lower() == user_email:
             return jsonify({"error": "Team leader cannot leave the team. Please delete the team or transfer leadership first."}), 403
 
-        # Find user's participant record to get their GitHub ID
-        participants_col = mongo.cx["KDSH_2026"]["kdsh2026_participants"]
+        # Find user's participant record
+        participants_col = mongo.cx["PATHWAY_2026"]["path2026_participants"]
         user_participant = participants_col.find_one({"mail": user_email})
         
         if not user_participant:
             return jsonify({"error": "Participant record not found"}), 404
 
-        user_github_id = user_participant.get("GitHubID")
-        
-        if not user_github_id:
-            return jsonify({"error": "GitHub ID not found"}), 404
-
-        # Check if user is actually a member of this team
-        if user_github_id not in team.get("members_github", []):
+        # Check if user is actually a member of this team (by email)
+        if user_email not in [e.lower() for e in team.get("members_email", [])]:
             return jsonify({"error": "You are not a member of this team"}), 403
 
+        # Find the member's GitHub ID (if any) to remove from arrays
+        try:
+            idx = [e.lower() for e in team["members_email"]].index(user_email)
+            members_github_list = team.get("members_github", [])
+            user_github_id = members_github_list[idx] if idx < len(members_github_list) else ""
+        except Exception:
+            user_github_id = ""
+
         # Remove user from team
-        mongo.cx["KDSH_2026"]["kdsh2026_teams"].update_one(
+        mongo.cx["PATHWAY_2026"]["path2026_teams"].update_one(
             {"_id": team["_id"]},
             {
                 "$pull": {
-                    "members_github": user_github_id,
+                    "members_github": user_github_id if user_github_id else "",
                     "members_email": user_email
                 },
                 "$inc": {"numMembers": -1},
@@ -899,8 +896,8 @@ def leave_team():
             }
         )
 
-        # Delete user's participant record
-        participants_col.delete_one({"GitHubID": user_github_id})
+        # Delete user's participant record by email (not GitHub ID)
+        participants_col.delete_one({"mail": user_email})
 
         return jsonify({"message": "You have successfully left the team"}), 200
 
@@ -927,7 +924,7 @@ def edit_team_details():
 
         team_code = data['teamCode'].strip().upper()
 
-        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        team = mongo.cx["PATHWAY_2026"].path2026_teams.find_one({"teamCode": team_code})
         if not team:
             return jsonify({"error": "Team not found."}), 404
 
@@ -990,20 +987,20 @@ def edit_team_details():
                 return jsonify({"error": "Team name can only contain letters, numbers and spaces."}), 400
             
             # ensure uniqueness (exclude current team)
-            existing = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamName": new_team_name, "teamCode": {"$ne": team_code}})
+            existing = mongo.cx["PATHWAY_2026"].path2026_teams.find_one({"teamName": new_team_name, "teamCode": {"$ne": team_code}})
             if existing:
                 return jsonify({"error": "Team name already exists."}), 400
             update_fields['teamName'] = new_team_name
 
         # All validations passed; perform update on team doc
         old_team_name = team.get("teamName")
-        mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+        mongo.cx["PATHWAY_2026"].path2026_teams.update_one(
             {"teamCode": team_code},
             {"$set": update_fields}
         )
 
         # Propagate changes to participant documents to keep consistency
-        participants_col = mongo.cx["KDSH_2026"].kdsh2026_participants
+        participants_col = mongo.cx["PATHWAY_2026"].path2026_participants
 
         # Update leader's personal fields in participants collection
         leader_github = team.get("teamleader_github")
@@ -1040,7 +1037,7 @@ def finalize_team():
 
         team_code = data['teamCode'].strip().upper()
 
-        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        team = mongo.cx["PATHWAY_2026"].path2026_teams.find_one({"teamCode": team_code})
         if not team:
             return jsonify({"error": "Team not found."}), 404
 
@@ -1048,7 +1045,7 @@ def finalize_team():
         if team_leader_email != user_email:
             return jsonify({"error": "Only team leader can finalize the team."}), 403
 
-        mongo.cx["KDSH_2026"].kdsh2026_teams.update_one(
+        mongo.cx["PATHWAY_2026"].path2026_teams.update_one(
     {"teamCode": team_code},
     {"$set": {"is_team_finalized": True}}
 )
@@ -1075,7 +1072,7 @@ def delete_team():
             return jsonify({"error": "Team code is required."}), 400
 
         team_code = data['teamCode'].strip().upper()
-        team = mongo.cx["KDSH_2026"].kdsh2026_teams.find_one({"teamCode": team_code})
+        team = mongo.cx["PATHWAY_2026"].path2026_teams.find_one({"teamCode": team_code})
 
         if not team:
             return jsonify({"error": "Team not found."}), 404
@@ -1084,41 +1081,45 @@ def delete_team():
         if team_leader_email != user_email:
             return jsonify({"error": "Only team leader can delete the team."}), 403
 
-        gh_ids = [team.get("teamleader_github"), *team.get("members_github", [])]
+        # Collect all emails (leader + members) for deletion
+        all_emails = [team.get("teamleader_email"), *team.get("members_email", [])]
 
-        mongo.cx["KDSH_2026"].kdsh2026_teams.delete_one({"teamCode": team_code})
+        mongo.cx["PATHWAY_2026"].path2026_teams.delete_one({"teamCode": team_code})
 
-        mongo.cx["KDSH_2026"].kdsh2026_participants.delete_many(
-            {"GitHubID": {"$in": [g for g in gh_ids if g]}}
+        # Delete all participants by email (not GitHub ID, since GitHub is optional)
+        mongo.cx["PATHWAY_2026"].path2026_participants.delete_many(
+            {"mail": {"$in": [e.lower() for e in all_emails if e]}}
         )
         return jsonify({"message": "Team deleted successfully."}), 200
     except Exception as e:
         print("delete_team error:", e)
         return jsonify({"error": "Internal server error."}), 500
     
-@kdsh.route("/verify_github_star", methods=["POST"])
-def verify_github_star():
-    try:
-        data = request.get_json()
-        github_id = data.get("github_id", "").strip().lower()
-
-        if not github_id:
-            return jsonify({"error": "GitHub ID required"}), 400
-
-        starred = get_starred_repositories(github_id)
-
-        if "starred_repositories" not in starred:
-            return jsonify({"error": "GitHub validation failed"}), 400
-
-        missing = check_required_repositories(starred)
-
-        if missing:
-            return jsonify({
-                "ok": False,
-                "missing": missing
-            }), 200
-
-        return jsonify({"ok": True}), 200
-
-    except Exception as e:
-        return jsonify({"error": "Server error"}), 500
+# Legacy GitHub star verification endpoint retained for rollback.
+#
+# @kdsh.route("/verify_github_star", methods=["POST"])
+# def verify_github_star():
+#     try:
+#         data = request.get_json()
+#         github_id = data.get("github_id", "").strip().lower()
+#
+#         if not github_id:
+#             return jsonify({"error": "GitHub ID required"}), 400
+#
+#         starred = get_starred_repositories(github_id)
+#
+#         if "starred_repositories" not in starred:
+#             return jsonify({"error": "GitHub validation failed"}), 400
+#
+#         missing = check_required_repositories(starred)
+#
+#         if missing:
+#             return jsonify({
+#                 "ok": False,
+#                 "missing": missing
+#             }), 200
+#
+#         return jsonify({"ok": True}), 200
+#
+#     except Exception as e:
+#         return jsonify({"error": "Server error"}), 500

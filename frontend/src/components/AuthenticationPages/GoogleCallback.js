@@ -32,13 +32,13 @@ const GoogleAuthCallback = () => {
 
         if (data.user_exists) {
           localStorage.setItem("access_token", data.access_token);
-          window.location.href = "/register-kdsh";
+          window.location.href = "/register-hackathon";
         } else {
           localStorage.setItem("register_user_info", JSON.stringify(user_info));
           localStorage.setItem("uid", data.uid);
           localStorage.setItem("access_token", data.access_token);
           // history.push("/register");
-          window.location.href = "/register-kdsh";
+          window.location.href = "/register-hackathon";
         }
       })
       .catch((error) => {

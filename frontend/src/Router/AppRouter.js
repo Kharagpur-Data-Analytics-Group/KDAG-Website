@@ -33,7 +33,7 @@ import RegisterPage from "../components/RegisterPage/RegisterPage.js";
 import Success from "../components/RegisterPage/Success.js";
 import Course from "../components/Resources_New/course.js";
 import Register from '../components/AuthenticationPages/Register.js';
-import ManageTeam2 from "../components/ManageTeam/ManageTeam2.js";
+import ManageTeam from "../components/ManageTeam/ManageTeam.js";
 import NotFound from "../components/NotFound/NotFound.js";
 
 const AppRouter = () => {
@@ -118,14 +118,14 @@ const AppRouter = () => {
 							<Route path="/community-guidelines">
 								<CommunityGuidelines />
 							</Route>
-							<Route path="/register-kdsh">
+							<Route path="/register-hackathon">
 								<RegisterPage />
 							</Route>
 							<Route path="/register-success">
 								<Success />
 							</Route>
 							<Route path="/manage-team">
-								<ManageTeam2 />
+								<ManageTeam />
 							</Route>
 							<Route path="*">
 								<NotFound />

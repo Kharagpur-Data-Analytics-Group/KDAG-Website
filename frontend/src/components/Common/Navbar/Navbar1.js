@@ -69,11 +69,11 @@ const Navbar = ({ color, noborder }) => {
 								Forum
 							</NavLink>
 						</div>
-						<div className="kdag-nav-item">
+						{/* <div className="kdag-nav-item">
 							<NavLink activeStyle={active_style} to="/certificate">
 								Certificate
 							</NavLink>
-						</div>
+						</div> */}
 						{!isLoggedIn && (
 						<div className="kdag-nav-item">
 							<NavLink activeStyle={active_style} to="/auth">
@@ -160,9 +160,9 @@ const Navbar = ({ color, noborder }) => {
 									<li>
 										<NavLink to="/forum">Forum</NavLink>
 									</li>
-									<li>
+									{/* <li>
 										<NavLink to="/certificate">Certificate</NavLink>
-									</li>
+									</li> */}
 									<li>
 										<NavLink to="/auth">Register</NavLink>
 									</li>

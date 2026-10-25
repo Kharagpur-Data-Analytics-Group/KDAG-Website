@@ -118,8 +118,7 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
                 <input
                     type="text"
                     name="githubid"
-                    placeholder="Github Username"
-                    required
+                    placeholder="Github Username (optional)"
                     value={GitHubID}
                     onChange={(e) => setGitHubID(e.target.value)}
                 />

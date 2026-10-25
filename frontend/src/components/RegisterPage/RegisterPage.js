@@ -22,8 +22,8 @@ import "../Resources_New/LoginPrompt.css";
 import { Copy, Check } from "lucide-react";
 import whatsapp from "./../../assets/kdsh2025_whatsapp.png";
 import discord from "./../../assets/kdsh2025_discord.png";
-import banner from "./../../assets/banner.png";
-import bannerSmall from "./../../assets/kdshbanner_small.png";
+import banner from "./../../assets/DataForge_big.png";
+import bannerSmall from "./../../assets/DataForge_small.png";
 
 const RegisterPage = () => {
 	const particless = React.useMemo(() => <Particless />, []);
@@ -31,7 +31,7 @@ const RegisterPage = () => {
 	const { userInfo } = useContext(AuthContext);
 	const [successPage, setSuccessPage] = useState(false);
 	const history = useHistory();
-	const [showHowTo, setShowHowTo] = useState(true);
+	const [showHowTo, setShowHowTo] = useState(false);
 	const [registrationMode, setRegistrationMode] = useState(null);
 	const [teamCode, setTeamCode] = useState("");
 	const [teamCodeDisplay, setTeamCodeDisplay] = useState("");
@@ -127,7 +127,13 @@ const RegisterPage = () => {
 			teamName: team,
 		};
 
-		const registerPromise = fetch(
+		toast.info("Creating your team... This may take a few moments.", {
+			position: "top-center",
+			autoClose: 5000,
+			theme: "dark",
+		});
+
+		fetch(
 			`${process.env.REACT_APP_FETCH_URL}/kdsh/check_register`,
 			{
 				method: "POST",
@@ -140,7 +146,6 @@ const RegisterPage = () => {
 			.then(async (response) => {
 				const data = await response.json();
 				if (!response.ok) {
-					// Handle error responses
 					throw new Error(data.error || `Server error: ${response.status}`);
 				}
 				return data;
@@ -166,19 +171,6 @@ const RegisterPage = () => {
 				});
 				setIsSubmitting(false);
 			});
-
-		toast.promise(
-			registerPromise,
-			{
-				pending:
-					"Creating your team...This may take several minutes, Please stay with us!!!",
-				error: "Registration failed. Please try again later.",
-			},
-			{
-				position: "top-center",
-				autoClose: 8000,
-			}
-		);
 	};
 
 	const handleJoinTeam = async (e) => {
@@ -189,54 +181,61 @@ const RegisterPage = () => {
 
 		try {
 			if (!teamCode || teamCode.trim() === "") {
-			toast.error("Please enter a team code", {
-				position: "top-center",
-				draggable: true,
-				theme: "dark",
-			});
-			return;
+				toast.error("Please enter a team code", {
+					position: "top-center",
+					draggable: true,
+					theme: "dark",
+				});
+				return;
 			}
 
 			if (!handleSubmit(firstname1, mobile1, college1, YOS1, GitHubID1)) {
-			return;
+				return;
 			}
 
 			const formData = {
-			firstname: firstname1,
-			lastname: lastname1,
-			gender: gender1,
-			mail: mail1,
-			mobile: mobile1,
-			college: college1,
-			degree: degree1,
-			YOS: Number(YOS1),
-			GitHubID: GitHubID1,
-			teamCode: teamCode.trim().toUpperCase(),
+				firstname: firstname1,
+				lastname: lastname1,
+				gender: gender1,
+				mail: mail1,
+				mobile: mobile1,
+				college: college1,
+				degree: degree1,
+				YOS: Number(YOS1),
+				GitHubID: GitHubID1,
+				teamCode: teamCode.trim().toUpperCase(),
 			};
 
+			toast.info("Joining team...", {
+				position: "top-center",
+				autoClose: 5000,
+				theme: "dark",
+			});
+
 			const response = await fetch(
-			`${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
-			{
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(formData),
-			}
+				`${process.env.REACT_APP_FETCH_URL}/kdsh/join_team`,
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(formData),
+				}
 			);
 
 			const data = await response.json();
 
 			if (!response.ok) {
-			throw new Error(data.error || "Failed to join team");
+				throw new Error(data.error || "Failed to join team");
 			}
 
 			toast.success(data.message || "Joined team successfully", { theme: "dark" });
+			await checkUserTeam();
 			setSuccessPage(true);
 
 		} catch (error) {
 			console.error("Join error:", error);
 			toast.error(error.message || "Failed to join team", {
-			position: "top-center",
-			autoClose: 15000,
+				position: "top-center",
+				autoClose: 15000,
 			});
 		} finally {
 			setIsSubmitting(false);
@@ -342,31 +341,34 @@ const RegisterPage = () => {
 				<Fade top>
 					<div className="register-header">
 						<div className="spacer layer1"></div>
-						<div className="register-kdsh">KDSH 2026</div>
+						<div className="register-kdsh">DataForge 2026</div>
 						<div className="kdsh_banner">
 							<picture>
-								
+
 								<source
-								media="(max-width: 767px)"
-								srcSet={bannerSmall}
+									media="(max-width: 767px)"
+									srcSet={bannerSmall}
 								/>
 
 								<img
-								src={banner}
-								alt="KDSH Banner"
-								style={{ width: "100%", height: "auto" }}
+									src={banner}
+									alt="DaraForge Banner"
+									style={{ width: "100%", height: "auto" }}
 								/>
 							</picture>
 						</div>
 
 						<div className="register-kdsh-desc">
 							<p>
-								The 6th Edition of the{" "}
-								<strong>Kharagpur Data Science Hackathon</strong> (KDSH) is here
-								to redefine excellence in data science. Dive into machine
-								learning, solve real-world challenges, and showcase your
-								innovative solutions. Connect with industry leaders, sharpen
-								your skills, and become a trailblazer in the field.
+								<strong>Kharagpur Data Analytics Group (KDAG)</strong>, IIT Kharagpur, presents {" "}
+								<strong>DataForge 2026</strong>, a data science and analytics hackathon, sponsored by
+								Pathway and Rime, designed to challenge participants with real-world data science and machine
+								learning problems.
+							</p>
+
+							<p>
+								Compete for a {" "}<strong>₹3L+ prize pool</strong> in cash prizes and exciting
+								goodies!
 							</p>
 
 							{/* <p>
@@ -381,21 +383,21 @@ const RegisterPage = () => {
 								Exposure through national media partners and India's largest techno-management fest.
 							</p> */}
 
-							{/* <p>
-								<strong>Registration deadline: 2nd January 2026 11:59 PM</strong> <br/>
-							</p> */}
+							<p>
+								<strong>Registration deadline: 2nd September 2026 11:59 PM</strong>
+							</p>
 
 							<p>
-								For more details about KDSH 2026, visit our {" "}
+								For more details about DataForge 2026, visit our {" "}
 								<a
 									className="kdsh-unstop-link"
-									href="https://unstop.com/p/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
+									href="https://unstop.com/p/dataforge-2026-iit-kharagpur-1739346"
 									target="_blank"
 									rel="noreferrer noopener"
 								>
 									Unstop Page
 								</a>.
-							</p> 
+							</p>
 
 							<p>
 								To participate, please fill in your details in the form provided
@@ -410,8 +412,10 @@ const RegisterPage = () => {
 								}}
 							>
 								<strong>
-									Before registering, kindly ensure all your team members have
-									starred the following GitHub repositories:
+									Do check out and star Pathway's new repository! It's about a
+									a reasoning model that combines in-context learning through
+									evolving recurrent memory with iterative reasoning in a structured,
+									continuous latent space.
 								</strong>
 							</p>
 
@@ -419,223 +423,234 @@ const RegisterPage = () => {
 								<li>
 									<a
 										className="kdsh-link"
-										href="https://github.com/pathwaycom/pathway"
+										href="https://github.com/pathwaycom/arc-task-gen"
 										target="_blank"
 										rel="noreferrer noopener"
 										style={{ cursor: "pointer" }}
 									>
-										Pathway
-									</a>
-								</li>
-								<li>
-									<a
-										className="kdsh-link"
-										href="https://github.com/pathwaycom/llm-app"
-										target="_blank"
-										rel="noreferrer noopener"
-										style={{ cursor: "pointer" }}
-									>
-										LLM App
+										ARC-TASK-GEN
 									</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</Fade>
-				<Star />
+				{/* <Star /> */}
 				<Fade left>
 					<div className="register-form">
-						{registrationMode && (
-							<button
-								className="register-back-button"
-								type="button"
-								onClick={handleBackToSelection}
-								aria-label="Back to selection"
+						<div style={{ textAlign: "center", padding: "40px 20px" }}>
+							<h2 style={{ marginBottom: "20px", color: "#fff" }}>
+								Registrations have moved to Unstop
+							</h2>
+							<p style={{ marginBottom: "25px", color: "#ccc" }}>
+								Registrations for DataForge 2026 are now closed on our website.
+							</p>
+							<a
+								className="kdsh-unstop-link"
+								href="https://unstop.com/p/dataforge-2026-iit-kharagpur-1739346"
+								target="_blank"
+								rel="noreferrer noopener"
 							>
-								←
-							</button>
-						)}
-						{checkingTeam ? (
-							<div style={{ padding: "40px", textAlign: "center" }}>
-								<h2>Checking team status...</h2>
-							</div>
-						) : !registrationMode ? (
-							hasTeam ? (
-								<div style={{ textAlign: "center", padding: "40px 20px" }}>
-									<h2 style={{ marginBottom: "20px", color: "#fff" }}>You are already part of a team!</h2>
-									<p style={{ marginBottom: "30px", color: "#ccc" }}>
-										Visit the Manage Team dashboard to view your team details or make changes.
-									</p>
-									<button
-										className="register-form-submit"
-										type="button"
-										onClick={() => history.push("/manage-team")}
-										style={{ minWidth: "", margin: "0 auto" }}
-									>
-										<p>Manage Team</p>
-									</button>
-									<div className="important-note2">
-										<strong>Important:</strong> After all Members have joined, Team Leader must finalize the team on the&nbsp;
-										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
-											Manage Team
-										</span>{" "}
-										page. Your team will only appear on Unstop after finalization.
-									</div>
+								Continue to Unstop
+							</a>
+						</div>
+						{/* Registration flow temporarily disabled; retained below for future reuse. */}
+						{false && <>
+							{registrationMode && (
+								<button
+									className="register-back-button"
+									type="button"
+									onClick={handleBackToSelection}
+									aria-label="Back to selection"
+								>
+									←
+								</button>
+							)}
+							{checkingTeam ? (
+								<div style={{ padding: "40px", textAlign: "center" }}>
+									<h2>Checking team status...</h2>
 								</div>
-
-							) : (
-								<div>
-									<h1
-										style={{
-											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
-											marginBottom: "25px",
-											textAlign: "center",
-										}}
-									>
-										Registrations have moved to unstop.
-									</h1>
-									<div style={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
-										<a
+							) : !registrationMode ? (
+								hasTeam ? (
+									<div style={{ textAlign: "center", padding: "40px 20px" }}>
+										<h2 style={{ marginBottom: "20px", color: "#fff" }}>You are already part of a team!</h2>
+										<p style={{ marginBottom: "30px", color: "#ccc" }}>
+											Visit the Manage Team dashboard to view your team details or make changes.
+										</p>
+										<button
 											className="register-form-submit"
 											type="button"
-											href="https://unstop.com/hackathons/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
-											target="_blank"
-											rel="noopener noreferrer"
-											style={{ minWidth: "300px" }}
+											onClick={() => history.push("/manage-team")}
+											style={{ minWidth: "", margin: "0 auto" }}
 										>
-											<p>Register on unstop</p>
-										</a>
-										{/*<button
-											className="register-form-submit"
-											type="button"
-											onClick={() => {
-												if (!isLoggedIn) {
-													setShowLoginPrompt(true);
-													return;
-												}
-												setRegistrationMode("member");
+											<p>Manage Team</p>
+										</button>
+										<div className="important-note2">
+											<strong>Important:</strong> After all Members have joined, Team Leader must finalize the team on the&nbsp;
+											<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
+												Manage Team
+											</span>{" "}
+											page. Your team will only appear on Unstop after finalization.
+										</div>
+									</div>
+
+								) : (
+									<div>
+										<h1
+											style={{
+												textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+												marginBottom: "25px",
+												textAlign: "center",
 											}}
-											style={{ minWidth: "300px" }}
 										>
-											<p>Join a Team with Team Code</p>
-										</button>*/}
+											Choose Registration Type
+										</h1>
+										<div style={{ display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+											<button
+												className="register-form-submit"
+												type="button"
+												onClick={() => {
+													if (!isLoggedIn) {
+														setShowLoginPrompt(true);
+														return;
+													}
+													setRegistrationMode("leader");
+												}}
+												style={{ minWidth: "300px" }}
+											>
+												<p>Register as Team Leader</p>
+											</button>
+											<button
+												className="register-form-submit"
+												type="button"
+												onClick={() => {
+													if (!isLoggedIn) {
+														setShowLoginPrompt(true);
+														return;
+													}
+													setRegistrationMode("member");
+												}}
+												style={{ minWidth: "300px" }}
+											>
+												<p>Join a Team with Team Code</p>
+											</button>
+										</div>
+										<div className="important-note2">
+											<strong>Important:</strong> After all Team Members have joined, Team Leader must review and confirm your team details on the&nbsp;
+											<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
+												Manage Team
+											</span>{" "}
+											page to complete your registration. Your team will only appear on Unstop after finalization.
+										</div>
 									</div>
-									{/*<div className="important-note2">
-										<strong>Important:</strong> After all Team Members have joined, Team Leader must review and confirm your team details on the&nbsp;
-										<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
-											Manage Team
-										</span>{" "}
-										page to complete your registration. Your team will only appear on Unstop after finalization.
-									</div>*/}
-								</div>
-							)
-						) : registrationMode === "leader" ? (
-							<form onSubmit={handleTeamLeaderRegister}>
-								<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-									<h1
-										style={{
-											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
-											marginBottom: "25px",
-										}}
-									>
-										Register as Team Leader
-									</h1>
-									<br />
-									{teamCodeDisplay ? (
-										<div style={{
-											background: "rgba(0, 255, 17, 0.1)",
-											border: "2px solid #00ff11",
-											borderRadius: "10px",
-											padding: "20px",
-											marginBottom: "30px",
-											textAlign: "center",
-											width: "100%",
-										}}>
-											<h2 style={{ color: "#00ff11", marginBottom: "10px" }}>
-												Team Created Successfully!
-											</h2>
-											<p style={{ color: "white", marginBottom: "15px" }}>
-												Your Team Code:
-											</p>
-											<div className="team-code-display">
-												<div style={{
-													fontSize: "32px",
-													fontWeight: "bold",
-													color: "#00ff11",
-													letterSpacing: "5px",
-													marginBottom: "10px",
-													marginTop: "10px",
-													fontFamily: "monospace",
-												}}>
-													{teamCodeDisplay}
-												</div>
-												<button
-													type="button"
-													onClick={copyTeamCodeToClipboard}
-													style={{
-														background: "rgba(0, 255, 17, 0.2)",
-														border: "1px solid #00ff11",
-														borderRadius: "8px",
-														padding: "8px 16px",
-														cursor: "pointer",
-														display: "flex",
-														alignItems: "center",
-														gap: "8px",
-														color: "#00ff11",
-														fontSize: "14px",
-														fontWeight: "600",
-														transition: "all 0.3s ease",
-													}}
-													onMouseEnter={(e) => {
-														e.target.style.background = "rgba(0, 255, 17, 0.3)";
-													}}
-													onMouseLeave={(e) => {
-														e.target.style.background = "rgba(0, 255, 17, 0.2)";
-													}}
-												>
-													{copiedTeamCode ? (
-														<>
-															<Check size={16} />
-															<span>Copied</span>
-														</>
-													) : (
-														<>
-															<Copy size={16} />
-															<span>Copy</span>
-														</>
-													)}
-												</button>
-											</div>
-											<p style={{ color: "white", fontSize: "14px" }}>
-
-												Share this code with your teammates so they can join your team.
-											</p>
-											<p style={{ color: "white", fontSize: "16px", marginBottom: "15px" }}>
-												Join the WhatsApp Group and Discord Channel for regular updates!
-											</p>
+								)
+							) : registrationMode === "leader" ? (
+								<form onSubmit={handleTeamLeaderRegister}>
+									<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+										<h1
+											style={{
+												textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+												marginBottom: "25px",
+											}}
+										>
+											Register as Team Leader
+										</h1>
+										<br />
+										{teamCodeDisplay ? (
 											<div style={{
-												display: "flex",
-												justifyContent: "center",
-												gap: "20px",
-												marginTop: "15px",
+												background: "rgba(0, 255, 17, 0.1)",
+												border: "2px solid #00ff11",
+												borderRadius: "10px",
+												padding: "20px",
+												marginBottom: "30px",
+												textAlign: "center",
+												width: "100%",
 											}}>
-												<a
-													href="https://chat.whatsapp.com/LguOtn8Dwyh19sajyCKNoQ"
-													target="_blank"
-													rel="noreferrer noopener"
-													style={{
-														transition: "transform 0.3s ease",
-													}}
-													onMouseEnter={(e) => {
-														e.target.style.transform = "scale(1.1)";
-													}}
-													onMouseLeave={(e) => {
-														e.target.style.transform = "scale(1)";
-													}}
-												>
-													<img src={whatsapp} alt="whatsapp" style={{ height: "50px", cursor: "pointer" }} />
-												</a>
-												<a
+												<h2 style={{ color: "#00ff11", marginBottom: "10px" }}>
+													Team Created Successfully!
+												</h2>
+												<p style={{ color: "white", marginBottom: "15px" }}>
+													Your Team Code:
+												</p>
+												<div className="team-code-display">
+													<div style={{
+														fontSize: "32px",
+														fontWeight: "bold",
+														color: "#00ff11",
+														letterSpacing: "5px",
+														marginBottom: "10px",
+														marginTop: "10px",
+														fontFamily: "monospace",
+													}}>
+														{teamCodeDisplay}
+													</div>
+													<button
+														type="button"
+														onClick={copyTeamCodeToClipboard}
+														style={{
+															background: "rgba(0, 255, 17, 0.2)",
+															border: "1px solid #00ff11",
+															borderRadius: "8px",
+															padding: "8px 16px",
+															cursor: "pointer",
+															display: "flex",
+															alignItems: "center",
+															gap: "8px",
+															color: "#00ff11",
+															fontSize: "14px",
+															fontWeight: "600",
+															transition: "all 0.3s ease",
+														}}
+														onMouseEnter={(e) => {
+															e.target.style.background = "rgba(0, 255, 17, 0.3)";
+														}}
+														onMouseLeave={(e) => {
+															e.target.style.background = "rgba(0, 255, 17, 0.2)";
+														}}
+													>
+														{copiedTeamCode ? (
+															<>
+																<Check size={16} />
+																<span>Copied</span>
+															</>
+														) : (
+															<>
+																<Copy size={16} />
+																<span>Copy</span>
+															</>
+														)}
+													</button>
+												</div>
+												<p style={{ color: "white", fontSize: "14px" }}>
+
+													Share this code with your teammates so they can join your team.
+												</p>
+												<p style={{ color: "white", fontSize: "16px", marginBottom: "15px" }}>
+													Join the WhatsApp Group for regular updates!
+												</p>
+												<div style={{
+													display: "flex",
+													justifyContent: "center",
+													gap: "20px",
+													marginTop: "15px",
+												}}>
+													<a
+														href="https://chat.whatsapp.com/BZZm1oRtnQ4FK1MYZbFNcQ"
+														target="_blank"
+														rel="noreferrer noopener"
+														style={{
+															transition: "transform 0.3s ease",
+														}}
+														onMouseEnter={(e) => {
+															e.target.style.transform = "scale(1.1)";
+														}}
+														onMouseLeave={(e) => {
+															e.target.style.transform = "scale(1)";
+														}}
+													>
+														<img src={whatsapp} alt="whatsapp" style={{ height: "50px", cursor: "pointer" }} />
+													</a>
+													{/* <a
 													href="https://discord.gg/fBfvXCTQF"
 													target="_blank"
 													rel="noreferrer noopener"
@@ -650,125 +665,137 @@ const RegisterPage = () => {
 													}}
 												>
 													<img src={discord} alt="discord" style={{ height: "50px", cursor: "pointer" }} />
-												</a>
+												</a> */}
+												</div>
+												<div className="important-note2" style={{ marginTop: "20px" }}>
+													<strong>Important Next Step:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
+													<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
+														Manage Team
+													</span>{" "}
+													to complete your registration. Your team will only appear on Unstop after finalization.
+												</div>
 											</div>
-											<div className="important-note2" style={{ marginTop: "20px" }}>
-												<strong>Important Next Step:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
-												<span className="important-note2-link" onClick={() => history.push("/manage-team")}>
-													Manage Team
-												</span>{" "}
-												to complete your registration. Your team will only appear on Unstop after finalization.
-											</div>
-										</div>
-									) : (
-										<div>
-											<div className="register-form-details-special">
-												<div id="header">Team Name</div>
-												<div style={{ width: "10px" }}></div>
-												<input
-													type="text"
-													name="name"
-													placeholder="Team Name"
-													required
-													onChange={handleTeamName}
-													value={team}
+										) : (
+											<div>
+												<div className="register-form-details-special">
+													<div id="header">Team Name</div>
+													<div style={{ width: "10px" }}></div>
+													<input
+														type="text"
+														name="name"
+														placeholder="Team Name"
+														required
+														onChange={handleTeamName}
+														value={team}
+													/>
+												</div>
+
+												<div className="register-form-details">
+													Team Leader Details
+												</div>
+												<RegisterFormCard
+													firstname={firstname1}
+													setFirstname={setFirstname1}
+													lastname={lastname1}
+													setLastname={setLastname1}
+													gender={gender1}
+													setGender={setGender1}
+													mail={mail1}
+													setMail={setMail1}
+													mobile={mobile1}
+													setMobile={setMobile1}
+													college={college1}
+													setCollege={setCollege1}
+													degree={degree1}
+													setDegree={setDegree1}
+													YOS={YOS1}
+													setYOS={setYOS1}
+													GitHubID={GitHubID1}
+													setGitHubID={setGitHubID1}
+													disabled={true}
 												/>
+												<div style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
+													<button className="register-form-submit" type="submit" disabled={isSubmitting}>
+														<p>{isSubmitting ? "Creating..." : "Create Team"}</p>
+													</button>
+												</div>
 											</div>
-
-											<div className="register-form-details">
-												Team Leader Details
-											</div>
-											<RegisterFormCard
-												firstname={firstname1}
-												setFirstname={setFirstname1}
-												lastname={lastname1}
-												setLastname={setLastname1}
-												gender={gender1}
-												setGender={setGender1}
-												mail={mail1}
-												setMail={setMail1}
-												mobile={mobile1}
-												setMobile={setMobile1}
-												college={college1}
-												setCollege={setCollege1}
-												degree={degree1}
-												setDegree={setDegree1}
-												YOS={YOS1}
-												setYOS={setYOS1}
-												GitHubID={GitHubID1}
-												setGitHubID={setGitHubID1}
-												disabled={true}
+										)}
+									</div>
+								</form>
+							) : (
+								<form onSubmit={handleJoinTeam}>
+									<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+										<h1
+											style={{
+												textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
+												marginBottom: "25px",
+											}}
+										>
+											Join a Team
+										</h1>
+										<br />
+										<div className="register-form-details-special">
+											<div id="header">Team Code</div>
+											<div style={{ width: "10px" }}></div>
+											<input
+												type="text"
+												name="teamCode"
+												placeholder="Enter Team Code"
+												required
+												onChange={handleTeamCodeChange}
+												value={teamCode}
+												maxLength={8}
+												style={{ textTransform: "uppercase", letterSpacing: "2px", fontFamily: "monospace" }}
 											/>
-											<div style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
-												<button className="register-form-submit" type="submit" disabled={isSubmitting}>
-													<p>{isSubmitting ? "Creating..." : "Create Team"}</p>
-												</button>
-											</div>
 										</div>
-									)}
-								</div>
-							</form>
-						) : (
-							<form onSubmit={handleJoinTeam}>
-								<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-									<h1
-										style={{
-											textShadow: "0 0 5px #1c1cf0, 0 0 10px #1c1cf0",
-											marginBottom: "25px",
-										}}
-									>
-										Join a Team
-									</h1>
-									<br />
-									<div className="register-form-details-special">
-										<div id="header">Team Code</div>
-										<div style={{ width: "10px" }}></div>
-										<input
-											type="text"
-											name="teamCode"
-											placeholder="Enter Team Code"
-											required
-											onChange={handleTeamCodeChange}
-											value={teamCode}
-											maxLength={8}
-											style={{ textTransform: "uppercase", letterSpacing: "2px", fontFamily: "monospace" }}
-										/>
-									</div>
 
-									<div className="register-form-details">
-										Your Details
+										<div className="register-form-details">
+											Your Details
+										</div>
+										<RegisterFormCard
+											firstname={firstname1}
+											setFirstname={setFirstname1}
+											lastname={lastname1}
+											setLastname={setLastname1}
+											gender={gender1}
+											setGender={setGender1}
+											mail={mail1}
+											setMail={setMail1}
+											mobile={mobile1}
+											setMobile={setMobile1}
+											college={college1}
+											setCollege={setCollege1}
+											degree={degree1}
+											setDegree={setDegree1}
+											YOS={YOS1}
+											setYOS={setYOS1}
+											GitHubID={GitHubID1}
+											setGitHubID={setGitHubID1}
+											disabled={true}
+										/>
+										<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+											<button className="register-form-submit" type="submit" disabled={isSubmitting}>
+												<p>{isSubmitting ? "Joining..." : "Join Team"}</p>
+											</button>
+										</div>
 									</div>
-									<RegisterFormCard
-										firstname={firstname1}
-										setFirstname={setFirstname1}
-										lastname={lastname1}
-										setLastname={setLastname1}
-										gender={gender1}
-										setGender={setGender1}
-										mail={mail1}
-										setMail={setMail1}
-										mobile={mobile1}
-										setMobile={setMobile1}
-										college={college1}
-										setCollege={setCollege1}
-										degree={degree1}
-										setDegree={setDegree1}
-										YOS={YOS1}
-										setYOS={setYOS1}
-										GitHubID={GitHubID1}
-										setGitHubID={setGitHubID1}
-										disabled={true}
-									/>
-									<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-										<button className="register-form-submit" type="submit" disabled={isSubmitting}>
-											<p>{isSubmitting ? "Joining..." : "Join Team"}</p>
-										</button>
-								</div>
-								</div>
-							</form>
-						)}
+								</form>
+							)}
+						</>}
 					</div>
 				</Fade>
+				<div className="register-star-guide-wrap">
+					<button
+						type="button"
+						className="register-star-toggle"
+						onClick={handleShowHowTo}
+					>
+						<span>How to star a repository</span>
+						<span className="register-star-toggle-icon">{showHowTo ? "▾" : "▸"}</span>
+					</button>
+					{showHowTo && <Star />}
+				</div>
 			</div>
 			{particless}
 			<LoginPrompt

@@ -81,7 +81,7 @@ const Register = () => {
         setIsSignUpActive(!isSignUpActive);
 
         localStorage.setItem("just_registered", "true");
-        window.location.href = "/ml_sheet";
+        window.location.href = "/register-hackathon";
       } else {
         const jsonData = await response.json();
         setUserMessage(jsonData.message);

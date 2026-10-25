@@ -1,5 +1,5 @@
 """
-Export KDSH 2026 registrations from MongoDB to CSV format.
+Export DataForge 2026 registrations from MongoDB to CSV format.
 
 This script connects to MongoDB, fetches all participants and team data,
 and exports it to a CSV file in the required format.
@@ -28,16 +28,16 @@ except ImportError:
     # If certifi is not available, use the connection without it
     client = MongoClient(MONGO_URI)
 
-db = client["KDSH_2026"]
+db = client["PATHWAY_2026"]
 
 # Collections
-teams_collection = db["kdsh2026_teams"]
-participants_collection = db["kdsh2026_participants"]
+teams_collection = db["path2026_teams"]
+participants_collection = db["path2026_participants"]
 
 
-def export_registrations_to_csv(output_filename="kdsh2026_registrations.csv"):
+def export_registrations_to_csv(output_filename="dataforge2026_registrations.csv"):
     """
-    Export all KDSH 2026 registrations to CSV format.
+    Export all DataForge 2026 registrations to CSV format.
     
     Args:
         output_filename (str): Name of the output CSV file
@@ -52,31 +52,33 @@ def export_registrations_to_csv(output_filename="kdsh2026_registrations.csv"):
     teams = list(teams_collection.find())
     print(f"Found {len(teams)} teams")
     
-    # Create team lookup by team leader's GitHub ID (for team leaders)
-    team_by_leader = {team["teamleader_github"].lower(): team for team in teams if team.get("teamleader_github")}
+    # Create team lookup by team leader's email (for team leaders)
+    # Email is reliable since it's always present and unique
+    team_by_leader_email = {team["teamleader_email"].lower(): team for team in teams if team.get("teamleader_email")}
     
-    # Create team lookup by members' GitHub IDs (for team members)
-    # Each member's GitHub ID maps to their team
-    team_by_member = {}
+    # Create team lookup by members' emails (for team members)
+    # Each member's email maps to their team
+    team_by_member_email = {}
     for team in teams:
-        for member_github in team.get("members_github", []):
-            team_by_member[member_github.lower()] = team
+        for member_email in team.get("members_email", []):
+            team_by_member_email[member_email.lower()] = team
     
     # Prepare CSV data
     csv_data = []
     
     for participant in participants:
-        github_id = participant.get("GitHubID", "").lower()
+        email = participant.get("mail", "").lower()
         is_leader = participant.get("isTeamLeader", False)
         
-        # Find the correct team based on GitHub ID
+        # Find the correct team based on email (which is always present and unique)
         if is_leader:
-            team_info = team_by_leader.get(github_id, {})
+            team_info = team_by_leader_email.get(email, {})
         else:
-            team_info = team_by_member.get(github_id, {})
+            team_info = team_by_member_email.get(email, {})
         
-        # Skip participants without a team
+        # Skip participants without a team (shouldn't happen if data is consistent)
         if not team_info:
+            print(f"⚠️  Warning: Participant {email} ({participant.get('firstname', '')}) not found in any team, skipping.")
             continue
         
         team_name = participant.get("teamName", "")
@@ -198,10 +200,10 @@ def export_registrations_to_csv(output_filename="kdsh2026_registrations.csv"):
 if __name__ == "__main__":
     # Generate filename with timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file = f"kdsh2026_registrations_{timestamp}.csv"
+    output_file = f"DataForge2026_regs.csv"
     
     print("=" * 60)
-    print("KDSH 2026 Registration Export")
+    print("DataForge 2026 Registration Export")
     print("=" * 60)
     
     try:
