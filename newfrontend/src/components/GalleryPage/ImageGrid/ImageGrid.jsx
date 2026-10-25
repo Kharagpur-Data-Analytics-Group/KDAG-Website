@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Particless from '../../Common/Particles/Particless.js';
+import Particless from '../../Common/Particles/Particless.jsx';
 
 const ImageGrid = () => {
   const { eventTitle } = useParams();

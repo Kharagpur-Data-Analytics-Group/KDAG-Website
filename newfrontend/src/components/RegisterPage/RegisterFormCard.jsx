@@ -19,8 +19,8 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
             }
         }, []);
     return (
-        <div style={{marginBottom: "20px", display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
-            <div className="register-form-icons">
+        <div className="!mb-[20px] flex justify-center flex-wrap">
+            <div className="register-form-icons box-border border-b border-white/20 inline-block !pl-[7px] !mr-[15px] !mb-[15px] focus-within:border-b-[#1c1cf0] focus-within:transition-colors focus-within:duration-250 [&_img]:h-[25px] [&_img]:!mr-[6px] [&_img]:!mb-[2px] [&_input]:!rounded-none [&_input]:!border-0 [&_input:focus]:!shadow-none [&_input:focus]:outline-none">
                 <img src={user_icon} alt="user" />
                 <input
                     type="text"
@@ -31,7 +31,7 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
                     onChange={(e) => setFirstname(e.target.value)}
                 />
             </div>
-            <div className="register-form-icons">
+            <div className="register-form-icons box-border border-b border-white/20 inline-block !pl-[7px] !mr-[15px] !mb-[15px] focus-within:border-b-[#1c1cf0] focus-within:transition-colors focus-within:duration-250 [&_img]:h-[25px] [&_img]:!mr-[6px] [&_img]:!mb-[2px] [&_input]:!rounded-none [&_input]:!border-0 [&_input:focus]:!shadow-none [&_input:focus]:outline-none">
                 <img src={user_icon} alt="user" />
                 <input
                     type="text"
@@ -41,7 +41,7 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
                     onChange={(e) => setLastname(e.target.value)}
                 />
             </div>
-            <div className="register-form-gender">
+            <div className="register-form-gender box-border text-white/[0.664] inline-flex items-center justify-center relative -top-[5px] border-b border-white/20 !mr-[15px] !mb-[10px] !mt-[5px] [&_label]:!mr-[6px] [&_label]:!ml-[7px] [&_label]:box-border [&_label]:inline-block [&_label_img]:h-[25px] [&_label_img]:!pt-[2px] [&_select]:!rounded-none [&_select]:!border-0 [&_option]:text-[#333]">
                 <label htmlFor="gender">
                     <img src={gender_icon} alt="gender" />
                 </label>
@@ -57,7 +57,7 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
                     <option value="other">Other</option>
                 </select>
             </div>
-            <div className="register-form-icons">
+            <div className="register-form-icons box-border border-b border-white/20 inline-block !pl-[7px] !mr-[15px] !mb-[15px] focus-within:border-b-[#1c1cf0] focus-within:transition-colors focus-within:duration-250 [&_img]:h-[25px] [&_img]:!mr-[6px] [&_img]:!mb-[2px] [&_input]:!rounded-none [&_input]:!border-0 [&_input:focus]:!shadow-none [&_input:focus]:outline-none">
                 <img src={mail_icon} alt="user" />
                 <input
                     type="email"
@@ -69,7 +69,7 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
                     onChange={(e) => setMail(e.target.value)}
                 />
             </div>
-            <div className="register-form-icons">
+            <div className="register-form-icons box-border border-b border-white/20 inline-block !pl-[7px] !mr-[15px] !mb-[15px] focus-within:border-b-[#1c1cf0] focus-within:transition-colors focus-within:duration-250 [&_img]:h-[25px] [&_img]:!mr-[6px] [&_img]:!mb-[2px] [&_input]:!rounded-none [&_input]:!border-0 [&_input:focus]:!shadow-none [&_input:focus]:outline-none">
                 <img src={contact_icon} alt="user" />
                 <input
                     type="number"
@@ -80,7 +80,7 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
                     onChange={(e) => setMobile(e.target.value)}
                 />
             </div>
-            <div className="register-form-icons">
+            <div className="register-form-icons box-border border-b border-white/20 inline-block !pl-[7px] !mr-[15px] !mb-[15px] focus-within:border-b-[#1c1cf0] focus-within:transition-colors focus-within:duration-250 [&_img]:h-[25px] [&_img]:!mr-[6px] [&_img]:!mb-[2px] [&_input]:!rounded-none [&_input]:!border-0 [&_input:focus]:!shadow-none [&_input:focus]:outline-none">
                 <img src={college_icon} alt="user" />
                 <input
                     type="text"
@@ -91,7 +91,7 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
                     onChange={(e) => setCollege(e.target.value)}
                 />
             </div>
-            <div className="register-form-icons">
+            <div className="register-form-icons box-border border-b border-white/20 inline-block !pl-[7px] !mr-[15px] !mb-[15px] focus-within:border-b-[#1c1cf0] focus-within:transition-colors focus-within:duration-250 [&_img]:h-[25px] [&_img]:!mr-[6px] [&_img]:!mb-[2px] [&_input]:!rounded-none [&_input]:!border-0 [&_input:focus]:!shadow-none [&_input:focus]:outline-none">
                 <img src={degree_icon} alt="user" />
                 <input
                     type="text"
@@ -102,7 +102,7 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
                     onChange={(e) => setDegree(e.target.value)}
                 />
             </div>
-            <div className="register-form-icons">
+            <div className="register-form-icons box-border border-b border-white/20 inline-block !pl-[7px] !mr-[15px] !mb-[15px] focus-within:border-b-[#1c1cf0] focus-within:transition-colors focus-within:duration-250 [&_img]:h-[25px] [&_img]:!mr-[6px] [&_img]:!mb-[2px] [&_input]:!rounded-none [&_input]:!border-0 [&_input:focus]:!shadow-none [&_input:focus]:outline-none">
                 <img src={YOS_icon} alt="user" />
                 <input
                     type="number"
@@ -113,13 +113,12 @@ const RegisterFormCard = ({firstname, setFirstname, lastname, setLastname, gende
                     onChange={(e) => setYOS(e.target.value)}
                 />
             </div>
-            <div className="register-form-icons">
+            <div className="register-form-icons box-border border-b border-white/20 inline-block !pl-[7px] !mr-[15px] !mb-[15px] focus-within:border-b-[#1c1cf0] focus-within:transition-colors focus-within:duration-250 [&_img]:h-[25px] [&_img]:!mr-[6px] [&_img]:!mb-[2px] [&_input]:!rounded-none [&_input]:!border-0 [&_input:focus]:!shadow-none [&_input:focus]:outline-none">
                 <img src={github_icon} alt="user" />
                 <input
                     type="text"
                     name="githubid"
-                    placeholder="Github Username"
-                    required
+                    placeholder="Github Username (optional)"
                     value={GitHubID}
                     onChange={(e) => setGitHubID(e.target.value)}
                 />

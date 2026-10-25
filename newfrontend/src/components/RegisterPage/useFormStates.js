@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
-// import "./RegisterPage.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -92,16 +91,13 @@ const validateUsername = (username) => {
 };
 
 export const checkGitHubID = (githubID) => {
-	if (githubID.trim() === "") {
-		toast.error("GitHub Username cannot be empty.", {
-			position: "top-center",
-			draggable: true,
-			theme: "dark",
-		});
-		return null;
+	const trimmedGithubID = (githubID || "").trim();
+
+	if (trimmedGithubID === "") {
+		return "";
 	}
 
-	const cleanedGithubID = githubID.replace(/\s+/g, "");
+	const cleanedGithubID = trimmedGithubID.replace(/\s+/g, "");
 
 	if (validateUsername(cleanedGithubID)) {
 		return cleanedGithubID;

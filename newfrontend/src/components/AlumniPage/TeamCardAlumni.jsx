@@ -5,7 +5,7 @@ const TeamCardAlumni = ({ member }) => {
   return (
     <>
         <div className='w-1/2 max-w-60' 
-        style={{ marginRight:'50px', margin: '1.5rem', marginRight:'35px' }}>
+        style={{ margin: '1.5rem', marginRight:'35px' }}>
 			<Fade bottom>
 				<div className="group flex flex-col items-center w-full rounded-[5px] rounded-t-[5px] font-medium hover:bottom-0 hover:bg-[rgba(104,58,58,0.15)] hover:shadow-[0_0_25px_rgba(250,57,70,1)] hover:text-[#fb8787]"
                 style={{ padding: '2rem', 

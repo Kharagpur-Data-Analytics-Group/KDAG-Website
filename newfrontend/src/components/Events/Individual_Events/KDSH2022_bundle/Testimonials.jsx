@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import TestiMonialsDetails from './TestiMonialsDetails.jsx'
+import TestiMonialsDetails from './TestimonialsDetails.jsx'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+import './owl.theme.css';
 import './OwlCarousal.css'
 import userPic from '../../../../assets/pics/naruto.jpg';
 import kshitiz from '../../../../assets/pics/events/kshtitiz.jpg'

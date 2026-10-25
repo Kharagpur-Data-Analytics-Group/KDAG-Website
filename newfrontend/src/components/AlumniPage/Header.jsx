@@ -19,7 +19,7 @@ const Header = () => {
     <div className={`h-120 bg-cover shadow-[0px_2px_10px_rgba(0,0,0,0.25)] transition-opacity duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`}
     style={{ paddingTop: '10rem'}}>
 			<div 
-                className='font-[Poppins, sans-serif] text-[4rem] font-bold text-center text-white'
+                className='font-[Poppins,sans-serif] text-[4rem] font-bold text-center text-white'
                 style={{fontFamily : 'Poppins, sans-serif'}}>
                 OUR ALUMNI NETWORK
             </div>

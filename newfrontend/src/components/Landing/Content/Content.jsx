@@ -117,7 +117,7 @@ const contentStyles = `
 
 .content-pair {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   margin: 2rem 0;
   gap: 2.5rem;
   transition: transform 1s ease;

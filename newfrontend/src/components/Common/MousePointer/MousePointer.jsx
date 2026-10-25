@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./MousePointer.css";
 
 const MousePointer = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });

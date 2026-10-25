@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 const ProgressSummaryCard = ({
   totalCompleted,
   totalCount,
@@ -8,10 +7,9 @@ const ProgressSummaryCard = ({
   mediumCompleted,
   mediumCount,
   hardCompleted,
-  hardCount,
+  hardCount
 }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -19,121 +17,75 @@ const ProgressSummaryCard = ({
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const totalPercent =
-    totalCount > 0 ? Math.round((totalCompleted / totalCount) * 100) : 0;
+  const totalPercent = totalCount > 0 ? Math.round(totalCompleted / totalCount * 100) : 0;
   const radius = 48;
   const stroke = 8;
   const normalizedRadius = radius - stroke / 2;
   const circumference = 2 * Math.PI * normalizedRadius;
-  const offset = circumference - (totalPercent / 100) * circumference;
-
-  const getPercent = (done, total) =>
-    total > 0 ? Math.round((done / total) * 100) : 0;
-
-  const renderProgressSections = () => (
-    <>
-      <div className="flex-[1_1_100px] max-md:flex-[1_1_20px] flex flex-col items-start justify-center !px-2 min-w-17.5 max-md:w-full max-md:!p-4 max-md:items-center max-md:text-center max-md:min-w-12">
-
-        <div className="text-[1.2rem] font-bold !text-[#ff5656] !mb-2 text-shadow-[0_1px_5px_rgba(255,75,75,0.3)] max-md:text-center">
-          Easy
+  const offset = circumference - totalPercent / 100 * circumference;
+  const getPercent = (done, total) => total > 0 ? Math.round(done / total * 100) : 0;
+  const renderProgressSections = () => <>
+      <div className="progress-section [flex:1_1_100px]! [display:flex]! [flex-direction:column]! [align-items:flex-start]! [justify-content:center]! [padding:0_0.5rem]! [min-width:70px]! max-[768.01px]:[flex:1_1_20px]! max-[768.01px]:[width:100%]! max-[768.01px]:[padding:1rem]! max-[768.01px]:[align-items:center]! max-[768.01px]:[text-align:center]! max-[768.01px]:[min-width:3rem]!">
+        <div className="progress-title [font-size:1.2rem]! [font-weight:700]! [color:#ff5656]! [margin-bottom:0.5rem]! [text-shadow:0_1px_5px_rgba(255,_75,_75,_0.3)]! max-[768.01px]:[text-align:center]!">Easy</div>
+        <div className="progress-fraction [font-size:1.05rem]! [font-weight:500]! [color:#dcdcdc]! [margin-top:0.4rem]! [text-align:left]! max-[768.01px]:[text-align:center]!">
+          {easyCompleted} / {easyCount}
         </div>
-        <div className="text-[1.05rem] fond-md !text-[#dcdcdc] !mt-[0.4rem] text-left max-md:text-center">
-          {easyCompleted} / {easyCount} 
-        </div>
-        <div className="w-full !mt-[0.4rem] max-md:max-w-[320px]">
-          <div className="h-[8px] flex-1 !bg-black rounded-lg border-[1px] border-[#ff4d4d33] shadow-[inset_0_0_4px_#ff4d4d22] overflow-hidden easy-bar">
-            <div
-              className="h-full rounded-lg transition-[width] duration-400 ease-in-out shadow-[0_0_8px_#ff4d4d88] bg-[linear-gradient(90deg,#ff5e5e_0%,#ff1a1a_40%,#ff0066_100%)] bg-[linear-gradient(90deg, #ffbaba, #ff4d4d)]"
-              style={{ width: `${getPercent(easyCompleted, easyCount)}%` }}
-            />
+        <div className="horizontal-progress [width:100%]! [margin-top:0.4rem]! max-[768.01px]:[margin-top:0.4rem]! max-[768.01px]:[width:100%]! max-[768.01px]:[max-width:320px]!">
+          <div className="progress-bar [height:8px]! [flex:1]! [background-color:rgb(0,_0,_0)]! [border-radius:8px]! [border:1px_solid_#ff4d4d33]! [box-shadow:inset_0_0_4px_#ff4d4d22]! [overflow:hidden]! easy-bar">
+            <div className="progress-fill [height:100%]! [border-radius:8px]! [transition:width_0.4s_ease]! [background:linear-gradient(_90deg,_#ff5e5e_0%,_#ff1a1a_40%,_#ff0066_100%_)]! [box-shadow:0_0_8px_#ff4d4d88]! easy-fill [background:linear-gradient(90deg,_#ffbaba,_#ff4d4d)]!" style={{
+            width: `${getPercent(easyCompleted, easyCount)}%`
+          }} />
           </div>
         </div>
       </div>
 
-      <div className="flex-[1_1_100px] max-md:flex-[1_1_20px] flex flex-col items-start justify-center !px-2 min-w-17.5 max-md:w-full max-md:!p-4 max-md:items-center max-md:text-center max-md:min-w-12">
-        <div className="text-[1.2rem] font-bold !text-[#ff5656] !mb-2 text-shadow-[0_1px_5px_rgba(255,75,75,0.3)] max-md:text-center">
-          Medium
+      <div className="progress-section [flex:1_1_100px]! [display:flex]! [flex-direction:column]! [align-items:flex-start]! [justify-content:center]! [padding:0_0.5rem]! [min-width:70px]! max-[768.01px]:[flex:1_1_20px]! max-[768.01px]:[width:100%]! max-[768.01px]:[padding:1rem]! max-[768.01px]:[align-items:center]! max-[768.01px]:[text-align:center]! max-[768.01px]:[min-width:3rem]!">
+        <div className="progress-title [font-size:1.2rem]! [font-weight:700]! [color:#ff5656]! [margin-bottom:0.5rem]! [text-shadow:0_1px_5px_rgba(255,_75,_75,_0.3)]! max-[768.01px]:[text-align:center]!">Medium</div>
+        <div className="progress-fraction [font-size:1.05rem]! [font-weight:500]! [color:#dcdcdc]! [margin-top:0.4rem]! [text-align:left]! max-[768.01px]:[text-align:center]!">
+          {mediumCompleted} / {mediumCount}
         </div>
-        <div className="text-[1.05rem] fond-md !text-[#dcdcdc] !mt-[0.4rem] text-left max-md:text-center">
-          {mediumCompleted} / {mediumCount} 
-        </div>
-        <div className="w-full !mt-[0.4rem] max-md:max-w-[320px]">
-          <div className="h-[8px] flex-1 !bg-black rounded-lg border-[1px] border-[#ff4d4d33] shadow-[inset_0_0_4px_#ff4d4d22] overflow-hidden medium-bar">
-            <div
-              className="h-full rounded-lg transition-[width] duration-400 ease-in-out shadow-[0_0_8px_#ff4d4d88] bg-[linear-gradient(90deg,#ff5e5e_0%,#ff1a1a_40%,#ff0066_100%)] bg-[linear-gradient(90deg, #ffdab3, #ff944d)]"
-              style={{ width: `${getPercent(mediumCompleted, mediumCount)}%` }}
-            />
+        <div className="horizontal-progress [width:100%]! [margin-top:0.4rem]! max-[768.01px]:[margin-top:0.4rem]! max-[768.01px]:[width:100%]! max-[768.01px]:[max-width:320px]!">
+          <div className="progress-bar [height:8px]! [flex:1]! [background-color:rgb(0,_0,_0)]! [border-radius:8px]! [border:1px_solid_#ff4d4d33]! [box-shadow:inset_0_0_4px_#ff4d4d22]! [overflow:hidden]! medium-bar">
+            <div className="progress-fill [height:100%]! [border-radius:8px]! [transition:width_0.4s_ease]! [background:linear-gradient(_90deg,_#ff5e5e_0%,_#ff1a1a_40%,_#ff0066_100%_)]! [box-shadow:0_0_8px_#ff4d4d88]! medium-fill [background:linear-gradient(90deg,_#ffdab3,_#ff944d)]!" style={{
+            width: `${getPercent(mediumCompleted, mediumCount)}%`
+          }} />
           </div>
         </div>
       </div>
 
-      <div className="flex-[1_1_100px] max-md:flex-[1_1_20px] flex flex-col items-start justify-center !px-2 min-w-17.5 max-md:w-full max-md:!p-4 max-md:items-center max-md:text-center max-md:min-w-12">
-        <div className="text-[1.2rem] font-bold !text-[#ff5656] !mb-2 text-shadow-[0_1px_5px_rgba(255,75,75,0.3)] max-md:text-center">
-          Hard
+      <div className="progress-section [flex:1_1_100px]! [display:flex]! [flex-direction:column]! [align-items:flex-start]! [justify-content:center]! [padding:0_0.5rem]! [min-width:70px]! max-[768.01px]:[flex:1_1_20px]! max-[768.01px]:[width:100%]! max-[768.01px]:[padding:1rem]! max-[768.01px]:[align-items:center]! max-[768.01px]:[text-align:center]! max-[768.01px]:[min-width:3rem]!">
+        <div className="progress-title [font-size:1.2rem]! [font-weight:700]! [color:#ff5656]! [margin-bottom:0.5rem]! [text-shadow:0_1px_5px_rgba(255,_75,_75,_0.3)]! max-[768.01px]:[text-align:center]!">Hard</div>
+        <div className="progress-fraction [font-size:1.05rem]! [font-weight:500]! [color:#dcdcdc]! [margin-top:0.4rem]! [text-align:left]! max-[768.01px]:[text-align:center]!">
+          {hardCompleted} / {hardCount}
         </div>
-        <div className="text-[1.05rem] fond-md !text-[#dcdcdc] !mt-[0.4rem] text-left max-md:text-center">
-          {hardCompleted} / {hardCount} 
-        </div>
-        <div className="w-full !mt-[0.4rem] max-md:max-w-[320px]">
-          <div className="h-[8px] flex-1 !bg-black rounded-lg border-[1px] border-[#ff4d4d33] shadow-[inset_0_0_4px_#ff4d4d22] overflow-hidden hard-bar">
-            <div
-              className="h-full rounded-lg transition-[width] duration-400 ease-in-out shadow-[0_0_8px_#ff4d4d88] bg-[linear-gradient(90deg,#ff5e5e_0%,#ff1a1a_40%,#ff0066_100%)] bg-[linear-gradient(90deg, #ff8686, #c81d1d)]"
-              style={{ width: `${getPercent(hardCompleted, hardCount)}%` }}
-            />
+        <div className="horizontal-progress [width:100%]! [margin-top:0.4rem]! max-[768.01px]:[margin-top:0.4rem]! max-[768.01px]:[width:100%]! max-[768.01px]:[max-width:320px]!">
+          <div className="progress-bar [height:8px]! [flex:1]! [background-color:rgb(0,_0,_0)]! [border-radius:8px]! [border:1px_solid_#ff4d4d33]! [box-shadow:inset_0_0_4px_#ff4d4d22]! [overflow:hidden]! hard-bar">
+            <div className="progress-fill [height:100%]! [border-radius:8px]! [transition:width_0.4s_ease]! [background:linear-gradient(_90deg,_#ff5e5e_0%,_#ff1a1a_40%,_#ff0066_100%_)]! [box-shadow:0_0_8px_#ff4d4d88]! hard-fill [background:linear-gradient(90deg,_#ff8686,_#c81d1d)]!" style={{
+            width: `${getPercent(hardCompleted, hardCount)}%`
+          }} />
           </div>
         </div>
       </div>
-    </>
-  );
-
-  return (
-    <div className="flex flex-wrap bg-[rgba(20,0,0,0.6)] rounded-3xl justify-normal w-92/100 max-w-[980px] !p-6 !my-4 !mx-auto box-border gap-2 border-[1.5px] border-[rgba(255,64,64,0.6)] transition-[box-shadow_0.4s_ease, transform_0.3s_ease] max-md:flex-col max-md:items-center max-md:!p-4 max-md:gap-6 max-md:w-97/100"
-    style={{fontFamily : "'Inter', 'JetBrains Mono', monospace"}}>
-
-      <div className="flex-[0_0_auto] max-md:flex-[1_1_20px] flex items-center justify-between max-md:justify-around max-md:border-r-none max-md:border-b-none !px-[1.2rem] min-w-[260px] max-w-[300px] max-md:w-full max-md:!p-0 max-md:items-center max-md:text-center max-md:max-w-none">
-        <div className="flex flex-col justify-center items-start !mr-4 max-md:items-center max-md:text-center max-md:!mr-2">
-          <div className="text-[1.2rem] font-bold !text-[#ff4b4b] !mb-2 text-shadow-[0_0_10px_rgba(255,75,75,0.3)]">
-            Total Progress
-          </div>
-          <div className="text-[1.2rem] !mt-[4.8px] font-bold !text-[#fdfdfd] text-left max-md:text-[1.45rem]">
+    </>;
+  return <div className="progress-summary-card [display:flex]! [flex-wrap:wrap]! [flex-direction:row]! [background:rgba(20,_0,_0,_0.6)]! [border-radius:1.5rem]! [width:92%]! [max-width:980px]! [padding:1.5rem]! [font-family:'Inter',_'JetBrains_Mono',_monospace]! [margin:1rem_auto]! [box-sizing:border-box]! [gap:0.5rem]! [border:1.5px_solid_rgba(255,_64,_64,_0.6)]! [transition:box-shadow_0.4s_ease,_transform_0.3s_ease]! max-[768.01px]:[flex-direction:column]! max-[768.01px]:[align-items:center]! max-[768.01px]:[padding:1rem]! max-[768.01px]:[gap:1.5rem]! max-[768.01px]:[width:97%]!"><style>{"@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;600;700&display=swap')"}</style>
+      <div className="progress-section [flex:1_1_100px]! [display:flex]! [flex-direction:column]! [align-items:flex-start]! [justify-content:center]! [padding:0_0.5rem]! [min-width:70px]! max-[768.01px]:[flex:1_1_20px]! max-[768.01px]:[width:100%]! max-[768.01px]:[padding:1rem]! max-[768.01px]:[align-items:center]! max-[768.01px]:[text-align:center]! max-[768.01px]:[min-width:3rem]! total-progress-section [flex-direction:row]! [align-items:center]! [justify-content:space-between]! [min-width:260px]! [max-width:300px]! [flex:0_0_auto]! [padding:0_1.2rem]! max-[768.01px]:[flex-direction:row]! max-[768.01px]:[justify-content:space-around]! max-[768.01px]:[align-items:center]! max-[768.01px]:[border-right:none]! max-[768.01px]:[border-bottom:none]! max-[768.01px]:[padding:0]! max-[768.01px]:[max-width:none]! max-[768.01px]:[width:100%]!">
+        <div className="total-text-group [display:flex]! [flex-direction:column]! [justify-content:center]! [align-items:flex-start]! [margin-right:1rem]! max-[768.01px]:[align-items:center]! max-[768.01px]:[text-align:center]! max-[768.01px]:[margin:0_0_0.5rem_0]!">
+          <div className="progress-title [font-size:1.2rem]! [font-weight:700]! [color:#ff5656]! [margin-bottom:0.5rem]! [text-shadow:0_1px_5px_rgba(255,_75,_75,_0.3)]! max-[768.01px]:[text-align:center]! total-title [font-size:1.5rem]! [font-weight:700]! [color:#ff4b4b]! [margin-bottom:0.5rem]! [text-shadow:0_0_10px_rgba(255,_75,_75,_0.3)]! max-[768.01px]:[font-size:1.7rem]!">Total Progress</div>
+          <div className="progress-fraction [font-size:1.05rem]! [font-weight:500]! [color:#dcdcdc]! [margin-top:0.4rem]! [text-align:left]! max-[768.01px]:[text-align:center]! total-fraction [font-size:1.2rem]! [font-weight:700]! [color:#fdfdfd]! [text-align:left]! max-[768.01px]:[font-size:1.45rem]!">
             {totalCompleted} / {totalCount} Completed
           </div>
         </div>
-        <div className="relative flex items-center justify-center w-[96px] h-[96px] max-md:!mt-4">
-          <svg
-            className="w-[96px] h-[96px] block rotate-90"
-            width={radius * 2}
-            height={radius * 2}
-          >
-            <circle
-              className="fill-none stroke-8 stroke-[#797979] opacity-20"
-              cx={radius}
-              cy={radius}
-              r={normalizedRadius}
-            />
-            <circle
-              className="fill-none stroke-8 stroke-[#ff6b6b] transition-[stroke-dashoffset] duration-700 ease-in-out"
-              style={{strokeLinecap : 'round'}}
-              cx={radius}
-              cy={radius}
-              r={normalizedRadius}
-              strokeDasharray={circumference}
-              strokeDashoffset={offset}
-            />
+        <div className="circle-progress-wrapper [position:relative]! [display:flex]! [align-items:center]! [justify-content:center]! [width:96px]! [height:96px]! max-[768.01px]:[margin-top:1rem]!">
+          <svg className="circular-progress [width:96px]! [height:96px]! [display:block]! [transform:rotate(-90deg)]!" width={radius * 2} height={radius * 2}>
+            <circle className="bg-circle [fill:none]! [stroke-width:8]! [stroke:#797979]! [opacity:0.2]!" cx={radius} cy={radius} r={normalizedRadius} />
+            <circle className="fg-circle [fill:none]! [stroke-width:8]! [stroke:#ff6b6b]! [stroke-linecap:round]! [transition:stroke-dashoffset_0.7s_ease-in-out]!" cx={radius} cy={radius} r={normalizedRadius} strokeDasharray={circumference} strokeDashoffset={offset} />
           </svg>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 !text-[#ff6b6b] text-[1rem] font-bold text-shadow-[0_0_4px_rgba(255, 75, 75, 0.5)]">{totalPercent}%</div>
+          <div className="progress-percent [position:absolute]! [top:50%]! [left:50%]! [transform:translate(-50%,_-50%)]! [color:#ff6b6b]! [font-size:1rem]! [font-weight:700]! [text-shadow:0_0_4px_rgba(255,_75,_75,_0.5)]!">{totalPercent}%</div>
         </div>
       </div>
 
       {/* Conditional wrapper based on screen size */}
-      {isMobile ? (
-        <div className="flex items-center w-full justify-center max-md:!m-0">{renderProgressSections()}</div>
-      ) : (
-        renderProgressSections()
-      )}
-    </div>
-  );
+      {isMobile ? <div className="d-progress-section [display:flex]! [flex-direction:row]! [align-items:center]! [justify-content:center]! [width:100%]! max-[768.01px]:[flex-direction:row]! max-[768.01px]:[align-items:center]! max-[768.01px]:[justify-content:center]! max-[768.01px]:[width:100%]! max-[768.01px]:[margin:0]!">{renderProgressSections()}</div> : renderProgressSections()}
+    </div>;
 };
-
 export default ProgressSummaryCard;

@@ -14,7 +14,7 @@ import members_2025 from "./AlumniStatic2025.jsx";
 import members_2026 from "./AlumniStatic2026.jsx";
 import Header from "./Header.jsx";
 import Fade from "../Common/Motion/Fade.jsx"
-import Particless from "../Common/Particles/Particless.js";
+import Particless from "../Common/Particles/Particless.jsx";
 
 const AlumniPage2 = () => {
 	return (

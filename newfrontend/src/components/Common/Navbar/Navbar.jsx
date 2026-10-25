@@ -16,6 +16,11 @@ const active_style = {
   color: "rgba(255, 255, 255, 0.8)",
 };
 
+const isRegistrationActive = (_, location) =>
+  /^\/register-(?:hackathon|kdsh)(?:\/|$)/.test(location.pathname);
+
+const mobileHighlight = "!bg-[linear-gradient(90deg,rgba(255,0,0,0.1),rgba(255,0,0,0.2))] !border !border-[rgba(255,0,0,0.4)] !shadow-[0_0_15px_rgba(255,0,0,0.3)] hover:!bg-[linear-gradient(90deg,rgba(255,0,0,0.25),rgba(255,0,0,0.35))] hover:!border-[rgba(255,0,0,0.6)] hover:!shadow-[0_0_20px_rgba(255,0,0,0.5)] hover:!text-white [&.active]:!bg-[linear-gradient(90deg,rgba(255,0,0,0.25),rgba(255,0,0,0.35))] [&.active]:!border-[rgba(255,0,0,0.6)] [&.active]:!shadow-[0_0_20px_rgba(255,0,0,0.5)] [&.active]:!text-white";
+
 const Navbar = ({ noborder }) => {
   const history = useHistory();
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
@@ -361,6 +366,11 @@ const Navbar = ({ noborder }) => {
               </Link>
             </div>
             <div className="kdag-nav-items">
+              <div className="kdag-nav-item ml-sheet">
+                <NavLink activeStyle={active_style} isActive={isRegistrationActive} to="/register-hackathon">
+                  DataForge
+                </NavLink>
+              </div>
               <div className="kdag-nav-item">
                 <NavLink activeStyle={active_style} to="/events">
                   Events
@@ -371,7 +381,7 @@ const Navbar = ({ noborder }) => {
                   Gallery
                 </NavLink>
               </div>
-              <div className="kdag-nav-item">
+              <div className="kdag-nav-item ml-sheet">
                 <NavLink activeStyle={active_style} to="/ml_sheet">
                   ML Sheet
                 </NavLink>
@@ -385,11 +395,6 @@ const Navbar = ({ noborder }) => {
               <div className="kdag-nav-item">
                 <NavLink activeStyle={active_style} to="/blogs">
                   Blog
-                </NavLink>
-              </div>
-              <div className="kdag-nav-item">
-                <NavLink activeStyle={active_style} to="/certificate">
-                  Certificate
                 </NavLink>
               </div>
               <div className="kdag-nav-item">
@@ -424,7 +429,7 @@ const Navbar = ({ noborder }) => {
               <ul className="kdag-nav-mobile-ul cf ">
                 <li>
                   <svg
-                    class="dropdown hamburgermenu"
+                    className="dropdown hamburgermenu"
                     width="76"
                     height="51"
                     viewBox="0 0 76 51"
@@ -437,7 +442,7 @@ const Navbar = ({ noborder }) => {
                       height="11.7049"
                       rx="5.85246"
                       fill="white"
-                      fill-opacity="0.3"
+                      fillOpacity="0.3"
                     />
                     <rect
                       y="39.2951"
@@ -445,7 +450,7 @@ const Navbar = ({ noborder }) => {
                       height="11.7049"
                       rx="5.85246"
                       fill="white"
-                      fill-opacity="0.3"
+                      fillOpacity="0.3"
                     />
                     <rect
                       y="19.2295"
@@ -453,12 +458,22 @@ const Navbar = ({ noborder }) => {
                       height="11.7049"
                       rx="5.85246"
                       fill="white"
-                      fill-opacity="0.3"
+                      fillOpacity="0.3"
                     />
                   </svg>
 
                   {isMenuOpen && (
-                    <ul>
+                    <ul className="!visible !opacity-100 !top-[50px]">
+                      <li className="ml-sheet">
+                        <NavLink
+                          to="/register-hackathon"
+                          isActive={isRegistrationActive}
+                          className={mobileHighlight}
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          DataForge
+                        </NavLink>
+                      </li>
                       <li>
                         <NavLink
                           to="/events"
@@ -475,9 +490,10 @@ const Navbar = ({ noborder }) => {
                           Gallery
                         </NavLink>
                       </li>
-                      <li>
+                      <li className="ml-sheet">
                         <NavLink
                           to="/ml_sheet"
+                          className={mobileHighlight}
                           onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                           ML Sheet
@@ -497,14 +513,6 @@ const Navbar = ({ noborder }) => {
                           onClick={() => setIsMenuOpen(!isMenuOpen)}
                         >
                           Blog
-                        </NavLink>
-                      </li>
-                      <li>
-                        <NavLink
-                          to="/certificate"
-                          onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        >
-                          Certificate
                         </NavLink>
                       </li>
                       <li onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>

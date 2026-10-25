@@ -7,33 +7,23 @@ const EventsCard = ({ event }) => {
       <div>
           <Fade bottom>
               <div 
-                className="flex w-[90%] !my-[3rem] !mx-auto rounded-[15px] bg-[rgba(255,255,255,0.042)] border-t border-l border-[rgba(255,255,255,0.1)] backdrop-blur-[5px] transition-all duration-400 hover:bg-[rgba(104,58,58,0.15)] hover:shadow-[0_0_25px_rgba(250,57,70,1)] hover:-translate-y-[5px] max-[900px]:block max-[900px]:max-w-[30rem] items-center" >
-                    <div className="w-[40%] relative max-[900px]:w-full">
-                        <img
-                            src={event.image}
-                            alt=""
-                            className="w-[60%] h-auto block"
-                        />
-                        </div>
-
-                  {/* <div
-                      className="w-[40%] bg-cover bg-top relative max-[900px]:w-full max-[900px]:h-[20rem]"
+                className="flex w-[90%] max-w-[70rem] !my-[3rem] !mx-auto overflow-hidden rounded-[15px] bg-[rgba(255,255,255,0.042)] border-t border-l border-[rgba(255,255,255,0.1)] backdrop-blur-[5px] transition-all duration-400 ease-[ease] hover:bg-[rgba(104,58,58,0.15)] hover:shadow-[0_0_25px_rgba(250,57,70,1)] hover:-translate-y-[5px] [@media(max-width:900px)]:block [@media(max-width:900px)]:max-w-[30rem]" >
+                  <div
+                      className="w-[40%] relative bg-top bg-cover [@media(max-width:900px)]:w-full [@media(max-width:900px)]:h-[20rem]"
                       style={{ backgroundImage: `url(${event.image})` }}
-                  >
-                      <img src={event.image} alt="event-poster" />
-                  </div> */}
-                  <div className="w-[60%] text-center !p-[1.5rem] max-[900px]:w-full">
+                  />
+                  <div className="w-[60%] text-center !p-[1.5rem] [@media(max-width:900px)]:w-full">
 
-                      <div className="text-[1.5rem] font-bold !m-[1rem] !text-white transition-all duration-400">
+                      <div className="text-[1.5rem] font-bold !m-[1rem] !text-white transition-all duration-400 ease-[ease]">
                           {event.title || "Event Title"}
                       </div>
                       <div className="!mt-[1rem] !text-[#777]">
-                          <i class="fas fa-map-marker-alt"></i>{" "}
+                          <i className="fas fa-map-marker-alt"></i>{" "}
                           {event.location || "location, platform"}
                       </div>
                       {event.date && (
                           <div className="!mt-[0.5rem] !text-[#777]">
-                              <i class="far fa-calendar-alt"></i> {event.date}
+                              <i className="far fa-calendar-alt"></i> {event.date}
                           </div>
                       )}
                       {/* {event.link==="Coming Soon" ? 
@@ -47,7 +37,7 @@ const EventsCard = ({ event }) => {
                                       View Resources
                                   </div>
                                   <div className="events-card-button1">
-                  <i class="fa fa-link"></i>
+                  <i className="fa fa-link"></i>
                 </div>
                               </div>
                           </Link> 
@@ -63,15 +53,14 @@ const EventsCard = ({ event }) => {
                                 className="no-underline"
                                 rel="noreferrer noopener">
 
-                                <div className="w-full mx-auto bg-[linear-gradient(90deg,#9a2323b9,#a14a55,#9a2323b9)]
-                                bg-[length:300%_100%]  text-white flex shadow-[1px_1px_10px_1px_rgba(0,0,0,0.5)] min-w-[20rem] mt-6 border-0 rounded-[30px] transition-all duration-700 mt-4 cursor-pointer">
-                                    <div className="inline-block !p-[1rem] grow-1">
+                                <div className="w-full !mx-auto !mt-[1.5rem] bg-[linear-gradient(90deg,#9a2323b9,#a14a55,#9a2323b9)] bg-[length:300%_100%] text-white flex shadow-[1px_1px_10px_1px_rgba(0,0,0,0.5)] min-w-[20rem] border-0 rounded-[30px] transition-all duration-700 ease-[ease] hover:bg-[position:100%_0] hover:scale-[1.03]">
+                                    <div className="inline-block !p-[1rem] grow">
                                         {event.infotext
                                             ? event.infotext
                                             : "View Resources"}
                                     </div>
                                     <div className="inline-block !p-[1rem]">
-                                        <i class="fa fa-link"></i>
+                                        <i className="fa fa-link"></i>
                                     </div>
                                 </div>
                             </a>}
@@ -83,15 +72,14 @@ const EventsCard = ({ event }) => {
                                 target="_blank"
                                 className="no-underline"
                                 rel="noreferrer noopener">
-                                <div className="w-full mx-auto bg-[linear-gradient(90deg,#9a2323b9,#a14a55,#9a2323b9)]
-                                bg-[length:300%_100%]  text-white flex shadow-[1px_1px_10px_1px_rgba(0,0,0,0.5)] min-w-[20rem] mt-6 border-0 rounded-[30px] transition-all duration-700 mt-4 cursor-pointer">
-                                    <div className="inline-block !p-[1rem] grow-1">
+                                <div className="w-full !mx-auto !mt-[1.5rem] bg-[linear-gradient(90deg,#9a2323b9,#a14a55,#9a2323b9)] bg-[length:300%_100%] text-white flex shadow-[1px_1px_10px_1px_rgba(0,0,0,0.5)] min-w-[20rem] border-0 rounded-[30px] transition-all duration-700 ease-[ease] hover:bg-[position:100%_0] hover:scale-[1.03]">
+                                    <div className="inline-block !p-[1rem] grow">
                                         {event.infotext
                                             ? event.infotext
                                             : "Event Information"}
                                     </div>
                                     <div className="inline-block !p-[1rem]">
-                                        <i class="fa fa-link"></i>
+                                        <i className="fa fa-link"></i>
                                     </div>
                                 </div>
                             </a>}
@@ -100,13 +88,12 @@ const EventsCard = ({ event }) => {
                         
                       <div className="!m-auto flex justify-center">
                           <Link to={event.certificates}>
-                              <div className="w-full mx-auto bg-[linear-gradient(90deg,#9a2323b9,#a14a55,#9a2323b9)]
-                                bg-[length:300%_100%]  text-white flex shadow-[1px_1px_10px_1px_rgba(0,0,0,0.5)] min-w-[20rem] mt-6 border-0 rounded-[30px] transition-all duration-700 mt-4 cursor-pointer">
-                                  <div className="inline-block !p-[1rem] grow-1">
+                              <div className="w-full !mx-auto !mt-[1.5rem] bg-[linear-gradient(90deg,#9a2323b9,#a14a55,#9a2323b9)] bg-[length:300%_100%] text-white flex shadow-[1px_1px_10px_1px_rgba(0,0,0,0.5)] min-w-[20rem] border-0 rounded-[30px] transition-all duration-700 ease-[ease] hover:bg-[position:100%_0] hover:scale-[1.03]">
+                                  <div className="inline-block !p-[1rem] grow">
                                       Generate Certificate
                                   </div>
                                   {/* <div className="events-card-button1">
-                  <i class="fa fa-link"></i>
+                  <i className="fa fa-link"></i>
                 </div> */}
                               </div>
                           </Link>

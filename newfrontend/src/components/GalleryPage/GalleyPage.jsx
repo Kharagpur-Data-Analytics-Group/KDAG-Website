@@ -1,4 +1,4 @@
-import Particless from '../Common/Particles/Particless.js';
+import Particless from '../Common/Particles/Particless.jsx';
 import Carousel from './Carousel/Carousel.jsx';
 import Header from './Header/Header.jsx';
 import './Carousel/css/embla.css';

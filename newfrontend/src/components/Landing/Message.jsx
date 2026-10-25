@@ -36,7 +36,7 @@ export default function NewFeaturePopup() {
   };
 
   const handleExploreClick = () => {
-    window.location.href = "/register-kdsh";
+    window.location.href = "/register-hackathon";
   };
 
   if (!visible) return null;

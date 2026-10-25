@@ -1,245 +1,58 @@
+import parityAsset0 from "../../assets/KDSH2025_cover.png";
 import React from "react";
-import { motion } from "framer-motion";
+import Fade from "../Common/Motion/Fade.jsx";
 import Particless from "../Common/Particles/Particless";
-import "react-toastify/dist/ReactToastify.css";
-// import "./RegisterPage.css";
-import successBackground from "./../../assets/success_background.png";
-import whatsapp from "./../../assets/kdsh2025_whatsapp.png";
-import discord from "./../../assets/kdsh2025_discord.png";
-import kdsh_2025 from "./../../assets/kdsh2025_logo.png";
-
+import banner_logo from "./../../assets/DataForge_big.png";
 const Success = () => {
   const particless = React.useMemo(() => <Particless />, []);
-
-  return (
-    <>
-      <style>{`
-        /* ── Responsive values & hover effect ──────────────────────────── */
-
-        /* Base (> 1285px) */
-        .success-register-kdsh {
-          top: 155px;
-          left: 38%;
-          font-size: 50px;
-        }
-        .success-register-kdsh img { height: 100px; }
-
-        .success-register-kdsh-desc {
-          top: 300px;
-          margin: 0 200px;
-          padding: 25px;
-          font-size: 20px;
-        }
-
-        /* text-shadow not supported in Tailwind core */
-        .success-register-kdsh-desc ul li:hover {
-          text-shadow: 0 0 8px cyan;
-        }
-
-        @media (max-width: 1285px) {
-          .success-register-kdsh { top: 125px; left: 36%; }
-          .success-register-kdsh img { height: 90px; }
-          .success-register-kdsh-desc { padding: 20px; top: 265px; margin: 0 100px; }
-        }
-        @media (max-width: 1060px) {
-          .success-register-kdsh { top: 120px; left: 34%; font-size: 45px; }
-          .success-register-kdsh img { height: 80px; }
-          .success-register-kdsh-desc { top: 240px; margin: 0 100px; }
-        }
-        @media (max-width: 880px) {
-          .success-register-kdsh { top: 110px; left: 34%; }
-          .success-register-kdsh img { height: 70px; }
-          .success-register-kdsh-desc { top: 240px; margin: 0 90px; }
-        }
-        @media (max-width: 750px) {
-          .success-register-kdsh { top: 110px; left: 32%; }
-          .success-register-kdsh img { height: 65px; }
-          .success-register-kdsh-desc { top: 240px; margin: 0 90px; }
-        }
-        @media (max-width: 700px) {
-          .success-register-kdsh { top: 110px; left: 28%; }
-          .success-register-kdsh img { height: 60px; }
-          .success-register-kdsh-desc { top: 240px; margin: 0 50px; font-size: 18px; }
-        }
-        @media (max-width: 575px) {
-          .success-register-kdsh { top: 100px; left: 24%; }
-          .success-register-kdsh img { height: 55px; }
-          .success-register-kdsh-desc { top: 220px; margin: 0 40px; font-size: 16px; }
-        }
-        @media (max-width: 500px) {
-          .success-register-kdsh { top: 100px; left: 20%; }
-          .success-register-kdsh img { height: 50px; }
-        }
-        @media (max-width: 460px) {
-          .success-register-kdsh { top: 100px; left: 22%; font-size: 35px; }
-          .success-register-kdsh img { height: 45px; }
-          .success-register-kdsh-desc { top: 220px; margin: 0 30px; font-size: 16px; }
-        }
-        @media (max-width: 395px) {
-          .success-register-kdsh { top: 100px; left: 18%; font-size: 35px; }
-          .success-register-kdsh img { height: 40px; }
-          .success-register-kdsh-desc { top: 220px; margin: 0 20px; font-size: 16px; }
-        }
-      `}</style>
-
-      {/* success-container */}
-      <div className="success-container">
-
-        {/* register-header — must be relative so absolute children anchor to it */}
-        <div className="register-header relative">
-
-          {/* Background layer (spacer + layer1) */}
-          <div
-            className="w-full bg-no-repeat bg-center bg-cover min-h-[130vh] h-auto pb-[400px]"
-            style={{
-              aspectRatio: "1500/700",
-              backgroundImage: `url(${successBackground})`,
-            }}
-          />
-
-          {/* ── KDSH Logo ─────────────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: -40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-            style={{ display: "flex", justifyContent: "center", height: "100%" }}
-          >
-            {/*
-              success-register-kdsh:
-                position + top/left/font-size → responsive, handled in <style>
-                font-weight: 900    → font-black
-                color: #000         → text-black
-                padding: 5px 25px  → py-[5px] px-[25px]
-                text-wrap: nowrap  → whitespace-nowrap
-            */}
-            <div className="success-register-kdsh absolute font-black text-black py-[5px] px-[25px] whitespace-nowrap">
-              {/* img height → responsive, handled in <style> */}
-              <img src={kdsh_2025} alt="KDSH2025" className="w-auto max-w-full" />
+  return <><style>{"@keyframes shimmer {\n\t0% {\n\t\tleft: -100%;\n\t}\n\n\t100% {\n\t\tleft: 200%;\n\t}\n}\ninput[type=\"number\"]::-webkit-outer-spin-button,\ninput[type=\"number\"]::-webkit-inner-spin-button {\n\t-webkit-appearance: none;\n\tmargin: 0;\n}\ninput[type=\"number\"] {\n\tappearance: textfield;\n\t-moz-appearance: textfield;\n}"}</style>
+      <div className="success-container" style={{
+      "--parity-asset-0": `url(${parityAsset0})`
+    }}>
+        <div className="register-header [.register-container_&]:[position:relative]! [.register-container_&]:[min-height:100vh]! [.register-container_&]:[width:100%]! [.register-container_&]:[display:flex]! [.register-container_&]:[flex-direction:column]! [.register-container_&]:[align-items:center]! [.register-container_&]:[justify-content:flex-start]! [.register-container_&]:[padding-top:140px]! [.register-container_&]:[box-sizing:border-box]! [.register-container_&]:[overflow:hidden]! [.register-container_&::after]:[content:'']! [.register-container_&::after]:[position:absolute]! [.register-container_&::after]:[inset:0]! [.register-container_&::after]:[z-index:-1]! max-[900.01px]:[.register-container_&]:[padding-top:100px]! max-[600.01px]:[.register-container_&]:[padding-top:80px]! [.success-container_&]:[position:relative]! [.success-container_&]:[min-height:100vh]! [.success-container_&]:[padding-bottom:120px]! [.success-container_&]:[overflow:hidden]! [.success-container_&]:[background:transparent]!">
+          <div className="spacer [.success-container_.register-header_&]:[aspect-ratio:1500/700]! [.success-container_.register-header_&]:[width:100%]! [.success-container_.register-header_&]:[background-repeat:no-repeat]! [.success-container_.register-header_&]:[background-position:center]! [.success-container_.register-header_&]:[background-size:cover]! [.success-container_.register-header_&]:[height:100vh]! [.success-container_.register-header_&]:[background:transparent]! layer1 [.register-container_.register-header_&]:[position:absolute]! [.register-container_.register-header_&]:[inset:0]! [.register-container_.register-header_&]:[background-image:var(--parity-asset-0)]! [.register-container_.register-header_&]:[background-size:cover]! [.register-container_.register-header_&]:[background-position:center]! [.register-container_.register-header_&]:[background-repeat:no-repeat]! [.register-container_.register-header_&]:[z-index:-1]! [.success-container_.register-header_&]:[background-image:none]! [.success-container_.register-header_&]:[background-color:transparent]!"></div>
+          <Fade top>
+            <div className="success-register-kdsh [.success-container_.register-header_&]:[position:absolute]! [.success-container_.register-header_&]:[top:132px]! [.success-container_.register-header_&]:[left:50%]! [.success-container_.register-header_&]:[transform:translateX(-50%)]! [.success-container_.register-header_&]:[width:min(920px,_calc(100%_-_160px))]! [.success-container_.register-header_&]:[box-sizing:border-box]! [.success-container_.register-header_&]:[font-size:50px]! [.success-container_.register-header_&]:[font-weight:900]! [.success-container_.register-header_&]:[color:rgb(0,_0,_0)]! [.success-container_.register-header_&]:[padding:0]! [.success-container_.register-header_&]:[text-wrap:nowrap]! [.success-container_.register-header_&_img]:[width:100%]! [.success-container_.register-header_&_img]:[height:auto]! [.success-container_.register-header_&_img]:[display:block]! max-[1285.01px]:[.success-container_.register-header_&]:[top:124px]! max-[1285.01px]:[.success-container_.register-header_&]:[width:min(880px,_calc(100%_-_96px))]! max-[1285.01px]:[.success-container_.register-header_&_img]:[width:100%]! max-[1060.01px]:[.success-container_.register-header_&]:[top:118px]! max-[1060.01px]:[.success-container_.register-header_&]:[width:min(780px,_calc(100%_-_72px))]! max-[1060.01px]:[.success-container_.register-header_&_img]:[width:100%]! max-[880.01px]:[.success-container_.register-header_&]:[top:110px]! max-[880.01px]:[.success-container_.register-header_&]:[width:min(680px,_calc(100%_-_56px))]! max-[880.01px]:[.success-container_.register-header_&_img]:[width:100%]! max-[750.01px]:[.success-container_.register-header_&]:[top:108px]! max-[750.01px]:[.success-container_.register-header_&]:[width:min(620px,_calc(100%_-_48px))]! max-[750.01px]:[.success-container_.register-header_&_img]:[width:100%]! max-[700.01px]:[.success-container_.register-header_&]:[top:112px]! max-[700.01px]:[.success-container_.register-header_&]:[width:min(520px,_calc(100%_-_44px))]! max-[700.01px]:[.success-container_.register-header_&_img]:[width:100%]! max-[575.01px]:[.success-container_.register-header_&]:[top:102px]! max-[575.01px]:[.success-container_.register-header_&]:[width:min(520px,_calc(100%_-_40px))]! max-[575.01px]:[.success-container_.register-header_&_img]:[width:100%]! max-[500.01px]:[.success-container_.register-header_&]:[top:98px]! max-[500.01px]:[.success-container_.register-header_&]:[width:min(460px,_calc(100%_-_36px))]! max-[500.01px]:[.success-container_.register-header_&_img]:[width:100%]! max-[460.01px]:[.success-container_.register-header_&]:[top:98px]! max-[460.01px]:[.success-container_.register-header_&]:[width:min(360px,_calc(100%_-_32px))]! max-[460.01px]:[.success-container_.register-header_&_img]:[width:100%]! max-[395.01px]:[.success-container_.register-header_&]:[top:94px]! max-[395.01px]:[.success-container_.register-header_&]:[width:min(320px,_calc(100%_-_28px))]! max-[395.01px]:[.success-container_.register-header_&_img]:[width:100%]!">
+              <img src={banner_logo} alt="KDSH2025" />
             </div>
-          </motion.div>
-
-          {/* ── Description Box ───────────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: -40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-            style={{ display: "flex", justifyContent: "center", height: "100%" }}
-          >
-            {/*
-              success-register-kdsh-desc:
-                position + top/margin/padding/font-size → responsive, handled in <style>
-                border: 1px solid rgba(59,130,246,0.25) → border border-blue-500/25
-                color: #cbd5f5                          → text-[#cbd5f5]
-                font-weight: 600                        → font-semibold
-                text-align: justify                     → text-justify
-                line-height: 25px                       → leading-[25px]
-                backdrop-filter: blur(10px)             → backdrop-blur-[10px]
-                border-radius: 15px                     → rounded-[15px]
-                background: rgba(15,23,42,0.75)         → inline style (arbitrary rgba)
-            */}
-            <div
-              className="success-register-kdsh-desc absolute border border-blue-500/25 text-[#cbd5f5] font-semibold text-justify leading-[25px] backdrop-blur-[10px] rounded-[15px]"
-              style={{ background: "rgba(15, 23, 42, 0.75)" }}
-            >
+          </Fade>
+          <Fade top>
+            <div className="success-register-kdsh-desc [.success-container_.register-header_&]:[border:1px_solid_rgba(59,_130,_246,_0.25)]! [.success-container_.register-header_&]:[color:#cbd5f5]! [.success-container_.register-header_&]:[padding:20px_24px]! [.success-container_.register-header_&]:[font-weight:600]! [.success-container_.register-header_&]:[text-align:justify]! [.success-container_.register-header_&]:[position:absolute]! [.success-container_.register-header_&]:[top:450px]! [.success-container_.register-header_&]:[left:50%]! [.success-container_.register-header_&]:[transform:translateX(-50%)]! [.success-container_.register-header_&]:[width:min(920px,_calc(100%_-_160px))]! [.success-container_.register-header_&]:[box-sizing:border-box]! [.success-container_.register-header_&]:[font-size:17px]! [.success-container_.register-header_&]:[line-height:1.52]! [.success-container_.register-header_&]:[backdrop-filter:blur(10px)]! [.success-container_.register-header_&]:[-webkit-backdrop-filter:blur(10px)]! [.success-container_.register-header_&]:[border-radius:15px]! [.success-container_.register-header_&]:[margin:0]! [.success-container_.register-header_&]:[background:rgba(15,_23,_42,_0.75)]! [.success-container_.register-header_&_ul]:[list-style:none]! [.success-container_.register-header_&_ul]:[text-decoration:none]! [.success-container_.register-header_&_ul]:[color:aqua]! [.success-container_.register-header_&_ul]:[transition:all_0.3s]! [.success-container_.register-header_&_ul]:[width:max-content]! [.success-container_.register-header_&_ul_li:hover]:[text-shadow:cyan_0_0_8px]! [&_p_img]:[height:40px]! [&_p_img]:[margin-right:15px]! [&_p_img]:[cursor:pointer]! max-[1285.01px]:[.success-container_.register-header_&]:[padding:18px_20px]! max-[1285.01px]:[.success-container_.register-header_&]:[font-weight:600]! max-[1285.01px]:[.success-container_.register-header_&]:[top:420px]! max-[1285.01px]:[.success-container_.register-header_&]:[width:min(880px,_calc(100%_-_96px))]! max-[1285.01px]:[.success-container_.register-header_&]:[font-size:16px]! max-[1060.01px]:[.success-container_.register-header_&]:[padding:18px_20px]! max-[1060.01px]:[.success-container_.register-header_&]:[font-weight:600]! max-[1060.01px]:[.success-container_.register-header_&]:[top:400px]! max-[1060.01px]:[.success-container_.register-header_&]:[width:min(780px,_calc(100%_-_72px))]! max-[1060.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[880.01px]:[.success-container_.register-header_&]:[padding:18px_20px]! max-[880.01px]:[.success-container_.register-header_&]:[font-weight:600]! max-[880.01px]:[.success-container_.register-header_&]:[top:350px]! max-[880.01px]:[.success-container_.register-header_&]:[width:min(680px,_calc(100%_-_56px))]! max-[880.01px]:[.success-container_.register-header_&]:[font-size:14px]! max-[750.01px]:[.success-container_.register-header_&]:[padding:18px_20px]! max-[750.01px]:[.success-container_.register-header_&]:[font-weight:600]! max-[750.01px]:[.success-container_.register-header_&]:[top:330px]! max-[750.01px]:[.success-container_.register-header_&]:[width:min(620px,_calc(100%_-_48px))]! max-[750.01px]:[.success-container_.register-header_&]:[font-size:14px]! max-[700.01px]:[.success-container_.register-header_&]:[padding:18px_20px]! max-[700.01px]:[.success-container_.register-header_&]:[font-weight:600]! max-[700.01px]:[.success-container_.register-header_&]:[top:300px]! max-[700.01px]:[.success-container_.register-header_&]:[margin:0]! max-[700.01px]:[.success-container_.register-header_&]:[left:50%]! max-[700.01px]:[.success-container_.register-header_&]:[transform:translateX(-50%)]! max-[700.01px]:[.success-container_.register-header_&]:[width:calc(100%_-_32px)]! max-[700.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[575.01px]:[.success-container_.register-header_&]:[padding:18px_20px]! max-[575.01px]:[.success-container_.register-header_&]:[font-weight:600]! max-[575.01px]:[.success-container_.register-header_&]:[top:312px]! max-[575.01px]:[.success-container_.register-header_&]:[width:calc(100%_-_32px)]! max-[575.01px]:[.success-container_.register-header_&]:[left:50%]! max-[575.01px]:[.success-container_.register-header_&]:[transform:translateX(-50%)]! max-[575.01px]:[.success-container_.register-header_&]:[margin:0]! max-[575.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[460.01px]:[.success-container_.register-header_&]:[padding:18px_18px]! max-[460.01px]:[.success-container_.register-header_&]:[font-weight:600]! max-[460.01px]:[.success-container_.register-header_&]:[top:304px]! max-[460.01px]:[.success-container_.register-header_&]:[margin:0]! max-[460.01px]:[.success-container_.register-header_&]:[left:50%]! max-[460.01px]:[.success-container_.register-header_&]:[transform:translateX(-50%)]! max-[460.01px]:[.success-container_.register-header_&]:[width:calc(100%_-_24px)]! max-[460.01px]:[.success-container_.register-header_&]:[font-size:14px]! max-[395.01px]:[.success-container_.register-header_&]:[padding:18px_18px]! max-[395.01px]:[.success-container_.register-header_&]:[font-weight:600]! max-[395.01px]:[.success-container_.register-header_&]:[top:300px]! max-[395.01px]:[.success-container_.register-header_&]:[margin:0]! max-[395.01px]:[.success-container_.register-header_&]:[left:50%]! max-[395.01px]:[.success-container_.register-header_&]:[transform:translateX(-50%)]! max-[395.01px]:[.success-container_.register-header_&]:[width:calc(100%_-_20px)]! max-[395.01px]:[.success-container_.register-header_&]:[font-size:14px]!">
               <p>
                 Congratulations on successfully registering for{" "}
-                <strong>Kharagpur Data Science Hackathon 2026</strong>. For
-                timelines and other details related to the Hackathon Visit{" "}
-                <a
-                  className="kdsh-unstop-link"
-                  href="https://unstop.com/p/kharagpur-data-science-hackathon-2026-iit-kharagpur-1614844"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
+                <strong>DataForge 2026</strong>.
+                For
+                timelines and other details related to the Hackathon Visit {" "}
+                <a className="kdsh-unstop-link [color:#FFD700]! [font-weight:bolder]! [&:hover]:[color:#FFD700]! [&:hover]:[text-decoration:underline]!" href="https://unstop.com/p/dataforge-2026-iit-kharagpur-1739346" target="_blank" rel="noreferrer noopener">
                   Unstop Page
-                </a>
-                .
+                </a>.{" "}
               </p>
-
               <p>
-                Join the Whatsapp Group and Discord Channel for regular updates!
+                Join the{" "}
+                <a className="kdsh-unstop-link [color:#FFD700]! [font-weight:bolder]! [&:hover]:[color:#FFD700]! [&:hover]:[text-decoration:underline]!" href="https://chat.whatsapp.com/BZZm1oRtnQ4FK1MYZbFNcQ" target="_blank" rel="noreferrer noopener">
+                  Whatsapp Group
+                </a>
+                {" "}for regular updates!
               </p>
 
-              {/*
-                social-icons:
-                  display: flex       → flex
-                  align-items: center → items-center
-                  gap: 15px           → gap-[15px]
-                  margin-top: 15px    → mt-[15px]
-
-                social-icons a:
-                  display: flex       → flex
-
-                social-icons img:
-                  width/height: 45px  → w-[45px] h-[45px]
-                  cursor: pointer     → cursor-pointer
-              */}
-              <div className="flex items-center gap-[15px] mt-[15px]">
-                <a
-                  href="https://chat.whatsapp.com/LguOtn8Dwyh19sajyCKNoQ"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="flex"
-                >
-                  <img
-                    src={whatsapp}
-                    alt="whatsapp"
-                    className="w-[45px] h-[45px] cursor-pointer"
-                  />
-                </a>
-                <a
-                  href="https://discord.gg/fBfvXCTQF"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="flex"
-                >
-                  <img
-                    src={discord}
-                    alt="discord"
-                    className="w-[45px] h-[45px] cursor-pointer"
-                  />
-                </a>
-              </div>
-
-              {/*
-                important-note2:
-                  Styled as a bordered inner sub-card to match Image 1.
-                  - border + rounded corners  → border border-blue-500/40 rounded-[10px]
-                  - inner padding             → p-[16px]
-                  - subtle inner background   → bg-[rgba(30,45,100,0.35)]
-                  - top spacing               → mt-[20px]
-                  Label color: blue (#60a5fa) to match Image 1 styling.
-              */}
-              <div
-                style={{
-                  background: "rgba(30, 45, 100, 0.35)",
-                  margin: "20px 30px 0 30px",
-                  padding: "16px",
-                  border: "1px solid rgba(59, 130, 246, 0.4)",
-                  borderRadius: "10px",
-                }}
-              >
-                <strong style={{ color: "#60a5fa" }}>Important for Team Leaders:</strong>{" "}
-                After all Members have joined your team, you MUST finalize your
-                team on the{" "}
-                <a
-                  href="/manage-team"
-                  style={{ color: "#60a5fa", textDecoration: "underline" }}
-                >
+              <div className="important-note2 [padding:14px_18px]! [text-align:center]! [line-height:1.55]! [color:#e6ecff]! [font-size:20px]! [border-radius:12px]! [border:1px_solid_rgba(120,_160,_255,_0.25)]! [max-width:820px]! [margin-left:auto]! [margin-right:auto]! [transition:box-shadow_0.25s_ease,_border-color_0.25s_ease]! [&_strong]:[color:#8fb3ff]! [&_strong]:[font-weight:800]! [&_strong]:[font-size:17px]! max-[820.01px]:[font-size:14px]! max-[820.01px]:[padding:12px_14px]! max-[820.01px]:[max-width:92%]! max-[520.01px]:[font-size:13.5px]! max-[520.01px]:[line-height:1.45]! max-[520.01px]:[padding:10px_12px]! max-[520.01px]:[border-radius:10px]! [.success-container_.register-header_&]:[font-size:17px]! [.success-container_.register-header_&]:[line-height:1.5]! [.success-container_.register-header_&]:[padding:13px_16px]! [.success-container_.register-header_&]:[border-color:rgba(120,_160,_255,_0.35)]! [.success-container_.register-header_&_strong]:[font-size:17px]! [.success-container_.register-header_&_strong]:[color:#8fb3ff]! [.success-container_.register-header_&_a]:[color:#8fb3ff]! [.success-container_.register-header_&_a]:[text-decoration:underline]! [.success-container_.register-header_&_a]:[text-underline-offset:3px]! [.success-container_.register-header_&_a:visited]:[color:#8fb3ff]! [.success-container_.register-header_&_a:visited]:[text-decoration:underline]! [.success-container_.register-header_&_a:visited]:[text-underline-offset:3px]! max-[1285.01px]:[.success-container_.register-header_&]:[font-size:16px]! max-[1285.01px]:[.success-container_.register-header_&_strong]:[font-size:16px]! max-[1060.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[1060.01px]:[.success-container_.register-header_&_strong]:[font-size:15px]! max-[880.01px]:[.success-container_.register-header_&]:[font-size:14px]! max-[880.01px]:[.success-container_.register-header_&_strong]:[font-size:14px]! max-[750.01px]:[.success-container_.register-header_&]:[font-size:14px]! max-[750.01px]:[.success-container_.register-header_&_strong]:[font-size:14px]! max-[700.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[700.01px]:[.success-container_.register-header_&_strong]:[font-size:15px]! max-[575.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[575.01px]:[.success-container_.register-header_&_strong]:[font-size:15px]! max-[460.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[460.01px]:[.success-container_.register-header_&_strong]:[font-size:15px]! max-[395.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[395.01px]:[.success-container_.register-header_&_strong]:[font-size:15px]!" style={{
+              marginTop: "30px"
+            }}>
+                <strong>Important for Team Leaders:</strong> After all Members have joined your team, you MUST finalize your team on the{" "}
+                <a href="/manage-team" className="important-note2-link [cursor:pointer]! [font-weight:700]! [transition:color_0.25s_ease,_text-shadow_0.25s_ease]! max-[520.01px]:[display:inline-block]! [.success-container_.register-header_&]:[font-size:17px]! [.success-container_.register-header_&]:[color:#8fb3ff]! [.success-container_.register-header_&]:[text-decoration:underline]! [.success-container_.register-header_&]:[text-underline-offset:3px]! max-[1285.01px]:[.success-container_.register-header_&]:[font-size:16px]! max-[1060.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[880.01px]:[.success-container_.register-header_&]:[font-size:14px]! max-[750.01px]:[.success-container_.register-header_&]:[font-size:14px]! max-[700.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[575.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[460.01px]:[.success-container_.register-header_&]:[font-size:15px]! max-[395.01px]:[.success-container_.register-header_&]:[font-size:15px]!" style={{
+                color: "#8fb3ff",
+                textDecoration: "underline",
+                textUnderlineOffset: "3px"
+              }}>
                   Manage Team page
                 </a>{" "}
-                to complete your registration. Your team will only appear on
-                Unstop after finalization.
+                to complete your registration. Your team will only appear on Unstop after finalization.
               </div>
             </div>
-          </motion.div>
-
+          </Fade>
         </div>
       </div>
-
       {particless}
-    </>
-  );
+    </>;
 };
-
 export default Success;
