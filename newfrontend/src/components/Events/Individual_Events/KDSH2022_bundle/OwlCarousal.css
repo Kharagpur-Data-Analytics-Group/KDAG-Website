@@ -1,0 +1,42 @@
+@media screen and (max-width: 480px) {
+  .owl-carousel {
+    padding: 0px !important;
+  }
+}
+
+.owl-carousel {
+  margin-top: 6%;
+  padding-left: 350px;
+  padding-right: 350px;
+}
+
+#customer-testimonoals .owl-item.active.center .item {
+  opacity: 1;
+  transform: scale3d(1, 1, 1);
+}
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  background: #869791;
+  transform: translate3d(0px, -50%, 0px) scale(0.8);
+}
+.owl-carousel .owl-dots {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+  padding-top: 10px;
+}
+.owl-carousel .owl-dots .owl-dot {
+  display: inline-block;
+}
+.owl-carousel .owl-dots .owl-dot span {
+  /* background: #eaa400; */
+  background: #869791;
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  margin: 0 8px 5px;
+  transform: translate3d(0px, -50%, 0px) scale(0.3);
+  transform-origin: 50% 50% 0;
+  transition: all 250ms ease-out 0s;
+}

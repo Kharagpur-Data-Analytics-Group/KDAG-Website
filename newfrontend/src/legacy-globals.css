@@ -1,0 +1,158 @@
+/*
+  Site-wide rules that used to live in the Landing page CSS files
+  (LandingPage.css, Content.css). They are not landing-specific: other pages
+  (Team, ManageTeam, NotFound, Footer, Navbar buttons, forms, Resources_New...)
+  rely on them, so they stay global and are imported in AppRouter at the same
+  position the old landing CSS was loaded, keeping the cascade order unchanged.
+*/
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap");
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  position: relative;
+  color: white;
+}
+
+input[type="text"] {
+  height: 40px;
+  /* cursor: none; */
+}
+
+input[type="text"]:active,
+input[type="text"]:focus {
+  box-shadow: 0 0 15px rgb(255, 255, 255);
+}
+
+/* VARIABLES */
+:root {
+  --main-bg-color-dark: #212529;
+  --main-text-color-dark: #e8e8e8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Oswald';
+  background-color: var(--main-bg-color-dark);
+  color: var(--main-text-color-dark);
+  background-color: #1d1d1d;
+}
+
+.page {
+  width: 100%;
+  height: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 6%;
+}
+
+.heading {
+  font-size: 45px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form input {
+  margin: 10px;
+}
+
+input {
+  color: var(--main-text-color-dark);
+  outline: none;
+  width: 300px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px rgba(255, 255, 255, 0.2) solid;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 18px;
+}
+
+select {
+  width: 300px;
+  height: 40px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.527);
+  font-family: 'Oswald';
+  border: 1px rgba(255, 255, 255, 0.164) solid;
+  padding-left: 20px;
+
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 10px;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+.btn:focus {
+  border: 1px rgba(255, 255, 255, 1) solid;
+  transition: all 0.5s;
+}
+
+.btn {
+  width: 300px;
+  height: 40px;
+  margin-top: 20px;
+  outline: none;
+  border: 1px rgba(255, 255, 255, 0.2) solid;
+  background-color: transparent;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 0.719);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.btn:hover {
+  color: white;
+}
+
+@media only screen and (max-width: 900px) {
+  .page {
+    position: relative;
+    top: 15%;
+  }
+}
+
+.red {
+  color: red;
+  font-weight: bold;
+}
+
+.line {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+}
