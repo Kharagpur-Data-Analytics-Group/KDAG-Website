@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+import { API_BASE_URL } from "../../config/api.js";
 // App.js
 import { useEffect, useState } from "react";
 import DropdownSection from "./Sheet.jsx";
@@ -5,7 +7,7 @@ import initialSections from "./course.json";
 import ProgressCard from "./ProgressCard.jsx";
 import Header from "./Header/Header.jsx";
 function App() {
-  const BASE_URL = import.meta.env.VITE_FETCH_URL;
+  const BASE_URL = API_BASE_URL;
   const [sections, setSections] = useState(initialSections);
   const [loading, setLoading] = useState(true);
   const [openIndex, setOpenIndex] = useState(null);
@@ -21,6 +23,7 @@ function App() {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem("access_token");
+        if (!token) return;
         const res = await fetch(`${BASE_URL}/resources/`, {
           headers: {
             Authorization: `Bearer ${token}`
@@ -76,7 +79,7 @@ function App() {
         } : itm)
       } : sec));
       const token = localStorage.getItem("access_token");
-      await fetch(`${BASE_URL}/resources/update`, {
+      const response = await fetch(`${BASE_URL}/resources/update`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +92,12 @@ function App() {
           value: newValue
         })
       });
+      if (!response.ok) throw new Error("Failed to save progress");
     } catch (err) {
+      setSections(prev => prev.map((sec, sIdx) => sIdx === sectionIdx ? {
+        ...sec, items: sec.items.map((itm, iIdx) => iIdx === itemIdx ? { ...itm, completed: !newValue } : itm)
+      } : sec));
+      toast.error("Could not save completion status. Please try again.");
       console.error("Error updating completion status:", err);
     }
   };
@@ -106,7 +114,7 @@ function App() {
         } : itm)
       } : sec));
       const token = localStorage.getItem("access_token");
-      await fetch(`${BASE_URL}/resources/update`, {
+      const response = await fetch(`${BASE_URL}/resources/update`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -119,7 +127,12 @@ function App() {
           value: newValue
         })
       });
+      if (!response.ok) throw new Error("Failed to save progress");
     } catch (err) {
+      setSections(prev => prev.map((sec, sIdx) => sIdx === sectionIdx ? {
+        ...sec, items: sec.items.map((itm, iIdx) => iIdx === itemIdx ? { ...itm, revision: !newValue } : itm)
+      } : sec));
+      toast.error("Could not save revision status. Please try again.");
       console.error("Error updating revision status:", err);
     }
   };
@@ -127,7 +140,7 @@ function App() {
         <div className="custom-loading-spinner [width:3.2rem]! [height:3.2rem]! [border:5px_solid_#ff4040]! [border-top:5px_solid_#1a0008]! [border-radius:50%]! [animation:custom-spin_1s_linear_infinite]! [margin-bottom:1.5rem]! [box-shadow:0_0_18px_#ff404055]!"></div>
         <div className="custom-loading-text [color:#ff4040]! [font-size:1.5rem]! [font-family:'JetBrains_Mono',_monospace]! [text-align:center]! [font-weight:bold]! [letter-spacing:0.08em]! [text-shadow:0_2px_12px_#ff404055]! [margin-bottom:2rem]!">Loading Resources...</div>
       </div>;
-  return <div className="min-h-screen flex flex-col items-center justify-start bg-black px-2 py-8 app-container [margin-bottom:100px]!"><style>{"@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n@keyframes custom-spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\ninput[type=\"checkbox\"] {\n  width: 18px;\n  height: 18px;\n  accent-color: #ff3333;\n  cursor: pointer;\n  filter: drop-shadow(0 0 2px #ff333377);\n}"}</style>
+  return <div className="min-h-screen flex flex-col items-center justify-start bg-black px-2 py-8 app-container [font-family:Inter,'JetBrains_Mono','Fira_Code',sans-serif]! [margin-bottom:100px]!"><style>{"@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n@keyframes custom-spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\ninput[type=\"checkbox\"] {\n  width: 18px;\n  height: 18px;\n  accent-color: #ff3333;\n  cursor: pointer;\n  filter: drop-shadow(0 0 2px #ff333377);\n}"}</style>
       <Header />
       <ProgressCard totalCompleted={totalCompleted} totalCount={totalSubtopics} easyCompleted={easyCompleted} easyCount={easyCount} mediumCompleted={mediumCompleted} mediumCount={mediumCount} hardCompleted={hardCompleted} hardCount={hardCount} />
       <div className="w-full max-w-3xl mt-6">

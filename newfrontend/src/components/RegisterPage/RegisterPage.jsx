@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import parityAsset0 from "../../assets/KDSH2025_cover.png";
 import React, { useEffect, useState, useContext } from "react";
 import Fade from "../Common/Motion/Fade.jsx";
@@ -62,7 +63,7 @@ const RegisterPage = () => {
         setCheckingTeam(false);
         return;
       }
-      const res = await fetch(`${import.meta.env.VITE_FETCH_URL}/kdsh/get_user_teams`, {
+      const res = await fetch(`${API_BASE_URL}/kdsh/get_user_teams`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
@@ -115,7 +116,7 @@ const RegisterPage = () => {
       autoClose: 5000,
       theme: "dark"
     });
-    fetch(`${import.meta.env.VITE_FETCH_URL}/kdsh/check_register`, {
+    fetch(`${API_BASE_URL}/kdsh/check_register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -181,7 +182,7 @@ const RegisterPage = () => {
         autoClose: 5000,
         theme: "dark"
       });
-      const response = await fetch(`${import.meta.env.VITE_FETCH_URL}/kdsh/join_team`, {
+      const response = await fetch(`${API_BASE_URL}/kdsh/join_team`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

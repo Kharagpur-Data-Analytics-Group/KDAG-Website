@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import React, { useState, useEffect } from "react";
 import Fade from "../Common/Motion/Fade.jsx"
 import { useHistory } from "react-router-dom";
@@ -14,7 +15,7 @@ import already_downvoted_img from "./../../assets/pics/already_downvoted.png";
 
 
 const DiscussionComment = ({ post_id, level, reply }) => {
-	const apiUrl = import.meta.env.VITE_FETCH_URL;
+	const apiUrl = API_BASE_URL;
 	const [showReplies, setShowReplies] = useState(false);
 	const [userId, setUserId] = useState("empty");
 	const history = useHistory();

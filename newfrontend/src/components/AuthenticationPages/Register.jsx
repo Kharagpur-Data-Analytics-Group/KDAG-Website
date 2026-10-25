@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
@@ -25,7 +26,7 @@ const Register = () => {
 
       // Extract username from email (part before @)
       const email = user_info.email || "";
-      const username = email.split("@")[0] || "";
+      const username = user_info.username || email.split("@")[0] || "";
       setRegister_userName(username);
       setRegister_college(user_info.college || "");
       setRegister_phone(user_info.phone || "");
@@ -47,18 +48,17 @@ const Register = () => {
       uid: localStorage.getItem("uid") || ""
     };
     const token = localStorage.getItem("access_token");
-    console.log(user_data, token);
-    const response = await fetch(`${import.meta.env.VITE_FETCH_URL}/user/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        ...user_data
-      })
-    });
     try {
+      const response = await fetch(`${API_BASE_URL}/user/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          ...user_data
+        })
+      });
       if (response.ok) {
         const content = await response.json();
         setUserMessage("Registration successful");
@@ -72,7 +72,7 @@ const Register = () => {
         setShowUsermessage(true);
       }
     } catch (error) {
-      setUserMessage(error);
+      setUserMessage("Unable to save your profile. Please try again.");
       setShowUsermessage(true);
     }
   };
@@ -88,7 +88,7 @@ const Register = () => {
                   <h1>Create Account</h1>
                   <input type="text" placeholder="First Name" required value={register_firstName} onChange={e => setRegister_firstName(e.target.value)} />
                   <input type="text" placeholder="Last Name" value={register_lastName} onChange={e => setRegister_lastName(e.target.value)} />
-                  <input type="text" placeholder="Username" required disabled value={register_userName} onChange={e => setRegister_userName(e.target.value)} />
+                  <input type="text" placeholder="Username" required value={register_userName} onChange={e => setRegister_userName(e.target.value)} />
                   <input type="text" placeholder="College" required value={register_college} onChange={e => setRegister_college(e.target.value)} />
                   <input type="number" placeholder="Phone No." required value={register_phone} onChange={e => setRegister_phone(e.target.value)} />
 

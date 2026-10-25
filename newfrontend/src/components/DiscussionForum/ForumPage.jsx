@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import React, { useEffect, useState, useContext } from "react";
 import Header from "./Header";
 import Fade from "../Common/Motion/Fade.jsx";
@@ -22,7 +23,7 @@ const ForumPage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_FETCH_URL}/get_posts`, {
+        const response = await fetch(`${API_BASE_URL}/get_posts`, {
           method: "GET"
         });
         if (!response.ok) {

@@ -9,6 +9,7 @@ from flask_jwt_extended import (
     get_jwt_identity,
     verify_jwt_in_request,
 )
+from flask_jwt_extended.exceptions import JWTExtendedException
 from bson import ObjectId 
 from datetime import timedelta
 import requests
@@ -27,7 +28,7 @@ JWT_EXPIRY_DAYS = int(os.getenv("JWT_EXPIRY_DAYS", "7"))
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 REDIRECT_URI = os.getenv("REDIRECT_URI")
-GOOGLE_TOKEN_URL = os.getenv("GOOGLE_TOKEN_URL")
+GOOGLE_TOKEN_URL = os.getenv("GOOGLE_TOKEN_URL", "https://oauth2.googleapis.com/token")
 GOOGLE_TOKEN_INFO_URL = os.getenv("GOOGLE_TOKEN_INFO_URL")
 GOOGLE_TOKEN_INFO_URL_2 = os.getenv("GOOGLE_TOKEN_INFO_URL_2")
 
@@ -56,6 +57,7 @@ def google_callback():
                 "redirect_uri": REDIRECT_URI,
                 "grant_type": "authorization_code",
             },
+            timeout=20,
         )
 
         if token_response.status_code != 200:
@@ -159,7 +161,7 @@ def google_callback():
                         {
                             "message": "User account successfully activated. Please complete the remaining details.",
                             "uid": uid,
-                            "user_info": id_info,
+                            "user_info": {**id_info, "username": user.get("username", "")},
                             "redirect": "usual_redirect_page_",
                             "access_token": jwt_access_token,
                         }
@@ -239,6 +241,7 @@ def google_callback():
                 )
                 user_info = {
                     **id_info,
+                    "username": username,
                     "phone": user.get("phone", ""),
                     "college": user.get("college", "")
                 }
@@ -302,16 +305,15 @@ def auth_status():
         
         return jsonify({"loggedIn": True, "user": user_info}), 200
 
-    except jwt.ExpiredSignatureError:
-        return jsonify({"loggedIn": False, "user": None, "error": "Token expired"}), 401
-    except jwt.InvalidTokenError:
-        return jsonify({"loggedIn": False, "user": None, "error": "Invalid token"}), 401
+    except (jwt.InvalidTokenError, JWTExtendedException):
+        return jsonify({"loggedIn": False, "user": None, "error": "Invalid or expired token"}), 401
     except Exception as e:
         print(f"Error in auth_status: {str(e)}")
         return jsonify({"loggedIn": False, "user": None, "error": "Authentication failed"}), 500
 
 
 @user_auth.route("/signup", methods=["POST"])
+@jwt_required()
 def user_signup():
     try:
         from app import mongo
@@ -319,7 +321,11 @@ def user_signup():
         users = mongo.cx[DB_NAME].users
         data = request.get_json()
 
-        uid = data.get("uid")
+        uid = get_jwt_identity().get("user_id")
+        if data.get("uid") and data["uid"] != uid:
+            return jsonify({"message": "Unauthorized access"}), 403
+        if not uid or not ObjectId.is_valid(uid):
+            return jsonify({"message": "Invalid user ID"}), 400
 
         reqd_fields = ["username", "f_name", "l_name", "phone", "college"]
 
@@ -342,9 +348,9 @@ def user_signup():
             return jsonify({"message": "Please choose a different username"}), 400
 
 
-        users.update_one({"_id": ObjectId(data.get("uid"))}, {"$set": updated_data})
+        users.update_one({"_id": ObjectId(uid)}, {"$set": updated_data})
 
-        updated_user = users.find_one({"_id": ObjectId(data.get("uid"))})
+        updated_user = users.find_one({"_id": ObjectId(uid)})
         updated_user["_id"] = str(updated_user["_id"])
 
         return jsonify({"message": "Signup successful", "user": updated_user}), 200

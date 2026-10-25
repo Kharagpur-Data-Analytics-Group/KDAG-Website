@@ -1,74 +1,59 @@
 # KDAG Website
 
-Website for Kharagpur Data Analytics Group (KDAG), Indian Institute of Technology, Kharagpur.
+Website for Kharagpur Data Analytics Group, IIT Kharagpur.
 
-## Project Structure
+The active frontend is `newfrontend/` (React + Vite). `frontend/` is the legacy app. The Flask API is in `backend/`. `main-backup` already contains the backend from `main`; integration fixes are applied on top of that backend.
 
+## Local development
+
+Use Node 22.13+ (or Node 24+) and Python 3.11/3.12. Run MongoDB locally, or use a development MongoDB deployment.
+
+```bash
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env   # Only for a new setup; preserve an existing .env
+python app.py
 ```
-KDAG-Website/
-├── backend/          # Flask Python backend
-├── frontend/         # React frontend
-└── README.md
+
+Set `MONGO_URI`, a random `JWT_SECRET_KEY`, and Google OAuth credentials in `backend/.env`. Account, forum and resource data use `KDAG-BACKEND`; the existing hackathon routes use `PATHWAY_2026`. The API listens on port 5001; `GET /health` provides a process health check.
+
+In a second terminal:
+
+```bash
+cd newfrontend
+npm ci
+cp .env.example .env   # Only for a new setup; preserve an existing .env
+npm run dev -- --port 5173 --strictPort
 ```
 
-## Local Development
+Open `http://localhost:5173`. Set `VITE_FETCH_URL=/api` to connect to the local backend through Vite's proxy. All API calls share one configuration in `src/config/api.js`. Existing `REACT_APP_FETCH_URL`, `REACT_APP_GOOGLE_CLIENT_ID` and `REACT_APP_REDIRECT_URI` remain supported; `VITE_*` settings take precedence. Existing environment files pointing at production continue to use production until explicitly changed.
 
-### Backend Setup
+For Google login, set `VITE_GOOGLE_CLIENT_ID` to the backend's `GOOGLE_CLIENT_ID`. Set both frontend `VITE_REDIRECT_URI` and backend `REDIRECT_URI` to `http://localhost:5173/google-auth/callback`, and register that exact redirect URI and frontend origin in the Google OAuth client. Keep the client secret exclusively in the backend. Restart the servers after changing environment settings.
 
-1. **Navigate to backend directory:**
-   ```bash
-   cd backend
-   ```
+DOCX resource rendering also needs the Pandoc executable installed on the backend host.
 
-2. **Create and activate virtual environment:**
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # macOS/Linux
-   # venv\Scripts\activate    # Windows
-   ```
+## Production
 
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+Deploy `backend/` as the Flask API (its existing Vercel configuration is included). Build the active frontend with `cd newfrontend && npm ci && npm run build`, and serve `newfrontend/dist`.
 
-4. **Run the backend:**
-   ```bash
-   python app.py
-   ```
-   Server runs on `http://localhost:5001`
+For a separate frontend deployment, set `VITE_FETCH_URL` to the backend's HTTPS origin **before building**. `/api` is a development proxy; a production host using that value must provide its own reverse proxy and strip the `/api` prefix. Set the frontend and backend OAuth redirect settings to the same public `/google-auth/callback` URL registered with Google. Google credentials and the MongoDB connection must be configured on the backend host.
 
-### Frontend Setup
+For Vercel frontend hosting, select `newfrontend` as the project root, use the Vite framework preset and `dist` output. The included `newfrontend/vercel.json` rewrites page routes to `index.html` so profile links, resource pages and OAuth callbacks survive refreshes. Other static hosts need the equivalent SPA fallback. `npm run preview` previews the production build and requires a reachable API origin configured at build time.
 
-1. **Navigate to frontend directory:**
-   ```bash
-   cd frontend
-   ```
+## Verification
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+```bash
+cd newfrontend
+npm test
+npm run build
+```
 
-3. **Run the frontend:**
-   ```bash
-   npm run dev
-   # or
-   npm start
-   ```
-   App runs on `http://localhost:3000`
+From the repository root:
 
-## Available Scripts
+```bash
+backend/venv/bin/python -m unittest discover -s backend/tests -v
+```
 
-### Frontend
-- `npm run dev` - Start development server (recommended)
-- `npm start` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Build and serve production build locally
-
-### Backend
-- `python app.py` - Start Flask development server
-
----
-
-For more details, visit [KDAG Website](https://www.kdagiitkgp.com)
+Backend tests use mocked collections and local test configuration, without writing to live databases or contacting Google. A full live login and data persistence check requires configured Google OAuth and a development MongoDB deployment.

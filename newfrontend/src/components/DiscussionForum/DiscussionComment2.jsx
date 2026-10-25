@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import React, { useState, useEffect } from "react";
 import Fade from "../Common/Motion/Fade.jsx"
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
@@ -25,7 +26,7 @@ const DiscussionComment2 = ({ post_id, level, reply }) => {
 	const [showDelete, setShowDelete] = useState(false);
 	const [jsonData, setJsonData] = useState([]);
 	const nextLevelReplies = reply.replies.length;
-	const apiUrl = import.meta.env.VITE_FETCH_URL;
+	const apiUrl = API_BASE_URL;
 	const [upvotes, setUpvotes] = useState(0);
 	const [downvotes, setDownvotes] = useState(0);
 	const [isUpvoted, setIsUpvoted] = useState(false);

@@ -1,6 +1,17 @@
-from flask import Flask
+import os
+import sys
+from pathlib import Path
+
+# Routers import the shared mongo instance from app, including when run as a script.
+if __name__ == "__main__":
+    sys.modules["app"] = sys.modules[__name__]
+
+from flask import Flask, jsonify
 from flask_pymongo import PyMongo
 from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).with_name(".env"))
+
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from routers.users.auth import user_auth
@@ -12,12 +23,11 @@ from docx_viewer import docx_viewer
 # from routers.kdsh2025_mod.kdsh2025_mod import kdsh2025_mod
 from routers.kdsh.register import kdsh
 
-import os
-
 app = Flask(__name__)
-load_dotenv()
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 mongo = PyMongo(app)
+# Auth, resources and hackathon data already use this database explicitly.
+mongo.db = mongo.cx["KDAG-BACKEND"]
 app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET_KEY")
 jwt = JWTManager(app)
 CORS(app)
@@ -33,10 +43,15 @@ app.register_blueprint(kdsh, url_prefix="/kdsh")
 
 
 
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({"status": "ok"})
+
+
 @app.route("/", methods=["GET"])
 def home():
     return "Hello World!!"
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5001)
+    app.run(debug=os.getenv("FLASK_DEBUG") == "1", host="0.0.0.0", port=int(os.getenv("PORT", "5001")))

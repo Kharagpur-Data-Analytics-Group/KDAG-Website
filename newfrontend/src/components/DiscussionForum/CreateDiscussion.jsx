@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import Particless from "../Common/Particles/Particless";
 import Fade from "../Common/Motion/Fade.jsx";
 import { useHistory } from "react-router-dom";
@@ -44,7 +45,7 @@ const CreateDiscussion = () => {
         message: discussionContent,
         date: formattedDate
       };
-      const response = await fetch(`${import.meta.env.VITE_FETCH_URL}/create_post/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/create_post/${userId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

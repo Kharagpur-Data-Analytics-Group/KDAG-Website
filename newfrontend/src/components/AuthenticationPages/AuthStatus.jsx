@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -11,7 +12,7 @@ const AuthStatus = () => {
 		const checkAuthStatus = async () => {
 			try {
 				const response = await fetch(
-					`${import.meta.env.VITE_FETCH_URL}/user/auth/google/status`,
+					`${API_BASE_URL}/user/auth/google/status`,
 					{
 						method: "GET",
 						credentials: "include",

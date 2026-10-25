@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import React, { useState, useMemo, useRef } from "react";
 import Navbar from "../Common/Navbar/Navbar";
 import { toast } from "react-toastify";
@@ -70,7 +71,7 @@ const CertificateGeneration = () => {
 
     setLoading(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_FETCH_URL}/kdsh/certificate_lookup`, {
+      const res = await fetch(`${API_BASE_URL}/kdsh/certificate_lookup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

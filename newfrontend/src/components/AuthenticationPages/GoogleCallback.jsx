@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import React from "react";
 import Particless from "../Common/Particles/Particless";
 import { useState, useEffect, useRef } from "react";
@@ -11,10 +12,14 @@ const GoogleAuthCallback = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const code = queryParams.get("code");
+    if (!code || queryParams.has("error")) {
+      setIsVisible(false);
+      return;
+    }
     // React 18 replays effects in development; authorization codes are single-use.
     if (attemptedCode.current === code) return;
     attemptedCode.current = code;
-    fetch(`${import.meta.env.VITE_FETCH_URL}/user/auth/google/callback`, {
+    fetch(`${API_BASE_URL}/user/auth/google/callback`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -42,10 +47,10 @@ const GoogleAuthCallback = () => {
         localStorage.setItem("register_user_info", JSON.stringify(user_info));
         localStorage.setItem("uid", data.uid);
         localStorage.setItem("access_token", data.access_token);
-        // history.push("/register");
-        window.location.href = "/register-hackathon";
+        window.location.href = "/register";
       }
     }).catch(error => {
+      setIsVisible(false);
       console.error("Error during authentication:", error);
     });
   }, [location, history]);

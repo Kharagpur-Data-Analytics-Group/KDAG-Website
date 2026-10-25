@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -28,7 +29,7 @@ const UserProfileSelf = () => {
 		const fetchUserInfo = async () => {
 			try {
 				const response = await fetch(
-					`${import.meta.env.VITE_FETCH_URL}/user/profile_self/${user_id}`,
+					`${API_BASE_URL}/user/profile_self/${user_id}`,
 					{
 						method: "GET",
 						headers: {

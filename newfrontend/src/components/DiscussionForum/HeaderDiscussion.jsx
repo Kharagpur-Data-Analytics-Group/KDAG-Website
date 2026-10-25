@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import Fade from "../Common/Motion/Fade.jsx";
@@ -66,7 +67,7 @@ const HeaderDiscussion = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_FETCH_URL}/get_post/${post_id}`, {
+        const response = await fetch(`${API_BASE_URL}/get_post/${post_id}`, {
           method: "GET"
         });
         if (!response.ok) {
@@ -93,7 +94,7 @@ const HeaderDiscussion = () => {
   };
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_FETCH_URL}/delete_post/${post_id}/${userId}`, {
+      const response = await fetch(`${API_BASE_URL}/delete_post/${post_id}/${userId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -116,7 +117,7 @@ const HeaderDiscussion = () => {
       if (!token) {
         throw new Error("User is not authenticated.");
       }
-      const response = await fetch(`${import.meta.env.VITE_FETCH_URL}/upvote/${post_id}`, {
+      const response = await fetch(`${API_BASE_URL}/upvote/${post_id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -148,7 +149,7 @@ const HeaderDiscussion = () => {
       if (!token) {
         throw new Error("User is not authenticated.");
       }
-      const response = await fetch(`${import.meta.env.VITE_FETCH_URL}/downvote/${post_id}`, {
+      const response = await fetch(`${API_BASE_URL}/downvote/${post_id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

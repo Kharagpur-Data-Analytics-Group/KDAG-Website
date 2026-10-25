@@ -41,6 +41,9 @@ def update_resource_item():
         item_name = data.get("item_name")  
         update_field = data.get("field")
 
+        if update_field not in {"completed", "revision"} or type(data.get("value")) is not bool:
+            return jsonify({"message": "A boolean completed or revision value is required"}), 400
+
         if not all([section_title, item_name, update_field]):
             return jsonify({"message": "Missing required fields"}), 400
 
@@ -49,7 +52,7 @@ def update_resource_item():
         result = collection.update_one(
             {
                 "user_id": user_id,
-                "sections.title": section_title,
+                "sections": {"$elemMatch": {"title": section_title, "items.name": item_name}},
             },
             {
                 "$set": {
@@ -62,7 +65,7 @@ def update_resource_item():
             ]
         )
 
-        if result.modified_count == 0:
+        if result.matched_count == 0:
             return jsonify({"message": "No document updated"}), 404
 
         return jsonify({"message": "Update successful"}), 200

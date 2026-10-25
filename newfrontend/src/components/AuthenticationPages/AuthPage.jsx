@@ -1,3 +1,4 @@
+import { GOOGLE_CLIENT_ID, GOOGLE_REDIRECT_URI } from "../../config/api.js";
 import React, { useState, useContext } from "react";
 import Fade from "../Common/Motion/Fade.jsx";
 import { useHistory } from "react-router-dom";
@@ -35,10 +36,14 @@ const AuthPage = () => {
   if (isLoggedIn) {
     history.push("/register-hackathon");
   }
-  const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-  const REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
-  function handleGoogleAuth() {
-    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&access_type=offline&scope=email%20profile%20openid&prompt=consent`;
+  function handleGoogleAuth(event) {
+    event.preventDefault();
+    if (!GOOGLE_CLIENT_ID) {
+      setUserMessage("Google sign-in is not configured. Please contact the site administrator.");
+      setShowUsermessage(true);
+      return;
+    }
+    const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${encodeURIComponent(GOOGLE_REDIRECT_URI)}&response_type=code&access_type=offline&scope=email%20profile%20openid&prompt=consent`;
     window.location.href = googleAuthUrl;
   }
   return <><style>{"@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap\")\n@keyframes move {\n\t0%,\n\t49.99% {\n\t\topacity: 0;\n\t\tz-index: 1;\n\t}\n\t50%,\n\t100% {\n\t\topacity: 1;\n\t\tz-index: 5;\n\t}\n}"}</style>

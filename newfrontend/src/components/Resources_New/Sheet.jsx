@@ -2,6 +2,12 @@ import { useRef, useEffect, useState, useContext } from "react";
 import LoginPrompt from "./LoginPrompt";
 import AuthStatus from "../AuthenticationPages/AuthStatus";
 import { AuthContext } from "../../context/AuthContext";
+const difficultyStyles = {
+  easy: "[background:linear-gradient(145deg,_#00ff99,_#00cc77)]! [color:#0a0a0a]! [box-shadow:0_0_8px_#00ff9966]!",
+  medium: "[background:linear-gradient(145deg,_#ffe066,_#ffc400)]! [color:#0a0a0a]! [box-shadow:0_0_8px_#ffc40066]!",
+  hard: "[background:linear-gradient(145deg,_#ff3b3b,_#c30000)]! [color:#ffffff]! [box-shadow:0_0_8px_#ff3b3b66]!",
+};
+
 const Chevron = ({
   open
 }) => <svg className={`dropdown-chevron [transition:transform_0.3s_cubic-bezier(0.4,_0,_0.2,_1)]! [margin:0_2px]! [height:1.3em]! [width:1.3em]! [display:inline-block]! [&_polyline]:[stroke:#ff4040]! [&.open]:[transform:rotate(90deg)]! ${open ? "open" : ""} `} width="22" height="22" viewBox="0 0 22 22" style={{
@@ -67,8 +73,8 @@ const DropdownSection = ({
         <Chevron open={open} />
         <span className="dropdown-title [font-family:'JetBrains_Mono',_monospace]! [font-weight:800]! [font-size:1.45rem]! [color:#ff3333]! [text-shadow:0_0_12px_rgba(255,_50,_50,_0.6)]! [vertical-align:middle]! [margin-right:auto]! [white-space:normal]! [word-wrap:break-word]! [overflow:visible]! [max-width:calc(100%_-_160px)]! max-[768.01px]:[font-size:1.9rem]!">{title}</span>
         <div className="dropdown-progress [display:flex]! [align-items:center]! [gap:14px]! [min-width:150px]!">
-          <div className="progress-bar [height:8px]! [flex:1]! [background:#1a0008]! [border-radius:6px]! [border:1px_solid_#ff4d4d44]! [box-shadow:inset_0_0_12px_#ff000044]!">
-            <div className="progress-fill [height:100%]! [background:linear-gradient(90deg,_#ff1a1a,_#ff3b3b,_#ff5e5e)]! [border-radius:6px_0_0_6px]! [transition:width_0.4s_ease]! [box-shadow:0_0_6px_#ff4d4d88]!" style={{
+          <div className="progress-bar [height:8px]! [flex:1]! [background-color:rgb(0,_0,_0)]! [border-radius:8px]! [border:1px_solid_#ff4d4d33]! [box-shadow:inset_0_0_4px_#ff4d4d22]! [overflow:hidden]!">
+            <div className="progress-fill [height:100%]! [background:linear-gradient(90deg,_#ff5e5e_0%,_#ff1a1a_40%,_#ff0066_100%)]! [border-radius:8px]! [transition:width_0.4s_ease]! [box-shadow:0_0_8px_#ff4d4d88]!" style={{
             width: `${progressPercent}%`
           }} />
           </div>
@@ -124,7 +130,7 @@ const DropdownSection = ({
                       </button>
                     </td>
                     <td className="center-icon [text-align:center]! [vertical-align:middle]! [height:100%]! [&_>_*]:[display:inline-block]! [&_>_*]:[vertical-align:middle]!">
-                      {item.difficulty ? <span className={`difficulty-tag [display:inline-block]! [padding:5px_12px]! [font-size:0.8rem]! [font-weight:700]! [border-radius:999px]! [text-align:center]! [box-shadow:0_1px_6px_#ff1a1a55]! difficulty- ${item.difficulty.toLowerCase()} `}>
+                      {item.difficulty ? <span className={`difficulty-tag [display:inline-block]! [padding:5px_12px]! [font-size:0.8rem]! [font-weight:700]! [border-radius:999px]! [text-align:center]! difficulty-${item.difficulty.toLowerCase()} ${difficultyStyles[item.difficulty.toLowerCase()] || "[box-shadow:0_1px_6px_#ff1a1a55]!"} `}>
                           {item.difficulty}
                         </span> : "—"}
                     </td>

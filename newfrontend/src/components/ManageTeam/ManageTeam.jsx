@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
@@ -52,7 +53,7 @@ const ManageTeam = () => {
     }
     try {
       const token = localStorage.getItem("access_token");
-      const res = await fetch(`${import.meta.env.VITE_FETCH_URL}/kdsh/edit_team_details`, {
+      const res = await fetch(`${API_BASE_URL}/kdsh/edit_team_details`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -97,7 +98,7 @@ const ManageTeam = () => {
     setIsDeleting(true);
     try {
       const token = localStorage.getItem("access_token");
-      const res = await fetch(`${import.meta.env.VITE_FETCH_URL}/kdsh/delete_team`, {
+      const res = await fetch(`${API_BASE_URL}/kdsh/delete_team`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -134,7 +135,7 @@ const ManageTeam = () => {
         setLoading(false);
         return;
       }
-      const res = await fetch(`${import.meta.env.VITE_FETCH_URL}/kdsh/get_user_teams`, {
+      const res = await fetch(`${API_BASE_URL}/kdsh/get_user_teams`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
@@ -173,7 +174,7 @@ const ManageTeam = () => {
         toast.error("You must be logged in");
         return;
       }
-      const res = await fetch(`${import.meta.env.VITE_FETCH_URL}/kdsh/finalize_team`, {
+      const res = await fetch(`${API_BASE_URL}/kdsh/finalize_team`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -231,7 +232,7 @@ const ManageTeam = () => {
         toast.error("You must be logged in");
         return;
       }
-      const res = await fetch(`${import.meta.env.VITE_FETCH_URL}/kdsh/remove_member`, {
+      const res = await fetch(`${API_BASE_URL}/kdsh/remove_member`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -288,7 +289,7 @@ const ManageTeam = () => {
         toast.error("You must be logged in");
         return;
       }
-      const res = await fetch(`${import.meta.env.VITE_FETCH_URL}/kdsh/leave_team`, {
+      const res = await fetch(`${API_BASE_URL}/kdsh/leave_team`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import React, { useEffect, useState } from "react";
 import Particles from "../Common/Particles/Particless";
 
@@ -15,7 +16,7 @@ const DocxLoader = () => {
       return;
     }
 
-    const backendUrl = `${import.meta.env.VITE_FETCH_URL}/docx/view_docx?name=${encodeURIComponent(name)}&url=${encodeURIComponent(docxUrl)}`;
+    const backendUrl = `${API_BASE_URL}/docx/view_docx?name=${encodeURIComponent(name)}&url=${encodeURIComponent(docxUrl)}`;
     setIsLoading(true);
     setError(null);
 

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../config/api.js";
 import React, { createContext, useState, useEffect } from "react";
 export const AuthContext = createContext();
 
@@ -10,7 +11,7 @@ export const AuthProvider = ({ children }) => {
       const access_token = localStorage.getItem("access_token");
       if (access_token) {
         const response = await fetch(
-          `${import.meta.env.VITE_FETCH_URL}/user/auth/google/status`,
+          `${API_BASE_URL}/user/auth/google/status`,
           {
             method: "GET",
             headers: {
@@ -33,8 +34,10 @@ export const AuthProvider = ({ children }) => {
         } else {
           setIsLoggedIn(false);
           setUserInfo(null);
-          // Clear invalid token
-          localStorage.removeItem("access_token");
+          // A temporary backend failure must not destroy a valid session.
+          if (response.status === 401 || response.status === 422) {
+            localStorage.removeItem("access_token");
+          }
         }
       } else {
         setIsLoggedIn(false);

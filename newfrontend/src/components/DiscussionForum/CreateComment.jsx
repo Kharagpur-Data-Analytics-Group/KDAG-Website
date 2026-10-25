@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../config/api.js";
 import Particless from "../Common/Particles/Particless";
 import Fade from "../Common/Motion/Fade.jsx";
 import { useHistory } from "react-router-dom";
@@ -61,7 +62,7 @@ const CreateComment = () => {
         level: level,
         date: formattedDate
       };
-      const response = await fetch(`${import.meta.env.VITE_FETCH_URL}/reply/create_reply/${post_id}`, {
+      const response = await fetch(`${API_BASE_URL}/reply/create_reply/${post_id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
