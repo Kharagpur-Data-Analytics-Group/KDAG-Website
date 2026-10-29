@@ -5,8 +5,8 @@ import 'owl.carousel/dist/assets/owl.carousel.css';
 import './owl.theme.css';
 import './OwlCarousal.css'
 import userPic from '../../../../assets/pics/naruto.jpg';
-import kshitiz from '../../../../assets/pics/events/kshtitiz.jpg'
-import ritik from '../../../../assets/pics/events/ritik agarwal.jpeg'
+import kshitiz from '../../../../assets/pics/events/kshtitiz.webp'
+import ritik from '../../../../assets/pics/events/ritik agarwal.webp'
 
 const TestiMonials = () => {
   

@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import pathwayLogo from "./../../../assets/KDSH2026_sponsor_logos/Pathway.png";
-import academicInsightsLogo from "./../../../assets/KDSH2026_sponsor_logos/AcademicInsights.png";
-import youthIncLogo from "./../../../assets/KDSH2026_sponsor_logos/YouthIncorporated.png";
-import trueFoundryLogo from "./../../../assets/KDSH2026_sponsor_logos/TrueFoundry.png";
-import tghLogo from "./../../../assets/KDSH2026_sponsor_logos/TGHLogo2.png";
+import pathwayLogo from "./../../../assets/KDSH2026_sponsor_logos/Pathway.webp";
+import academicInsightsLogo from "./../../../assets/KDSH2026_sponsor_logos/AcademicInsights.webp";
+import youthIncLogo from "./../../../assets/KDSH2026_sponsor_logos/YouthIncorporated.webp";
+import trueFoundryLogo from "./../../../assets/KDSH2026_sponsor_logos/TrueFoundry.webp";
+import tghLogo from "./../../../assets/KDSH2026_sponsor_logos/TGHLogo2.webp";
 
 const items = [
   { img: pathwayLogo, text: "Title Sponsor", website: "https://pathway.com" },

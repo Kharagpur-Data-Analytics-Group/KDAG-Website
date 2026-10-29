@@ -1,5 +1,5 @@
 import React from "react";
-import KDSH2022 from "../../../../assets/pics/events/KDSH2022_Latest.png";
+import KDSH2022 from "../../../../assets/pics/events/KDSH2022_Latest.webp";
 const Header = () => {
   return <><style>{"@keyframes animate {\n  0% {\n      transform: translate(-25%, -75%) rotate(0);\n  }\n  100% {\n      transform: translate(-25%, -75%) rotate(360deg);\n  }\n}"}</style>
       <div className="resources-list-header [height:30rem]! [padding-top:10rem]! [background-size:cover]! [box-shadow:0px_2px_10px_rgba(0,_0,_0,_0.25)]! [opacity:0]! [transition:opacity_1s]! [&.show]:[opacity:1]!">

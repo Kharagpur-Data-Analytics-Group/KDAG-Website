@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import analytics7 from "./../../assets/pics/analytics7.jpg";
+import analytics7 from "./../../assets/pics/analytics7.webp";
 
 const WwListHeader = styled.div`
   background: linear-gradient(

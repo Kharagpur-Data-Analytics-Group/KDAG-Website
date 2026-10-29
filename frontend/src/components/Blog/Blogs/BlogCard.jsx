@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import dataAnalysis from "./../../../assets/pics/dataanlysis_nyc.png";
+import dataAnalysis from "./../../../assets/pics/dataanlysis_nyc.webp";
 import Fade from "../../Common/Motion/Fade.jsx";
 
 const StyledLink = styled.a`

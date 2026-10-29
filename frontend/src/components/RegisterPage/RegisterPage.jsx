@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "../../config/api.js";
-import parityAsset0 from "../../assets/KDSH2025_cover.png";
+import parityAsset0 from "../../assets/KDSH2025_cover.webp";
 import React, { useEffect, useState, useContext } from "react";
 import Fade from "../Common/Motion/Fade.jsx";
 import Particless from "../Common/Particles/Particless";
@@ -8,21 +8,21 @@ import { handleSubmit } from "./useFormStates";
 import useFormStates from "./useFormStates";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import RegisterFormCard from "./RegisterFormCard.jsx";
-import kdsh_2025 from "./../../assets/kdsh2025_logo.png";
-import show_icon from "./../../assets/show_icon.png";
-import repo1 from "./../../assets/llm_repo.png";
-import repo2 from "./../../assets/pathway_repo.png";
-import starred from "./../../assets/starred_repo.png";
-import profile_icon from "./../../assets/profile_icon.png";
-import profile_menu from "./../../assets/profile_menu.png";
+import kdsh_2025 from "./../../assets/kdsh2025_logo.webp";
+import show_icon from "./../../assets/show_icon.webp";
+import repo1 from "./../../assets/llm_repo.webp";
+import repo2 from "./../../assets/pathway_repo.webp";
+import starred from "./../../assets/starred_repo.webp";
+import profile_icon from "./../../assets/profile_icon.webp";
+import profile_menu from "./../../assets/profile_menu.webp";
 import Star from "./Star.jsx";
 import { AuthContext } from "../../context/AuthContext";
 import LoginPrompt from "../Resources_New/LoginPrompt";
 import { Copy, Check } from "lucide-react";
-import whatsapp from "./../../assets/kdsh2025_whatsapp.png";
-import discord from "./../../assets/kdsh2025_discord.png";
+import whatsapp from "./../../assets/kdsh2025_whatsapp.webp";
+import discord from "./../../assets/kdsh2025_discord.webp";
 import banner from "./../../assets/DataForge_big.png";
-import bannerSmall from "./../../assets/DataForge_small.png";
+import bannerSmall from "./../../assets/DataForge_small.webp";
 const RegisterPage = () => {
   const particless = React.useMemo(() => <Particless />, []);
   const {

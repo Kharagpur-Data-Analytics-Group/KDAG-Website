@@ -2,7 +2,7 @@ const members_2022 = [
   {
     name: 'Swapnil Agarwal',
     image:
-      'images/Alumni_All_Images/Graduating Batch of 2022/Swapnil Agrawal.jpeg',
+      '/images/Alumni_All_Images/Graduating Batch of 2022/Swapnil Agrawal.jpeg',
     linkedin: 'https://www.linkedin.com/in/swapnilagrawal1/',
     degree: 'Mechanical Engineering',
     graduation_year: 2022,
@@ -12,7 +12,7 @@ const members_2022 = [
   },
   {
     name: 'Sanchit Agarwal',
-    image: 'images/Alumni_All_Images/Graduating Batch of 2022/Sanchit A.jpeg',
+    image: '/images/Alumni_All_Images/Graduating Batch of 2022/Sanchit A.jpeg',
     linkedin: 'https://www.linkedin.com/in/sanchit-a-98a9b8ab/',
     degree: 'Electrical Engineering',
     graduation_year: 2022,
@@ -23,7 +23,7 @@ const members_2022 = [
   {
     name: 'Ananya Sharma',
     image:
-      'images/Alumni_All_Images/Graduating Batch of 2022/Ananya Sharma.jpeg',
+      '/images/Alumni_All_Images/Graduating Batch of 2022/Ananya Sharma.jpeg',
     linkedin: 'https://www.linkedin.com/in/ananyasharmaiitkgp/',
     degree: 'Industrial and Systems Engineering',
     graduation_year: 2022,
@@ -33,7 +33,7 @@ const members_2022 = [
   },
   {
     name: 'Vasu Gurram',
-    image: 'images/Alumni_All_Images/Graduating Batch of 2022/Vasu Gurram.jpeg',
+    image: '/images/Alumni_All_Images/Graduating Batch of 2022/Vasu Gurram.jpeg',
     linkedin: 'https://www.linkedin.com/in/vasu-gurram-a94687177/',
     degree: 'Computer Science Engineering',
     graduation_year: 2022,
@@ -43,7 +43,7 @@ const members_2022 = [
   },
   {
     name: 'Bhavik Jain',
-    image: 'images/Alumni_All_Images/Graduating Batch of 2022/Bhavik Jain.jpeg',
+    image: '/images/Alumni_All_Images/Graduating Batch of 2022/Bhavik Jain.jpeg',
     linkedin: 'https://www.linkedin.com/in/bhavik-jain-142545170/',
     degree: 'Metallurgical and Materials Engineering',
     graduation_year: 2022,
@@ -54,7 +54,7 @@ const members_2022 = [
   {
     name: 'Lokesh Chikkula',
     image:
-      'images/Alumni_All_Images/Graduating Batch of 2022/Lokesh Chikkula.jpeg',
+      '/images/Alumni_All_Images/Graduating Batch of 2022/Lokesh Chikkula.jpeg',
     linkedin: 'https://www.linkedin.com/in/lokesh-chikkula-962301186/',
     degree: 'Computer Science Engineering',
     graduation_year: 2022,
@@ -64,7 +64,7 @@ const members_2022 = [
   },
   {
     name: 'Tista Kundu',
-    image: 'images/Alumni_All_Images/Graduating Batch of 2022/Tista Kundu.jpeg',
+    image: '/images/Alumni_All_Images/Graduating Batch of 2022/Tista Kundu.jpeg',
     linkedin: 'https://www.linkedin.com/in/tista-kundu-4433b7172/',
     degree: 'Electronics and Electrical Communication Engineering',
     graduation_year: 2022,
@@ -75,7 +75,7 @@ const members_2022 = [
   {
     name: 'Apoorv Singh',
     image:
-      'images/Alumni_All_Images/Graduating Batch of 2022/Apoorv Singh.jpeg',
+      '/images/Alumni_All_Images/Graduating Batch of 2022/Apoorv Singh.jpeg',
     linkedin: 'https://www.linkedin.com/in/apoorvsingh1610/',
     degree: 'Chemical Engineering',
     graduation_year: 2022,
@@ -86,7 +86,7 @@ const members_2022 = [
   {
     name: 'Aditi Singhania',
     image:
-      'images/Alumni_All_Images/Graduating Batch of 2022/Aditi Singhania.jpeg',
+      '/images/Alumni_All_Images/Graduating Batch of 2022/Aditi Singhania.jpeg',
     linkedin: 'https://www.linkedin.com/in/aditi-singhania-436371146/',
     degree: 'Electrical Engineering',
     graduation_year: 2022,
@@ -97,7 +97,7 @@ const members_2022 = [
   {
     name: 'Shreya Kumari',
     image:
-      'images/Alumni_All_Images/Graduating Batch of 2022/Shreya Kumari.jpeg',
+      '/images/Alumni_All_Images/Graduating Batch of 2022/Shreya Kumari.jpeg',
     linkedin: 'https://www.linkedin.com/in/shreya-kumari-bb1517176/',
     degree: 'Industrial and Systems Engineering',
     graduation_year: 2022,
@@ -107,7 +107,7 @@ const members_2022 = [
   },
   {
     name: 'Arghyadeep Bandopadhyay',
-    image: 'images/Alumni_All_Images/generic profile avatar.png',
+    image: '/images/Alumni_All_Images/generic profile avatar.webp',
     linkedin: 'https://www.linkedin.com/in/arghyadeep-bandyopadhyay-672b881a9/',
     degree: 'Electrical Engineering',
     graduation_year: 2022,

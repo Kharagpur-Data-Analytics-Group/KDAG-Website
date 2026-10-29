@@ -1,11 +1,11 @@
 import React from "react";
 import { ExternalLink } from "lucide-react";
 
-import repo1 from "./../../assets/llm_repo.png";
-import repo2 from "./../../assets/pathway_repo.png";
-import starred from "./../../assets/starred_repo.png";
-import profile_icon from "./../../assets/profile_icon.png";
-import profile_menu from "./../../assets/profile_menu.png";
+import repo1 from "./../../assets/llm_repo.webp";
+import repo2 from "./../../assets/pathway_repo.webp";
+import starred from "./../../assets/starred_repo.webp";
+import profile_icon from "./../../assets/profile_icon.webp";
+import profile_menu from "./../../assets/profile_menu.webp";
 
 export default function CertificateStarGuide() {
     return (

@@ -3,16 +3,16 @@ import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Particless from "../Common/Particles/Particless";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import username from "../../assets/pics/username.png";
-import name from "../../assets/pics/name.png";
-import email from "../../assets/pics/email.png";
-import college from "../../assets/pics/college.png";
-import username2 from "../../assets/pics/username2.png";
+import username from "../../assets/pics/username.webp";
+import name from "../../assets/pics/name.webp";
+import email from "../../assets/pics/email.webp";
+import college from "../../assets/pics/college.webp";
+import username2 from "../../assets/pics/username2.webp";
 import { AuthContext } from "../../context/AuthContext";
-import name2 from "../../assets/pics/name2.png";
-import email2 from "../../assets/pics/email2.png";
-import college2 from "../../assets/pics/college2.png";
-import user_profile from "../../assets/pics/user_profile.png";
+import name2 from "../../assets/pics/name2.webp";
+import email2 from "../../assets/pics/email2.webp";
+import college2 from "../../assets/pics/college2.webp";
+import user_profile from "../../assets/pics/user_profile.webp";
 import Fade from "../Common/Motion/Fade.jsx"
 
 const UserProfilePublic = () => {

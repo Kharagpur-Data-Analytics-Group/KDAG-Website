@@ -1,7 +1,7 @@
 const members_2024 = [
   {
     name: 'Pratik Singh',
-    image: 'images/Alumni_All_Images/Graduating Batch of 2024/Pratik.jpeg',
+    image: '/images/Alumni_All_Images/Graduating Batch of 2024/Pratik.jpeg',
     linkedin: 'https://www.linkedin.com/in/pratik-singh-4026311b9/',
     degree: '',
     graduation_year: 2024,
@@ -11,7 +11,7 @@ const members_2024 = [
   },
   {
     name: 'Anushka Chatterjee',
-    image: 'images/Alumni_All_Images/Graduating Batch of 2024/Anushka.jpeg',
+    image: '/images/Alumni_All_Images/Graduating Batch of 2024/Anushka.jpeg',
     linkedin: 'https://www.linkedin.com/in/anushka-chatterjee-7483a9212/',
     degree: '',
     graduation_year: 2024,
@@ -21,7 +21,7 @@ const members_2024 = [
   },
   {
     name: 'Sneha Majumder',
-    image: 'images/Alumni_All_Images/Graduating Batch of 2024/Sneha.jpeg',
+    image: '/images/Alumni_All_Images/Graduating Batch of 2024/Sneha.jpeg',
     linkedin: 'https://www.linkedin.com/in/sneha-majumder-21aa4a210/',
     degree: '',
     graduation_year: 2024,
@@ -31,7 +31,7 @@ const members_2024 = [
   },
   {
     name: 'Shaswat Shrivastav',
-    image: 'images/Alumni_All_Images/Graduating Batch of 2024/Shaswat.jpeg',
+    image: '/images/Alumni_All_Images/Graduating Batch of 2024/Shaswat.webp',
     linkedin: 'https://www.linkedin.com/in/shaswat-shrivastav-95096a219/',
     degree: '',
     graduation_year: 2024,
@@ -42,7 +42,7 @@ const members_2024 = [
   {
     name: 'Shashwat Naidu',
     image:
-      'images/Alumni_All_Images/Graduating Batch of 2024/Shashwat_Naidu.jpeg',
+      '/images/Alumni_All_Images/Graduating Batch of 2024/Shashwat_Naidu.jpeg',
     linkedin: 'https://www.linkedin.com/in/shashwat-naidu-258413225',
     degree: '',
     graduation_year: 2024,
@@ -52,7 +52,7 @@ const members_2024 = [
   },
   {
     name: 'Omee Katrodiya',
-    image: 'images/Alumni_All_Images/Graduating Batch of 2024/Omee.jpeg',
+    image: '/images/Alumni_All_Images/Graduating Batch of 2024/Omee.jpeg',
     linkedin: 'https://www.linkedin.com/in/omee-katrodiya',
     degree: '',
     graduation_year: 2024,

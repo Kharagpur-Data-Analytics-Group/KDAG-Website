@@ -8,10 +8,10 @@ import profileImage from "./profile.jpeg";
 import icon_viewed from "./asset_viewed.png";
 import icon_commented from "./asset_comment.png";
 import DiscussionComment from "./DiscussionComment";
-import upvote_img from "./../../assets/pics/upvote.png";
-import downvote_img from "./../../assets/pics/downvote.png";
-import already_upvoted_img from "./../../assets/pics/already_upvoted.png";
-import already_downvoted_img from "./../../assets/pics/already_downvoted.png";
+import upvote_img from "./../../assets/pics/upvote.webp";
+import downvote_img from "./../../assets/pics/downvote.webp";
+import already_upvoted_img from "./../../assets/pics/already_upvoted.webp";
+import already_downvoted_img from "./../../assets/pics/already_downvoted.webp";
 import { jwtDecode } from "jwt-decode";
 const HeaderDiscussion = () => {
   const {

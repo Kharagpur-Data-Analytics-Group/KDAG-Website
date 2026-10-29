@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/pics/KDAG_logo.jpeg";
-import facebookIcon from "../../../assets/pics/facebook.png";
-import gmailIcon from "../../../assets/pics/gmail.png";
-import linkedinIcon from "../../../assets/pics/linkedin.png";
-import instagramIcon from "../../../assets/pics/instagram.png";
+import facebookIcon from "../../../assets/pics/facebook.webp";
+import gmailIcon from "../../../assets/pics/gmail.webp";
+import linkedinIcon from "../../../assets/pics/linkedin.webp";
+import instagramIcon from "../../../assets/pics/instagram.webp";
 
 const Footer = () => {
   return (

@@ -12,7 +12,7 @@ import Content from "./Content/Content.jsx";
 // import SponsorSlider from "./SponsorSlider.jsx";
 // import Message from "./Message.jsx";
 
-import kdag_about_us from "../../assets/KDAG_About_Us.png";
+import kdag_about_us from "../../assets/KDAG_About_Us.webp";
 import ThinkTank from "../../assets/ThinkTankImg.jpg";
 
 /* ───────────────────────── Banner ───────────────────────── */

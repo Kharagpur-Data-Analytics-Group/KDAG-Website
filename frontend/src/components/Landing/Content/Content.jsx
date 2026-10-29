@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Fade from "../../Common/Motion/Fade.jsx";
 
-import blogPic from "../../../assets/pics/Blogs.png";
-import eventsPic from "../../../assets/pics/Events.png";
-import resourcesPic from "../../../assets/pics/Resources.png";
+import blogPic from "../../../assets/pics/Blogs.webp";
+import eventsPic from "../../../assets/pics/Events.webp";
+import resourcesPic from "../../../assets/pics/Resources.webp";
 
 const ContentText = ({ word, heading, children, extraClass = "" }) => (
   <div className={`content-pair-text${extraClass}`}>

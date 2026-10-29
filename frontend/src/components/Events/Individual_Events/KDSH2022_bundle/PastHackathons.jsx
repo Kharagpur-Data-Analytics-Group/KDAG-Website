@@ -1,6 +1,6 @@
 import React from "react";
 import Fade from "../../../Common/Motion/Fade"
-import KDSH2021 from "../../../../assets/pics/HACKPoster.png";
+import KDSH2021 from "../../../../assets/pics/HACKPoster.webp";
 import KDSH2020 from "../../../../assets/pics/events/KDSH2020.jpg";
 
 const PastHackathons = () => {

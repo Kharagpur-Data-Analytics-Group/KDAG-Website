@@ -1,7 +1,7 @@
 const members_2026 = [
     {
         name: 'Ishan Mukherjee',
-        image: 'images/Alumni_All_Images/Graduating Batch of 2026/Ishan_Mukherjee.jpg',
+        image: '/images/Alumni_All_Images/Graduating Batch of 2026/Ishan_Mukherjee.jpg',
 		email: "smukherjeemaths@gmail.com",
         facebook: 'https://www.facebook.com/ishan.mukherjee.92',
         twitter: '',
@@ -11,7 +11,7 @@ const members_2026 = [
 
     {
         name: 'Bishanka Seal',
-        image: 'images/Alumni_All_Images/Graduating Batch of 2026/Bishanka_Seal.png',
+        image: '/images/Alumni_All_Images/Graduating Batch of 2026/Bishanka_Seal.webp',
 		email: "bishankaseal@gmail.com",
         facebook: 'https://www.facebook.com/bishanka.seal',
         twitter: '',
@@ -21,7 +21,7 @@ const members_2026 = [
 
     {
         name: 'Manas Jha',
-        image: 'images/Alumni_All_Images/Graduating Batch of 2026/Manas_Jha.jpg',
+        image: '/images/Alumni_All_Images/Graduating Batch of 2026/Manas_Jha.webp',
 		email: "jhamanas6676@gmail.com",
         facebook: 'https://www.facebook.com/profile.php?id=100074617685790',
         twitter: '',
@@ -31,7 +31,7 @@ const members_2026 = [
 
     {
         name: 'Nisarg Bhavsar',
-        image: 'images/Alumni_All_Images/Graduating Batch of 2026/Nisarg_Bhavsar.png',
+        image: '/images/Alumni_All_Images/Graduating Batch of 2026/Nisarg_Bhavsar.webp',
 		email: "nisargbhavsar25@gmail.com",
         facebook: 'https://www.facebook.com/nisarg.bhavsar.9678',
         twitter: 'https://x.com/NisargBhavsar25',
@@ -43,7 +43,7 @@ const members_2026 = [
 
     {
         name: 'Subarno Maji',
-        image: 'images/Alumni_All_Images/Graduating Batch of 2026/Subarno_Maji.jpg',
+        image: '/images/Alumni_All_Images/Graduating Batch of 2026/Subarno_Maji.jpg',
 		email: "subarnomaji@gmail.com",
 		facebook: "",
         twitter: '',
@@ -54,7 +54,7 @@ const members_2026 = [
 
     {
         name: "Aakarsh Raaj",
-        image: 'images/Alumni_All_Images/Graduating Batch of 2026/Aakarsh_Raaj.png',
+        image: '/images/Alumni_All_Images/Graduating Batch of 2026/Aakarsh_Raaj.webp',
 		email: "aakarshraaj032@gmail.com",
 		facebook: "https://www.facebook.com/profile.php?id=100088122276212&mibextid=ZbWKwL",
 		twitter: "",
@@ -64,7 +64,7 @@ const members_2026 = [
 
     {
         name: "Abhinav Thakur",
-        image: 'images/Alumni_All_Images/Graduating Batch of 2026/Abhinav_Thakur.jpg',
+        image: '/images/Alumni_All_Images/Graduating Batch of 2026/Abhinav_Thakur.webp',
 		email: "05abhinavthakur@gmail.com",
 		facebook: "https://www.facebook.com/profile.php?id=100008590905292",
 		twitter: "",
@@ -74,7 +74,7 @@ const members_2026 = [
 
     {
         name: "Bhavesh Pabnani",
-        image: 'images/Alumni_All_Images/Graduating Batch of 2026/Bhavesh_Pabnani.png',
+        image: '/images/Alumni_All_Images/Graduating Batch of 2026/Bhavesh_Pabnani.webp',
 		email: "bhaveshpabnani@gmail.com",
 		facebook: "https://www.facebook.com/profile.php?id=100087666813728&mibextid=ZbWKwL",
 		twitter: "",
@@ -84,7 +84,7 @@ const members_2026 = [
 
     {
         name: "Aumogh Sengupta",
-        image: 'images/Alumni_All_Images/Graduating Batch of 2026/Aumogh_Sengupta.jpg',
+        image: '/images/Alumni_All_Images/Graduating Batch of 2026/Aumogh_Sengupta.webp',
 		email: "aumogh24@gmail.com",
 		facebook: "https://www.facebook.com/aumogh.sengupta",
 		twitter: "",

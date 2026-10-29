@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Button } from "./Button";
-import logo from "./../../../assets/pics/KDAGLogoNew.png";
+import logo from "./../../../assets/pics/KDAGLogoNew.webp";
 import Dropdown from "./Dropdown";
 import { Link, NavLink } from "react-router-dom";
-import forum_img from "../../../assets/pics/forum.png";
-import register_img from "../../../assets/pics/register.png";
-import profile_icon from "../../../assets/pics/profile_icon.png";
+import forum_img from "../../../assets/pics/forum.webp";
+import register_img from "../../../assets/pics/register.webp";
+import profile_icon from "../../../assets/pics/profile_icon.webp";
 import { jwtDecode } from "jwt-decode";
 import { AuthContext } from "../../../context/AuthContext";
 import { useHistory } from "react-router-dom";

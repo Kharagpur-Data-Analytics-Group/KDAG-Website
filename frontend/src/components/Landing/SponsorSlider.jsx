@@ -1,5 +1,5 @@
 import React from "react";
-import associate_sponsor from "../../assets/kdsh2025_associate_sponsor.jpg";
+import associate_sponsor from "../../assets/kdsh2025_associate_sponsor.webp";
 import pathwayAsset from "../../assets/pathway_asset.svg";
 import polygonScatter from "../../assets/kdsh2025_polygon_scatter.svg";
 

@@ -1,7 +1,7 @@
 const members_2017 = [
 	{
 		name: "Sourav Mohanty",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Sourav Mohanty.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Sourav Mohanty.webp",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/sourrvvvyyy/",
 		work_experience:
@@ -10,7 +10,7 @@ const members_2017 = [
 	},
 	{
 		name: "Ashris Choudhury",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Ashris Choudhury.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Ashris Choudhury.webp",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/ashris/",
 		work_experience: "Software Engineer, HeadsUp | Software Engineer, BharatPe",
@@ -18,7 +18,7 @@ const members_2017 = [
 	},
 	{
 		name: "Yashwant Kumar",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Yashwant Kumar.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Yashwant Kumar.jpeg",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/yashwant-kumar-55484163/",
 		work_experience:
@@ -27,7 +27,7 @@ const members_2017 = [
 	},
 	{
 		name: "Kamlesh Kumar Yadav",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Kamlesh Kumar Yadav.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Kamlesh Kumar Yadav.jpeg",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/kamaleshyadav/",
 		work_experience: "Analyst, HSBC",
@@ -35,7 +35,7 @@ const members_2017 = [
 	},
 	{
 		name: "Naman Mitruka",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Naman Mitruka.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Naman Mitruka.jpeg",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/namanmitruka/",
 		work_experience: "Associate, Goldman Sachs",
@@ -43,7 +43,7 @@ const members_2017 = [
 	},
 	{
 		name: "Chinmay Gandhi",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Chinmay Gandhi.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Chinmay Gandhi.jpeg",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/gandhichinmay/",
 		work_experience: "Senior Associate, JP Morgan | Assistant Manager, ITC",
@@ -51,7 +51,7 @@ const members_2017 = [
 	},
 	{
 		name: "Rathang Joshi",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Rathang Joshi.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Rathang Joshi.jpeg",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/rathang-joshi-02a72891/",
 		work_experience: "Software Developer, Walmart",
@@ -59,7 +59,7 @@ const members_2017 = [
 	},
 	{
 		name: "Ishmeet Singh",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Ishmeet Singh.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Ishmeet Singh.webp",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/ishmeetsingh800/",
 		work_experience:
@@ -68,7 +68,7 @@ const members_2017 = [
 	},
 	{
 		name: "Rishabh Bhandari",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Rishabh Bhandari.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Rishabh Bhandari.jpeg",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/rishabh-bhandari/",
 		work_experience:
@@ -77,7 +77,7 @@ const members_2017 = [
 	},
 	{
 		name: "Tanujay Saha",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Tanujay Saha.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Tanujay Saha.webp",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/tanujay-saha-b9547799/",
 		work_experience: "NA, PhD",
@@ -85,7 +85,7 @@ const members_2017 = [
 	},
 	{
 		name: "Yamini Goyal",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Yamini Goyal.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Yamini Goyal.webp",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/yamini-goyal-38156848/",
 		work_experience: "Senior Member, Mentor Graphics",
@@ -93,7 +93,7 @@ const members_2017 = [
 	},
 	{
 		name: "Hemant Sardana",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Hemant Singh Sardana.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Hemant Singh Sardana.jpeg",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/hemant-singh-sardana-783ab583/",
 		work_experience:
@@ -102,7 +102,7 @@ const members_2017 = [
 	},
 	{
 		name: "Subham Kedia",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Subham Kedia.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Subham Kedia.webp",
 		facebook: "",
 		linkedin: "https://www.linkedin.com/in/subhamkedia27/",
 		work_experience: "Senior Analyst, McKinsey and Company",
@@ -110,7 +110,7 @@ const members_2017 = [
 	},
 	{
 		name: "Abhinav Garg",
-		image: "images/Alumni_All_Images/Graduating Batch of 2017/Abhinav Garg.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2017/Abhinav Garg.jpeg",
 		facebook: "",
 		linkedin: "https://linkedin.com/in/agarg41/",
 		work_experience: "Risk Analyst, Credictuisse",

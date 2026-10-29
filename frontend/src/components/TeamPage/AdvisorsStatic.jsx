@@ -1,7 +1,7 @@
 const members = [
 	
 	{
-        image: "images/Heads_2025_photos/Madhav.jpeg",
+        image: "/images/Heads_2025_photos/Madhav.jpeg",
         name: "Madhav Agarwal",
         email: "madhavagarwal50@gmail.com",
         linkedin: "https://www.linkedin.com/in/madhav-agarwal07?",
@@ -9,7 +9,7 @@ const members = [
         facebook: "https://www.facebook.com/share/1CpExbxY9L/?mibextid=wwXIfr",
     },
     {
-        image: "images/Heads_2025_photos/Asmit.jpeg",
+        image: "/images/Heads_2025_photos/Asmit.jpeg",
         name: "Asmit Chauhan",
         email: "asmit.chauhan.2005@gmail.com",
         linkedin: "http://linkedin.com/in/asmit-chauhan-2606612a8",
@@ -18,7 +18,7 @@ const members = [
     },
 
     {
-        image: "images/Heads_2025_photos/Shaurya.jpeg",
+        image: "/images/Heads_2025_photos/Shaurya.jpeg",
         name: "Shaurya Raj",
         email: "shauryaraj694@gmail.com",
         linkedin: "https://www.linkedin.com/in/shaurya-raj-921261298/",
@@ -26,7 +26,7 @@ const members = [
     },
 
     {
-        image: "images/Heads_2025_photos/Raghuveer.jpeg",
+        image: "/images/Heads_2025_photos/Raghuveer.jpeg",
         name: "Raghuveer V",
         email: "vraghuveer382@gmail.com",
         linkedin: "https://www.linkedin.com/in/raghuveer-v/",
@@ -35,14 +35,14 @@ const members = [
     },
 
     {
-        image: "images/Heads_2025_photos/Aiswani.png",
+        image: "/images/Heads_2025_photos/Aiswani.webp",
         name: "Aiswani Mondal",
         email: "bwnaiswani2005@gmail.com",
         linkedin: "https://in.linkedin.com/in/aiswani-mondal-036888289",
     },
 
     {
-        image: "images/Heads_2025_photos/Geetesh.jpeg",
+        image: "/images/Heads_2025_photos/Geetesh.jpeg",
         name: "Geetesh Chandra Paidi",
         email: "paidigeetesh@gmail.com",
         linkedin: "www.linkedin.com/in/geeteshchandrapaidi",
@@ -51,7 +51,7 @@ const members = [
     },
 
     {
-        image: "images/Heads_2025_photos/Prabhat.jpeg",
+        image: "/images/Heads_2025_photos/Prabhat.jpeg",
         name: "Prabhat Kumar",
         email: "princeranjan1721@gmail.com",
         linkedin: "https://www.linkedin.com/in/prabhat-kumar-02307a290",
@@ -60,14 +60,14 @@ const members = [
     },
 
     {
-        image: "images/Heads_2025_photos/Shehryaar.jpeg",
+        image: "/images/Heads_2025_photos/Shehryaar.jpeg",
         name: "Shehryaar Shah Khan",
         email: "shehryaarshahkhan@gmail.com",
         linkedin: "https://www.linkedin.com/in/shehryaar-shah-khan-4a18b9308?",
     },
 
     {
-        image: "images/Heads_2025_photos/Utkarsh.jpeg",
+        image: "/images/Heads_2025_photos/Utkarsh.jpeg",
         name: "Utkarsh Mishra",
         email: "utmmishra2005@gmail.com",
         linkedin: "https://www.linkedin.com/in/utkarsh-mishra-a23539289?",
@@ -76,7 +76,7 @@ const members = [
     },
 
     {
-        image: "images/Heads_2025_photos/Pratyush.jpeg",
+        image: "/images/Heads_2025_photos/Pratyush.jpeg",
         name: "Pratyush Chatterjee",
         email: "chatterjeepratyush2006@gmail.com",
         linkedin: "https://www.linkedin.com/in/pchat",
@@ -84,7 +84,7 @@ const members = [
     },
 
     {
-        image: "images/Heads_2025_photos/Udit.jpeg",
+        image: "/images/Heads_2025_photos/Udit.webp",
         name: "Udit Mohan Pradhan",
         email: "uditmpradhan@gmail.com",
         linkedin: "https://www.linkedin.com/in/uditmohanpradhan?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
@@ -93,7 +93,7 @@ const members = [
     },
 
     {
-        image: "images/Heads_2025_photos/Nayandeep.jpeg",
+        image: "/images/Heads_2025_photos/Nayandeep.webp",
         name: "Nayandeep Deb",
         email: "nayandeepdeb125@gmail.com",
         linkedin: "https://www.linkedin.com/in/nayandeep-deb-882636290/",

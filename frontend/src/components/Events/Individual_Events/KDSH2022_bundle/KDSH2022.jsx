@@ -4,7 +4,7 @@ import Particless from "../../../Common/Particles/Particless";
 import CountUp from 'react-countup'
 import Testimonials from './Testimonials.jsx'
 import PastHackathons from './PastHackathons.jsx'
-import logo from '../../../../assets/pics/events/Axtria_Logo.png'
+import logo from '../../../../assets/pics/events/Axtria_Logo.webp'
 
 const KDSH2022 = () => {
   let valueDisplays = ["425", "16", "70000", "2"];

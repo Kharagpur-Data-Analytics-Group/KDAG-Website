@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import logo from "./../../../assets/pics/KDAGLogoNew.png";
+import logo from "./../../../assets/pics/KDAGLogoNew.webp";
 import { Link, NavLink } from "react-router-dom";
 const active_style = {
   borderBottom: "2px solid rgba(255, 255, 255, 0.7)",

@@ -1,4 +1,4 @@
-import parityAsset0 from "../../assets/KDSH2025_cover.png";
+import parityAsset0 from "../../assets/KDSH2025_cover.webp";
 import React from "react";
 import Fade from "../Common/Motion/Fade.jsx";
 import Particless from "../Common/Particles/Particless";

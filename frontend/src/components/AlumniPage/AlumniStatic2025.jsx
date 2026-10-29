@@ -1,7 +1,7 @@
 const members_2025 = [
     {
 		name: "Kinjal Sensharma",
-		image: "images/Alumni_All_Images/Graduating Batch of 2024/Kinjal.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2024/Kinjal.jpeg",
 		email: "kssencoc@gmail.com",
 		facebook:
 			"https://www.facebook.com/share/RhRiQSs3bq4dudLb/?mibextid=qi2Omg",
@@ -11,7 +11,7 @@ const members_2025 = [
 	},
 
     {
-		image: "images/Advisors_2024_Photos/Aditya.jpeg",
+		image: "/images/Advisors_2024_Photos/Aditya.jpeg",
 		name: "Aditya Krishna Das",
 		email: "aditya.iitkgpakd@gmail.com ",
     workplace: '',
@@ -22,7 +22,7 @@ const members_2025 = [
 
     {
 		name: "Ayush Aryan",
-		image: "images/Alumni_All_Images/Graduating Batch of 2024/Ayush.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2024/Ayush.jpeg",
 		email: "ayush.aryan71@gmail.com",	
     workplace: 'NoBroker',
 		facebook:
@@ -33,7 +33,7 @@ const members_2025 = [
 
     {
 		name: "Hricheek Mondal",
-		image: "images/Advisors_2024_Photos/Hricheek.jpeg",
+		image: "/images/Advisors_2024_Photos/Hricheek.jpeg",
 		email: "ihricheek.ark@gmail.com",
 
     workplace: 'Purdue University',
@@ -43,7 +43,7 @@ const members_2025 = [
 	},
 
     {
-		image: "images/Advisors_2024_Photos/Aritra.jpeg",
+		image: "/images/Advisors_2024_Photos/Aritra.jpeg",
 		name: "Aritra Chakraborty",
 
     workplace: 'American Express',
@@ -54,7 +54,7 @@ const members_2025 = [
 
 	{
 		name: "Divyanshu Baurai",
-		image: "images/Advisors_2024_Photos/Divyanshu.jpeg",
+		image: "/images/Advisors_2024_Photos/Divyanshu.webp",
 		email: "divyanshubaurai@kgpian.iitkgp.ac.in",
 
     workplace: 'ICICI',
@@ -64,7 +64,7 @@ const members_2025 = [
 	},
 
     {
-		image: "images/Advisors_2024_Photos/Ayushi.jpeg",
+		image: "/images/Advisors_2024_Photos/Ayushi.jpeg",
 		name: "Ayushi Gupta",
 
     workplace: 'Apple',

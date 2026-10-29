@@ -1,7 +1,7 @@
 const members_2019 = [
 	{
 		name: "Ritwika Chowdhury",
-		image:"images/Alumni_All_Images/Graduating Batch of 2019/Ritwika Chowdhury.jpeg",
+		image:"/images/Alumni_All_Images/Graduating Batch of 2019/Ritwika Chowdhury.jpeg",
 		linkedin: "https://www.linkedin.com/in/ritwika-chowdhury-a70201112/",
 		degree: "Electronics and Electrical Communication Engineering",
 		graduation_year: 2019,
@@ -11,7 +11,7 @@ const members_2019 = [
 	{
 		name: "Raghav Sonavane",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Raghav Sonavane.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Raghav Sonavane.jpeg",
 		linkedin: "https://www.linkedin.com/in/raghavsonavane/",
 		degree: "Electronics and Electrical Communication Engineering",
 		graduation_year: 2019,
@@ -21,7 +21,7 @@ const members_2019 = [
 	{
 		name: "Rahul Barnwal",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Rahul Barnwal.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Rahul Barnwal.jpeg",
 		linkedin: "https://www.linkedin.com/in/rahul-barnwal-774169a8/",
 		degree: "Mathematics",
 		graduation_year: 2019,
@@ -31,7 +31,7 @@ const members_2019 = [
 	{
 		name: "Mohit Pokharna",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Mohit Pokharna.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Mohit Pokharna.jpeg",
 		linkedin: "https://www.linkedin.com/in/mohitpokharna/",
 		degree: "Mathematics",
 		graduation_year: 2019,
@@ -41,7 +41,7 @@ const members_2019 = [
 	{
 		name: "Devanand Kedia",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Devanand Kedia.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Devanand Kedia.jpeg",
 		linkedin: "https://www.linkedin.com/in/devanandkedia/",
 		degree: "Electrical Engineer",
 		graduation_year: 2019,
@@ -51,7 +51,7 @@ const members_2019 = [
 	{
 		name: "Rameshwar Bhaskaran",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Rameshwar Bhaskaran.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Rameshwar Bhaskaran.jpeg",
 		linkedin: "https://www.linkedin.com/in/rameshwarbhaskaran/",
 		degree: "Computer Science Engineering",
 		graduation_year: 2019,
@@ -61,7 +61,7 @@ const members_2019 = [
 	{
 		name: "Shivam Agarwal",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Shivam Agarwal.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Shivam Agarwal.webp",
 		linkedin: "https://www.linkedin.com/in/shivam207/",
 		degree: "Mathematics",
 		graduation_year: 2019,
@@ -70,7 +70,7 @@ const members_2019 = [
 	},
 	{
 		name: "Arnab Bir",
-		image: "images/Alumni_All_Images/Graduating Batch of 2019/Arnab Bir.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2019/Arnab Bir.jpeg",
 		linkedin: "https://www.linkedin.com/in/arnabbir/",
 		degree: "Mathematics",
 		graduation_year: 2019,
@@ -80,7 +80,7 @@ const members_2019 = [
 	{
 		name: "Utkarsh Parasrampuria",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Utkarsh Parasrampuria.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Utkarsh Parasrampuria.webp",
 		linkedin: "https://www.linkedin.com/in/utkarsh-parasarampuria/",
 		degree: "Computer Science Engineering",
 		graduation_year: 2019,
@@ -90,7 +90,7 @@ const members_2019 = [
 	{
 		name: "Piyush Kumar Singh",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Piyush Singh.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Piyush Singh.jpeg",
 		linkedin: "https://www.linkedin.com/in/piyushk95/",
 		degree: "Civil Engineering",
 		graduation_year: 2019,
@@ -99,7 +99,7 @@ const members_2019 = [
 	},
 	{
 		name: "Tejus Gupta",
-		image: "images/Alumni_All_Images/Graduating Batch of 2019/Tejus Gupta.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2019/Tejus Gupta.webp",
 		linkedin: "https://www.linkedin.com/in/tejus-gupta-03baa3102/",
 		degree: "Computer Science Engineering",
 		graduation_year: 2019,
@@ -110,7 +110,7 @@ const members_2019 = [
 	{
 		name: "Ashwary Anand",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Ashwary Anand.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Ashwary Anand.jpeg",
 		linkedin: "https://www.linkedin.com/in/ashwary-anand-a83642107/",
 		degree: "Mechanical",
 		graduation_year: 2019,
@@ -121,7 +121,7 @@ const members_2019 = [
 	{
 		name: "Pranjal Jain",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Pranjal Jain.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Pranjal Jain.webp",
 		linkedin: "https://www.linkedin.com/in/pranjal-jain-8759a1b4/",
 		degree: "Chemical Engineering",
 		graduation_year: 2019,
@@ -132,7 +132,7 @@ const members_2019 = [
 	{
 		name: "Aniket Gattani",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Aniket Gattani.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Aniket Gattani.jpeg",
 		linkedin: "https://www.linkedin.com/in/aniket-gattani-7692b0104/",
 		degree: "Mechanical Engineering",
 		graduation_year: 2019,
@@ -143,7 +143,7 @@ const members_2019 = [
 	{
 		name: "Abhinav Arun",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Abhinav Arun.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Abhinav Arun.webp",
 		linkedin: "https://www.linkedin.com/in/abhinav-arun-432341117/",
 		degree: "Mechanical Engineering",
 		graduation_year: 2019,
@@ -154,7 +154,7 @@ const members_2019 = [
 	{
 		name: "Satyam Behera",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Satyam Behera.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Satyam Behera.webp",
 		linkedin: "https://www.linkedin.com/in/satyam-behera-916084114/",
 		degree: "Metallurgical and Materials Engineering",
 		graduation_year: 2019,
@@ -165,7 +165,7 @@ const members_2019 = [
 	{
 		name: "Tushar Sinha",
 		image:
-			"images/Alumni_All_Images/Graduating Batch of 2019/Tushar Sinha.jpeg",
+			"/images/Alumni_All_Images/Graduating Batch of 2019/Tushar Sinha.webp",
 		linkedin: "https://www.linkedin.com/in/tushar-sinha-a0904412a/",
 		degree: "(Instrumentation Engineering) Electrical Engineering",
 		graduation_year: 2019,
@@ -175,7 +175,7 @@ const members_2019 = [
 	},
 	{
 		name: "Kanav Anand",
-		image: "images/Alumni_All_Images/Graduating Batch of 2019/Kanav Anand.jpeg",
+		image: "/images/Alumni_All_Images/Graduating Batch of 2019/Kanav Anand.webp",
 		linkedin: "https://www.linkedin.com/in/kanavanand/",
 		degree: "Industrial and Systems Engineering",
 		graduation_year: 2019,

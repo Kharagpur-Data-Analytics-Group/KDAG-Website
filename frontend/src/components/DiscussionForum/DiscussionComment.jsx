@@ -8,10 +8,10 @@ import icon_commented from "./asset_comment.png";
 import profileImage from "./profile.jpeg";
 import icon_heart from "./asset_heart.png";
 import { jwtDecode } from "jwt-decode";
-import upvote_img from "./../../assets/pics/upvote.png";
-import downvote_img from "./../../assets/pics/downvote.png";
-import already_upvoted_img from "./../../assets/pics/already_upvoted.png";
-import already_downvoted_img from "./../../assets/pics/already_downvoted.png";
+import upvote_img from "./../../assets/pics/upvote.webp";
+import downvote_img from "./../../assets/pics/downvote.webp";
+import already_upvoted_img from "./../../assets/pics/already_upvoted.webp";
+import already_downvoted_img from "./../../assets/pics/already_downvoted.webp";
 
 
 const DiscussionComment = ({ post_id, level, reply }) => {

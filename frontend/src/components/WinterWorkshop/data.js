@@ -1,3 +1,6 @@
+import resourcesgray from "../../assets/pics/winterworkshop/resourcesgray.svg";
+import projectgray from "../../assets/pics/winterworkshop/projectgray.svg";
+import taskgray from "../../assets/pics/winterworkshop/taskgray.svg";
 /* eslint-disable no-unused-vars */
 const DataApi = [
   {
@@ -22,7 +25,7 @@ const DataApi = [
       },
       {
         tab: 2,
-        icon: "/icons/resourcesgray.svg",
+        icon: resourcesgray,
         title: "Resources",
         blogs: [
           {
@@ -76,7 +79,7 @@ const DataApi = [
       },
       {
         tab: 3,
-        icon: "/icons/projectgray.svg",
+        icon: projectgray,
         title: "Projects",
         projectlist: [
           {
@@ -104,7 +107,7 @@ const DataApi = [
       },
       {
         tab: 4,
-        icon: "/icons/taskgray.svg",
+        icon: taskgray,
         title: "Tasks",
         tasks: [
           {
@@ -150,7 +153,7 @@ const DataApi = [
       },
       {
         tab: 2,
-        icon: "/icons/resourcesgray.svg",
+        icon: resourcesgray,
         title: "Resources",
         blogs: [
           {
@@ -189,7 +192,7 @@ const DataApi = [
       },
       {
         tab: 3,
-        icon: "/icons/projectgray.svg",
+        icon: projectgray,
         title: "Projects",
         projectlist: [
           {
@@ -210,7 +213,7 @@ const DataApi = [
       },
       {
         tab: 4,
-        icon: "/icons/taskgray.svg",
+        icon: taskgray,
         title: "Tasks",
         tasks: [
           {
@@ -247,7 +250,7 @@ const DataApi = [
       },
       {
         tab: 2,
-        icon: "/icons/resourcesgray.svg",
+        icon: resourcesgray,
         title: "Resources",
         blogs: [
           {
@@ -286,7 +289,7 @@ const DataApi = [
       },
       {
         tab: 3,
-        icon: "/icons/projectgray.svg",
+        icon: projectgray,
         title: "Projects",
         projectlist: [
           {
@@ -307,7 +310,7 @@ const DataApi = [
       },
       {
         tab: 4,
-        icon: "/icons/taskgray.svg",
+        icon: taskgray,
         title: "Tasks",
         tasks: [
           {
@@ -344,7 +347,7 @@ const DataApi = [
       },
       {
         tab: 2,
-        icon: "/icons/resourcesgray.svg",
+        icon: resourcesgray,
         title: "Resources",
         blogs: [
           {
@@ -383,7 +386,7 @@ const DataApi = [
       },
       {
         tab: 3,
-        icon: "/icons/projectgray.svg",
+        icon: projectgray,
         title: "Projects",
         projectlist: [
           {
@@ -397,7 +400,7 @@ const DataApi = [
       },
       {
         tab: 4,
-        icon: "/icons/taskgray.svg",
+        icon: taskgray,
         title: "Tasks",
         tasks: [
           {
@@ -430,7 +433,7 @@ const DataApi = [
       },
       {
         tab: 2,
-        icon: "/icons/resourcesgray.svg",
+        icon: resourcesgray,
         title: "Resources",
         blogs: [
           {
@@ -539,7 +542,7 @@ const DataApi = [
       },
       {
         tab: 3,
-        icon: "/icons/projectgray.svg",
+        icon: projectgray,
         title: "Projects",
         projectlist: [
           {
@@ -553,7 +556,7 @@ const DataApi = [
       },
       {
         tab: 4,
-        icon: "/icons/taskgray.svg",
+        icon: taskgray,
         title: "Tasks",
         tasks: [
           {
@@ -595,7 +598,7 @@ const DataApi = [
       },
       {
         tab: 2,
-        icon: "/icons/resourcesgray.svg",
+        icon: resourcesgray,
         title: "Resources",
         blogs: [
           {
@@ -681,7 +684,7 @@ const DataApi = [
       },
       {
         tab: 3,
-        icon: "/icons/projectgray.svg",
+        icon: projectgray,
         title: "Projects",
         projectlist: [
           {
@@ -709,7 +712,7 @@ const DataApi = [
       },
       {
         tab: 4,
-        icon: "/icons/taskgray.svg",
+        icon: taskgray,
         title: "Tasks",
         tasks: [
           {
@@ -746,7 +749,7 @@ const DataApi = [
       },
       {
         tab: 2,
-        icon: "/icons/resourcesgray.svg",
+        icon: resourcesgray,
         title: "Resources",
         blogs: [
           {
@@ -786,7 +789,7 @@ const DataApi = [
       },
       {
         tab: 3,
-        icon: "/icons/projectgray.svg",
+        icon: projectgray,
         title: "Projects",
         projectlist: [
           {
@@ -800,7 +803,7 @@ const DataApi = [
       },
       {
         tab: 4,
-        icon: "/icons/taskgray.svg",
+        icon: taskgray,
         title: "Tasks",
         tasks: [
           {

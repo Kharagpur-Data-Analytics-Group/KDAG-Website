@@ -3,7 +3,7 @@ import React, { useState, useMemo, useRef } from "react";
 import Navbar from "../Common/Navbar/Navbar";
 import { toast } from "react-toastify";
 import Particless from "../Common/Particles/Particless";
-import certificateTemplate from "../../assets/KDSH2026_sponsor_logos/KDSH26_certificate.png";
+import certificateTemplate from "../../assets/KDSH2026_sponsor_logos/KDSH26_certificate.webp";
 import CertificateStarGuide from "./CertificateStarGuide";
 const CertificateGeneration = () => {
   const [email, setEmail] = useState("");
