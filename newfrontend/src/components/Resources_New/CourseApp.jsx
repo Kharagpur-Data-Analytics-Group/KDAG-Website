@@ -140,10 +140,12 @@ function App() {
         <div className="custom-loading-spinner [width:3.2rem]! [height:3.2rem]! [border:5px_solid_#ff4040]! [border-top:5px_solid_#1a0008]! [border-radius:50%]! [animation:custom-spin_1s_linear_infinite]! [margin-bottom:1.5rem]! [box-shadow:0_0_18px_#ff404055]!"></div>
         <div className="custom-loading-text [color:#ff4040]! [font-size:1.5rem]! [font-family:'JetBrains_Mono',_monospace]! [text-align:center]! [font-weight:bold]! [letter-spacing:0.08em]! [text-shadow:0_2px_12px_#ff404055]! [margin-bottom:2rem]!">Loading Resources...</div>
       </div>;
-  return <div className="min-h-screen flex flex-col items-center justify-start bg-black px-2 py-8 app-container [font-family:Inter,'JetBrains_Mono','Fira_Code',sans-serif]! [margin-bottom:100px]!"><style>{"@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n@keyframes custom-spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\ninput[type=\"checkbox\"] {\n  width: 18px;\n  height: 18px;\n  accent-color: #ff3333;\n  cursor: pointer;\n  filter: drop-shadow(0 0 2px #ff333377);\n}"}</style>
+  // main:frontend renders this as normal block flow (its Tailwind classes
+  // are inactive). Let the cards/sections own their 92% / 980px widths.
+  return <div className="app-container [font-family:Inter,'JetBrains_Mono','Fira_Code',sans-serif]! [margin-bottom:100px]!"><style>{"@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n@keyframes custom-spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\ninput[type=\"checkbox\"] {\n  width: 18px;\n  height: 18px;\n  accent-color: #ff3333;\n  cursor: pointer;\n  filter: drop-shadow(0 0 2px #ff333377);\n}"}</style>
       <Header />
       <ProgressCard totalCompleted={totalCompleted} totalCount={totalSubtopics} easyCompleted={easyCompleted} easyCount={easyCount} mediumCompleted={mediumCompleted} mediumCount={mediumCount} hardCompleted={hardCompleted} hardCount={hardCount} />
-      <div className="w-full max-w-3xl mt-6">
+      <div className="ml-sheet-sections">
         {sections.map((section, idx) => <DropdownSection key={idx} title={section.title} items={section.items} open={openIndex === idx} onToggle={() => setOpenIndex(openIndex === idx ? null : idx)} isFirst={idx === 0} isLast={idx === sections.length - 1} onToggleCompleted={itemIdx => handleToggleCompleted(idx, itemIdx)} onToggleRevision={itemIdx => handleToggleRevision(idx, itemIdx)} />)}
       </div>
     </div>;
