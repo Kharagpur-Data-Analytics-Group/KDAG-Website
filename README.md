@@ -2,7 +2,7 @@
 
 Website for Kharagpur Data Analytics Group, IIT Kharagpur.
 
-The active frontend is `newfrontend/` (React + Vite). `frontend/` is the legacy app. The Flask API is in `backend/`. `main-backup` already contains the backend from `main`; integration fixes are applied on top of that backend.
+The frontend is `frontend/` (React + Vite). The Flask API is in `backend/`.
 
 ## Local development
 
@@ -22,7 +22,7 @@ Set `MONGO_URI`, a random `JWT_SECRET_KEY`, and Google OAuth credentials in `bac
 In a second terminal:
 
 ```bash
-cd newfrontend
+cd frontend
 npm ci
 cp .env.example .env   # Only for a new setup; preserve an existing .env
 npm run dev -- --port 5173 --strictPort
@@ -36,16 +36,16 @@ DOCX resource rendering also needs the Pandoc executable installed on the backen
 
 ## Production
 
-Deploy `backend/` as the Flask API (its existing Vercel configuration is included). Build the active frontend with `cd newfrontend && npm ci && npm run build`, and serve `newfrontend/dist`.
+Deploy `backend/` as the Flask API (its existing Vercel configuration is included). Build the active frontend with `cd frontend && npm ci && npm run build`, and serve `frontend/dist`.
 
 For a separate frontend deployment, set `VITE_FETCH_URL` to the backend's HTTPS origin **before building**. `/api` is a development proxy; a production host using that value must provide its own reverse proxy and strip the `/api` prefix. Set the frontend and backend OAuth redirect settings to the same public `/google-auth/callback` URL registered with Google. Google credentials and the MongoDB connection must be configured on the backend host.
 
-For Vercel frontend hosting, select `newfrontend` as the project root, use the Vite framework preset and `dist` output. The included `newfrontend/vercel.json` rewrites page routes to `index.html` so profile links, resource pages and OAuth callbacks survive refreshes. Other static hosts need the equivalent SPA fallback. `npm run preview` previews the production build and requires a reachable API origin configured at build time.
+For Vercel frontend hosting, select `frontend` as the project root, use the Vite framework preset and `dist` output. The included `frontend/vercel.json` rewrites page routes to `index.html` so profile links, resource pages and OAuth callbacks survive refreshes. Other static hosts need the equivalent SPA fallback. `npm run preview` previews the production build and requires a reachable API origin configured at build time.
 
 ## Verification
 
 ```bash
-cd newfrontend
+cd frontend
 npm test
 npm run build
 ```
