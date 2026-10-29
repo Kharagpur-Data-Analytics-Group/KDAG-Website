@@ -1,0 +1,153 @@
+import { toast } from "react-toastify";
+import { API_BASE_URL } from "../../config/api.js";
+// App.js
+import { useEffect, useState } from "react";
+import DropdownSection from "./Sheet.jsx";
+import initialSections from "./course.json";
+import ProgressCard from "./ProgressCard.jsx";
+import Header from "./Header/Header.jsx";
+function App() {
+  const BASE_URL = API_BASE_URL;
+  const [sections, setSections] = useState(initialSections);
+  const [loading, setLoading] = useState(true);
+  const [openIndex, setOpenIndex] = useState(null);
+  useEffect(() => {
+    if (loading) {
+      document.body.classList.add("hide-footer");
+    } else {
+      document.body.classList.remove("hide-footer");
+    }
+    return () => document.body.classList.remove("hide-footer");
+  }, [loading]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("access_token");
+        if (!token) return;
+        const res = await fetch(`${BASE_URL}/resources/`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        if (!res.ok) throw new Error("Failed to fetch course data");
+        const data = await res.json();
+        const updatedSections = data[0]?.sections || [];
+        const merged = initialSections.map(initialSection => {
+          const matchingBackendSection = updatedSections.find(s => s.title === initialSection.title);
+          if (!matchingBackendSection) return initialSection;
+          return {
+            ...initialSection,
+            items: initialSection.items.map(initialItem => {
+              const matchingBackendItem = matchingBackendSection.items.find(i => i.name === initialItem.name);
+              return {
+                ...initialItem,
+                ...(matchingBackendItem || {}),
+                resource: initialItem.resource
+              };
+            })
+          };
+        });
+        setSections(merged);
+      } catch (err) {
+        console.error("Error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [BASE_URL]);
+
+  // Progress calculations
+  const totalSubtopics = initialSections.reduce((total, section) => total + section.items.length, 0);
+  const totalCompleted = sections.reduce((total, section) => total + section.items.filter(item => item.completed).length, 0);
+  const easyCount = initialSections.reduce((total, section) => total + section.items.filter(item => item.difficulty === "Easy").length, 0);
+  const mediumCount = initialSections.reduce((total, section) => total + section.items.filter(item => item.difficulty === "Medium").length, 0);
+  const hardCount = initialSections.reduce((total, section) => total + section.items.filter(item => item.difficulty === "Hard").length, 0);
+  const easyCompleted = sections.reduce((total, section) => total + section.items.filter(item => item.difficulty === "Easy" && item.completed).length, 0);
+  const mediumCompleted = sections.reduce((total, section) => total + section.items.filter(item => item.difficulty === "Medium" && item.completed).length, 0);
+  const hardCompleted = sections.reduce((total, section) => total + section.items.filter(item => item.difficulty === "Hard" && item.completed).length, 0);
+  const handleToggleCompleted = async (sectionIdx, itemIdx) => {
+    const section = sections[sectionIdx];
+    const item = section.items[itemIdx];
+    const newValue = !item.completed;
+    try {
+      setSections(prev => prev.map((sec, sIdx) => sIdx === sectionIdx ? {
+        ...sec,
+        items: sec.items.map((itm, iIdx) => iIdx === itemIdx ? {
+          ...itm,
+          completed: newValue
+        } : itm)
+      } : sec));
+      const token = localStorage.getItem("access_token");
+      const response = await fetch(`${BASE_URL}/resources/update`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          section_title: section.title,
+          item_name: item.name,
+          field: "completed",
+          value: newValue
+        })
+      });
+      if (!response.ok) throw new Error("Failed to save progress");
+    } catch (err) {
+      setSections(prev => prev.map((sec, sIdx) => sIdx === sectionIdx ? {
+        ...sec, items: sec.items.map((itm, iIdx) => iIdx === itemIdx ? { ...itm, completed: !newValue } : itm)
+      } : sec));
+      toast.error("Could not save completion status. Please try again.");
+      console.error("Error updating completion status:", err);
+    }
+  };
+  const handleToggleRevision = async (sectionIdx, itemIdx) => {
+    const section = sections[sectionIdx];
+    const item = section.items[itemIdx];
+    const newValue = !item.revision;
+    try {
+      setSections(prev => prev.map((sec, sIdx) => sIdx === sectionIdx ? {
+        ...sec,
+        items: sec.items.map((itm, iIdx) => iIdx === itemIdx ? {
+          ...itm,
+          revision: newValue
+        } : itm)
+      } : sec));
+      const token = localStorage.getItem("access_token");
+      const response = await fetch(`${BASE_URL}/resources/update`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          section_title: section.title,
+          item_name: item.name,
+          field: "revision",
+          value: newValue
+        })
+      });
+      if (!response.ok) throw new Error("Failed to save progress");
+    } catch (err) {
+      setSections(prev => prev.map((sec, sIdx) => sIdx === sectionIdx ? {
+        ...sec, items: sec.items.map((itm, iIdx) => iIdx === itemIdx ? { ...itm, revision: !newValue } : itm)
+      } : sec));
+      toast.error("Could not save revision status. Please try again.");
+      console.error("Error updating revision status:", err);
+    }
+  };
+  if (loading) return <div className="custom-loading-container [display:flex]! [flex-direction:column]! [align-items:center]! [justify-content:center]! [min-height:60vh]! [width:100vw]! [background:transparent]! [z-index:1000]!"><style>{"@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n@keyframes custom-spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\ninput[type=\"checkbox\"] {\n  width: 18px;\n  height: 18px;\n  accent-color: #ff3333;\n  cursor: pointer;\n  filter: drop-shadow(0 0 2px #ff333377);\n}"}</style>
+        <div className="custom-loading-spinner [width:3.2rem]! [height:3.2rem]! [border:5px_solid_#ff4040]! [border-top:5px_solid_#1a0008]! [border-radius:50%]! [animation:custom-spin_1s_linear_infinite]! [margin-bottom:1.5rem]! [box-shadow:0_0_18px_#ff404055]!"></div>
+        <div className="custom-loading-text [color:#ff4040]! [font-size:1.5rem]! [font-family:'JetBrains_Mono',_monospace]! [text-align:center]! [font-weight:bold]! [letter-spacing:0.08em]! [text-shadow:0_2px_12px_#ff404055]! [margin-bottom:2rem]!">Loading Resources...</div>
+      </div>;
+  // main:frontend renders this as normal block flow (its Tailwind classes
+  // are inactive). Let the cards/sections own their 92% / 980px widths.
+  return <div className="app-container [font-family:Inter,'JetBrains_Mono','Fira_Code',sans-serif]! [margin-bottom:100px]!"><style>{"@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n@keyframes custom-spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\ninput[type=\"checkbox\"] {\n  width: 18px;\n  height: 18px;\n  accent-color: #ff3333;\n  cursor: pointer;\n  filter: drop-shadow(0 0 2px #ff333377);\n}"}</style>
+      <Header />
+      <ProgressCard totalCompleted={totalCompleted} totalCount={totalSubtopics} easyCompleted={easyCompleted} easyCount={easyCount} mediumCompleted={mediumCompleted} mediumCount={mediumCount} hardCompleted={hardCompleted} hardCount={hardCount} />
+      <div className="ml-sheet-sections">
+        {sections.map((section, idx) => <DropdownSection key={idx} title={section.title} items={section.items} open={openIndex === idx} onToggle={() => setOpenIndex(openIndex === idx ? null : idx)} isFirst={idx === 0} isLast={idx === sections.length - 1} onToggleCompleted={itemIdx => handleToggleCompleted(idx, itemIdx)} onToggleRevision={itemIdx => handleToggleRevision(idx, itemIdx)} />)}
+      </div>
+    </div>;
+}
+export default App;

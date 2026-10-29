@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
-import "./RegisterPage.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
